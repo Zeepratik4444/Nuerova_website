@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
-import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/useSEO";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { blogPosts } from "@/lib/blogPosts";
 import { trackEvent } from "@/lib/analytics";
 import { BLOG_NEXT_STEPS } from "@/lib/funnelNextSteps";
@@ -53,112 +53,140 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
 	useSEO({
 		title: post
-			? `${post.title} | Nuerova Blog`
+			? `${post.title} | Nuerova`
 			: "Blog article not found - Nuerova",
 		description: post
 			? post.summary
 			: "The requested Nuerova blog article could not be found.",
 	});
 
+	useScrollReveal();
+
 	if (!post) {
 		return (
-			<div className="min-h-screen bg-white">
+			<div className="js-enabled">
 				<Navigation />
-				<div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-					<h1 className="text-3xl font-bold text-gray-900 mb-4">
-						Article not found
-					</h1>
-					<p className="text-gray-600 mb-8">
-						The article may have moved, or the URL may be incorrect.
-					</p>
-					<Link to="/blog">
-						<Button>Back to blog</Button>
-					</Link>
-				</div>
+				<main className="section">
+					<div className="container article-shell reveal" style={{ textAlign: "center", padding: "80px 20px" }}>
+						<h1>Article not found</h1>
+						<p style={{ color: "var(--muted)", marginBottom: "32px" }}>
+							The article may have moved, or the URL may be incorrect.
+						</p>
+						<Link to="/blog" className="button primary">
+							Back to blog
+						</Link>
+					</div>
+				</main>
 			</div>
 		);
 	}
 
 	return (
-		<div className="min-h-screen bg-white">
+		<div className="js-enabled">
 			<Navigation />
-			<div className="max-w-3xl mx-auto px-6 pt-8">
-				<Link
-					to="/blog"
-					className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors"
-				>
-					<ArrowLeft className="h-4 w-4" />
-					Back to blog
-				</Link>
-			</div>
-			{answerBlock && (
-				<section className="max-w-3xl mx-auto px-6 pt-8">
-					<div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
-						<p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-							Direct answer
-						</p>
-						<h2 className="mt-2 text-2xl font-bold text-slate-950">
-							{answerBlock.question}
-						</h2>
-						<p className="mt-3 text-base leading-relaxed text-slate-700">
-							{answerBlock.answer}
-						</p>
-						{answerBlock.facts && (
-							<ul className="mt-5 grid gap-3 md:grid-cols-3">
-								{answerBlock.facts.map((fact) => (
-									<li key={fact} className="text-sm text-slate-700">
-										{fact}
-									</li>
-								))}
-							</ul>
-						)}
-					</div>
-				</section>
-			)}
-			{answerBlock?.comparison && (
-				<section className="max-w-3xl mx-auto px-6 pt-6">
-					<ComparisonSummary
-						title="AI-ready comparison summary"
-						rows={answerBlock.comparison}
-					/>
-				</section>
-			)}
-			<div
-				className="blog-article-shell"
-				dangerouslySetInnerHTML={{
-					__html: extractArticleHtml(post.contentHtml),
-				}}
-			/>
-			{nextStep && (
-				<section className="max-w-3xl mx-auto px-6 pb-20">
-					<div className="rounded-lg border border-blue-100 bg-blue-50 p-6">
-						<p className="text-sm font-semibold text-blue-700">
-							Recommended next step
-						</p>
-						<h2 className="mt-2 text-2xl font-bold text-gray-900">
-							{nextStep.title}
-						</h2>
-						<p className="mt-3 text-gray-600 leading-relaxed">
-							{nextStep.description}
-						</p>
-						<a
-							href={nextStep.to}
-							onClick={() =>
-								trackEvent("blog_next_step_clicked", {
-									blog_slug: post.slug,
-									cta_text: nextStep.label,
-									cta_location: "blog_next_step",
-									funnel_stage: nextStep.stage,
-									target_url: nextStep.to,
-								})
-							}
-							className="mt-5 inline-flex"
+			<main className="section">
+				<article className="container article-shell reveal">
+					<div style={{ marginBottom: "24px" }}>
+						<Link
+							to="/blog"
+							className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors"
+							style={{ display: "inline-flex", alignItems: "center", gap: "8px", textDecoration: "none", color: "var(--muted)", fontWeight: 600 }}
 						>
-							<Button>{nextStep.label}</Button>
-						</a>
+							<ArrowLeft className="h-4 w-4" style={{ width: "16px", height: "16px" }} />
+							Back to blog
+						</Link>
 					</div>
-				</section>
-			)}
+
+					{answerBlock && (
+						<div
+							className="rounded-lg border border-slate-200 bg-slate-50 p-6"
+							style={{
+								marginBottom: "32px",
+								borderRadius: "8px",
+								border: "1px solid var(--outline)",
+								background: "rgba(255, 255, 255, 0.4)",
+								padding: "24px",
+							}}
+						>
+							<p className="text-xs font-bold uppercase tracking-wide text-slate-500" style={{ margin: 0, textTransform: "uppercase", fontSize: "12px", fontWeight: 800, color: "var(--muted)" }}>
+								Direct answer
+							</p>
+							<h2 className="mt-2 text-2xl font-bold text-slate-950" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
+								{answerBlock.question}
+							</h2>
+							<p className="mt-3 text-base leading-relaxed text-slate-700" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
+								{answerBlock.answer}
+							</p>
+							{answerBlock.facts && (
+								<ul className="mt-5 grid gap-3 md:grid-cols-3" style={{ marginTop: "20px", display: "grid", gap: "12px", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", paddingLeft: 0, listStyle: "none" }}>
+									{answerBlock.facts.map((fact) => (
+										<li key={fact} className="text-sm text-slate-700" style={{ fontSize: "14px", color: "var(--ink-soft)" }}>
+											• {fact}
+										</li>
+									))}
+								</ul>
+							)}
+						</div>
+					)}
+
+					{answerBlock?.comparison && (
+						<div style={{ marginBottom: "32px" }}>
+							<ComparisonSummary
+								title="AI-ready comparison summary"
+								rows={answerBlock.comparison}
+							/>
+						</div>
+					)}
+
+					<span className="article-meta">{post.tags[0]}</span>
+					<h1>{post.title}</h1>
+
+					<div
+						dangerouslySetInnerHTML={{
+							__html: extractArticleHtml(post.contentHtml),
+						}}
+					/>
+
+					{nextStep && (
+						<div
+							className="rounded-lg border border-blue-100 bg-blue-50 p-6"
+							style={{
+								marginTop: "48px",
+								borderRadius: "8px",
+								border: "1px solid var(--primary-soft)",
+								background: "rgba(18, 117, 226, 0.05)",
+								padding: "24px",
+							}}
+						>
+							<p className="text-sm font-semibold text-blue-700" style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "var(--primary-deep)" }}>
+								Recommended next step
+							</p>
+							<h2 className="mt-2 text-2xl font-bold text-gray-900" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
+								{nextStep.title}
+							</h2>
+							<p className="mt-3 text-gray-600 leading-relaxed" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
+								{nextStep.description}
+							</p>
+							<Link
+								to={nextStep.to === "/contact/" ? "/contact" : nextStep.to}
+								onClick={() =>
+									trackEvent("blog_next_step_clicked", {
+										blog_slug: post.slug,
+										cta_text: nextStep.label,
+										cta_location: "blog_next_step",
+										funnel_stage: nextStep.stage,
+										target_url: nextStep.to,
+									})
+								}
+								className="button primary"
+								style={{ display: "inline-block", marginTop: "20px" }}
+							>
+								{nextStep.label}
+							</Link>
+						</div>
+					)}
+				</article>
+			</main>
 		</div>
 	);
 }

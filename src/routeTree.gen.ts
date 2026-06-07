@@ -10,10 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as SetPasswordRouteImport } from './routes/set-password'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as PricingRouteImport } from './routes/pricing'
-import { Route as PaymentSuccessRouteImport } from './routes/payment-success'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as FeaturesRouteImport } from './routes/features'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -29,11 +27,6 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SetPasswordRoute = SetPasswordRouteImport.update({
-  id: '/set-password',
-  path: '/set-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
@@ -42,11 +35,6 @@ const SecurityRoute = SecurityRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PaymentSuccessRoute = PaymentSuccessRouteImport.update({
-  id: '/payment-success',
-  path: '/payment-success',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -103,10 +91,8 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
-  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
-  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -118,10 +104,8 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
-  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
-  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -135,10 +119,8 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/features': typeof FeaturesRoute
   '/how-it-works': typeof HowItWorksRoute
-  '/payment-success': typeof PaymentSuccessRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
-  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -153,10 +135,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/features'
     | '/how-it-works'
-    | '/payment-success'
     | '/pricing'
     | '/security'
-    | '/set-password'
     | '/terms'
     | '/blog/$slug'
     | '/blog/'
@@ -168,10 +148,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/features'
     | '/how-it-works'
-    | '/payment-success'
     | '/pricing'
     | '/security'
-    | '/set-password'
     | '/terms'
     | '/blog/$slug'
     | '/blog'
@@ -184,10 +162,8 @@ export interface FileRouteTypes {
     | '/faq'
     | '/features'
     | '/how-it-works'
-    | '/payment-success'
     | '/pricing'
     | '/security'
-    | '/set-password'
     | '/terms'
     | '/blog_/$slug'
     | '/blog/'
@@ -201,10 +177,8 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   FeaturesRoute: typeof FeaturesRoute
   HowItWorksRoute: typeof HowItWorksRoute
-  PaymentSuccessRoute: typeof PaymentSuccessRoute
   PricingRoute: typeof PricingRoute
   SecurityRoute: typeof SecurityRoute
-  SetPasswordRoute: typeof SetPasswordRoute
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
 }
@@ -216,13 +190,6 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/set-password': {
-      id: '/set-password'
-      path: '/set-password'
-      fullPath: '/set-password'
-      preLoaderRoute: typeof SetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -237,13 +204,6 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payment-success': {
-      id: '/payment-success'
-      path: '/payment-success'
-      fullPath: '/payment-success'
-      preLoaderRoute: typeof PaymentSuccessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -330,10 +290,8 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   FeaturesRoute: FeaturesRoute,
   HowItWorksRoute: HowItWorksRoute,
-  PaymentSuccessRoute: PaymentSuccessRoute,
   PricingRoute: PricingRoute,
   SecurityRoute: SecurityRoute,
-  SetPasswordRoute: SetPasswordRoute,
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
 }
