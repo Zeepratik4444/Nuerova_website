@@ -729,6 +729,22 @@ export function HomePage() {
 						)}
 					</div>
 				</section>
+
+				{/* ── EARLY ACCESS CTA ── */}
+				<section className="section cta-section">
+					<div className="container cta-inner">
+						<h2>Be first when we open the gates.</h2>
+						<p>Limited pilot with 50 teams. No credit card required.</p>
+						{!formSubmitted ? (
+							<form className="cta-form" onSubmit={handleFormSubmit}>
+								<input type="email" placeholder="Work email" required />
+								<button type="submit" className="button primary">Request Access →</button>
+							</form>
+						) : (
+							<p className="success-msg">You're on the list. We'll be in touch.</p>
+						)}
+					</div>
+				</section>
 			</main>
 		</div>
 	);

@@ -2269,3 +2269,109 @@ figcaption span {
 		font-size: 36px;
 	}
 }
+
+/* ── EARLY ACCESS CTA SECTION ── */
+.cta-section {
+	background: linear-gradient(135deg, var(--primary-deep), var(--ink));
+	color: #fff;
+	text-align: center;
+	padding: 80px 0;
+}
+
+.cta-inner {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.cta-inner h2 {
+	margin: 0 0 12px;
+	color: #fff;
+	font-size: clamp(32px, 4.5vw, 48px);
+	font-weight: 850;
+	line-height: 1.1;
+}
+
+.cta-inner p {
+	color: var(--primary-soft);
+	font-size: 18px;
+	margin: 0 0 32px;
+}
+
+.cta-form {
+	display: flex;
+	gap: 12px;
+	max-width: 480px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.cta-form input[type="email"] {
+	flex: 1;
+	height: 46px;
+	padding: 0 16px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.08);
+	color: #fff;
+	font-size: 15px;
+	font-family: inherit;
+	transition:
+		border-color 0.2s,
+		background 0.2s;
+}
+
+.cta-form input[type="email"]::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.cta-form input[type="email"]:focus {
+	outline: none;
+	border-color: #fff;
+	background: rgba(255, 255, 255, 0.15);
+}
+
+.cta-form .button {
+	height: 46px;
+	padding: 0 24px;
+	border: none;
+	border-radius: 6px;
+	background: #fff;
+	color: var(--primary-deep);
+	font-size: 15px;
+	font-weight: 750;
+	cursor: pointer;
+	transition:
+		background 0.2s,
+		transform 0.2s;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+}
+
+.cta-form .button:hover {
+	background: var(--primary-soft);
+	transform: translateY(-1px);
+}
+
+.cta-inner .success-msg {
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+	margin: 0;
+}
+
+@media (max-width: 520px) {
+	.cta-form {
+		flex-direction: column;
+	}
+	.cta-form input[type="email"],
+	.cta-form .button {
+		width: 100%;
+	}
+}
