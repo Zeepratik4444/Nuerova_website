@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads Admin</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto p-4 sm:p-8">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Leads Dashboard</h1>
+                <p class="text-gray-500">Overview of demo requests and contacts.</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-sm font-medium text-gray-500">Total Leads</h2>
+                <p id="total-leads" class="text-3xl font-bold text-gray-800">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-sm font-medium text-gray-500">Contacted</h2>
+                <p id="contacted-leads" class="text-3xl font-bold text-blue-600">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-sm font-medium text-gray-500">Converted</h2>
+                <p id="converted-leads" class="text-3xl font-bold text-green-600">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-sm font-medium text-gray-500">Pending</h2>
+                <p id="pending-leads" class="text-3xl font-bold text-yellow-600">0</p>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+            <div class="overflow-x-auto">
+                <table class="min-w-full w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">ID & Company</th>
+                            <th class="py-3 px-6 text-left">Contact Info</th>
+                            <th class="py-3 px-6 text-left">Timeline</th>
+                            <th class="py-3 px-6 text-center">Contacted?</th>
+                            <th class="py-3 px-6 text-center">Converted?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-tbody" class="text-gray-700 text-sm">
+                        <!-- Leads will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/admin/leads';
+
+        // Fetch and display leads
+        async function loadLeads() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch leads');
+                }
+
+                const data = await response.json();
+
+                // Update stats
+                document.getElementById('total-leads').textContent = data.stats.total_leads;
+                document.getElementById('contacted-leads').textContent = data.stats.contacted_leads;
+                document.getElementById('converted-leads').textContent = data.stats.converted_leads;
+                document.getElementById('pending-leads').textContent = data.stats.pending_leads;
+
+                // Render leads table
+                const tbody = document.getElementById('leads-tbody');
+                tbody.innerHTML = data.leads.map(lead => `
+                    <tr class="border-b border-gray-200 hover:bg-gray-50">
+                        <td class="py-3 px-6 text-left">
+                            <span class="font-bold">#${lead.id}</span>
+                            <div class="font-medium text-gray-800">${lead.company_name}</div>
+                            <div class="text-xs text-gray-500 max-w-xs truncate" title="${lead.message || ''}">${lead.message || 'N/A'}</div>
+                        </td>
+
+                        <td class="py-3 px-6 text-left">
+                            <div class="font-medium">${lead.contact_person_name}</div>
+                            <div>${lead.email_address}</div>
+                            <div class="text-xs text-gray-500">${lead.phone_number || 'N/A'}</div>
+                        </td>
+
+                        <td class="py-3 px-6 text-left text-xs">
+                            <div class="mb-1">
+                                <span class="font-semibold text-gray-600">Created:</span> 
+                                ${formatDate(lead.created_at)}
+                            </div>
+                            <div class="mb-1 text-blue-600">
+                                <span class="font-semibold">Contacted:</span> 
+                                ${formatDate(lead.contacted_at)}
+                            </div>
+                            <div class="text-green-600">
+                                <span class="font-semibold">Converted:</span> 
+                                ${formatDate(lead.converted_at)}
+                            </div>
+                        </td>
+
+                        <td class="py-3 px-6 text-center">
+                            <div class="flex justify-center flex-col items-center">
+                                <input type="checkbox" 
+                                    class="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer mb-1"
+                                    ${lead.contacted ? 'checked' : ''}
+                                    onchange="updateStatus(${lead.id}, 'contacted', this.checked)">
+                                <span id="status-contacted-${lead.id}" class="text-xs ${lead.contacted ? 'text-blue-600 font-bold' : 'text-gray-400'}">
+                                    ${lead.contacted ? 'Yes' : 'No'}
+                                </span>
+                            </div>
+                        </td>
+
+                        <td class="py-3 px-6 text-center">
+                            <div class="flex justify-center flex-col items-center">
+                                <input type="checkbox" 
+                                    class="h-5 w-5 text-green-600 rounded border-gray-300 focus:ring-green-500 cursor-pointer mb-1"
+                                    ${lead.is_converted ? 'checked' : ''}
+                                    onchange="updateStatus(${lead.id}, 'converted', this.checked)">
+                                <span id="status-converted-${lead.id}" class="text-xs ${lead.is_converted ? 'text-green-600 font-bold' : 'text-gray-400'}">
+                                    ${lead.is_converted ? 'Sold' : 'No'}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading leads:', error);
+                alert('Failed to load leads. Please check your authentication.');
+            }
+        }
+
+        // Update lead status
+        async function updateStatus(leadId, type, value) {
+            try {
+                const payload = type === 'contacted' ? { contacted: value } : { converted: value };
+
+                const response = await fetch(`/api/admin/leads/${leadId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to update status');
+                }
+
+                const updatedLead = await response.json();
+
+                // Update the text label
+                const statusLabel = document.getElementById(`status-${type}-${leadId}`);
+                if (type === 'contacted') {
+                    statusLabel.textContent = value ? 'Yes' : 'No';
+                    statusLabel.className = `text-xs ${value ? 'text-blue-600 font-bold' : 'text-gray-400'}`;
+                } else {
+                    statusLabel.textContent = value ? 'Sold' : 'No';
+                    statusLabel.className = `text-xs ${value ? 'text-green-600 font-bold' : 'text-gray-400'}`;
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Failed to update status');
+                // Reload to revert
+                loadLeads();
+            }
+        }
+
+        // Helper function to format dates
+        function formatDate(dateStr) {
+            if (!dateStr) return 'N/A';
+            return new Date(dateStr).toLocaleDateString();
+        }
+
+        // Load leads on page load
+        loadLeads();
+    </script>
+</body>
+
+</html>

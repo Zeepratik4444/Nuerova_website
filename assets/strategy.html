@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renewal Copilot — Pricing Refactor</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0e0e0e;
+            --paper: #f5f0e8;
+            --accent: #c8481a;
+            --accent2: #2a6e4a;
+            --accent3: #1a3d6e;
+            --muted: #7a7060;
+            --border: #d4cdbf;
+            --free: #6b6b6b;
+            --smb: #2a6e4a;
+            --growth: #c8481a;
+            --scale: #1a3d6e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Syne', sans-serif;
+            min-height: 100vh;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            padding: 60px 60px 0;
+            border-bottom: 2px solid var(--ink);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 24px;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+        }
+
+        .doc-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 80px 60px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-left h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(42px, 5vw, 64px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero-left h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-left p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--muted);
+            max-width: 380px;
+        }
+
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 16px;
+        }
+
+        .principle {
+            border: 1px solid var(--border);
+            padding: 16px 20px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: white;
+        }
+
+        .principle-num {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 500;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .principle-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--ink);
+        }
+
+        .principle-text strong {
+            font-weight: 700;
+        }
+
+        /* ─── STRATEGY SECTION ─── */
+        .section {
+            padding: 60px 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ─── UPGRADE STORY ─── */
+        .upgrade-flow {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr 40px 1fr;
+            gap: 0;
+            align-items: stretch;
+            margin-bottom: 60px;
+        }
+
+        .upgrade-card {
+            border: 1.5px solid var(--border);
+            padding: 28px 24px;
+            background: white;
+            position: relative;
+        }
+
+        .upgrade-card.featured {
+            border-color: var(--accent);
+            border-width: 2px;
+        }
+
+        .upgrade-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--muted);
+        }
+
+        .upgrade-tier {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .upgrade-tier.free {
+            color: var(--free);
+        }
+
+        .upgrade-tier.smb {
+            color: var(--smb);
+        }
+
+        .upgrade-tier.growth {
+            color: var(--growth);
+        }
+
+        .upgrade-hook {
+            font-family: 'DM Serif Display', serif;
+            font-size: 18px;
+            letter-spacing: -0.3px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .upgrade-desc {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .upgrade-trigger {
+            background: var(--paper);
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .upgrade-trigger strong {
+            display: block;
+            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        /* ─── PRICING GRID ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 220px repeat(4, 1fr);
+            border: 1.5px solid var(--ink);
+            overflow: hidden;
+        }
+
+        .col-header {
+            padding: 24px 20px;
+            border-bottom: 2px solid var(--ink);
+            border-right: 1px solid var(--border);
+        }
+
+        .col-header:last-child {
+            border-right: none;
+        }
+
+        .col-header.label-col {
+            background: var(--ink);
+            color: var(--paper);
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .col-header.label-col span {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .plan-name.free {
+            color: var(--free);
+        }
+
+        .plan-name.smb {
+            color: var(--smb);
+        }
+
+        .plan-name.growth {
+            color: var(--growth);
+        }
+
+        .plan-name.scale {
+            color: var(--scale);
+        }
+
+        .plan-price-inr {
+            font-family: 'DM Serif Display', serif;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .plan-price-usd {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .col-header.growth-col {
+            background: #fff8f5;
+            border-left: 2px solid var(--accent);
+        }
+
+        /* Feature rows */
+        .feature-group-header {
+            grid-column: 1 / -1;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 10px 20px;
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .feature-row {
+            display: contents;
+        }
+
+        .feature-row>div {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-row>div:last-child {
+            border-right: none;
+        }
+
+        .feature-row>div.feature-name {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .feature-row>div.feature-val {
+            justify-content: center;
+            color: var(--ink);
+        }
+
+        .feature-row>div.growth-col {
+            background: #fff8f5;
+        }
+
+        .check {
+            color: var(--accent2);
+            font-size: 16px;
+        }
+
+        .dash {
+            color: var(--border);
+            font-size: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.05em;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+
+        .badge-basic {
+            background: #eee;
+            color: #555;
+        }
+
+        .badge-smart {
+            background: #fff0e8;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .badge-advanced {
+            background: #e8f5ee;
+            color: var(--accent2);
+            border: 1px solid var(--accent2);
+        }
+
+        .badge-custom {
+            background: #e8eef8;
+            color: var(--accent3);
+            border: 1px solid var(--accent3);
+        }
+
+        .badge-new {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* highlight new features */
+        .feature-row>div.is-new {
+            background: #fff4ef;
+        }
+
+        .feature-row>div.is-new.growth-col {
+            background: #ffe8dc;
+        }
+
+        /* ─── ACCOUNTS BAR ─── */
+        .accounts-section {
+            padding: 60px 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .accounts-bars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .acc-bar {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 20px;
+        }
+
+        .acc-bar-tier {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .acc-bar-tier.free {
+            color: var(--free);
+        }
+
+        .acc-bar-tier.smb {
+            color: var(--smb);
+        }
+
+        .acc-bar-tier.growth {
+            color: var(--growth);
+        }
+
+        .acc-bar-tier.scale {
+            color: var(--scale);
+        }
+
+        .acc-count {
+            font-family: 'DM Serif Display', serif;
+            font-size: 36px;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .acc-bar-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            margin-bottom: 8px;
+        }
+
+        .acc-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+
+        .acc-bar-fill.free {
+            width: 2.5%;
+            background: var(--free);
+        }
+
+        .acc-bar-fill.smb {
+            width: 20%;
+            background: var(--smb);
+        }
+
+        .acc-bar-fill.growth {
+            width: 55%;
+            background: var(--growth);
+        }
+
+        .acc-bar-fill.scale {
+            width: 100%;
+            background: var(--scale);
+        }
+
+        .acc-note {
+            font-size: 11px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* ─── RATIONALE ─── */
+        .rationale-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .rationale-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .rationale-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 17px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rationale-title .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .rationale-body {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .rationale-body strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* ─── GLOBAL PRICING ─── */
+        .global-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1.5px solid var(--ink);
+            margin-top: 32px;
+            overflow: hidden;
+        }
+
+        .global-cell {
+            background: var(--paper);
+            padding: 16px 20px;
+            font-size: 14px;
+        }
+
+        .global-cell.header {
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .global-cell.currency {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .global-cell.price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .global-cell.growth-col {
+            background: #fff8f5;
+        }
+
+        /* ─── REMOVE TABLE ─── */
+        .remove-section {
+            padding: 60px 60px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .remove-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .remove-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: white;
+            border: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .remove-icon {
+            font-size: 18px;
+            color: #c0392b;
+            font-weight: 700;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .remove-reason {
+            color: var(--muted);
+            font-size: 12px;
+            margin-left: auto;
+            text-align: right;
+            max-width: 240px;
+            line-height: 1.5;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 40px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid var(--ink);
+        }
+
+        .footer-note {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero,
+        .section,
+        .accounts-section,
+        .remove-section {
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        /* new feature callout */
+        .new-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--accent);
+            color: white;
+            padding: 1px 6px;
+            margin-left: 6px;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">Renewal Copilot</div>
+        <div class="doc-tag">Pricing Refactor — Strategy Document · March 2026</div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-left">
+            <h1>Rethinking<br>pricing around<br><em>upgrade pull</em></h1>
+            <p>Each plan tier should feel like an obvious next step — not a forced choice. This refactor maps features
+                to the actual product, creates clear value jumps, and removes noise that doesn't convert.</p>
+        </div>
+        <div class="hero-right">
+            <div class="principle">
+                <span class="principle-num">01</span>
+                <span class="principle-text"><strong>No seat limits, no API access, no Enterprise tier.</strong>
+                    Unlimited seats at every tier. Clean 4-plan structure: Free → SMB → Growth → Scale.</span>
+            </div>
+            <div class="principle">
+                <span class="principle-num">02</span>
+                <span class="principle-text"><strong>Active Accounts is the core usage lever.</strong> It's the most
+                    intuitive metric — users understand it immediately and it scales with business size.</span>
+            </div>
+            <div class="principle">
+                <span class="principle-num">03</span>
+                <span class="principle-text"><strong>Each jump must feel like a capability unlock, not just
+                        "more".</strong> The Growth tier is the star — it's where the product becomes an intelligence
+                    platform.</span>
+            </div>
+            <div class="principle" style="border-color: var(--accent); background: #fff4ef;">
+                <span class="principle-num" style="color: var(--accent);">★</span>
+                <span class="principle-text"><strong>Every new signup gets 7 days of Scale — then drops to
+                        Free.</strong> Users experience the full product before hitting any limits. The trial ends with
+                    a clear downgrade moment designed to convert.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPGRADE STORY -->
+    <div class="section">
+        <div class="section-label">The Upgrade Story</div>
+
+        <div class="upgrade-flow">
+            <div class="upgrade-card">
+                <div class="upgrade-tier free">Free → SMB</div>
+                <div class="upgrade-hook">The Operational Jump</div>
+                <div class="upgrade-desc">CSMs move from manually managing 25 accounts to automating 200 with smarter AI
+                    and CRM sync. The day-to-day gets dramatically faster.</div>
+                <div class="upgrade-trigger">
+                    <strong>Trigger moment</strong>
+                    "We've outgrown 25 accounts and need HubSpot connected + Smart AI handling objections."
+                </div>
+            </div>
+            <div class="upgrade-arrow">→</div>
+            <div class="upgrade-card featured">
+                <div class="upgrade-tier growth">SMB → Growth ⭐</div>
+                <div class="upgrade-hook">The Intelligence Jump</div>
+                <div class="upgrade-desc">From renewal tracking to churn prediction. NPS surveys, Revenue at Risk
+                    dashboard, and 5-factor health scoring unlock the platform's real power. Executives start caring.
+                </div>
+                <div class="upgrade-trigger">
+                    <strong>Trigger moment</strong>
+                    "We need to show our CFO which $ARR is at risk and actually predict churn before it happens."
+                </div>
+            </div>
+            <div class="upgrade-arrow">→</div>
+            <div class="upgrade-card">
+                <div class="upgrade-tier scale">Growth → Scale</div>
+                <div class="upgrade-hook">The Scale Jump</div>
+                <div class="upgrade-desc">Unlimited accounts, Multi-CRM (Salesforce + Pipedrive), priority support, and
+                    a dedicated success manager. For CS teams managing large, complex portfolios.</div>
+                <div class="upgrade-trigger">
+                    <strong>Trigger moment</strong>
+                    "We're over 1,000 accounts, need Salesforce, and want a dedicated partner, not just support."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRIAL MECHANIC -->
+    <div class="section" style="background: #0e0e0e; color: #f5f0e8;">
+        <div class="section-label" style="color: #7a7060;">Trial Strategy</div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+            <div>
+                <h2
+                    style="font-family: 'DM Serif Display', serif; font-size: 38px; letter-spacing: -1px; line-height: 1.1; margin-bottom: 20px;">
+                    7 days of <em style="color: var(--accent); font-style: italic;">Scale</em>,<br>then Free.
+                </h2>
+                <p style="font-size: 14px; color: #a09880; line-height: 1.7; max-width: 380px;">
+                    Every new signup experiences the full product — unlimited accounts, NPS surveys, Revenue at Risk,
+                    weighted health scoring, Salesforce, dedicated features. Then on Day 8, they drop to Free. The
+                    downgrade moment is the conversion trigger.
+                </p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0; border: 1px solid #2a2a2a;">
+
+                <div style="display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid #2a2a2a;">
+                    <div style="padding: 20px 16px; border-right: 1px solid #2a2a2a; background: #1a1a1a;">
+                        <div
+                            style="font-family: 'DM Mono', monospace; font-size: 10px; color: #7a7060; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">
+                            Day</div>
+                        <div style="font-family: 'DM Serif Display', serif; font-size: 28px; color: #f5f0e8;">1</div>
+                    </div>
+                    <div style="padding: 20px 20px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 4px;">Signup →
+                            Instant Scale Access</div>
+                        <div style="font-size: 12px; color: #a09880; line-height: 1.5;">User onboards with unlimited
+                            accounts, full CRM integrations, and all AI intelligence features active. No credit card
+                            required.</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid #2a2a2a;">
+                    <div style="padding: 20px 16px; border-right: 1px solid #2a2a2a; background: #1a1a1a;">
+                        <div
+                            style="font-family: 'DM Mono', monospace; font-size: 10px; color: #7a7060; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">
+                            Day</div>
+                        <div style="font-family: 'DM Serif Display', serif; font-size: 28px; color: #f5f0e8;">5</div>
+                    </div>
+                    <div style="padding: 20px 20px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 4px;">In-app
+                            Warning Banner</div>
+                        <div style="font-size: 12px; color: #a09880; line-height: 1.5;">"Your Scale trial ends in 2
+                            days. Upgrade to keep Revenue at Risk, NPS Surveys, and Weighted Health Scoring." — with a
+                            direct upgrade CTA.</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid #2a2a2a;">
+                    <div style="padding: 20px 16px; border-right: 1px solid #2a2a2a; background: #1a1a1a;">
+                        <div
+                            style="font-family: 'DM Mono', monospace; font-size: 10px; color: #7a7060; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">
+                            Day</div>
+                        <div style="font-family: 'DM Serif Display', serif; font-size: 28px; color: #f5f0e8;">7</div>
+                    </div>
+                    <div style="padding: 20px 20px;">
+                        <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 4px;">Trial Expiry
+                            Email</div>
+                        <div style="font-size: 12px; color: #a09880; line-height: 1.5;">"Your Scale trial ends tonight."
+                            — summary of what they've set up, what they'll lose, and the one-click upgrade link. Sent at
+                            9am user time.</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 80px 1fr;">
+                    <div style="padding: 20px 16px; border-right: 1px solid #2a2a2a; background: #c8481a;">
+                        <div
+                            style="font-family: 'DM Mono', monospace; font-size: 10px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">
+                            Day</div>
+                        <div style="font-family: 'DM Serif Display', serif; font-size: 28px; color: #fff;">8</div>
+                    </div>
+                    <div style="padding: 20px 20px; background: #1a0a05;">
+                        <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 4px;">Downgrade to
+                            Free — The Conversion Moment</div>
+                        <div style="font-size: 12px; color: #a09880; line-height: 1.5;">User is now on Free (25
+                            accounts, basic features). The delta between what they had and what they have now is the
+                            sales pitch. Upgrade prompt shown on every locked feature.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- What they lose on Day 8 -->
+        <div style="margin-top: 48px;">
+            <div
+                style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: #7a7060; margin-bottom: 24px;">
+                What a user loses on Day 8 (Free vs Scale)</div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+                <div style="border: 1px solid #2a2a2a; padding: 20px; background: #1a1a1a;">
+                    <div style="font-size: 22px; margin-bottom: 10px;">📊</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Revenue at Risk
+                        Dashboard</div>
+                    <div style="font-size: 12px; color: #7a7060; line-height: 1.6;">The ARR visibility they saw during
+                        trial disappears. Executives who were shown this will feel the loss immediately.</div>
+                </div>
+
+                <div style="border: 1px solid #2a2a2a; padding: 20px; background: #1a1a1a;">
+                    <div style="font-size: 22px; margin-bottom: 10px;">🧮</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">Weighted Health
+                        Scoring</div>
+                    <div style="font-size: 12px; color: #7a7060; line-height: 1.6;">Reverts to basic risk flags only.
+                        Users who trusted the 5-factor score for 7 days won't trust basic back.</div>
+                </div>
+
+                <div style="border: 1px solid #2a2a2a; padding: 20px; background: #1a1a1a;">
+                    <div style="font-size: 22px; margin-bottom: 10px;">⭐</div>
+                    <div style="font-size: 13px; font-weight: 700; color: #f5f0e8; margin-bottom: 6px;">NPS Surveys +
+                        CRM Sync</div>
+                    <div style="font-size: 12px; color: #7a7060; line-height: 1.6;">NPS locked, HubSpot/Salesforce
+                        disconnected, account ceiling drops to 25. Very hard to ignore.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Nudge strategy -->
+        <div style="margin-top: 32px; border: 1px solid var(--accent); padding: 24px; background: #1a0a05;">
+            <div
+                style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">
+                Conversion Nudge — Recommended Plan to Upsell to</div>
+            <div style="font-size: 14px; color: #f5f0e8; line-height: 1.7;">
+                On Day 8, don't present all 4 plans equally. <strong>Default the upgrade modal to highlight
+                    Growth</strong> — it's ₹49K vs ₹99K, and it includes all the intelligence features they used during
+                the trial (NPS, Revenue at Risk, Weighted Scoring). Only users with Salesforce needs will self-select
+                Scale. This maximises conversion volume while Scale self-selects naturally.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="accounts-section">
+        <div class="section-label">Active Accounts — The Core Usage Lever</div>
+        <div class="accounts-bars">
+            <div class="acc-bar">
+                <div class="acc-bar-tier free">Free</div>
+                <div class="acc-count">25</div>
+                <div class="acc-bar-track">
+                    <div class="acc-bar-fill free"></div>
+                </div>
+                <div class="acc-note">Enough to experience the product meaningfully. A CSM can run a real pilot cohort.
+                </div>
+            </div>
+            <div class="acc-bar">
+                <div class="acc-bar-tier smb">SMB</div>
+                <div class="acc-count">200</div>
+                <div class="acc-bar-track">
+                    <div class="acc-bar-fill smb"></div>
+                </div>
+                <div class="acc-note">Right for a 2–5 person CS team at an early-stage or growing SaaS company.</div>
+            </div>
+            <div class="acc-bar">
+                <div class="acc-bar-tier growth">Growth</div>
+                <div class="acc-count">1,000</div>
+                <div class="acc-bar-track">
+                    <div class="acc-bar-fill growth"></div>
+                </div>
+                <div class="acc-note">Mid-market scale. Revenue at Risk becomes critical at this volume.</div>
+            </div>
+            <div class="acc-bar">
+                <div class="acc-bar-tier scale">Scale</div>
+                <div class="acc-count">∞</div>
+                <div class="acc-bar-track">
+                    <div class="acc-bar-fill scale"></div>
+                </div>
+                <div class="acc-note">No ceiling. Dedicated success manager to help onboard the full portfolio.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRICING FEATURE GRID -->
+    <div class="section">
+        <div class="section-label">Full Feature Mapping</div>
+
+        <div class="pricing-grid">
+
+            <!-- Headers -->
+            <div class="col-header label-col"><span>Feature</span></div>
+            <div class="col-header">
+                <div class="plan-name free">Free</div>
+                <div class="plan-price-inr">₹0</div>
+                <div class="plan-price-usd">$0 · €0 / mo</div>
+            </div>
+            <div class="col-header">
+                <div class="plan-name smb">SMB</div>
+                <div class="plan-price-inr">₹12,000</div>
+                <div class="plan-price-usd">$199 · €179 / mo</div>
+            </div>
+            <div class="col-header growth-col">
+                <div class="plan-name growth">Growth ⭐</div>
+                <div class="plan-price-inr">₹49,000</div>
+                <div class="plan-price-usd">$599 · €549 / mo</div>
+            </div>
+            <div class="col-header">
+                <div class="plan-name scale">Scale</div>
+                <div class="plan-price-inr">₹99,000</div>
+                <div class="plan-price-usd">$999 · €929 / mo</div>
+            </div>
+
+            <!-- Core Usage -->
+            <div class="feature-group-header">Core Usage</div>
+
+            <div class="feature-row">
+                <div class="feature-name">Active Accounts</div>
+                <div class="feature-val">25</div>
+                <div class="feature-val">200</div>
+                <div class="feature-val growth-col">1,000</div>
+                <div class="feature-val">Unlimited</div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Seats / Users</div>
+                <div class="feature-val">Unlimited</div>
+                <div class="feature-val">Unlimited</div>
+                <div class="feature-val growth-col">Unlimited</div>
+                <div class="feature-val">Unlimited</div>
+            </div>
+
+            <!-- AI & Automation -->
+            <div class="feature-group-header">AI &amp; Automation</div>
+
+            <div class="feature-row">
+                <div class="feature-name">AI Renewal Sequences</div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Email Approval Workflow</div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Objection Handling AI</div>
+                <div class="feature-val"><span class="badge badge-basic">Basic</span></div>
+                <div class="feature-val"><span class="badge badge-smart">Smart AI</span></div>
+                <div class="feature-val growth-col"><span class="badge badge-smart">Smart AI</span></div>
+                <div class="feature-val"><span class="badge badge-smart">Smart AI</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Advanced Follow-Ups</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+
+            <!-- Risk Intelligence -->
+            <div class="feature-group-header">Risk Intelligence</div>
+
+            <div class="feature-row">
+                <div class="feature-name">Basic Health Scoring</div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row is-new">
+                <div class="feature-name">Weighted Health Scoring <span class="new-label">New</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col is-new"><span class="badge badge-advanced">5-Factor</span></div>
+                <div class="feature-val"><span class="badge badge-advanced">5-Factor</span></div>
+            </div>
+            <div class="feature-row is-new">
+                <div class="feature-name">NPS Survey System <span class="new-label">New</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col is-new"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row is-new">
+                <div class="feature-name">Revenue at Risk Dashboard <span class="new-label">New</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col is-new"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">At-Risk Alerts</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+
+            <!-- CRM Integrations -->
+            <div class="feature-group-header">Integrations</div>
+
+            <div class="feature-row">
+                <div class="feature-name">Google Sheets</div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">HubSpot</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Salesforce</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Pipedrive</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Slack Alerts</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+
+            <!-- Reporting -->
+            <div class="feature-group-header">Reporting &amp; Summaries</div>
+
+            <div class="feature-row">
+                <div class="feature-name">Executive Summary</div>
+                <div class="feature-val"><span class="badge badge-basic">Weekly Basic</span></div>
+                <div class="feature-val"><span class="badge badge-smart">Weekly</span></div>
+                <div class="feature-val growth-col"><span class="badge badge-advanced">Advanced</span></div>
+                <div class="feature-val"><span class="badge badge-custom">Custom</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Reporting Dashboard</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="badge badge-custom">Custom</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Team Performance Leaderboard</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+
+            <!-- Support -->
+            <div class="feature-group-header">Support &amp; Onboarding</div>
+
+            <div class="feature-row">
+                <div class="feature-name">Email Support</div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Onboarding Consultation</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+                <div class="feature-val growth-col"><span class="check">✓</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Priority Slack Support</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+            <div class="feature-row">
+                <div class="feature-name">Dedicated Success Manager</div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="dash">—</span></div>
+                <div class="feature-val growth-col"><span class="dash">—</span></div>
+                <div class="feature-val"><span class="check">✓</span></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- GLOBAL PRICING -->
+    <div class="section">
+        <div class="section-label">Global Pricing Grid</div>
+        <div class="global-grid">
+            <div class="global-cell header">Currency</div>
+            <div class="global-cell header">Free</div>
+            <div class="global-cell header">SMB</div>
+            <div class="global-cell header growth-col">Growth ⭐</div>
+            <div class="global-cell header">Scale</div>
+
+            <div class="global-cell currency">INR</div>
+            <div class="global-cell price">₹0</div>
+            <div class="global-cell price">₹12,000</div>
+            <div class="global-cell price growth-col">₹49,000</div>
+            <div class="global-cell price">₹99,000</div>
+
+            <div class="global-cell currency">USD</div>
+            <div class="global-cell price">$0</div>
+            <div class="global-cell price">$199</div>
+            <div class="global-cell price growth-col">$599</div>
+            <div class="global-cell price">$999</div>
+
+            <div class="global-cell currency">EUR</div>
+            <div class="global-cell price">€0</div>
+            <div class="global-cell price">€179</div>
+            <div class="global-cell price growth-col">€549</div>
+            <div class="global-cell price">€929</div>
+        </div>
+    </div>
+
+    <!-- WHAT WE'RE REMOVING -->
+    <div class="remove-section">
+        <div class="section-label">What We're Removing &amp; Why</div>
+        <div class="remove-list">
+            <div class="remove-item">
+                <div class="remove-icon">✕</div>
+                <div><strong>Enterprise Tier</strong> — 4 tiers with Scale already covering large teams</div>
+                <div class="remove-reason">Adds sales complexity without clear differentiation from Scale. Removes it
+                    entirely.</div>
+            </div>
+            <div class="remove-item">
+                <div class="remove-icon">✕</div>
+                <div><strong>API Access</strong> — internal architecture, not a customer-facing feature</div>
+                <div class="remove-reason">Kept internal. Not exposed as a plan benefit — avoids misaligned
+                    expectations.</div>
+            </div>
+            <div class="remove-item">
+                <div class="remove-icon">✕</div>
+                <div><strong>Seat / User Limits</strong> — friction with no real revenue upside at this stage</div>
+                <div class="remove-reason">Unlimited seats at all tiers. CS tools need the whole team in — limiting
+                    seats blocks adoption.</div>
+            </div>
+            <div class="remove-item">
+                <div class="remove-icon">✕</div>
+                <div><strong>Account Add-ons (₹35K/500 accounts)</strong> — complicates the price conversation</div>
+                <div class="remove-reason">Clean account tiers eliminate the "math before buying" problem. Scale to next
+                    tier instead.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RATIONALE -->
+    <div class="section">
+        <div class="section-label">Strategic Rationale</div>
+        <div class="rationale-grid">
+            <div class="rationale-card">
+                <div class="rationale-title">
+                    <div class="dot" style="background: var(--growth);"></div>
+                    Growth is the star tier
+                </div>
+                <div class="rationale-body">
+                    <strong>NPS Surveys, Revenue at Risk Dashboard, and 5-Factor Weighted Health Scoring</strong> are
+                    all in the Growth plan. These are the three features from the feature roadmap that transform the
+                    product from a "renewal tracker" to a "churn prediction platform." Executives want these — and
+                    they're the ones who approve the budget jump from SMB.
+                </div>
+            </div>
+            <div class="rationale-card">
+                <div class="rationale-title">
+                    <div class="dot" style="background: var(--smb);"></div>
+                    SMB closes the adoption gap
+                </div>
+                <div class="rationale-body">
+                    Smart AI objection handling unlocks at SMB — the product already has this. <strong>Keeping "Basic"
+                        handling on Free creates a real, tangible quality difference</strong> without gate-keeping core
+                    function. HubSpot + Slack on SMB gives the CSM team a genuinely faster workflow, not just more
+                    accounts.
+                </div>
+            </div>
+            <div class="rationale-card">
+                <div class="rationale-title">
+                    <div class="dot" style="background: var(--scale);"></div>
+                    Scale reserves the relationship
+                </div>
+                <div class="rationale-body">
+                    Salesforce and Pipedrive integrations, a Dedicated Success Manager, and Priority Slack support sit
+                    at Scale. <strong>This creates a clear value add beyond just "unlimited accounts"</strong> — it's
+                    the tier for companies that want a partner, not just software.
+                </div>
+            </div>
+            <div class="rationale-card">
+                <div class="rationale-title">
+                    <div class="dot" style="background: var(--free);"></div>
+                    Free is a real pilot, not a preview
+                </div>
+                <div class="rationale-body">
+                    25 accounts with AI Renewal Sequences, Email Approval Workflow, and basic Health Scoring is
+                    <strong>enough to run a genuine cohort and see real results</strong>. Most trial users will hit the
+                    25-account ceiling and upgrade naturally — no artificial restrictions needed to force the hand.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-note">Renewal Copilot · Pricing Strategy · March 2026</div>
+        <div class="footer-note">Prices unchanged — feature mapping refactored</div>
+    </footer>
+
+</body>
+
+</html>

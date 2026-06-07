@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Free Trials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto p-4 sm:p-8">
+        <header class="mb-8 flex justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold text-gray-800">Grant Free Trials</h1>
+                <p class="text-gray-500">Create user accounts and grant trials to new leads.</p>
+            </div>
+            <a href="/admin" class="text-sm text-blue-600 hover:underline">← Back to Leads Dashboard</a>
+        </header>
+
+        <!-- Leads Table -->
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+            <div class="overflow-x-auto">
+                <table class="min-w-full w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">ID</th>
+                            <th class="py-3 px-6 text-left">Company</th>
+                            <th class="py-3 px-6 text-left">Contact Name</th>
+                            <th class="py-3 px-6 text-left">Email & Phone</th>
+                            <th class="py-3 px-6 text-center">Trial Days</th>
+                            <th class="py-3 px-6 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        {% for lead in leads %}
+                        <tr id="lead-row-{{ lead.id }}" class="border-b border-gray-200 hover:bg-gray-50">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">#{{ lead.id }}</td>
+                            <td class="py-3 px-6 text-left font-medium">{{ lead.company_name }}</td>
+                            <td class="py-3 px-6 text-left">{{ lead.contact_person_name }}</td>
+                            <td class="py-3 px-6 text-left">
+                                <div>{{ lead.email_address }}</div>
+                                <div class="text-xs text-gray-500">{{ lead.phone_number }}</div>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <input type="number" id="trial-days-{{ lead.id }}" 
+                                       class="w-20 text-center border rounded-md p-1" 
+                                       value="{{ lead.trial_duration_days | default(7) }}"
+                                       min="1"
+                                       onchange="updateTrialDays({{ lead.id }}, this.value)">
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <button 
+                                    id="grant-button-{{ lead.id }}"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded-full disabled:bg-gray-400"
+                                    onclick="grantTrial(this, {{ lead.id }})">
+                                    Grant Trial
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% if not leads %}
+                        <tr>
+                            <td colspan="6" class="text-center py-8 text-gray-500">No new leads to grant trials to.</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function updateTrialDays(leadId, duration) {
+            const grantButton = document.getElementById(`grant-button-${leadId}`);
+            grantButton.disabled = true; // Disable grant button during update
+            try {
+                const response = await fetch(`/admin/update-trial-duration/${leadId}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ duration: parseInt(duration, 10) })
+                });
+                if (!response.ok) {
+                    const result = await response.json();
+                    alert(`Error: ${result.detail || 'Failed to update trial duration'}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An unexpected error occurred.');
+            } finally {
+                grantButton.disabled = false;
+            }
+        }
+
+        async function grantTrial(button, leadId) {
+            button.disabled = true;
+            button.textContent = 'Granting...';
+
+            try {
+                const response = await fetch(`/admin/grant-trial/${leadId}`, {
+                    method: 'POST'
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    button.textContent = 'Trial Granted';
+                    button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    button.classList.add('bg-green-500');
+                    
+                    const row = document.getElementById(`lead-row-${leadId}`);
+                    if (row) {
+                        row.style.transition = 'opacity 0.5s ease';
+                        row.style.opacity = '0';
+                        setTimeout(() => row.remove(), 500);
+                    }
+                } else {
+                    button.textContent = 'Error';
+                    button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                    button.classList.add('bg-red-500');
+                    alert(`Error: ${result.detail || 'Failed to grant trial'}`);
+                    button.disabled = false;
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                button.textContent = 'Error';
+                button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                button.classList.add('bg-red-500');
+                alert('An unexpected error occurred.');
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

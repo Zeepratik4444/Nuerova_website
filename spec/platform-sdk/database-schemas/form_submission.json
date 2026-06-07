@@ -1,0 +1,208 @@
+{
+  "id": "102019b37699c7e7b0f9f12252f92213057",
+  "version": "102019b37699c7e7a6c9b6e49cc69406b33",
+  "schema": {
+    "name": "form_submission",
+    "description": "Stores demo requests and general contact form submissions",
+    "fields": [
+      {
+        "name": "id",
+        "description": "Unique identifier for each data of this entity",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Internal identifier"
+        }
+      },
+      {
+        "name": "data_creator",
+        "description": "id of the user who creates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        }
+      },
+      {
+        "name": "data_updater",
+        "description": "id of the user who updates the record",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        }
+      },
+      {
+        "name": "create_time",
+        "description": "create time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "update_time",
+        "description": "update time in timestamp unix",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit trail"
+        },
+        "format": "timestamp"
+      },
+      {
+        "name": "company_name",
+        "description": "Name of the company making the submission",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Business prospect information"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Company Information"
+        }
+      },
+      {
+        "name": "contact_person_name",
+        "description": "Name of the contact person",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII of the contact person"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Contact Information"
+        }
+      },
+      {
+        "name": "email_address",
+        "description": "Email address of the contact person",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII and communication channel"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Contact Information"
+        },
+        "format": "email"
+      },
+      {
+        "name": "phone_number",
+        "description": "Phone number of the contact person",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "PII and communication channel"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Contact Information"
+        },
+        "nullable": true
+      },
+      {
+        "name": "message",
+        "description": "Content of the message or specific request details",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 3,
+          "reason": "May contain sensitive business inquiries"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Inquiry Details"
+        },
+        "nullable": true
+      },
+      {
+        "name": "form_type",
+        "description": "Type of the form submitted",
+        "type": 100,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Classification of the submission"
+        },
+        "taxonomy": {
+          "category": "Lead Generation",
+          "subject": "Submission Type"
+        },
+        "enumeration": [
+          {
+            "value": "Unspecified"
+          },
+          {
+            "number": 1,
+            "value": "demo_request"
+          },
+          {
+            "number": 2,
+            "value": "general_contact"
+          }
+        ]
+      },
+      {
+        "name": "submitted_at",
+        "description": "Timestamp unix when the form was submitted",
+        "type": 1,
+        "compliance": {
+          "confidentiality": 2,
+          "reason": "Audit and timeline tracking"
+        },
+        "format": "timestamp"
+      }
+    ],
+    "indexes": [
+      {
+        "fields": [
+          "id"
+        ],
+        "unique": true,
+        "primary": true,
+        "order": false
+      },
+      {
+        "fields": [
+          "data_creator"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "data_updater"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "form_type"
+        ],
+        "order": false
+      },
+      {
+        "fields": [
+          "submitted_at"
+        ],
+        "order": true
+      }
+    ]
+  },
+  "task": {
+    "id": "69457ad84618447456c9af69",
+    "root": "69457ad84618447456c9af69",
+    "project": "69457ad84618447456c9af68",
+    "user": "48f123e0-2031-702b-c5c8-9eec2e2ba93a"
+  },
+  "namespace": {
+    "id": "01987547fc6c72ecb453bd2736bd4ea0",
+    "tenant": 2,
+    "name": "global-1",
+    "default": true
+  },
+  "revision": 1
+}

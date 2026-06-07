@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing — Renewal360</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #080c14;
+            --bg2: #0d1422;
+            --bg3: #111927;
+            --card: #0f1826;
+            --card2: #141f2e;
+            --border: rgba(255, 255, 255, 0.07);
+            --border2: rgba(255, 255, 255, 0.12);
+            --blue: #2563eb;
+            --blue-lt: #3b82f6;
+            --blue-glow: rgba(37, 99, 235, 0.35);
+            --emerald: #10b981;
+            --emerald-d: #059669;
+            --muted: #64748b;
+            --muted2: #475569;
+            --text: #f1f5f9;
+            --text2: #cbd5e1;
+            --text3: #94a3b8;
+            --radius: 14px;
+            --radius-sm: 8px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ─── NOISE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* ─── BACKGROUND GLOW ─── */
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-1 {
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            top: -200px;
+            left: -200px;
+        }
+
+        .bg-glow-2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.07) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(8, 12, 20, 0.85);
+            border-bottom: 1px solid var(--border);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--blue), #7c3aed);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-logo-text {
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-ghost {
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border2);
+            background: transparent;
+            color: var(--text2);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: var(--border2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .btn-primary {
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--blue);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 0 0 var(--blue-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-lt);
+            box-shadow: 0 4px 20px var(--blue-glow);
+            transform: translateY(-1px);
+        }
+
+        /* ─── TRIAL BANNER ─── */
+        .trial-banner {
+            background: linear-gradient(90deg, rgba(37, 99, 235, 0.15), rgba(16, 185, 129, 0.12), rgba(37, 99, 235, 0.15));
+            border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 10px 40px;
+            text-align: center;
+            font-size: 13.5px;
+            color: var(--text2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trial-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.08), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .trial-banner strong {
+            color: var(--text);
+        }
+
+        .trial-banner .pill {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--emerald);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 80px 40px 60px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            color: var(--blue-lt);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(44px, 6vw, 72px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, #60a5fa, var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            color: var(--text3);
+            max-width: 520px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ─── CURRENCY SWITCHER ─── */
+        .currency-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 52px;
+        }
+
+        .currency-switcher {
+            display: flex;
+            background: var(--bg3);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 4px;
+            gap: 2px;
+        }
+
+        .currency-btn {
+            padding: 7px 22px;
+            border-radius: 7px;
+            border: none;
+            background: transparent;
+            color: var(--text3);
+            font-family: 'Outfit', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .currency-btn.active {
+            background: var(--blue);
+            color: white;
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .currency-btn:not(.active):hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ─── PLAN CARDS ─── */
+        .plans-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            align-items: start;
+        }
+
+        .plan-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 24px 24px;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* GROWTH FEATURED CARD */
+        .plan-card.featured {
+            background: var(--card2);
+            border: 1.5px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            margin-top: -16px;
+            padding-top: 44px;
+        }
+
+        .plan-card.featured::before {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: calc(var(--radius) + 1.5px);
+            background: linear-gradient(135deg, var(--blue), var(--emerald), var(--blue));
+            background-size: 200% 200%;
+            animation: grad-shift 4s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes grad-shift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--blue), var(--emerald));
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .plan-tier {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .plan-tier.free {
+            color: var(--muted);
+        }
+
+        .plan-tier.smb {
+            color: var(--emerald);
+        }
+
+        .plan-tier.growth {
+            color: var(--blue-lt);
+        }
+
+        .plan-tier.scale {
+            color: #a78bfa;
+        }
+
+        .plan-price-block {
+            margin-bottom: 6px;
+        }
+
+        .plan-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1;
+            letter-spacing: -1px;
+            color: var(--text);
+        }
+
+        .plan-price sup {
+            font-size: 20px;
+            vertical-align: super;
+            letter-spacing: 0;
+        }
+
+        .plan-price-sub {
+            font-size: 12px;
+            color: var(--text3);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        .plan-desc {
+            font-size: 13px;
+            color: var(--text3);
+            line-height: 1.5;
+            margin: 14px 0 20px;
+            min-height: 40px;
+        }
+
+        .plan-accounts {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+        }
+
+        .plan-accounts-icon {
+            font-size: 16px;
+        }
+
+        .plan-accounts-text {
+            font-size: 13px;
+            color: var(--text2);
+        }
+
+        .plan-accounts-count {
+            font-weight: 700;
+            color: var(--text);
+            margin-left: auto;
+            font-size: 14px;
+        }
+
+        /* CTA buttons on cards */
+        .card-cta {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            border-radius: 9px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 22px;
+        }
+
+        .card-cta.free-cta {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border2);
+            color: var(--text2);
+        }
+
+        .card-cta.free-cta:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--text);
+        }
+
+        .card-cta.smb-cta {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: var(--emerald);
+        }
+
+        .card-cta.smb-cta:hover {
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        .card-cta.growth-cta {
+            background: var(--blue);
+            border: 1px solid transparent;
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .card-cta.growth-cta:hover {
+            background: var(--blue-lt);
+            box-shadow: 0 6px 28px rgba(37, 99, 235, 0.45);
+            transform: translateY(-1px);
+        }
+
+        .card-cta.scale-cta {
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            color: #a78bfa;
+        }
+
+        .card-cta.scale-cta:hover {
+            background: rgba(167, 139, 250, 0.18);
+        }
+
+        /* Feature list inside card */
+        .plan-features-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 12px;
+        }
+
+        .plan-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 5px 0;
+            font-size: 13px;
+            color: var(--text2);
+            line-height: 1.4;
+        }
+
+        .feat-check {
+            color: var(--emerald);
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .feat-new-tag {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.15);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: var(--blue-lt);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 1px 6px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        /* ─── SECTION WRAPPER ─── */
+        .section {
+            position: relative;
+            z-index: 1;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue-lt);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 400;
+            letter-spacing: -0.8px;
+            line-height: 1.15;
+            color: var(--text);
+        }
+
+        .section-sub {
+            font-size: 15px;
+            color: var(--text3);
+            margin-top: 10px;
+        }
+
+        /* ─── TRIAL TIMELINE ─── */
+        .trial-timeline {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .trial-timeline-header {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(16, 185, 129, 0.08));
+            border-bottom: 1px solid var(--border);
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .trial-timeline-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--text);
+        }
+
+        .trial-timeline-sub {
+            font-size: 13px;
+            color: var(--text3);
+            margin-top: 4px;
+        }
+
+        .trial-days-badge {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--blue);
+            border-radius: 12px;
+            padding: 12px 20px;
+            box-shadow: 0 0 24px var(--blue-glow);
+        }
+
+        .trial-days-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 40px;
+            line-height: 1;
+            color: white;
+        }
+
+        .trial-days-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .trial-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .trial-step {
+            padding: 24px;
+            border-right: 1px solid var(--border);
+            position: relative;
+        }
+
+        .trial-step:last-child {
+            border-right: none;
+        }
+
+        .trial-step-day {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 6px;
+        }
+
+        .trial-step-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 32px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .trial-step.day1 .trial-step-num {
+            color: var(--emerald);
+        }
+
+        .trial-step.day5 .trial-step-num {
+            color: #f59e0b;
+        }
+
+        .trial-step.day7 .trial-step-num {
+            color: #f97316;
+        }
+
+        .trial-step.day8 .trial-step-num {
+            color: var(--blue-lt);
+        }
+
+        .trial-step-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .trial-step-body {
+            font-size: 12px;
+            color: var(--text3);
+            line-height: 1.5;
+        }
+
+        .trial-step.day8 {
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .trial-loses {
+            border-top: 1px solid var(--border);
+            padding: 24px 32px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .trial-lose-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .trial-lose-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .trial-lose-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 3px;
+        }
+
+        .trial-lose-body {
+            font-size: 12px;
+            color: var(--text3);
+            line-height: 1.5;
+        }
+
+        /* ─── COMPARISON TABLE ─── */
+        .compare-table-wrap {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ct-head th {
+            padding: 20px 20px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text3);
+            background: var(--bg3);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .ct-head th:first-child {
+            color: var(--muted);
+        }
+
+        .ct-head th.col-growth {
+            color: var(--blue-lt);
+        }
+
+        .ct-group-row td {
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border);
+        }
+
+        .ct-row td {
+            padding: 13px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13.5px;
+            color: var(--text2);
+            vertical-align: middle;
+        }
+
+        .ct-row:last-child td {
+            border-bottom: none;
+        }
+
+        .ct-row:hover td {
+            background: rgba(255, 255, 255, 0.015);
+        }
+
+        .ct-row td.feat-name {
+            color: var(--text2);
+            font-weight: 500;
+        }
+
+        .ct-row td.col-growth {
+            background: rgba(37, 99, 235, 0.04);
+        }
+
+        .ct-row:hover td.col-growth {
+            background: rgba(37, 99, 235, 0.07);
+        }
+
+        .ct-row td.text-center {
+            text-align: center;
+        }
+
+        .ct-check {
+            color: var(--emerald);
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        .ct-dash {
+            color: var(--border2);
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .ct-badge {
+            display: inline-block;
+            padding: 2px 9px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-basic {
+            background: rgba(100, 116, 139, 0.15);
+            color: #94a3b8;
+        }
+
+        .badge-smart {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--emerald);
+        }
+
+        .badge-advanced {
+            background: rgba(37, 99, 235, 0.12);
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            color: var(--blue-lt);
+        }
+
+        .badge-custom {
+            background: rgba(167, 139, 250, 0.12);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            color: #a78bfa;
+        }
+
+        .badge-new {
+            background: var(--blue);
+            color: white;
+            font-size: 9px;
+            vertical-align: middle;
+            margin-left: 6px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* ─── ADD-ON SECTION ─── */
+        .addon-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .addon-tag {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            color: #f59e0b;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .addon-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .addon-desc {
+            font-size: 14px;
+            color: var(--text3);
+            line-height: 1.6;
+        }
+
+        .addon-pricing {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .addon-price-item {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 20px;
+        }
+
+        .addon-price-curr {
+            font-size: 11px;
+            color: var(--text3);
+            font-weight: 600;
+            width: 36px;
+        }
+
+        .addon-price-val {
+            font-family: 'Instrument Serif', serif;
+            font-size: 26px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .addon-price-unit {
+            font-size: 12px;
+            color: var(--text3);
+        }
+
+        /* ─── FAQ ─── */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .faq-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+
+        .faq-item.open {
+            border-color: var(--border2);
+        }
+
+        .faq-q {
+            width: 100%;
+            padding: 18px 24px;
+            background: none;
+            border: none;
+            text-align: left;
+            color: var(--text);
+            font-size: 14.5px;
+            font-weight: 500;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            transition: color 0.15s;
+        }
+
+        .faq-q:hover {
+            color: var(--blue-lt);
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--border2);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--text3);
+            flex-shrink: 0;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+            background: rgba(37, 99, 235, 0.15);
+            border-color: rgba(37, 99, 235, 0.3);
+            color: var(--blue-lt);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 24px;
+            font-size: 13.5px;
+            color: var(--text3);
+            line-height: 1.7;
+        }
+
+        .faq-a-inner {
+            padding-bottom: 18px;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 200px;
+        }
+
+        /* ─── BOTTOM CTA ─── */
+        .bottom-cta {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 80px 40px 100px;
+        }
+
+        .bottom-cta-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 56px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--blue), var(--emerald), transparent);
+        }
+
+        .bottom-cta-card h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 38px;
+            font-weight: 400;
+            letter-spacing: -0.8px;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .bottom-cta-card p {
+            font-size: 15px;
+            color: var(--text3);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .bottom-cta-card .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn-large {
+            padding: 13px 28px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-large.primary {
+            background: var(--blue);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 24px var(--blue-glow);
+        }
+
+        .btn-large.primary:hover {
+            background: var(--blue-lt);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px var(--blue-glow);
+        }
+
+        .btn-large.ghost {
+            background: transparent;
+            color: var(--text2);
+            border: 1px solid var(--border2);
+        }
+
+        .btn-large.ghost:hover {
+            color: var(--text);
+            border-color: var(--border2);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-left {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text3);
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim-up {
+            opacity: 0;
+            animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .anim-up:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .anim-up:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .anim-up:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+
+        .anim-up:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+
+        /* ─── DIVIDER ─── */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            max-width: 1160px;
+            margin: 0 auto 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 900px) {
+            .plans-wrap {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .plan-card.featured {
+                margin-top: 0;
+            }
+
+            .trial-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trial-loses {
+                grid-template-columns: 1fr;
+            }
+
+            .addon-card {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding: 48px 20px 40px;
+            }
+
+            .plans-wrap {
+                grid-template-columns: 1fr;
+                padding: 0 20px 60px;
+            }
+
+            .section {
+                padding: 0 20px 60px;
+            }
+
+            .trial-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .trial-timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .bottom-cta-card .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- TRIAL BANNER -->
+    <div class="trial-banner">
+        <span class="pill">NEW</span>
+        <strong>Every new signup gets 7 days of Scale — free, no credit card required.</strong>
+        &nbsp; Experience the full platform before you commit.
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <a href="/" class="nav-logo">
+            <div class="nav-logo-icon">🎯</div>
+            <span class="nav-logo-text">Renewal360</span>
+        </a>
+        <div class="nav-cta">
+            <a href="/" class="btn-ghost">Sign in</a>
+            <a href="/" class="btn-primary">Start free trial →</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-eyebrow">Simple, transparent pricing</div>
+        <h1>Start free.<br><em>Scale confidently.</em></h1>
+        <p class="hero-sub">Four plans built for every stage of growth — from your first 25 accounts to an unlimited
+            portfolio. Unlimited seats on every plan.</p>
+
+        <!-- CURRENCY SWITCHER -->
+        <div class="currency-wrap">
+            <div class="currency-switcher" id="currency-switcher">
+                <button class="currency-btn active" data-currency="inr">₹ INR</button>
+                <button class="currency-btn" data-currency="usd">$ USD</button>
+                <button class="currency-btn" data-currency="eur">€ EUR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLAN CARDS -->
+    <div class="plans-wrap">
+
+        <!-- FREE -->
+        <div class="plan-card anim-up">
+            <div class="plan-tier free">Free</div>
+            <div class="plan-price-block">
+                <div class="plan-price"><sup class="currency-sym">₹</sup><span class="price-val">0</span></div>
+                <div class="plan-price-sub">per month · forever free</div>
+            </div>
+            <div class="plan-desc">Enough to run a real pilot. 25 accounts with full AI sequence automation.</div>
+            <div class="plan-accounts">
+                <span class="plan-accounts-icon">📊</span>
+                <span class="plan-accounts-text">Active accounts</span>
+                <span class="plan-accounts-count">25</span>
+            </div>
+            <a href="/" class="card-cta free-cta">Get started free</a>
+            <div class="plan-features-label">What's included</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> AI Renewal Sequences</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Email Approval Workflow</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Basic objection handling</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Google Sheets integration</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Basic health scoring</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Weekly executive summary</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Email support</div>
+        </div>
+
+        <!-- SMB -->
+        <div class="plan-card anim-up">
+            <div class="plan-tier smb">SMB</div>
+            <div class="plan-price-block">
+                <div class="plan-price"><sup class="currency-sym">₹</sup><span class="price-val" data-inr="12,000"
+                        data-usd="199" data-eur="179">12,000</span></div>
+                <div class="plan-price-sub">per month · billed monthly</div>
+            </div>
+            <div class="plan-desc">For 2–5 person CS teams ready to move fast with Smart AI and CRM sync.</div>
+            <div class="plan-accounts">
+                <span class="plan-accounts-icon">📊</span>
+                <span class="plan-accounts-text">Active accounts</span>
+                <span class="plan-accounts-count">200</span>
+            </div>
+            <a href="/" class="card-cta smb-cta">Start with SMB</a>
+            <div class="plan-features-label">Everything in Free, plus</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Smart AI objection handling</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Advanced follow-ups</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> HubSpot integration</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Slack alerts</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> At-risk alerts</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Onboarding consultation</div>
+        </div>
+
+        <!-- GROWTH (FEATURED) -->
+        <div class="plan-card featured anim-up">
+            <div class="featured-badge">⭐ Most popular</div>
+            <div class="plan-tier growth">Growth</div>
+            <div class="plan-price-block">
+                <div class="plan-price"><sup class="currency-sym">₹</sup><span class="price-val" data-inr="49,000"
+                        data-usd="599" data-eur="549">49,000</span></div>
+                <div class="plan-price-sub">per month · billed monthly</div>
+            </div>
+            <div class="plan-desc">The intelligence jump. NPS, Revenue at Risk & 5-factor health scoring unlock the
+                platform's real power.</div>
+            <div class="plan-accounts">
+                <span class="plan-accounts-icon">📊</span>
+                <span class="plan-accounts-text">Active accounts</span>
+                <span class="plan-accounts-count">1,000</span>
+            </div>
+            <a href="/" class="card-cta growth-cta">Start Growth trial</a>
+            <div class="plan-features-label">Everything in SMB, plus</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Weighted health scoring (5-factor) <span
+                    class="feat-new-tag">NEW</span></div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> NPS survey system <span
+                    class="feat-new-tag">NEW</span></div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Revenue at Risk dashboard <span
+                    class="feat-new-tag">NEW</span></div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Full reporting dashboard</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Team performance leaderboard</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Advanced executive summaries</div>
+        </div>
+
+        <!-- SCALE -->
+        <div class="plan-card anim-up">
+            <div class="plan-tier scale">Scale</div>
+            <div class="plan-price-block">
+                <div class="plan-price"><sup class="currency-sym">₹</sup><span class="price-val" data-inr="99,000"
+                        data-usd="999" data-eur="929">99,000</span></div>
+                <div class="plan-price-sub">per month · billed monthly</div>
+            </div>
+            <div class="plan-desc">Unlimited accounts, Salesforce, Pipedrive, and a dedicated success partner for large
+                portfolios.</div>
+            <div class="plan-accounts">
+                <span class="plan-accounts-icon">📊</span>
+                <span class="plan-accounts-text">Active accounts</span>
+                <span class="plan-accounts-count">Unlimited</span>
+            </div>
+            <a href="/" class="card-cta scale-cta">Start Scale trial</a>
+            <div class="plan-features-label">Everything in Growth, plus</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Salesforce integration</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Pipedrive integration</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Custom reporting dashboard</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Dedicated success manager</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Priority Slack support</div>
+            <div class="plan-feature-item"><span class="feat-check">✓</span> Custom executive summaries</div>
+        </div>
+
+    </div>
+
+    <!-- ─── TRIAL TIMELINE ─── -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-eyebrow">7-day Scale trial</div>
+            <div class="section-title">Every signup starts at Scale.<br>No credit card. No limits.</div>
+            <div class="section-sub">Experience what the full platform feels like before deciding your plan.</div>
+        </div>
+
+        <div class="trial-timeline">
+            <div class="trial-timeline-header">
+                <div>
+                    <div class="trial-timeline-title">The trial-to-free arc</div>
+                    <div class="trial-timeline-sub">Day 8 is your conversion moment — and your product's best sales
+                        pitch.</div>
+                </div>
+                <div class="trial-days-badge">
+                    <div class="trial-days-num">7</div>
+                    <div class="trial-days-label">days free</div>
+                </div>
+            </div>
+
+            <div class="trial-steps">
+                <div class="trial-step day1">
+                    <div class="trial-step-day">Day</div>
+                    <div class="trial-step-num">1</div>
+                    <div class="trial-step-title">Scale access — instant</div>
+                    <div class="trial-step-body">Full platform unlocked. Unlimited accounts, all CRM integrations, NPS &
+                        Revenue dashboards live.</div>
+                </div>
+                <div class="trial-step day5">
+                    <div class="trial-step-day">Day</div>
+                    <div class="trial-step-num">5</div>
+                    <div class="trial-step-title">In-app warning banner</div>
+                    <div class="trial-step-body">"Your Scale trial ends in 2 days." Direct upgrade CTA shown on every
+                        page header.</div>
+                </div>
+                <div class="trial-step day7">
+                    <div class="trial-step-day">Day</div>
+                    <div class="trial-step-num">7</div>
+                    <div class="trial-step-title">Trial expiry email</div>
+                    <div class="trial-step-body">What they've built, what they'll lose tonight, one-click upgrade link.
+                        Sent at 9am user time.</div>
+                </div>
+                <div class="trial-step day8">
+                    <div class="trial-step-day">Day</div>
+                    <div class="trial-step-num">8</div>
+                    <div class="trial-step-title">Drops to Free — upgrade prompt</div>
+                    <div class="trial-step-body">25-account cap hits. Every locked feature shows an upgrade nudge.
+                        Growth plan highlighted by default.</div>
+                </div>
+            </div>
+
+            <div class="trial-loses">
+                <div class="trial-lose-item">
+                    <div class="trial-lose-icon">📊</div>
+                    <div>
+                        <div class="trial-lose-title">Revenue at Risk Dashboard</div>
+                        <div class="trial-lose-body">ARR visibility disappears. Executives who saw this during trial
+                            will feel the loss immediately.</div>
+                    </div>
+                </div>
+                <div class="trial-lose-item">
+                    <div class="trial-lose-icon">🧮</div>
+                    <div>
+                        <div class="trial-lose-title">Weighted Health Scoring</div>
+                        <div class="trial-lose-body">Reverts to basic risk flags. Users who trusted the 5-factor score
+                            for 7 days won't go back.</div>
+                    </div>
+                </div>
+                <div class="trial-lose-item">
+                    <div class="trial-lose-icon">⭐</div>
+                    <div>
+                        <div class="trial-lose-title">NPS Surveys + CRM Sync</div>
+                        <div class="trial-lose-body">HubSpot/Salesforce disconnected, account ceiling drops to 25. Very
+                            hard to ignore.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ─── FEATURE COMPARISON ─── -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-eyebrow">Compare plans</div>
+            <div class="section-title">Everything side by side</div>
+        </div>
+
+        <div class="compare-table-wrap">
+            <table class="compare-table">
+                <thead class="ct-head">
+                    <tr>
+                        <th style="width:35%">Feature</th>
+                        <th class="text-center" style="width:12%">Free</th>
+                        <th class="text-center" style="width:13%">SMB</th>
+                        <th class="text-center col-growth" style="width:14%">Growth ⭐</th>
+                        <th class="text-center" style="width:13%">Scale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- CORE USAGE -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">Core Usage</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Active accounts</td>
+                        <td class="text-center">25</td>
+                        <td class="text-center">200</td>
+                        <td class="text-center col-growth">1,000</td>
+                        <td class="text-center">Unlimited</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Seats / Users</td>
+                        <td class="text-center">Unlimited</td>
+                        <td class="text-center">Unlimited</td>
+                        <td class="text-center col-growth">Unlimited</td>
+                        <td class="text-center">Unlimited</td>
+                    </tr>
+
+                    <!-- AI & AUTOMATION -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">AI &amp; Automation</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">AI Renewal Sequences</td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Email Approval Workflow</td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Objection Handling AI</td>
+                        <td class="text-center"><span class="ct-badge badge-basic">Basic</span></td>
+                        <td class="text-center"><span class="ct-badge badge-smart">Smart AI</span></td>
+                        <td class="text-center col-growth"><span class="ct-badge badge-smart">Smart AI</span></td>
+                        <td class="text-center"><span class="ct-badge badge-smart">Smart AI</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Advanced Follow-Ups</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+
+                    <!-- RISK INTELLIGENCE -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">Risk Intelligence</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Basic health scoring</td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Weighted health scoring (5-factor) <span
+                                class="badge-new ct-badge">NEW</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-badge badge-advanced">5-Factor</span></td>
+                        <td class="text-center"><span class="ct-badge badge-advanced">5-Factor</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">NPS Survey System <span class="badge-new ct-badge">NEW</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Revenue at Risk Dashboard <span class="badge-new ct-badge">NEW</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">At-risk alerts</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+
+                    <!-- INTEGRATIONS -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">Integrations</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Google Sheets</td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">HubSpot</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Slack Alerts</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Salesforce</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Pipedrive</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+
+                    <!-- REPORTING -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">Reporting &amp; Summaries</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Executive summary</td>
+                        <td class="text-center"><span class="ct-badge badge-basic">Weekly basic</span></td>
+                        <td class="text-center"><span class="ct-badge badge-basic">Weekly</span></td>
+                        <td class="text-center col-growth"><span class="ct-badge badge-advanced">Advanced</span></td>
+                        <td class="text-center"><span class="ct-badge badge-custom">Custom</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Reporting dashboard</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-badge badge-custom">Custom</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Team performance leaderboard</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+
+                    <!-- SUPPORT -->
+                    <tr class="ct-group-row">
+                        <td colspan="5">Support &amp; Onboarding</td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Email support</td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Onboarding consultation</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                        <td class="text-center col-growth"><span class="ct-check">✓</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Priority Slack support</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                    <tr class="ct-row">
+                        <td class="feat-name">Dedicated success manager</td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-dash">—</span></td>
+                        <td class="text-center col-growth"><span class="ct-dash">—</span></td>
+                        <td class="text-center"><span class="ct-check">✓</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ─── ADD-ON SECTION ─── -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-eyebrow">Add-ons</div>
+            <div class="section-title">Need more accounts?</div>
+            <div class="section-sub">Add account capacity to any paid plan without upgrading your tier.</div>
+        </div>
+
+        <div class="addon-card">
+            <div>
+                <div class="addon-tag">Add-on · Available on SMB, Growth &amp; Scale</div>
+                <div class="addon-title">+500 Additional Renewal Accounts</div>
+                <div class="addon-desc">Hitting your account limit before you're ready to upgrade? Add blocks of 500
+                    accounts to your current plan. Stack as many as you need. Pricing is per block, per month — cancel
+                    anytime.</div>
+            </div>
+            <div class="addon-pricing">
+                <div class="addon-price-item">
+                    <span class="addon-price-curr">INR</span>
+                    <span class="addon-price-val">₹35,000</span>
+                    <span class="addon-price-unit">/ 500 accounts / mo</span>
+                </div>
+                <div class="addon-price-item">
+                    <span class="addon-price-curr">USD</span>
+                    <span class="addon-price-val">$349</span>
+                    <span class="addon-price-unit">/ 500 accounts / mo</span>
+                </div>
+                <div class="addon-price-item">
+                    <span class="addon-price-curr">EUR</span>
+                    <span class="addon-price-val">€299</span>
+                    <span class="addon-price-unit">/ 500 accounts / mo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- ─── FAQ ─── -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-eyebrow">FAQ</div>
+            <div class="section-title">Common questions</div>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-q">
+                    Do I need a credit card for the 7-day trial?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">No credit card required. Sign up, get instant Scale access, and explore the
+                        full platform for 7 days free. On day 8, you'll drop to the Free plan unless you've chosen to
+                        upgrade.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">
+                    Are there any seat limits?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">None. Every plan — including Free — supports unlimited seats. Your whole CS
+                        team, managers, executives, RevOps — everyone in, no extra charge.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">
+                    What counts as an "active account"?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">An active account is any customer renewal record you're actively managing —
+                        with upcoming renewal dates, touchpoints, or AI sequences running. Archived or inactive accounts
+                        don't count toward your limit.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">
+                    Can I cancel anytime?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">Yes. All plans are month-to-month with no long-term contracts. Cancel with
+                        30 days' notice. We'll export your data and email history so you never lose anything.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">
+                    What CRMs do you support?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">Google Sheets (all plans), HubSpot (SMB and above), Salesforce and
+                        Pipedrive (Scale only). More integrations are on the roadmap — reach out if you need something
+                        specific.</div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">
+                    How long does setup take?
+                    <div class="faq-icon">+</div>
+                </button>
+                <div class="faq-a">
+                    <div class="faq-a-inner">Most teams are up and running within a week: connect your data source (1–2
+                        days), configure templates and workflow (1–2 days), team training (1 day), test batch (1–2
+                        days). Growth and Scale plans include onboarding consultation to speed this up.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── BOTTOM CTA ─── -->
+    <div class="bottom-cta">
+        <div class="bottom-cta-card">
+            <h2>Start your 7-day Scale trial</h2>
+            <p>No credit card. No catch. Full access to the platform — NPS, Revenue at Risk, 5-factor scoring, all CRM
+                integrations. See what Renewal360 can do for your portfolio before you commit to a plan.</p>
+            <div class="btn-group">
+                <a href="/" class="btn-large primary">Get started free →</a>
+                <a href="https://renewal360.in/contact" class="btn-large ghost">Request a demo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-left">© 2026 Renewal360. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="/policy.html">Privacy Policy</a>
+            <a href="https://renewal360.in/contact">Contact</a>
+            <a href="/">Sign in</a>
+        </div>
+    </footer>
+
+    <script>
+        // ── CURRENCY SWITCHER ──
+        const currencyData = {
+            inr: { sym: '₹', prices: { smb: '12,000', growth: '49,000', scale: '99,000' } },
+            usd: { sym: '$', prices: { smb: '199', growth: '599', scale: '999' } },
+            eur: { sym: '€', prices: { smb: '179', growth: '549', scale: '929' } }
+        };
+
+        document.querySelectorAll('.currency-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const cur = btn.dataset.currency;
+                document.querySelectorAll('.currency-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const d = currencyData[cur];
+                document.querySelectorAll('.currency-sym').forEach(el => el.textContent = d.sym);
+                document.querySelectorAll('.price-val[data-inr]').forEach(el => {
+                    const planKey = el.closest('.plan-card').querySelector('.plan-tier').classList[1];
+                    if (d.prices[planKey]) el.textContent = d.prices[planKey];
+                });
+            });
+        });
+
+        // ── FAQ ACCORDION ──
+        document.querySelectorAll('.faq-q').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.closest('.faq-item');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+    </script>
+</body>
+
+</html>
