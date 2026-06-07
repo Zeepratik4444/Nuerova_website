@@ -173,3 +173,12 @@ coverage.xml
 .ruamel.yaml.cmd
 .htmlcov/
 htmlcov/
+
+# Allow public assets except build-generated files
+!/public/
+/public/blog/
+/public/sitemap*.xml
+/public/llms*.txt
+
+# Allow source libs
+!/src/lib/

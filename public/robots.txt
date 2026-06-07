@@ -1,0 +1,129 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# ── Google ──────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /payment-success
+Disallow: /set-password
+Disallow: /dashboard
+Disallow: /settings
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# ── Bing / Microsoft ────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /payment-success
+Disallow: /set-password
+Disallow: /dashboard
+Disallow: /settings
+
+# ── OpenAI ──────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /payment-success
+Disallow: /set-password
+Disallow: /dashboard
+Disallow: /settings
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /payment-success
+Disallow: /set-password
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ── Anthropic / Claude ───────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /payment-success
+Disallow: /set-password
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# ── Perplexity ───────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /payment-success
+Disallow: /set-password
+
+# ── Other AI Crawlers ────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ── SEO Tools (unblocked for backlink & keyword monitoring) ──────────
+User-agent: AhrefsBot
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+
+User-agent: SemrushBot
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+
+# ── Block pure junk / scraper bots ───────────────────
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: SplitSignalBot
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# ── Catch-all fallback ───────────────────────────────
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /payment-success
+Disallow: /set-password
+Disallow: /dashboard
+Disallow: /settings
+
+Sitemap: https://nuerova.com/sitemap.xml
+Sitemap: https://nuerova.com/sitemap-blog.xml
+
+# LLM context files
+LLM: https://nuerova.com/llms.txt
+LLM: https://nuerova.com/llms-full.txt

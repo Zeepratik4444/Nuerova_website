@@ -8,9 +8,9 @@ import { blogPosts } from "@/lib/blogPosts";
 
 export function BlogPage() {
 	useSEO({
-		title: "Blog - Renewal360",
+		title: "Blog - Nuerova",
 		description:
-			"Practical guides on SaaS renewal automation, churn prevention, customer success workflows, and AI-powered retention.",
+			"Short, practical essays on shared memory, governed automations, and the operating layer that modern teams need.",
 	});
 
 	return (
@@ -21,14 +21,13 @@ export function BlogPage() {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-semibold mb-6 border border-blue-200">
 						<BookOpen className="h-4 w-4" />
-						Renewal360 Blog
+						Nuerova Blog
 					</div>
 					<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
-						Field notes for better SaaS renewals.
+						Enterprise AI intelligence for teams who need it to work.
 					</h1>
 					<p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed">
-						Practical playbooks for CS, RevOps, and founders who want fewer
-						surprise churn conversations and a cleaner renewal operating rhythm.
+						Short, practical essays on shared memory, governed automations, and the operating layer that modern teams need.
 					</p>
 				</div>
 			</section>
@@ -92,11 +91,10 @@ export function BlogPage() {
 						<div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent pointer-events-none" />
 						<div className="relative z-10">
 							<h2 className="text-2xl md:text-3xl font-bold mb-3">
-								Want to fix your renewal process faster?
+								Want to organize your team's context?
 							</h2>
 							<p className="text-gray-300 mb-6 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-								Renewal360 can help your team move from spreadsheet follow-ups to
-								AI-assisted renewal outreach in about a week.
+								Nuerova helps your team move from fragmented chat histories to governed, visual agent playbooks in under an hour.
 							</p>
 							<Link to="/contact">
 								<Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg hover:shadow-blue-500/25 transition-all duration-300">

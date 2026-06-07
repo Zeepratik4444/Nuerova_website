@@ -23,16 +23,6 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
-import { Route as BlogZendeskHubspotSalesforceCsPlatformComparisonRouteImport } from './routes/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
-import { Route as BlogWhySaasCompaniesLoseRenewalsRouteImport } from './routes/blog/why-saas-companies-lose-renewals'
-import { Route as BlogWhatIsRenewalAutomationRouteImport } from './routes/blog/what-is-renewal-automation'
-import { Route as BlogTotangoAlternativeFasterRenewalAutomationRouteImport } from './routes/blog/totango-alternative-faster-renewal-automation'
-import { Route as BlogHowToRunYourEntireCsOperationInRenewal360RouteImport } from './routes/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-import { Route as BlogHowToAutomateSaasRenewalEmailsRouteImport } from './routes/blog/how-to-automate-saas-renewal-emails'
-import { Route as BlogHowRenewal360WorksRouteImport } from './routes/blog/how-renewal360-works'
-import { Route as BlogGainsightVsTotangoVsRenewal360RouteImport } from './routes/blog/gainsight-vs-totango-vs-renewal360'
-import { Route as BlogCustomerSuccessPlatformForGrowingSaasRouteImport } from './routes/blog/customer-success-platform-for-growing-saas'
-import { Route as BlogChurnzeroAlternativeGrowingSaasTeamsRouteImport } from './routes/blog/churnzero-alternative-growing-saas-teams'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -104,65 +94,6 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogZendeskHubspotSalesforceCsPlatformComparisonRoute =
-  BlogZendeskHubspotSalesforceCsPlatformComparisonRouteImport.update({
-    id: '/zendesk-hubspot-salesforce-cs-platform-comparison',
-    path: '/zendesk-hubspot-salesforce-cs-platform-comparison',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogWhySaasCompaniesLoseRenewalsRoute =
-  BlogWhySaasCompaniesLoseRenewalsRouteImport.update({
-    id: '/why-saas-companies-lose-renewals',
-    path: '/why-saas-companies-lose-renewals',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogWhatIsRenewalAutomationRoute =
-  BlogWhatIsRenewalAutomationRouteImport.update({
-    id: '/what-is-renewal-automation',
-    path: '/what-is-renewal-automation',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogTotangoAlternativeFasterRenewalAutomationRoute =
-  BlogTotangoAlternativeFasterRenewalAutomationRouteImport.update({
-    id: '/totango-alternative-faster-renewal-automation',
-    path: '/totango-alternative-faster-renewal-automation',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogHowToRunYourEntireCsOperationInRenewal360Route =
-  BlogHowToRunYourEntireCsOperationInRenewal360RouteImport.update({
-    id: '/how-to-run-your-entire-cs-operation-in-renewal360',
-    path: '/how-to-run-your-entire-cs-operation-in-renewal360',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogHowToAutomateSaasRenewalEmailsRoute =
-  BlogHowToAutomateSaasRenewalEmailsRouteImport.update({
-    id: '/how-to-automate-saas-renewal-emails',
-    path: '/how-to-automate-saas-renewal-emails',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogHowRenewal360WorksRoute = BlogHowRenewal360WorksRouteImport.update({
-  id: '/how-renewal360-works',
-  path: '/how-renewal360-works',
-  getParentRoute: () => BlogRoute,
-} as any)
-const BlogGainsightVsTotangoVsRenewal360Route =
-  BlogGainsightVsTotangoVsRenewal360RouteImport.update({
-    id: '/gainsight-vs-totango-vs-renewal360',
-    path: '/gainsight-vs-totango-vs-renewal360',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogCustomerSuccessPlatformForGrowingSaasRoute =
-  BlogCustomerSuccessPlatformForGrowingSaasRouteImport.update({
-    id: '/customer-success-platform-for-growing-saas',
-    path: '/customer-success-platform-for-growing-saas',
-    getParentRoute: () => BlogRoute,
-  } as any)
-const BlogChurnzeroAlternativeGrowingSaasTeamsRoute =
-  BlogChurnzeroAlternativeGrowingSaasTeamsRouteImport.update({
-    id: '/churnzero-alternative-growing-saas-teams',
-    path: '/churnzero-alternative-growing-saas-teams',
-    getParentRoute: () => BlogRoute,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -177,16 +108,6 @@ export interface FileRoutesByFullPath {
   '/security': typeof SecurityRoute
   '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
-  '/blog/churnzero-alternative-growing-saas-teams': typeof BlogChurnzeroAlternativeGrowingSaasTeamsRoute
-  '/blog/customer-success-platform-for-growing-saas': typeof BlogCustomerSuccessPlatformForGrowingSaasRoute
-  '/blog/gainsight-vs-totango-vs-renewal360': typeof BlogGainsightVsTotangoVsRenewal360Route
-  '/blog/how-renewal360-works': typeof BlogHowRenewal360WorksRoute
-  '/blog/how-to-automate-saas-renewal-emails': typeof BlogHowToAutomateSaasRenewalEmailsRoute
-  '/blog/how-to-run-your-entire-cs-operation-in-renewal360': typeof BlogHowToRunYourEntireCsOperationInRenewal360Route
-  '/blog/totango-alternative-faster-renewal-automation': typeof BlogTotangoAlternativeFasterRenewalAutomationRoute
-  '/blog/what-is-renewal-automation': typeof BlogWhatIsRenewalAutomationRoute
-  '/blog/why-saas-companies-lose-renewals': typeof BlogWhySaasCompaniesLoseRenewalsRoute
-  '/blog/zendesk-hubspot-salesforce-cs-platform-comparison': typeof BlogZendeskHubspotSalesforceCsPlatformComparisonRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
@@ -202,16 +123,6 @@ export interface FileRoutesByTo {
   '/security': typeof SecurityRoute
   '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
-  '/blog/churnzero-alternative-growing-saas-teams': typeof BlogChurnzeroAlternativeGrowingSaasTeamsRoute
-  '/blog/customer-success-platform-for-growing-saas': typeof BlogCustomerSuccessPlatformForGrowingSaasRoute
-  '/blog/gainsight-vs-totango-vs-renewal360': typeof BlogGainsightVsTotangoVsRenewal360Route
-  '/blog/how-renewal360-works': typeof BlogHowRenewal360WorksRoute
-  '/blog/how-to-automate-saas-renewal-emails': typeof BlogHowToAutomateSaasRenewalEmailsRoute
-  '/blog/how-to-run-your-entire-cs-operation-in-renewal360': typeof BlogHowToRunYourEntireCsOperationInRenewal360Route
-  '/blog/totango-alternative-faster-renewal-automation': typeof BlogTotangoAlternativeFasterRenewalAutomationRoute
-  '/blog/what-is-renewal-automation': typeof BlogWhatIsRenewalAutomationRoute
-  '/blog/why-saas-companies-lose-renewals': typeof BlogWhySaasCompaniesLoseRenewalsRoute
-  '/blog/zendesk-hubspot-salesforce-cs-platform-comparison': typeof BlogZendeskHubspotSalesforceCsPlatformComparisonRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
 }
@@ -229,16 +140,6 @@ export interface FileRoutesById {
   '/security': typeof SecurityRoute
   '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
-  '/blog/churnzero-alternative-growing-saas-teams': typeof BlogChurnzeroAlternativeGrowingSaasTeamsRoute
-  '/blog/customer-success-platform-for-growing-saas': typeof BlogCustomerSuccessPlatformForGrowingSaasRoute
-  '/blog/gainsight-vs-totango-vs-renewal360': typeof BlogGainsightVsTotangoVsRenewal360Route
-  '/blog/how-renewal360-works': typeof BlogHowRenewal360WorksRoute
-  '/blog/how-to-automate-saas-renewal-emails': typeof BlogHowToAutomateSaasRenewalEmailsRoute
-  '/blog/how-to-run-your-entire-cs-operation-in-renewal360': typeof BlogHowToRunYourEntireCsOperationInRenewal360Route
-  '/blog/totango-alternative-faster-renewal-automation': typeof BlogTotangoAlternativeFasterRenewalAutomationRoute
-  '/blog/what-is-renewal-automation': typeof BlogWhatIsRenewalAutomationRoute
-  '/blog/why-saas-companies-lose-renewals': typeof BlogWhySaasCompaniesLoseRenewalsRoute
-  '/blog/zendesk-hubspot-salesforce-cs-platform-comparison': typeof BlogZendeskHubspotSalesforceCsPlatformComparisonRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
@@ -257,16 +158,6 @@ export interface FileRouteTypes {
     | '/security'
     | '/set-password'
     | '/terms'
-    | '/blog/churnzero-alternative-growing-saas-teams'
-    | '/blog/customer-success-platform-for-growing-saas'
-    | '/blog/gainsight-vs-totango-vs-renewal360'
-    | '/blog/how-renewal360-works'
-    | '/blog/how-to-automate-saas-renewal-emails'
-    | '/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-    | '/blog/totango-alternative-faster-renewal-automation'
-    | '/blog/what-is-renewal-automation'
-    | '/blog/why-saas-companies-lose-renewals'
-    | '/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
     | '/blog/$slug'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
@@ -282,16 +173,6 @@ export interface FileRouteTypes {
     | '/security'
     | '/set-password'
     | '/terms'
-    | '/blog/churnzero-alternative-growing-saas-teams'
-    | '/blog/customer-success-platform-for-growing-saas'
-    | '/blog/gainsight-vs-totango-vs-renewal360'
-    | '/blog/how-renewal360-works'
-    | '/blog/how-to-automate-saas-renewal-emails'
-    | '/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-    | '/blog/totango-alternative-faster-renewal-automation'
-    | '/blog/what-is-renewal-automation'
-    | '/blog/why-saas-companies-lose-renewals'
-    | '/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
     | '/blog/$slug'
     | '/blog'
   id:
@@ -308,16 +189,6 @@ export interface FileRouteTypes {
     | '/security'
     | '/set-password'
     | '/terms'
-    | '/blog/churnzero-alternative-growing-saas-teams'
-    | '/blog/customer-success-platform-for-growing-saas'
-    | '/blog/gainsight-vs-totango-vs-renewal360'
-    | '/blog/how-renewal360-works'
-    | '/blog/how-to-automate-saas-renewal-emails'
-    | '/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-    | '/blog/totango-alternative-faster-renewal-automation'
-    | '/blog/what-is-renewal-automation'
-    | '/blog/why-saas-companies-lose-renewals'
-    | '/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
     | '/blog_/$slug'
     | '/blog/'
   fileRoutesById: FileRoutesById
@@ -438,111 +309,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog/zendesk-hubspot-salesforce-cs-platform-comparison': {
-      id: '/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
-      path: '/zendesk-hubspot-salesforce-cs-platform-comparison'
-      fullPath: '/blog/zendesk-hubspot-salesforce-cs-platform-comparison'
-      preLoaderRoute: typeof BlogZendeskHubspotSalesforceCsPlatformComparisonRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/why-saas-companies-lose-renewals': {
-      id: '/blog/why-saas-companies-lose-renewals'
-      path: '/why-saas-companies-lose-renewals'
-      fullPath: '/blog/why-saas-companies-lose-renewals'
-      preLoaderRoute: typeof BlogWhySaasCompaniesLoseRenewalsRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/what-is-renewal-automation': {
-      id: '/blog/what-is-renewal-automation'
-      path: '/what-is-renewal-automation'
-      fullPath: '/blog/what-is-renewal-automation'
-      preLoaderRoute: typeof BlogWhatIsRenewalAutomationRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/totango-alternative-faster-renewal-automation': {
-      id: '/blog/totango-alternative-faster-renewal-automation'
-      path: '/totango-alternative-faster-renewal-automation'
-      fullPath: '/blog/totango-alternative-faster-renewal-automation'
-      preLoaderRoute: typeof BlogTotangoAlternativeFasterRenewalAutomationRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/how-to-run-your-entire-cs-operation-in-renewal360': {
-      id: '/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-      path: '/how-to-run-your-entire-cs-operation-in-renewal360'
-      fullPath: '/blog/how-to-run-your-entire-cs-operation-in-renewal360'
-      preLoaderRoute: typeof BlogHowToRunYourEntireCsOperationInRenewal360RouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/how-to-automate-saas-renewal-emails': {
-      id: '/blog/how-to-automate-saas-renewal-emails'
-      path: '/how-to-automate-saas-renewal-emails'
-      fullPath: '/blog/how-to-automate-saas-renewal-emails'
-      preLoaderRoute: typeof BlogHowToAutomateSaasRenewalEmailsRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/how-renewal360-works': {
-      id: '/blog/how-renewal360-works'
-      path: '/how-renewal360-works'
-      fullPath: '/blog/how-renewal360-works'
-      preLoaderRoute: typeof BlogHowRenewal360WorksRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/gainsight-vs-totango-vs-renewal360': {
-      id: '/blog/gainsight-vs-totango-vs-renewal360'
-      path: '/gainsight-vs-totango-vs-renewal360'
-      fullPath: '/blog/gainsight-vs-totango-vs-renewal360'
-      preLoaderRoute: typeof BlogGainsightVsTotangoVsRenewal360RouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/customer-success-platform-for-growing-saas': {
-      id: '/blog/customer-success-platform-for-growing-saas'
-      path: '/customer-success-platform-for-growing-saas'
-      fullPath: '/blog/customer-success-platform-for-growing-saas'
-      preLoaderRoute: typeof BlogCustomerSuccessPlatformForGrowingSaasRouteImport
-      parentRoute: typeof BlogRoute
-    }
-    '/blog/churnzero-alternative-growing-saas-teams': {
-      id: '/blog/churnzero-alternative-growing-saas-teams'
-      path: '/churnzero-alternative-growing-saas-teams'
-      fullPath: '/blog/churnzero-alternative-growing-saas-teams'
-      preLoaderRoute: typeof BlogChurnzeroAlternativeGrowingSaasTeamsRouteImport
-      parentRoute: typeof BlogRoute
-    }
   }
 }
 
 interface BlogRouteChildren {
-  BlogChurnzeroAlternativeGrowingSaasTeamsRoute: typeof BlogChurnzeroAlternativeGrowingSaasTeamsRoute
-  BlogCustomerSuccessPlatformForGrowingSaasRoute: typeof BlogCustomerSuccessPlatformForGrowingSaasRoute
-  BlogGainsightVsTotangoVsRenewal360Route: typeof BlogGainsightVsTotangoVsRenewal360Route
-  BlogHowRenewal360WorksRoute: typeof BlogHowRenewal360WorksRoute
-  BlogHowToAutomateSaasRenewalEmailsRoute: typeof BlogHowToAutomateSaasRenewalEmailsRoute
-  BlogHowToRunYourEntireCsOperationInRenewal360Route: typeof BlogHowToRunYourEntireCsOperationInRenewal360Route
-  BlogTotangoAlternativeFasterRenewalAutomationRoute: typeof BlogTotangoAlternativeFasterRenewalAutomationRoute
-  BlogWhatIsRenewalAutomationRoute: typeof BlogWhatIsRenewalAutomationRoute
-  BlogWhySaasCompaniesLoseRenewalsRoute: typeof BlogWhySaasCompaniesLoseRenewalsRoute
-  BlogZendeskHubspotSalesforceCsPlatformComparisonRoute: typeof BlogZendeskHubspotSalesforceCsPlatformComparisonRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
 const BlogRouteChildren: BlogRouteChildren = {
-  BlogChurnzeroAlternativeGrowingSaasTeamsRoute:
-    BlogChurnzeroAlternativeGrowingSaasTeamsRoute,
-  BlogCustomerSuccessPlatformForGrowingSaasRoute:
-    BlogCustomerSuccessPlatformForGrowingSaasRoute,
-  BlogGainsightVsTotangoVsRenewal360Route:
-    BlogGainsightVsTotangoVsRenewal360Route,
-  BlogHowRenewal360WorksRoute: BlogHowRenewal360WorksRoute,
-  BlogHowToAutomateSaasRenewalEmailsRoute:
-    BlogHowToAutomateSaasRenewalEmailsRoute,
-  BlogHowToRunYourEntireCsOperationInRenewal360Route:
-    BlogHowToRunYourEntireCsOperationInRenewal360Route,
-  BlogTotangoAlternativeFasterRenewalAutomationRoute:
-    BlogTotangoAlternativeFasterRenewalAutomationRoute,
-  BlogWhatIsRenewalAutomationRoute: BlogWhatIsRenewalAutomationRoute,
-  BlogWhySaasCompaniesLoseRenewalsRoute: BlogWhySaasCompaniesLoseRenewalsRoute,
-  BlogZendeskHubspotSalesforceCsPlatformComparisonRoute:
-    BlogZendeskHubspotSalesforceCsPlatformComparisonRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 

@@ -53,11 +53,11 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
 	useSEO({
 		title: post
-			? `${post.title} | Renewal360 Blog`
-			: "Blog article not found - Renewal360",
+			? `${post.title} | Nuerova Blog`
+			: "Blog article not found - Nuerova",
 		description: post
 			? post.summary
-			: "The requested Renewal360 blog article could not be found.",
+			: "The requested Nuerova blog article could not be found.",
 	});
 
 	if (!post) {
