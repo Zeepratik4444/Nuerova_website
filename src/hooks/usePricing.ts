@@ -9,11 +9,12 @@ export function usePricing() {
     useEffect(() => {
         const detectLocation = async () => {
             try {
-                const response = await fetch("https://ipapi.co/json/");
+                const response = await fetch("https://ipwho.is/");
                 if (!response.ok) throw new Error("IP API request failed");
                 const data = await response.json();
+                if (!data.success) throw new Error("IP API lookup failed");
 
-                const apiCurrency = data.currency as string;
+                const apiCurrency = data.currency?.code as string;
 
                 if (apiCurrency === "INR") {
                     setCurrency("INR");
