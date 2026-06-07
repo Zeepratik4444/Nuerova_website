@@ -18,26 +18,8 @@ export function HomePage() {
 	const [activeTab, setActiveTab] = useState<"clusters" | "agents" | "automation" | "audit">("clusters");
 	const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
 	
-	// ROI Calculator state
-	const [teamSize, setTeamSize] = useState(50);
-	const [hoursLost, setHoursLost] = useState(3);
-	const [hourlyCost, setHourlyCost] = useState(85);
-
-	// ROI math calculations
-	const recoveredHours = Math.round(teamSize * hoursLost * 4.3 * 0.6);
-	const annualValue = recoveredHours * hourlyCost * 12;
-	const continuityScore = teamSize >= 50 ? "High" : teamSize >= 20 ? "Medium" : "Emerging";
-
 	// Form state
 	const [formSubmitted, setFormSubmitted] = useState(false);
-
-	const formatCurrency = (val: number) => {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-			maximumFractionDigits: 0
-		}).format(val);
-	};
 
 	const handleFormSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -494,68 +476,6 @@ export function HomePage() {
 							<span>Confluence</span>
 						</div>
 						<p className="api-note">REST API and webhooks for everything else.</p>
-					</div>
-				</section>
-
-				{/* ── ROI CALCULATOR SECTION ── */}
-				<section className="section roi-section">
-					<div className="container roi-grid">
-						<div className="section-heading align-left reveal">
-							<span className="kicker">ROI calculator</span>
-							<h2>Quantify the cost of context loss.</h2>
-							<p>Use your team's numbers to estimate how much high-friction knowledge work Nuerova can recover.</p>
-						</div>
-
-						<div className="calculator reveal" aria-label="ROI calculator">
-							<label>
-								<span>Team size</span>
-								<output>{teamSize}</output>
-								<input 
-									type="range" 
-									min="5" 
-									max="500" 
-									value={teamSize} 
-									onChange={(e) => setTeamSize(Number(e.target.value))}
-								/>
-							</label>
-							<label>
-								<span>Hours lost per person each week</span>
-								<output>{hoursLost}</output>
-								<input 
-									type="range" 
-									min="1" 
-									max="12" 
-									value={hoursLost} 
-									onChange={(e) => setHoursLost(Number(e.target.value))}
-								/>
-							</label>
-							<label>
-								<span>Fully loaded hourly cost</span>
-								<output>{formatCurrency(hourlyCost)}</output>
-								<input 
-									type="range" 
-									min="35" 
-									max="250" 
-									value={hourlyCost} 
-									onChange={(e) => setHourlyCost(Number(e.target.value))}
-								/>
-							</label>
-
-							<div className="roi-results">
-								<article>
-									<span>Hours recovered / month</span>
-									<strong>{recoveredHours.toLocaleString("en-US")}</strong>
-								</article>
-								<article>
-									<span>Annual value recovered</span>
-									<strong>{formatCurrency(annualValue)}</strong>
-								</article>
-								<article>
-									<span>Knowledge continuity</span>
-									<strong style={{ textTransform: "capitalize" }}>{continuityScore}</strong>
-								</article>
-							</div>
-						</div>
 					</div>
 				</section>
 
