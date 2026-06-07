@@ -47,6 +47,7 @@ export function ContactPage() {
 					email_address: formData.email,
 					phone_number: null,
 					message: compiledMessage,
+					product: "nuerova",
 				}),
 			});
 

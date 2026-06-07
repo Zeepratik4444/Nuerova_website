@@ -18,16 +18,125 @@ export function HomePage() {
 	const [activeTab, setActiveTab] = useState<"clusters" | "agents" | "automation" | "audit">("clusters");
 	const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
 	
-	// Form state
-	const [formSubmitted, setFormSubmitted] = useState(false);
+	// Demo Request form state
+	const [demoSubmitted, setDemoSubmitted] = useState(false);
+	const [isDemoSubmitting, setIsDemoSubmitting] = useState(false);
+	const [demoMessage, setDemoMessage] = useState("");
+	const [demoError, setDemoError] = useState<string | null>(null);
 
-	const handleFormSubmit = (e: React.FormEvent) => {
+	const handleDemoSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setFormSubmitted(true);
-		trackEvent("form_submitted", {
-			cta_location: "home_footer_form",
-			funnel_stage: "decision"
-		});
+		const form = e.currentTarget;
+		const formDataObj = new FormData(form);
+		const name = formDataObj.get("name") as string;
+		const email = formDataObj.get("email") as string;
+		const company = formDataObj.get("company") as string;
+		const teamSize = formDataObj.get("team-size") as string;
+		const useCase = formDataObj.get("use-case") as string;
+		const msgText = formDataObj.get("message") as string;
+
+		try {
+			setIsDemoSubmitting(true);
+			setDemoError(null);
+
+			const compiledMessage = `Team Size: ${teamSize || "Not specified"}\nUse Case: ${useCase || "Not specified"}\n\nMessage:\n${msgText || "No additional message"}`;
+
+			const response = await fetch("/api/request-demo", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					company_name: company,
+					contact_person_name: name,
+					email_address: email,
+					phone_number: null,
+					message: compiledMessage,
+					product: "nuerova",
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(data.message || "Submission failed");
+			}
+
+			setDemoSubmitted(true);
+			setDemoMessage(data.message || "Thank you for requesting a demo! Your trial has been activated. Please check your email for instructions.");
+			trackEvent("form_submitted", {
+				cta_location: "home_footer_form",
+				funnel_stage: "decision"
+			});
+		} catch (err) {
+			console.error("Demo submission error:", err);
+			setDemoError(err instanceof Error ? err.message : "An error occurred. Please try again.");
+		} finally {
+			setIsDemoSubmitting(false);
+		}
+	};
+
+	// Early Access Waitlist form state
+	const [waitlistEmail, setWaitlistEmail] = useState("");
+	const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+	const [isWaitlistSubmitting, setIsWaitlistSubmitting] = useState(false);
+	const [waitlistError, setWaitlistError] = useState<string | null>(null);
+
+	const handleWaitlistSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		if (!waitlistEmail) return;
+
+		try {
+			setIsWaitlistSubmitting(true);
+			setWaitlistError(null);
+
+			// Extract temporary contact and company names from email domain/username
+			const emailParts = waitlistEmail.split("@");
+			const localPart = emailParts[0] || "Early Access";
+			const domainPart = emailParts[1] || "Participant";
+			
+			// Format name: "john.doe" -> "John Doe"
+			const contactName = localPart
+				.split(/[._-]/)
+				.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+				.join(" ");
+			
+			// Format company: "acme.com" -> "Acme"
+			const companyName = domainPart.split(".")[0] || "Early Access";
+			const formattedCompany = companyName.charAt(0).toUpperCase() + companyName.slice(1);
+
+			const response = await fetch("/api/request-demo", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					company_name: formattedCompany,
+					contact_person_name: contactName,
+					email_address: waitlistEmail,
+					phone_number: null,
+					message: "Submitted via Early Access waitlist form.",
+					product: "nuerova",
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(data.message || "Submission failed");
+			}
+
+			setWaitlistSubmitted(true);
+			trackEvent("form_submitted", {
+				cta_location: "early_access_waitlist_form",
+				funnel_stage: "decision"
+			});
+		} catch (err) {
+			console.error("Waitlist submission error:", err);
+			setWaitlistError(err instanceof Error ? err.message : "An error occurred. Please try again.");
+		} finally {
+			setIsWaitlistSubmitting(false);
+		}
 	};
 
 	return (
@@ -676,30 +785,30 @@ export function HomePage() {
 							</div>
 						</div>
 
-						{formSubmitted ? (
-							<div className="demo-form reveal bg-white p-8 rounded-xl border border-outline shadow flex flex-col items-center justify-center text-center">
-								<h3 className="text-2xl font-bold text-gray-900 mb-4">Request Staged!</h3>
-								<p className="text-gray-600 mb-0">
-									We've recorded your demo request. Our team will reach out shortly.
+						{demoSubmitted ? (
+							<div className="demo-form reveal bg-white p-8 rounded-xl border border-outline shadow flex flex-col items-center justify-center text-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "rgba(255, 255, 255, 0.95)", border: "1px solid var(--outline)", borderRadius: "12px", padding: "32px", textAlign: "center" }}>
+								<h3 className="text-2xl font-bold text-gray-900 mb-4" style={{ color: "var(--ink)", margin: "0 0 12px", fontSize: "24px" }}>Request Staged!</h3>
+								<p className="text-gray-600 mb-0" style={{ color: "var(--ink-soft)", margin: 0 }}>
+									{demoMessage || "We've recorded your demo request. Our team will reach out shortly."}
 								</p>
 							</div>
 						) : (
-							<form className="demo-form reveal" aria-label="Request a Nuerova demo" onSubmit={handleFormSubmit}>
+							<form className="demo-form reveal" aria-label="Request a Nuerova demo" onSubmit={handleDemoSubmit}>
 								<label>
 									<span>Name</span>
-									<input name="name" type="text" autoComplete="name" required />
+									<input name="name" type="text" autoComplete="name" required disabled={isDemoSubmitting} />
 								</label>
 								<label>
 									<span>Work email</span>
-									<input name="email" type="email" autoComplete="email" required />
+									<input name="email" type="email" autoComplete="email" required disabled={isDemoSubmitting} />
 								</label>
 								<label>
 									<span>Company</span>
-									<input name="company" type="text" autoComplete="organization" required />
+									<input name="company" type="text" autoComplete="organization" required disabled={isDemoSubmitting} />
 								</label>
 								<label>
 									<span>Team size</span>
-									<select name="team-size" required>
+									<select name="team-size" required disabled={isDemoSubmitting}>
 										<option value="">Select team size</option>
 										<option>5-25</option>
 										<option>26-50</option>
@@ -710,7 +819,7 @@ export function HomePage() {
 								</label>
 								<label className="full-field">
 									<span>Primary use case</span>
-									<select name="use-case" required>
+									<select name="use-case" required disabled={isDemoSubmitting}>
 										<option value="">Select use case</option>
 										<option>Operations</option>
 										<option>Customer Success</option>
@@ -721,9 +830,16 @@ export function HomePage() {
 								</label>
 								<label className="full-field">
 									<span>What should Nuerova help with?</span>
-									<textarea name="message" rows={4}></textarea>
+									<textarea name="message" rows={4} disabled={isDemoSubmitting}></textarea>
 								</label>
-								<button className="button primary full full-field" type="submit">Request your demo</button>
+								{demoError && (
+									<p className="full-field" style={{ color: "#ff5b5b", fontSize: "14px", margin: "4px 0 0" }}>
+										{demoError}
+									</p>
+								)}
+								<button className="button primary full full-field" type="submit" disabled={isDemoSubmitting}>
+									{isDemoSubmitting ? "Requesting..." : "Request your demo"}
+								</button>
 								<p className="form-note">A human reviews every request. No pressure, no generic sales loop.</p>
 							</form>
 						)}
@@ -735,13 +851,27 @@ export function HomePage() {
 					<div className="container cta-inner">
 						<h2>Be first when we open the gates.</h2>
 						<p>Limited pilot with 50 teams. No credit card required.</p>
-						{!formSubmitted ? (
-							<form className="cta-form" onSubmit={handleFormSubmit}>
-								<input type="email" placeholder="Work email" required />
-								<button type="submit" className="button primary">Request Access →</button>
+						{!waitlistSubmitted ? (
+							<form className="cta-form" onSubmit={handleWaitlistSubmit}>
+								<input 
+									type="email" 
+									placeholder="Work email" 
+									required 
+									value={waitlistEmail}
+									onChange={(e) => setWaitlistEmail(e.target.value)}
+									disabled={isWaitlistSubmitting}
+								/>
+								<button type="submit" className="button primary" disabled={isWaitlistSubmitting}>
+									{isWaitlistSubmitting ? "Requesting..." : "Request Access →"}
+								</button>
 							</form>
 						) : (
 							<p className="success-msg">You're on the list. We'll be in touch.</p>
+						)}
+						{waitlistError && (
+							<p style={{ color: "#ff8b8b", fontSize: "14px", marginTop: "12px", marginBottom: 0 }}>
+								{waitlistError}
+							</p>
 						)}
 					</div>
 				</section>
