@@ -1022,8 +1022,7 @@ p {
 	min-height: 230px;
 }
 
-.cluster-map::before,
-.cluster-map::after {
+.cluster-map::before {
 	content: "";
 	position: absolute;
 	width: 72%;
@@ -1032,7 +1031,11 @@ p {
 }
 
 .cluster-map::after {
-	transform: rotate(90deg);
+	content: "";
+	position: absolute;
+	width: 1px;
+	height: 72%;
+	background: var(--outline);
 }
 
 .node {
