@@ -1,0 +1,479 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NuerOva | Enterprise AI Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#e5e2e1",
+                        "border-strong": "rgba(255, 255, 255, 0.14)",
+                        "surface-tint": "#c6c6c7",
+                        "on-surface": "#e5e2e1",
+                        "primary-container": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "surface-dim": "#131313",
+                        "border-subtle": "rgba(255, 255, 255, 0.08)",
+                        "inverse-on-surface": "#313030",
+                        "on-primary-container": "#636565",
+                        "on-primary": "#2f3131",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-surface": "#e5e2e1",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "inverse-primary": "#5d5f5f",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-primary-fixed-variant": "#454747",
+                        "primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "outline": "#8e9192",
+                        "tertiary": "#ffffff",
+                        "text-muted": "#888888",
+                        "surface-container-high": "#2a2a2a",
+                        "on-secondary-container": "#bab8b7",
+                        "background": "#131313",
+                        "secondary-container": "#4a4949",
+                        "on-surface-variant": "#c4c7c8",
+                        "surface": "#131313",
+                        "on-secondary-fixed-variant": "#474646",
+                        "secondary": "#c8c6c5",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary": "#313030",
+                        "text-faint": "#444444",
+                        "secondary-fixed": "#e5e2e1",
+                        "status-blue": "#3b82f6",
+                        "surface-bright": "#3a3939",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary-fixed": "#1a1c1c",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#313030",
+                        "on-tertiary-container": "#656464",
+                        "surface-container-low": "#1c1b1b",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-error": "#690005",
+                        "surface-variant": "#353534"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "section-gap": "160px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "button": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.06em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-md": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "500" }],
+                        "headline-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "500" }],
+                        "button": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #080808;
+            color: #ffffff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-white/20 selection:text-white">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border-subtle transition-all cubic-bezier(0.16, 1, 0.3, 1)">
+<nav class="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
+<a class="font-headline-sm text-headline-sm tracking-tight text-primary" href="#">NuerOva</a>
+<div class="hidden md:flex items-center gap-stack-lg">
+<a class="font-body-md text-body-md text-primary font-medium" href="#">Product</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">Features</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">Intelligence</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-stack-md">
+<a class="hidden md:inline-flex font-button text-button text-white/50 hover:text-white transition-colors duration-150 py-2" href="#">Sign In</a>
+<a class="font-button text-button bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition-opacity duration-150" href="#">Get Started</a>
+</div>
+</nav>
+</header>
+<main class="flex-grow pb-section-gap pt-24">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-gutter md:px-stack-lg flex flex-col md:flex-row items-center pb-16 gap-24 pt-4">
+<div class="max-w-3xl flex-1">
+<span class="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md">
+<div class="w-1.5 h-1.5 rounded-full bg-status-blue"></div>
+                    ENTERPRISE AI PLATFORM BUILT FOR TEAMS, NOT INDIVIDUALS
+                </span>
+<h1 class="font-headline-md text-4xl md:text-5xl text-primary mb-stack-lg">
+                    Your team's intelligence should not live in someone's chat history.
+                </h1>
+<p class="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-2xl">
+                    Nuerova gives every team a <span class="text-status-blue font-medium">shared AI brain</span>, a reusable skill library, and an automation layer that reasons over your own institutional knowledge.
+                </p>
+<div class="flex flex-col sm:flex-row gap-stack-md mb-stack-lg">
+<button class="font-button text-button bg-status-blue text-white px-6 py-3 rounded hover:opacity-90 transition-opacity duration-150">
+                        Request Demo
+                    </button>
+<button class="font-button text-button bg-transparent border border-white/20 text-white px-6 py-3 rounded hover:bg-white/5 transition-colors duration-150">
+                        See how it works
+                    </button>
+</div>
+<div class="flex flex-wrap gap-4">
+<span class="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full">RBAC and audit logs</span>
+<span class="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full">Org-scoped isolation</span>
+<span class="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full">SSO roadmap</span>
+</div>
+</div>
+<!-- Hero Mockup -->
+<div class="flex-1 w-full md:mt-0 border border-white/10 rounded-lg bg-[#0f0f0f] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] overflow-hidden mt-8">
+<div class="h-10 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313]">
+<div class="flex gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+</div>
+<div class="text-[10px] text-white/40 font-medium">Team Intelligence Console</div>
+</div>
+<div class="p-6 grid grid-cols-3 gap-6 bg-[#0a0a0a]">
+<div class="space-y-4">
+<div class="text-[10px] text-white/40 font-medium tracking-widest mb-2">CLUSTERS</div>
+<div class="border border-white/10 p-3 rounded bg-white/5">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded bg-status-blue"></div>
+<div>
+<div class="text-sm font-medium text-white">CS Accounts</div>
+<div class="text-[10px] text-white/50">42 sources synced</div>
+</div>
+</div>
+</div>
+<div class="border border-white/5 p-3 rounded">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded bg-orange-600"></div>
+<div>
+<div class="text-sm font-medium text-white/80">Ops Playbooks</div>
+<div class="text-[10px] text-white/50">18 skills published</div>
+</div>
+</div>
+</div>
+<div class="border border-white/5 p-3 rounded">
+<div class="flex items-center gap-3">
+<div class="w-6 h-6 rounded bg-emerald-600"></div>
+<div>
+<div class="text-sm font-medium text-white/80">Engineering</div>
+<div class="text-[10px] text-white/50">RBAC enforced</div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-4 border-x border-white/10 px-6">
+<div class="bg-status-blue p-4 rounded-lg text-white text-sm font-medium">
+                            Brief me on the Acme renewal risk.
+                        </div>
+<div class="border border-white/10 p-4 rounded-lg bg-white/5">
+<div class="w-full h-1 bg-white/10 rounded-full mb-4 overflow-hidden">
+<div class="w-1/3 h-full bg-status-blue"></div>
+</div>
+<p class="text-sm text-white/70 leading-relaxed mb-4">
+                                Risk is elevated. Usage dropped 22% after the API migration. Recommend a technical success call and executive recap.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] text-status-blue bg-status-blue/10 px-2 py-1 rounded">Slack #acme</span>
+<span class="text-[10px] text-status-blue bg-status-blue/10 px-2 py-1 rounded">QBR notes</span>
+<span class="text-[10px] text-status-blue bg-status-blue/10 px-2 py-1 rounded">Jira API-118</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="text-[10px] text-white/40 font-medium tracking-widest mb-2">AUTOMATION</div>
+<div class="border border-white/10 p-3 rounded text-xs text-white/70">Trigger: Renewal 45 days out</div>
+<div class="flex justify-center my-1"><div class="w-px h-4 bg-white/10"></div></div>
+<div class="border border-status-blue/30 bg-status-blue/5 p-3 rounded text-xs text-status-blue">Reason over CS cluster</div>
+<div class="flex justify-center my-1"><div class="w-px h-4 bg-white/10"></div></div>
+<div class="border border-white/10 p-3 rounded text-xs text-white/70">Draft account plan</div>
+<div class="flex justify-center my-1"><div class="w-px h-4 bg-white/10"></div></div>
+<div class="border border-orange-500/30 bg-orange-500/5 p-3 rounded text-xs text-orange-500">Request manager approval</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Current Reality Section -->
+<section class="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10">
+<div class="text-center mb-stack-lg flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">THE CURRENT REALITY</span>
+<h2 class="font-headline-md text-headline-md text-primary max-w-3xl mb-4">Teams are running on scattered context and manual heroics.</h2>
+<p class="font-body-md text-body-md text-white/50">Every tool captures knowledge. None of it compounds.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+<div class="border border-white/10 p-8 rounded-lg bg-transparent">
+<div class="font-headline-lg text-5xl text-primary mb-4 font-bold">73%</div>
+<p class="font-body-md text-sm text-white/50">of critical context gets trapped in private threads, docs, and inboxes.</p>
+</div>
+<div class="border border-white/10 p-8 rounded-lg bg-transparent">
+<div class="font-headline-lg text-5xl text-primary mb-4 font-bold">40 hrs</div>
+<p class="font-body-md text-sm text-white/50">lost each month re-sharing background that should already be known.</p>
+</div>
+<div class="border border-white/10 p-8 rounded-lg bg-transparent">
+<div class="font-headline-lg text-5xl text-primary mb-4 font-bold">6 mo</div>
+<p class="font-body-md text-sm text-white/50">of momentum can disappear when a senior operator leaves.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="border border-white/10 border-t-2 border-t-red-500 p-8 rounded-b-lg bg-transparent">
+<div class="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">01</div>
+<h3 class="font-headline-sm text-xl text-primary mb-3">Brain drain every time someone leaves</h3>
+<p class="font-body-md text-sm text-white/50">When your best people exit, they take the playbooks with them. Nuerova makes that knowledge durable.</p>
+</div>
+<div class="border border-white/10 border-t-2 border-t-orange-500 p-8 rounded-b-lg bg-transparent">
+<div class="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">02</div>
+<h3 class="font-headline-sm text-xl text-primary mb-3">Agents with no memory are expensive search bars</h3>
+<p class="font-body-md text-sm text-white/50">Generic AI tools start from zero every session. Nuerova agents inherit team context automatically.</p>
+</div>
+<div class="border border-white/10 border-t-2 border-t-slate-500 p-8 rounded-b-lg bg-transparent">
+<div class="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">03</div>
+<h3 class="font-headline-sm text-xl text-primary mb-3">Automation that cannot think cannot scale</h3>
+<p class="font-body-md text-sm text-white/50">Rigid rules break on edge cases. Nuerova workflows reason before they act or escalate.</p>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10">
+<div class="text-center mb-16 flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">HOW IT WORKS</span>
+<h2 class="font-headline-md text-headline-md text-primary max-w-3xl">From scattered context to governed execution in five steps.</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+<div class="border border-white/10 p-6 rounded-lg bg-transparent">
+<div class="text-sm text-status-blue font-bold mb-4">01</div>
+<h3 class="font-headline-sm text-lg text-primary mb-2">Connect your stack</h3>
+<p class="font-body-md text-xs text-white/50">Sync Notion, Slack, Drive, CRM, GitHub, and internal sources.</p>
+</div>
+<div class="border border-white/10 p-6 rounded-lg bg-transparent">
+<div class="text-sm text-status-blue font-bold mb-4">02</div>
+<h3 class="font-headline-sm text-lg text-primary mb-2">Build clusters</h3>
+<p class="font-body-md text-xs text-white/50">Scope memory by team, project, account, or organization.</p>
+</div>
+<div class="border border-white/10 p-6 rounded-lg bg-transparent">
+<div class="text-sm text-status-blue font-bold mb-4">03</div>
+<h3 class="font-headline-sm text-lg text-primary mb-2">Deploy agents</h3>
+<p class="font-body-md text-xs text-white/50">Agents inherit the right cluster context before responding.</p>
+</div>
+<div class="border border-white/10 p-6 rounded-lg bg-transparent">
+<div class="text-sm text-status-blue font-bold mb-4">04</div>
+<h3 class="font-headline-sm text-lg text-primary mb-2">Automate work</h3>
+<p class="font-body-md text-xs text-white/50">Trigger workflows that reason, branch, act, and escalate.</p>
+</div>
+<div class="border border-white/10 p-6 rounded-lg bg-transparent">
+<div class="text-sm text-status-blue font-bold mb-4">05</div>
+<h3 class="font-headline-sm text-lg text-primary mb-2">Govern confidently</h3>
+<p class="font-body-md text-xs text-white/50">Review RBAC, approvals, audit logs, and usage visibility.</p>
+</div>
+</div>
+</section>
+<!-- Platform Glimpses Section -->
+<section class="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10">
+<div class="text-center mb-16 flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">PLATFORM GLIMPSES</span>
+<h2 class="font-headline-md text-headline-md text-primary max-w-3xl mb-4">A shared AI brain you can inspect, govern, and reuse.</h2>
+<p class="font-body-md text-body-md text-white/50">Product visuals designed around the surfaces enterprise buyers need to see.</p>
+</div>
+<div class="border border-white/10 rounded-xl overflow-hidden bg-[#0a0a0a]">
+<div class="flex border-b border-white/10">
+<button class="flex-1 py-4 text-sm font-medium text-status-blue bg-status-blue/5 border-b-2 border-status-blue">Knowledge Clusters</button>
+<button class="flex-1 py-4 text-sm font-medium text-white/60 hover:text-white/80 transition-colors">Agent Workspace</button>
+<button class="flex-1 py-4 text-sm font-medium text-white/60 hover:text-white/80 transition-colors">Automation Builder</button>
+<button class="flex-1 py-4 text-sm font-medium text-white/60 hover:text-white/80 transition-colors">Admin and Audit</button>
+</div>
+<div class="flex flex-col md:flex-row p-8 gap-12 items-center">
+<div class="flex-1 w-full border border-white/10 rounded-lg p-6 bg-[#131313] relative min-h-[400px]">
+<div class="flex justify-between items-center mb-8">
+<span class="text-xs font-medium text-white/50">Cluster health</span>
+<span class="text-xs font-medium text-emerald-500">Org scoped</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-full h-px bg-white/10 absolute top-1/2"></div>
+<div class="h-full w-px bg-white/10 absolute left-1/2"></div>
+</div>
+<div class="relative h-64 flex items-center justify-center">
+<div class="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">CS</div>
+<div class="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">Ops</div>
+<div class="absolute bottom-1/4 left-1/4 transform -translate-x-1/2 translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">Eng</div>
+<div class="absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">RevOps</div>
+<div class="bg-primary text-black px-8 py-4 rounded-full text-base font-bold relative z-10 shadow-[0_0_30px_rgba(255,255,255,0.1)]">Nuerova</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-8">
+<div class="border border-white/10 p-3 rounded text-xs text-white/80">Permissions synced</div>
+<div class="border border-white/10 p-3 rounded text-xs text-white/80">124 citations this week</div>
+<div class="border border-white/10 p-3 rounded text-xs text-white/80">3 stale sources flagged</div>
+</div>
+</div>
+<div class="w-full md:w-80">
+<h3 class="font-headline-md text-3xl text-primary mb-4">Every cluster scoped.<br>Nothing bleeds across teams.</h3>
+<p class="font-body-md text-sm text-white/50 leading-relaxed">
+                            Knowledge is organized by permission boundary, so agents only reason over the context they are allowed to use.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Integrations Section -->
+<section class="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10">
+<div class="text-center mb-12 flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-status-blue border border-status-blue/20 px-4 py-1.5 rounded-full inline-block mb-stack-md">INTEGRATIONS</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-4">Plugs into the stack your team<br>already runs.</h2>
+<p class="font-body-md text-body-md text-white/50">Connect knowledge sources in minutes, not months.</p>
+</div>
+<div class="max-w-4xl mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Slack</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Notion</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Google Drive</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">GitHub</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">HubSpot</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Salesforce</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Jira</span>
+</div>
+<div class="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+<span class="text-sm font-medium text-white/80">Confluence</span>
+</div>
+</div>
+<div class="text-center mt-8">
+<p class="text-sm font-medium text-white/60">REST API and webhooks for everything else.</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="w-full bg-[#111315] py-section-gap border-y border-white/[0.08]">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1">
+<span class="font-label-caps text-label-caps text-white/80 border border-white/20 px-3 py-1 rounded-full inline-block mb-stack-md">REQUEST A DEMO</span>
+<h2 class="font-headline-lg text-5xl md:text-6xl text-primary mb-stack-md font-bold tracking-tight">Your team's knowledge should not depend on one person being in the room.</h2>
+<p class="font-body-md text-body-md text-white/60 mb-stack-lg max-w-xl">
+                    Nuerova gives teams a shared AI brain that persists, scales, and can be governed.
+                </p>
+<div class="flex flex-wrap gap-3">
+<span class="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">No lock-in</span>
+<span class="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Data stays yours</span>
+<span class="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Setup support included</span>
+<span class="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Enterprise controls built in</span>
+</div>
+</div>
+<div class="w-full md:w-[500px] bg-[#1a1c1e] border border-white/10 rounded-xl p-8">
+<form class="space-y-4">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">Name</label>
+<input class="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3" type="text">
+</div>
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">Work email</label>
+<input class="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3" type="email">
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">Company</label>
+<input class="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3" type="text">
+</div>
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">Team size</label>
+<select class="w-full bg-[#2a2c2e] border-none rounded text-white/70 text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3">
+<option>Select team size</option>
+<option>1-50</option>
+<option>51-200</option>
+<option>201-1000</option>
+<option>1000+</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">Primary use case</label>
+<select class="w-full bg-[#2a2c2e] border-none rounded text-white/70 text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3">
+<option>Select use case</option>
+<option>Customer Success</option>
+<option>Engineering</option>
+<option>Sales/RevOps</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium text-white/70 mb-1">What should Nuerova help with?</label>
+<textarea class="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 h-24 resize-none"></textarea>
+</div>
+<button class="w-full bg-[#0066cc] text-white font-medium py-3 rounded hover:bg-[#0052a3] transition-colors mt-2">
+                        Request your demo
+                    </button>
+<p class="text-[10px] text-white/40 text-center mt-4">A human reviews every request. No pressure, no generic sales loop.</p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-background border-t border-border-subtle transition-opacity duration-150">
+<div class="max-w-container-max mx-auto py-stack-lg px-gutter flex flex-col md:flex-row justify-between items-center gap-stack-md">
+<div class="font-headline-sm text-headline-sm text-primary">NuerOva</div>
+<div class="flex gap-stack-md">
+<a class="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" href="#">Security</a>
+<a class="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" href="#">Status</a>
+</div>
+<div class="font-body-md text-body-md text-text-muted">© 2024 NuerOva Intelligence. All rights reserved.</div>
+</div>
+</footer>
+
+
+
+
+
+
+</body></html>

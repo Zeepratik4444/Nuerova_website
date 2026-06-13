@@ -1,6 +1,7 @@
-import { useState } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/lib/analytics";
@@ -13,11 +14,117 @@ export function HomePage() {
 
 	useScrollReveal();
 
-	// Interactive states
-	const [activeCluster, setActiveCluster] = useState<"support" | "ops" | "eng">("support");
+	// Typewriter effect
+	const TW_WORDS = ["CS teams", "Ops teams", "Engineering", "Enterprise"];
+	const [twIdx, setTwIdx] = useState(0);
+	const [twText, setTwText] = useState("");
+	const [twDeleting, setTwDeleting] = useState(false);
+
+	useEffect(() => {
+		const target = TW_WORDS[twIdx];
+		if (!twDeleting && twText === target) {
+			const pause = setTimeout(() => setTwDeleting(true), 1800);
+			return () => clearTimeout(pause);
+		}
+		const delay = twDeleting ? 55 : 95;
+		const t = setTimeout(() => {
+			if (twDeleting) {
+				setTwText(s => s.slice(0, -1));
+				if (twText.length <= 1) {
+					setTwDeleting(false);
+					setTwIdx(i => (i + 1) % TW_WORDS.length);
+				}
+			} else {
+				setTwText(target.slice(0, twText.length + 1));
+			}
+		}, delay);
+		return () => clearTimeout(t);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [twText, twDeleting, twIdx]);
+
+	const heroCanvasRef = useRef<HTMLCanvasElement>(null);
+
+	useEffect(() => {
+		const canvas = heroCanvasRef.current;
+		if (!canvas) return;
+		const ctx = canvas.getContext('2d');
+		if (!ctx) return;
+
+		const COLORS = ['rgba(59,130,246,', 'rgba(139,92,246,', 'rgba(96,165,250,'];
+		let W = 0, H = 0;
+		type Particle = { x: number; y: number; r: number; vx: number; vy: number; a: number; col: string };
+		let particles: Particle[] = [];
+		let animId = 0;
+		const c = canvas;
+		const cx = ctx;
+
+		function resize() {
+			W = c.width = c.offsetWidth;
+			H = c.height = c.offsetHeight;
+		}
+
+		function mkParticle(): Particle {
+			const col = COLORS[Math.floor(Math.random() * COLORS.length)];
+			return {
+				x: Math.random() * W,
+				y: Math.random() * H,
+				r: Math.random() * 1.5 + 0.5,
+				vx: (Math.random() - 0.5) * 0.25,
+				vy: (Math.random() - 0.5) * 0.25,
+				a: Math.random() * 0.5 + 0.1,
+				col,
+			};
+		}
+
+		function init() {
+			resize();
+			const count = Math.min(Math.floor((W * H) / 15000), 60);
+			particles = Array.from({ length: count }, mkParticle);
+		}
+
+		function tick() {
+			cx.clearRect(0, 0, W, H);
+			for (let i = 0; i < particles.length; i++) {
+				for (let j = i + 1; j < particles.length; j++) {
+					const dx = particles[i].x - particles[j].x;
+					const dy = particles[i].y - particles[j].y;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+					if (dist < 110) {
+						cx.beginPath();
+						cx.strokeStyle = `rgba(255,255,255,${0.04 * (1 - dist / 110)})`;
+						cx.lineWidth = 0.5;
+						cx.moveTo(particles[i].x, particles[i].y);
+						cx.lineTo(particles[j].x, particles[j].y);
+						cx.stroke();
+					}
+				}
+			}
+			particles.forEach(p => {
+				p.x += p.vx; p.y += p.vy;
+				if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+				if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+				cx.beginPath();
+				cx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+				cx.fillStyle = p.col + p.a + ')';
+				cx.fill();
+			});
+			animId = requestAnimationFrame(tick);
+		}
+
+		init();
+		tick();
+		window.addEventListener('resize', init);
+
+		return () => {
+			cancelAnimationFrame(animId);
+			window.removeEventListener('resize', init);
+		};
+	}, []);
+
+	// Interactive state for Platform Glimpses tabs
 	const [activeTab, setActiveTab] = useState<"clusters" | "agents" | "automation" | "audit">("clusters");
-	const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
-	
+	const [consoleTab, setConsoleTab] = useState<"ask" | "automate" | "clusters">("ask");
+
 	// Demo Request form state
 	const [demoSubmitted, setDemoSubmitted] = useState(false);
 	const [isDemoSubmitting, setIsDemoSubmitting] = useState(false);
@@ -139,720 +246,670 @@ export function HomePage() {
 		}
 	};
 
+	const scrollToContact = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
+		e.preventDefault();
+		const contactSection = document.getElementById("contact");
+		if (contactSection) {
+			contactSection.scrollIntoView({ behavior: "smooth" });
+		}
+	};
+
 	return (
-		<div className="js-enabled">
+		<div className="js-enabled bg-background text-white min-h-screen flex flex-col selection:bg-white/20 selection:text-white">
 			<Navigation />
 
-			<main id="main">
-				{/* ── HERO ── */}
-				<section className="hero section" id="top">
-					<div className="hero-bg" aria-hidden="true"></div>
-					<div className="container hero-grid">
-						<div className="hero-copy reveal">
-							<div className="eyebrow">
-								<span className="pulse-dot"></span>
-								Enterprise AI platform built for teams, not individuals
-							</div>
-							<h1>Your team's intelligence should not live in someone's chat history.</h1>
-							<p className="hero-subhead">
-								Nuerova gives every team a <strong>shared AI brain</strong>, a reusable skill library,
-								and an automation layer that reasons over your own institutional knowledge.
+			<main id="main" className="flex-grow pb-section-gap pt-16">
+				{/* ── HERO SECTION ── */}
+				<section className="relative overflow-hidden" style={{ height: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center' }}>
+					{/* Particle canvas */}
+					<canvas ref={heroCanvasRef} className="hero-canvas" />
+					{/* Grid lines overlay */}
+					<div className="hero-grid-overlay" />
+					{/* Gradient orbs */}
+					<div className="hero-orb hero-orb-blue" />
+					<div className="hero-orb hero-orb-purple" />
+
+					<div className="max-w-container-max mx-auto px-gutter md:px-stack-lg flex flex-col md:flex-row items-center pb-16 gap-24 pt-4 relative z-10 w-full">
+						<div className="flex-1">
+							<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md mt-10 hero-enter transition-all duration-200 hover:bg-status-blue/20 hover:border-status-blue/40 hover:text-white cursor-default">
+								<div className="w-1.5 h-1.5 rounded-full bg-status-blue hero-dot-pulse"></div>
+								Finally, AI that works for the whole team
+							</span>
+							<h1 className="font-headline-md text-3xl md:text-4xl lg:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight hero-enter" style={{ animationDelay: '0.1s' }}>
+								Your team's AI, built for{' '}
+								<span className="whitespace-nowrap"><span className="hero-tw-text">{twText}</span><span className="hero-tw-cursor">|</span></span>
+							</h1>
+							<p className="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-xl hero-enter" style={{ animationDelay: '0.2s' }}>
+								Your best answers are buried in Slack, Salesforce, and last quarter's docs. Neuronova finds them instantly, runs the follow-up automatically, and makes sure everyone benefits — not just whoever was in the room.
 							</p>
-							<div className="hero-actions">
-								<Link className="button primary" to="/contact">Request Demo</Link>
-								<Link className="button secondary" to="/how-it-works">See how it works</Link>
+							<div className="flex flex-col sm:flex-row gap-stack-md mb-stack-lg hero-enter" style={{ animationDelay: '0.3s' }}>
+								<button
+									onClick={scrollToContact}
+									className="font-button text-button bg-status-blue text-white px-6 py-3 rounded-lg font-bold transition-all duration-200 hover:-translate-y-0.5"
+									style={{ boxShadow: '0 0 24px rgba(59,130,246,0.25)' }}
+									onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 28px rgba(59,130,246,0.45)'; }}
+									onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 24px rgba(59,130,246,0.25)'; }}
+								>
+									Request Demo
+								</button>
+								<Link
+									to="/how-it-works"
+									className="font-button text-button bg-transparent border border-white/20 text-white px-6 py-3 rounded-lg hover:bg-white/5 hover:border-white/30 transition-all duration-150 flex items-center justify-center font-bold"
+								>
+									See how it works
+								</Link>
 							</div>
-							<div className="trust-strip" aria-label="Enterprise trust signals">
-								<span>RBAC and audit logs</span>
-								<span>Org-scoped isolation</span>
-								<span>SSO roadmap</span>
+							<div className="flex flex-wrap gap-4 hero-enter" style={{ animationDelay: '0.4s' }}>
+								<span className="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full transition-all duration-200 hover:text-white hover:border-white/30 hover:bg-white/5 cursor-default">Works with tools you already use</span>
+								<span className="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full transition-all duration-200 hover:text-white hover:border-white/30 hover:bg-white/5 cursor-default">Learns from every conversation</span>
+								<span className="font-label-caps text-[11px] text-white/60 border border-white/10 px-3 py-1.5 rounded-full transition-all duration-200 hover:text-white hover:border-white/30 hover:bg-white/5 cursor-default">Enterprise-ready from day one</span>
 							</div>
 						</div>
 
-						<div className="hero-visual reveal" aria-label="Nuerova product preview">
-							<div className="product-frame">
-								<div className="window-bar">
-									<span></span><span></span><span></span>
-									<strong>Team Intelligence Console</strong>
+						{/* Nova Engine Agent Console */}
+						<div className="flex-1 w-full md:mt-0 border border-white/10 rounded-xl bg-[#0f0f0f] overflow-hidden mt-8 hero-console-float" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+							{/* Window chrome */}
+							<div className="h-10 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313]">
+								<div className="flex gap-2">
+									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
 								</div>
-								<div className="console-grid">
-									<aside className="console-panel">
-										<div className="panel-label">Clusters</div>
-										
-										<div 
-											className={`cluster-card ${activeCluster === "support" ? "active" : ""}`}
-											onClick={() => setActiveCluster("support")}
-											style={{ cursor: "pointer" }}
-										>
-											<span className="cluster-icon blue"></span>
-											<div>
-												<strong>CS Accounts</strong>
-												<small>42 sources synced</small>
-											</div>
-										</div>
-										
-										<div 
-											className={`cluster-card ${activeCluster === "ops" ? "active" : ""}`}
-											onClick={() => setActiveCluster("ops")}
-											style={{ cursor: "pointer" }}
-										>
-											<span className="cluster-icon amber"></span>
-											<div>
-												<strong>Ops Playbooks</strong>
-												<small>18 skills published</small>
-											</div>
-										</div>
-										
-										<div 
-											className={`cluster-card ${activeCluster === "eng" ? "active" : ""}`}
-											onClick={() => setActiveCluster("eng")}
-											style={{ cursor: "pointer" }}
-										>
-											<span className="cluster-icon green"></span>
-											<div>
-												<strong>Engineering</strong>
-												<small>RBAC enforced</small>
-											</div>
-										</div>
-									</aside>
-
-									{activeCluster === "support" && (
-										<section className="agent-panel">
-											<div className="agent-question">Brief me on the Acme renewal risk.</div>
-											<div className="agent-response">
-												<div className="thinking-line"></div>
-												<p>
-													Risk is elevated. Usage dropped 22% after the API migration. Recommend a
-													technical success call and executive recap.
-												</p>
-												<div className="citations">
-													<span>Slack #acme</span>
-													<span>QBR notes</span>
-													<span>Jira API-118</span>
-												</div>
-											</div>
-										</section>
-									)}
-
-									{activeCluster === "ops" && (
-										<section className="agent-panel">
-											<div className="agent-question">Draft the offboarding playbook for review.</div>
-											<div className="agent-response">
-												<div className="thinking-line"></div>
-												<p>
-													Playbook generated. Revoke SaaS tokens, schedule device shipping label, and archive home repository logs.
-												</p>
-												<div className="citations">
-													<span>Handbook V2</span>
-													<span>IT-Specs</span>
-													<span>Slack #ops</span>
-												</div>
-											</div>
-										</section>
-									)}
-
-									{activeCluster === "eng" && (
-										<section className="agent-panel">
-											<div className="agent-question">Show me DB connection logs timeouts context.</div>
-											<div className="agent-response">
-												<div className="thinking-line"></div>
-												<p>
-													Timeout detected. PostgreSQL pool capacity (10 connections) exceeded. Recommendation staged to double pool size config.
-												</p>
-												<div className="citations">
-													<span>GitHub #891</span>
-													<span>Arch Spec</span>
-												</div>
-											</div>
-										</section>
-									)}
-
-									<aside className="automation-panel">
-										<div className="panel-label">Automation</div>
-										{activeCluster === "support" ? (
-											<>
-												<div className="flow-step">Trigger: Renewal 45 days out</div>
-												<div className="flow-step reason">Reason over CS cluster</div>
-												<div className="flow-step">Draft account plan</div>
-												<div className="flow-step approve">Request manager approval</div>
-											</>
-										) : activeCluster === "ops" ? (
-											<>
-												<div className="flow-step">Trigger: BambooHR Hook</div>
-												<div className="flow-step reason">Query Org Handbooks</div>
-												<div className="flow-step">Provision access tokens</div>
-												<div className="flow-step approve">IT checklist audit</div>
-											</>
-										) : (
-											<>
-												<div className="flow-step">Trigger: DB Timeout Label</div>
-												<div className="flow-step reason">Search DB config specs</div>
-												<div className="flow-step">Post analysis to Slack</div>
-												<div className="flow-step approve">Stage DB settings fix</div>
-											</>
-										)}
-									</aside>
+								<div className="text-[10px] text-white/40 font-medium tracking-wide">Neuronova — Team Intelligence</div>
+								<div className="flex items-center gap-1.5">
+									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 hero-dot-pulse"></div>
+									<span className="text-[10px] text-emerald-400">Live</span>
 								</div>
 							</div>
-						</div>
-					</div>
-				</section>
 
-				{/* ── PROBLEM SECTION ── */}
-				<section className="section problem-section">
-					<div className="container">
-						<div className="section-heading narrow reveal">
-							<span className="kicker">The current reality</span>
-							<h2>Teams are running on scattered context and manual heroics.</h2>
-							<p>Every tool captures knowledge. None of it compounds.</p>
-						</div>
+							{/* Body: sidebar + chat */}
+							<div className="flex">
+								{/* Mini icon sidebar */}
+								<div className="w-10 border-r border-white/10 flex flex-col items-center py-3 gap-5 bg-[#0a0a0a] flex-shrink-0">
+									<div className="w-6 h-6 rounded bg-status-blue/20 border border-status-blue/30 flex items-center justify-center" title="Agents">
+										<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="rgba(96,165,250,0.8)" strokeWidth="1.5"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="rgba(96,165,250,0.8)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+									</div>
+									<div className="w-6 h-6 rounded bg-white/5 border border-white/10 flex items-center justify-center" title="Automations">
+										<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M3 8h3l2-4 2 8 2-4h1" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+									</div>
+									<div className="w-6 h-6 rounded bg-white/5 border border-white/10 flex items-center justify-center" title="Skills">
+										<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/></svg>
+									</div>
+									<div className="w-6 h-6 rounded bg-white/5 border border-white/10 flex items-center justify-center" title="Memory">
+										<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="5" rx="5" ry="2.5" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/><path d="M3 5v6c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V5" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/></svg>
+									</div>
+									<div className="w-6 h-6 rounded bg-white/5 border border-white/10 flex items-center justify-center" title="LLM Keys">
+										<svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="8" r="3" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/><path d="M8 8h6M12 6v4" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+									</div>
+								</div>
 
-						<div className="stats-grid reveal">
-							<article>
-								<strong>73%</strong>
-								<span>of critical context gets trapped in private threads, docs, and inboxes.</span>
-							</article>
-							<article>
-								<strong>40 hrs</strong>
-								<span>lost each month re-sharing background that should already be known.</span>
-							</article>
-							<article>
-								<strong>6 mo</strong>
-								<span>of momentum can disappear when a senior operator leaves.</span>
-							</article>
-						</div>
+							{/* Chat area */}
+							<div className="flex-1 flex flex-col overflow-hidden">
 
-						<div className="pain-grid reveal">
-							<article className="pain-card red">
-								<span className="card-icon">01</span>
-								<h3>Brain drain every time someone leaves</h3>
-								<p>When your best people exit, they take the playbooks with them. Nuerova makes that knowledge durable.</p>
-							</article>
-							<article className="pain-card amber">
-								<span className="card-icon">02</span>
-								<h3>Agents with no memory are expensive search bars</h3>
-								<p>Generic AI tools start from zero every session. Nuerova agents inherit team context automatically.</p>
-							</article>
-							<article className="pain-card slate">
-								<span className="card-icon">03</span>
-								<h3>Automation that cannot think cannot scale</h3>
-								<p>Rigid rules break on edge cases. Nuerova workflows reason before they act or escalate.</p>
-							</article>
-						</div>
+  							{/* Tab bar */}
+  							<div className="flex border-b border-white/10 bg-[#0d0d0d]">
+    							{(["ask", "automate", "clusters"] as const).map(tab => (
+      							<button key={tab} onClick={() => setConsoleTab(tab)}
+        							className={`px-4 py-2.5 text-[11px] font-medium tracking-wide transition-all duration-150 border-b-2 ${consoleTab === tab ? 'text-white border-status-blue' : 'text-white/35 border-transparent hover:text-white/60'}`}
+      							>
+        							{tab === 'ask' ? 'Ask Anything' : tab === 'automate' ? 'Automate' : 'Clusters'}
+      							</button>
+    							))}
+  							</div>
 
-						<p className="center-statement">You do not need more tools. You need one layer that connects what your team already knows.</p>
-					</div>
-				</section>
+  							{/* ASK TAB */}
+  							{consoleTab === 'ask' && (
+    							<div className="p-3 space-y-2.5">
+      							<div className="flex justify-end">
+        							<div className="bg-status-blue/15 border border-status-blue/20 px-3 py-2 rounded-lg max-w-[82%]">
+          							<p className="text-[11px] text-white leading-relaxed">Which accounts are at churn risk this quarter?</p>
+        							</div>
+      							</div>
+      							<div className="border border-orange-500/20 bg-orange-500/[0.04] rounded-lg px-3 py-2">
+        							<div className="flex items-center gap-2 mb-1">
+          							<span className="text-[10px] text-orange-400 font-mono font-medium">sql_query</span>
+          							<span className="text-[9px] text-white/30">→ CS Cluster · Salesforce</span>
+        							</div>
+        							<code className="text-[9px] text-white/45 font-mono">SELECT account, health_score FROM accounts WHERE churn_risk &gt; 0.65</code>
+      							</div>
+      							<div className="border border-purple-500/20 bg-purple-500/[0.04] rounded-lg px-3 py-2">
+        							<div className="flex items-center gap-2 mb-1">
+          							<span className="text-[10px] text-purple-400 font-mono font-medium">web_search</span>
+          							<span className="text-[9px] text-white/30">→ Gong calls · Slack history</span>
+        							</div>
+        							<code className="text-[9px] text-white/45 font-mono">Q2 sentiment: acme globaltech meridian</code>
+      							</div>
+      							<div className="flex gap-2 items-start">
+        							<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex-shrink-0 flex items-center justify-center mt-0.5"><span className="text-[7px] text-status-blue font-bold">N</span></div>
+        							<div className="flex-1 min-w-0">
+          							<p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-semibold">3 accounts flagged:</span> Acme Corp (usage ↓28%), GlobalTech (renewal Sept), Meridian (negative sentiment ×3). Recommend immediate outreach.</p>
+          							<div className="flex flex-wrap gap-1.5 mt-2">
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">CS Cluster ↗</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Salesforce ↗</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Gong Calls ↗</span>
+          							</div>
+        							</div>
+      							</div>
+    							</div>
+  							)}
 
-				{/* ── PERSONAS SECTION ── */}
-				<section className="section personas-section">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Built for teams with context-heavy work</span>
-							<h2>Make the operating layer smarter than any single person in it.</h2>
-						</div>
-						<div className="persona-grid reveal">
-							<article>
-								<span className="role-mark">Ops</span>
-								<h3>Head of Operations</h3>
-								<p>Coordination, handoffs, and tribal knowledge requests stop piling up on one person.</p>
-								<strong>Automated workflows built on your team's real context.</strong>
-							</article>
-							<article>
-								<span className="role-mark">CS</span>
-								<h3>Customer Success Leader</h3>
-								<p>Account memory stops living across six tools and three people's heads.</p>
-								<strong>Every CSM walks into the call fully briefed.</strong>
-							</article>
-							<article>
-								<span className="role-mark">Eng</span>
-								<h3>VP Engineering / CTO</h3>
-								<p>New AI tooling gets evaluated through compliance, isolation, and auditability.</p>
-								<strong>Enterprise controls are built in from day one.</strong>
-							</article>
-						</div>
-					</div>
-				</section>
+  							{/* AUTOMATE TAB */}
+  							{consoleTab === 'automate' && (
+    							<div className="p-3">
+      							<div className="flex items-center justify-between mb-3">
+        							<div>
+          							<div className="text-xs font-semibold text-white">Account Renewal Risk</div>
+          							<div className="text-[10px] text-white/40">Runs automatically · last ran 2h ago · 12 runs this week</div>
+        							</div>
+        							<span className="text-[9px] text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-full">Active</span>
+      							</div>
+      							<div className="space-y-1.5">
+        							<div className="border border-white/10 bg-white/[0.02] rounded-lg px-3 py-2 flex items-center gap-3">
+          							<div className="w-5 h-5 rounded bg-orange-500/20 border border-orange-500/30 flex-shrink-0 flex items-center justify-center"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M4 1v3l2 1" stroke="rgba(249,115,22,0.9)" strokeWidth="1.5" strokeLinecap="round"/><circle cx="4" cy="4" r="3" stroke="rgba(249,115,22,0.6)" strokeWidth="1"/></svg></div>
+          							<div className="flex-1"><div className="text-[11px] text-white">Trigger</div><div className="text-[10px] text-white/40">Renewal date &lt; 45 days · from Salesforce</div></div>
+        							</div>
+        							<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+        							<div className="border border-status-blue/20 bg-status-blue/[0.04] rounded-lg px-3 py-2 flex items-center gap-3">
+          							<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex-shrink-0 flex items-center justify-center"><span className="text-[7px] text-status-blue font-bold">N</span></div>
+          							<div className="flex-1"><div className="text-[11px] text-white">Nova Agent reasons over CS Cluster</div><div className="text-[10px] text-white/40">Pulls account health, call history, and usage data</div></div>
+        							</div>
+        							<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+        							<div className="border border-white/10 bg-white/[0.02] rounded-lg px-3 py-2 flex items-center gap-3">
+          							<div className="w-5 h-5 rounded bg-purple-500/20 border border-purple-500/30 flex-shrink-0 flex items-center justify-center"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 2h6M1 4h4M1 6h5" stroke="rgba(168,85,247,0.9)" strokeWidth="1.2" strokeLinecap="round"/></svg></div>
+          							<div className="flex-1"><div className="text-[11px] text-white">Draft account brief</div><div className="text-[10px] text-white/40">AI-written summary with risk score and recommended actions</div></div>
+        							</div>
+        							<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+        							<div className="border border-emerald-500/20 bg-emerald-500/[0.04] rounded-lg px-3 py-2 flex items-center gap-3">
+          							<div className="w-5 h-5 rounded bg-emerald-500/20 border border-emerald-500/30 flex-shrink-0 flex items-center justify-center"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 4l2 2 4-4" stroke="rgba(52,211,153,0.9)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+          							<div className="flex-1"><div className="text-[11px] text-white">Post to Slack #cs-alerts + create Salesforce task</div><div className="text-[10px] text-white/40">Team notified · follow-up tracked automatically</div></div>
+        							</div>
+      							</div>
+    							</div>
+  							)}
 
-				{/* ── WORKFLOW SECTION (Timeline) ── */}
-				<section className="section workflow-section" id="workflow">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">How it works</span>
-							<h2>From scattered context to governed execution in five steps.</h2>
-						</div>
-						<div className="step-track reveal">
-							<article>
-								<span>01</span>
-								<h3>Connect your stack</h3>
-								<p>Sync Notion, Slack, Drive, CRM, GitHub, and internal sources.</p>
-							</article>
-							<article>
-								<span>02</span>
-								<h3>Build clusters</h3>
-								<p>Scope memory by team, project, account, or organization.</p>
-							</article>
-							<article>
-								<span>03</span>
-								<h3>Deploy agents</h3>
-								<p>Agents inherit the right cluster context before responding.</p>
-							</article>
-							<article>
-								<span>04</span>
-								<h3>Automate work</h3>
-								<p>Trigger workflows that reason, branch, act, and escalate.</p>
-							</article>
-							<article>
-								<span>05</span>
-								<h3>Govern confidently</h3>
-								<p>Review RBAC, approvals, audit logs, and usage visibility.</p>
-							</article>
-						</div>
-					</div>
-				</section>
+  							{/* CLUSTERS TAB */}
+  							{consoleTab === 'clusters' && (
+    							<div className="p-3 space-y-2.5">
+      							<div className="border border-white/10 bg-white/[0.02] rounded-lg px-3 py-2">
+        							<div className="text-[10px] text-white/40 mb-2">CS Cluster · 3 members contributing</div>
+        							<div className="space-y-1.5">
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-status-blue/30 border border-status-blue/40 flex items-center justify-center"><span className="text-[7px] text-status-blue">A</span></div><span className="text-[10px] text-white/70">Alice</span><span className="text-[9px] text-white/30">Salesforce · Gong Calls</span></div>
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-purple-500/30 border border-purple-500/40 flex items-center justify-center"><span className="text-[7px] text-purple-400">B</span></div><span className="text-[10px] text-white/70">Bob</span><span className="text-[9px] text-white/30">Slack · Gmail</span></div>
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-emerald-500/30 border border-emerald-500/40 flex items-center justify-center"><span className="text-[7px] text-emerald-400">C</span></div><span className="text-[10px] text-white/70">Carol</span><span className="text-[9px] text-white/30">Google Drive · Confluence</span></div>
+        							</div>
+      							</div>
+      							<div className="flex justify-end">
+        							<div className="bg-status-blue/15 border border-status-blue/20 px-3 py-2 rounded-lg max-w-[85%]"><p className="text-[11px] text-white">What came out of the GlobalTech call?</p></div>
+      							</div>
+      							<div className="flex gap-2 items-start">
+        							<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex-shrink-0 flex items-center justify-center mt-0.5"><span className="text-[7px] text-status-blue font-bold">N</span></div>
+        							<div className="flex-1 min-w-0">
+          							<p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-semibold">From Alice's Gong call (Jun 11):</span> GlobalTech raised pricing concerns and asked for a dedicated CSM. Bob's Slack thread confirms exec sponsor is disengaged since May.</p>
+          							<div className="flex flex-wrap gap-1.5 mt-2">
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Alice / Gong ↗</span>
+            							<span className="text-[9px] text-purple-400 bg-purple-400/10 border border-purple-400/20 px-2 py-0.5 rounded">Bob / Slack ↗</span>
+          							</div>
+        							</div>
+      							</div>
+    							</div>
+  							)}
 
-				{/* ── PRODUCT SECTION (Glimpses) ── */}
-				<section className="section product-section" id="features">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Platform glimpses</span>
-							<h2>A shared AI brain you can inspect, govern, and reuse.</h2>
-							<p>Product visuals designed around the surfaces enterprise buyers need to see.</p>
-						</div>
-
-						<div className="tabs-shell reveal">
-							<div className="tab-list" role="tablist" aria-label="Product previews">
-								<button 
-									className={`tab-button ${activeTab === "clusters" ? "active" : ""}`}
-									type="button" 
-									role="tab" 
-									aria-selected={activeTab === "clusters"}
-									onClick={() => setActiveTab("clusters")}
-								>
-									Knowledge Clusters
-								</button>
-								<button 
-									className={`tab-button ${activeTab === "agents" ? "active" : ""}`}
-									type="button" 
-									role="tab" 
-									aria-selected={activeTab === "agents"}
-									onClick={() => setActiveTab("agents")}
-								>
-									Agent Workspace
-								</button>
-								<button 
-									className={`tab-button ${activeTab === "automation" ? "active" : ""}`}
-									type="button" 
-									role="tab" 
-									aria-selected={activeTab === "automation"}
-									onClick={() => setActiveTab("automation")}
-								>
-									Automation Builder
-								</button>
-								<button 
-									className={`tab-button ${activeTab === "audit" ? "active" : ""}`}
-									type="button" 
-									role="tab" 
-									aria-selected={activeTab === "audit"}
-									onClick={() => setActiveTab("audit")}
-								>
-									Admin and Audit
-								</button>
 							</div>
-
-							<div className="tab-stage">
-								{activeTab === "clusters" && (
-									<article className="tab-panel active" data-panel="clusters">
-										<div className="mock-dashboard cluster-dashboard">
-											<div className="mock-header">
-												<span>Cluster health</span>
-												<strong>Org scoped</strong>
-											</div>
-											<div className="cluster-map">
-												<div className="node core">Nuerova</div>
-												<div className="node">CS</div>
-												<div className="node">Ops</div>
-												<div className="node">Eng</div>
-												<div className="node">RevOps</div>
-											</div>
-											<div className="mock-list">
-												<span>Permissions synced</span>
-												<span>124 citations this week</span>
-												<span>3 stale sources flagged</span>
-											</div>
-										</div>
-										<div className="tab-copy">
-											<h3>Every cluster scoped. Nothing bleeds across teams.</h3>
-											<p>Knowledge is organized by permission boundary, so agents only reason over the context they are allowed to use.</p>
-										</div>
-									</article>
-								)}
-
-								{activeTab === "agents" && (
-									<article className="tab-panel active" data-panel="agents">
-										<div className="mock-dashboard chat-dashboard">
-											<div className="chat-row human">What changed since the last QBR?</div>
-											<div className="chat-row ai">Usage recovered after onboarding. Security review is the only open blocker.</div>
-											<div className="source-stack">
-												<span>Source: Gong recap</span>
-												<span>Source: Salesforce opportunity</span>
-											</div>
-										</div>
-										<div className="tab-copy">
-											<h3>Agents that know your context, not just your question.</h3>
-											<p>Responses cite cluster knowledge inline, making AI output reviewable instead of mysterious.</p>
-										</div>
-									</article>
-								)}
-
-								{activeTab === "automation" && (
-									<article className="tab-panel active" data-panel="automation">
-										<div className="mock-dashboard automation-canvas">
-											<div className="canvas-block trigger">Webhook</div>
-											<div className="canvas-block reason">Agent reasoning</div>
-											<div className="canvas-block branch">Confidence check</div>
-											<div className="canvas-block action">Draft and route</div>
-										</div>
-										<div className="tab-copy">
-											<h3>Workflows that think before they run.</h3>
-											<p>Triggers can consult scoped knowledge, choose a path, and request human approval before taking action.</p>
-										</div>
-									</article>
-								)}
-
-								{activeTab === "audit" && (
-									<article className="tab-panel active" data-panel="audit">
-										<div className="mock-dashboard audit-dashboard">
-											<div className="audit-line"><strong>Admin</strong><span>Approved automation run</span><small>2m ago</small></div>
-											<div className="audit-line"><strong>Agent</strong><span>Cited CS cluster source</span><small>8m ago</small></div>
-											<div className="audit-line"><strong>Owner</strong><span>Updated RBAC role</span><small>1h ago</small></div>
-											<div className="audit-line"><strong>System</strong><span>Blocked cross-cluster access</span><small>4h ago</small></div>
-										</div>
-										<div className="tab-copy">
-											<h3>Full governance visibility.</h3>
-											<p>Audit logs, scoped roles, and approval trails make AI activity easier to trust.</p>
-										</div>
-									</article>
-								)}
+							</div>
+							{/* Footer: models + memory */}
+							<div className="border-t border-white/10 px-4 py-2 bg-[#0a0a0a] flex items-center justify-between">
+								<div className="flex items-center gap-2">
+									<span className="text-[9px] text-white/30 uppercase tracking-wide">LLM</span>
+									<span className="text-[9px] text-white/60 bg-white/5 border border-white/10 px-2 py-0.5 rounded">GPT-4o</span>
+									<span className="text-[9px] text-white/60 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Claude 3.5</span>
+									<span className="text-[9px] text-white/35">+8 models</span>
+								</div>
+								<div className="flex items-center gap-1.5">
+									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+									<span className="text-[9px] text-white/35">mem0 memory · RBAC enforced</span>
+								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 
-				{/* ── FEATURES PREVIEW ── */}
-				<section className="section feature-cards-section">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Core capabilities</span>
-							<h2>Everything enterprise teams need. Nothing that slows them down.</h2>
+				{/* ── CURRENT REALITY SECTION ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="text-center mb-stack-lg flex flex-col items-center">
+						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">THE CURRENT REALITY</span>
+						<h2 className="font-headline-md text-headline-md text-primary max-w-3xl mb-4 font-bold tracking-tight">Teams are running on scattered context and manual heroics.</h2>
+						<p className="font-body-md text-body-md text-white/50">Every tool captures knowledge. None of it compounds.</p>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
+							<div className="font-headline-lg text-5xl text-primary mb-4 font-bold">73%</div>
+							<p className="font-body-md text-sm text-white/50">of critical context gets trapped in private threads, docs, and inboxes.</p>
 						</div>
-						<div className="feature-grid reveal">
-							<article>
-								<span className="feature-icon memory"></span>
-								<h3>Scoped Memory Clusters</h3>
-								<p>Team knowledge that is searchable, permission-controlled, and always available to agents.</p>
-							</article>
-							<article>
-								<span className="feature-icon automation"></span>
-								<h3>Agent-Native Automations</h3>
-								<p>Scheduled or triggered workflows that reason over shared context before acting.</p>
-							</article>
-							<article id="security">
-								<span className="feature-icon security"></span>
-								<h3>Enterprise Security Foundation</h3>
-								<p>RBAC, audit logs, org scoping, data isolation, and a roadmap to SSO and SOC 2.</p>
-							</article>
+						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
+							<div className="font-headline-lg text-5xl text-primary mb-4 font-bold">40 hrs</div>
+							<p className="font-body-md text-sm text-white/50">lost each month re-sharing background that should already be known.</p>
+						</div>
+						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
+							<div className="font-headline-lg text-5xl text-primary mb-4 font-bold">6 mo</div>
+							<p className="font-body-md text-sm text-white/50">of momentum can disappear when a senior operator leaves.</p>
+						</div>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+						<div className="border border-white/10 border-t-2 border-t-red-500 p-8 rounded-b-lg bg-transparent">
+							<div className="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">01</div>
+							<h3 className="font-headline-sm text-xl text-primary mb-3 font-semibold">Brain drain every time someone leaves</h3>
+							<p className="font-body-md text-sm text-white/50">When your best people exit, they take the playbooks with them. Nuerova makes that knowledge durable.</p>
+						</div>
+						<div className="border border-white/10 border-t-2 border-t-orange-500 p-8 rounded-b-lg bg-transparent">
+							<div className="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">02</div>
+							<h3 className="font-headline-sm text-xl text-primary mb-3 font-semibold">Agents with no memory are expensive search bars</h3>
+							<p className="font-body-md text-sm text-white/50">Generic AI tools start from zero every session. Nuerova agents inherit team context automatically.</p>
+						</div>
+						<div className="border border-white/10 border-t-2 border-t-slate-500 p-8 rounded-b-lg bg-transparent">
+							<div className="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">03</div>
+							<h3 className="font-headline-sm text-xl text-primary mb-3 font-semibold">Automation that cannot think cannot scale</h3>
+							<p className="font-body-md text-sm text-white/50">Rigid rules break on edge cases. Nuerova workflows reason before they act or escalate.</p>
+						</div>
+					</div>
+				</section>
+
+				{/* ── HOW IT WORKS SECTION ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="text-center mb-16 flex flex-col items-center">
+						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">HOW IT WORKS</span>
+						<h2 className="font-headline-md text-headline-md text-primary max-w-3xl font-bold tracking-tight">From scattered context to governed execution in five steps.</h2>
+					</div>
+					<div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+						<div className="border border-white/10 p-6 rounded-lg bg-transparent">
+							<div className="text-sm text-status-blue font-bold mb-4">01</div>
+							<h3 className="font-headline-sm text-lg text-primary mb-2 font-semibold">Connect your stack</h3>
+							<p className="font-body-md text-xs text-white/50">Sync Notion, Slack, Drive, CRM, GitHub, and internal sources.</p>
+						</div>
+						<div className="border border-white/10 p-6 rounded-lg bg-transparent">
+							<div className="text-sm text-status-blue font-bold mb-4">02</div>
+							<h3 className="font-headline-sm text-lg text-primary mb-2 font-semibold">Build clusters</h3>
+							<p className="font-body-md text-xs text-white/50">Scope memory by team, project, account, or organization.</p>
+						</div>
+						<div className="border border-white/10 p-6 rounded-lg bg-transparent">
+							<div className="text-sm text-status-blue font-bold mb-4">03</div>
+							<h3 className="font-headline-sm text-lg text-primary mb-2 font-semibold">Deploy agents</h3>
+							<p className="font-body-md text-xs text-white/50">Agents inherit the right cluster context before responding.</p>
+						</div>
+						<div className="border border-white/10 p-6 rounded-lg bg-transparent">
+							<div className="text-sm text-status-blue font-bold mb-4">04</div>
+							<h3 className="font-headline-sm text-lg text-primary mb-2 font-semibold">Automate work</h3>
+							<p className="font-body-md text-xs text-white/50">Trigger workflows that reason, branch, act, and escalate.</p>
+						</div>
+						<div className="border border-white/10 p-6 rounded-lg bg-transparent">
+							<div className="text-sm text-status-blue font-bold mb-4">05</div>
+							<h3 className="font-headline-sm text-lg text-primary mb-2 font-semibold">Govern confidently</h3>
+							<p className="font-body-md text-xs text-white/50">Review RBAC, approvals, audit logs, and usage visibility.</p>
+						</div>
+					</div>
+				</section>
+
+				{/* ── PLATFORM GLIMPSES SECTION (Interactive Tabs) ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="text-center mb-16 flex flex-col items-center">
+						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">PLATFORM GLIMPSES</span>
+						<h2 className="font-headline-md text-headline-md text-primary max-w-3xl mb-4 font-bold tracking-tight">A shared AI brain you can inspect, govern, and reuse.</h2>
+						<p className="font-body-md text-body-md text-white/50">Product visuals designed around the surfaces enterprise buyers need to see.</p>
+					</div>
+					<div className="border border-white/10 rounded-xl overflow-hidden bg-[#0a0a0a]">
+						{/* Tab Selectors */}
+						<div className="flex border-b border-white/10 flex-wrap">
+							<button 
+								onClick={() => setActiveTab("clusters")}
+								className={`flex-1 py-4 text-sm font-medium transition-all ${activeTab === "clusters" ? "text-status-blue bg-status-blue/5 border-b-2 border-status-blue font-semibold" : "text-white/60 hover:text-white/80"}`}
+							>
+								Knowledge Clusters
+							</button>
+							<button 
+								onClick={() => setActiveTab("agents")}
+								className={`flex-1 py-4 text-sm font-medium transition-all ${activeTab === "agents" ? "text-status-blue bg-status-blue/5 border-b-2 border-status-blue font-semibold" : "text-white/60 hover:text-white/80"}`}
+							>
+								Agent Workspace
+							</button>
+							<button 
+								onClick={() => setActiveTab("automation")}
+								className={`flex-1 py-4 text-sm font-medium transition-all ${activeTab === "automation" ? "text-status-blue bg-status-blue/5 border-b-2 border-status-blue font-semibold" : "text-white/60 hover:text-white/80"}`}
+							>
+								Automation Builder
+							</button>
+							<button 
+								onClick={() => setActiveTab("audit")}
+								className={`flex-1 py-4 text-sm font-medium transition-all ${activeTab === "audit" ? "text-status-blue bg-status-blue/5 border-b-2 border-status-blue font-semibold" : "text-white/60 hover:text-white/80"}`}
+							>
+								Admin and Audit
+							</button>
+						</div>
+
+						{/* Tab Panel contents */}
+						<div className="flex flex-col md:flex-row p-8 gap-12 items-center">
+							{activeTab === "clusters" && (
+								<>
+									<div className="flex-1 w-full border border-white/10 rounded-lg p-6 bg-[#131313] relative min-h-[400px] flex flex-col justify-between">
+										<div className="flex justify-between items-center mb-8">
+											<span className="text-xs font-medium text-white/50">Cluster health</span>
+											<span className="text-xs font-medium text-emerald-500">Org scoped</span>
+										</div>
+										<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+											<div className="w-full h-px bg-white/10 absolute top-1/2"></div>
+											<div className="h-full w-px bg-white/10 absolute left-1/2"></div>
+										</div>
+										<div className="relative h-64 flex items-center justify-center">
+											<div className="absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">CS</div>
+											<div className="absolute top-1/4 right-1/4 transform translate-x-1/2 -translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">Ops</div>
+											<div className="absolute bottom-1/4 left-1/4 transform -translate-x-1/2 translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">Eng</div>
+											<div className="absolute bottom-1/4 right-1/4 transform translate-x-1/2 translate-y-1/2 bg-[#1a1a1a] border border-white/20 px-6 py-3 rounded-full text-sm font-medium">RevOps</div>
+											<div className="bg-primary text-black px-8 py-4 rounded-full text-base font-bold relative z-10 shadow-[0_0_30px_rgba(255,255,255,0.1)]">Nuerova</div>
+										</div>
+										<div className="grid grid-cols-3 gap-4 mt-8">
+											<div className="border border-white/10 p-3 rounded text-xs text-white/80 text-center">Permissions synced</div>
+											<div className="border border-white/10 p-3 rounded text-xs text-white/80 text-center">124 citations this week</div>
+											<div className="border border-white/10 p-3 rounded text-xs text-white/80 text-center">3 stale sources flagged</div>
+										</div>
+									</div>
+									<div className="w-full md:w-80 flex-shrink-0">
+										<h3 className="font-headline-md text-3xl text-primary mb-4 leading-snug font-bold">Every cluster scoped.<br />Nothing bleeds across teams.</h3>
+										<p className="font-body-md text-sm text-white/50 leading-relaxed">
+											Knowledge is organized by permission boundary, so agents only reason over the context they are allowed to use.
+										</p>
+									</div>
+								</>
+							)}
+
+							{activeTab === "agents" && (
+								<>
+									<div className="flex-1 w-full border border-white/10 rounded-lg p-6 bg-[#131313] min-h-[400px] flex flex-col justify-between">
+										<div className="flex justify-between items-center mb-6">
+											<span className="text-xs font-medium text-white/50">Agent Sessions</span>
+											<span className="text-xs font-medium text-emerald-500">Online</span>
+										</div>
+										<div className="space-y-4 flex-grow flex flex-col justify-center">
+											<div className="flex justify-end">
+												<div className="bg-status-blue/20 border border-status-blue/30 text-white p-3 rounded-lg text-sm max-w-md">
+													What changed since the last QBR?
+												</div>
+											</div>
+											<div className="flex justify-start">
+												<div className="bg-white/5 border border-white/10 text-white p-4 rounded-lg text-sm max-w-md relative">
+													<div className="w-full h-1 bg-white/10 rounded-full mb-3 overflow-hidden">
+														<div className="w-full h-full bg-status-blue"></div>
+													</div>
+													<p className="leading-relaxed mb-3">Usage recovered after onboarding. Security review is the only open blocker.</p>
+													<div className="flex gap-2">
+														<span className="text-[10px] text-status-blue bg-status-blue/10 px-2 py-0.5 rounded">Gong recap</span>
+														<span className="text-[10px] text-status-blue bg-status-blue/10 px-2 py-0.5 rounded">Salesforce Opp</span>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div className="text-[10px] text-white/30 text-center mt-4">Security isolation active. Answers are fully cited.</div>
+									</div>
+									<div className="w-full md:w-80 flex-shrink-0">
+										<h3 className="font-headline-md text-3xl text-primary mb-4 leading-snug font-bold">Agents that know your context, not just your question.</h3>
+										<p className="font-body-md text-sm text-white/50 leading-relaxed">
+											Responses cite cluster knowledge inline, making AI output reviewable instead of mysterious.
+										</p>
+									</div>
+								</>
+							)}
+
+							{activeTab === "automation" && (
+								<>
+									<div className="flex-1 w-full border border-white/10 rounded-lg p-6 bg-[#131313] min-h-[400px] flex flex-col justify-between">
+										<div className="flex justify-between items-center mb-6">
+											<span className="text-xs font-medium text-white/50">Workflow Status</span>
+											<span className="text-xs font-medium text-orange-500">Pending Review</span>
+										</div>
+										<div className="space-y-3 flex-grow flex flex-col justify-center max-w-sm mx-auto w-full">
+											<div className="border border-white/10 p-3 rounded bg-[#0a0a0a] text-center text-xs text-white/70">
+												Trigger: Webhook Inbound
+											</div>
+											<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+											<div className="border border-status-blue/30 bg-status-blue/5 p-3 rounded text-center text-xs text-status-blue font-medium">
+												Agent reasoning over Knowledge Clusters
+											</div>
+											<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+											<div className="border border-white/10 p-3 rounded bg-[#0a0a0a] text-center text-xs text-white/70">
+												Confidence check & validation
+											</div>
+											<div className="flex justify-center"><div className="w-px h-3 bg-white/10"></div></div>
+											<div className="border border-orange-500/30 bg-orange-500/5 p-3 rounded text-center text-xs text-orange-500 font-bold">
+												Draft account plan & route for CSM approval
+											</div>
+										</div>
+										<div className="text-[10px] text-white/30 text-center mt-4">Automatic execution safe-guards enabled.</div>
+									</div>
+									<div className="w-full md:w-80 flex-shrink-0">
+										<h3 className="font-headline-md text-3xl text-primary mb-4 leading-snug font-bold">Workflows that think before they run.</h3>
+										<p className="font-body-md text-sm text-white/50 leading-relaxed">
+											Triggers can consult scoped knowledge, choose an execution path, and request human verification before acting.
+										</p>
+									</div>
+								</>
+							)}
+
+							{activeTab === "audit" && (
+								<>
+									<div className="flex-1 w-full border border-white/10 rounded-lg p-6 bg-[#131313] min-h-[400px] flex flex-col justify-between">
+										<div className="flex justify-between items-center mb-6">
+											<span className="text-xs font-medium text-white/50">Audit log feed</span>
+											<span className="text-xs font-medium text-emerald-500">Live</span>
+										</div>
+										<div className="space-y-3 flex-grow flex flex-col justify-center text-xs">
+											<div className="border-b border-white/5 pb-2 flex justify-between items-center">
+												<div className="flex gap-2 items-center">
+													<strong className="text-white bg-white/10 px-1.5 py-0.5 rounded text-[10px]">ADMIN</strong>
+													<span className="text-white/70">Approved automation run</span>
+												</div>
+												<small className="text-white/40">2m ago</small>
+											</div>
+											<div className="border-b border-white/5 pb-2 flex justify-between items-center">
+												<div className="flex gap-2 items-center">
+													<strong className="text-status-blue bg-status-blue/10 px-1.5 py-0.5 rounded text-[10px]">AGENT</strong>
+													<span className="text-white/70">Cited CS cluster source</span>
+												</div>
+												<small className="text-white/40">8m ago</small>
+											</div>
+											<div className="border-b border-white/5 pb-2 flex justify-between items-center">
+												<div className="flex gap-2 items-center">
+													<strong className="text-white bg-white/10 px-1.5 py-0.5 rounded text-[10px]">OWNER</strong>
+													<span className="text-white/70">Updated RBAC role permissions</span>
+												</div>
+												<small className="text-white/40">1h ago</small>
+											</div>
+											<div className="border-b border-white/5 pb-2 flex justify-between items-center">
+												<div className="flex gap-2 items-center">
+													<strong className="text-red-500 bg-red-500/10 px-1.5 py-0.5 rounded text-[10px]">SYSTEM</strong>
+													<span className="text-white/70">Blocked unauthorized cross-cluster read</span>
+												</div>
+												<small className="text-white/40">4h ago</small>
+											</div>
+										</div>
+										<div className="text-[10px] text-white/30 text-center mt-4">Immutable logs synced to system databases.</div>
+									</div>
+									<div className="w-full md:w-80 flex-shrink-0">
+										<h3 className="font-headline-md text-3xl text-primary mb-4 leading-snug font-bold">Full governance visibility.</h3>
+										<p className="font-body-md text-sm text-white/50 leading-relaxed">
+											Audit logs, granular scoped roles, and approval trails make AI agent activities easier to trust and audit.
+										</p>
+									</div>
+								</>
+							)}
 						</div>
 					</div>
 				</section>
 
 				{/* ── INTEGRATIONS SECTION ── */}
-				<section className="section integrations-section">
-					<div className="container">
-						<div className="section-heading light reveal">
-							<span className="kicker">Integrations</span>
-							<h2>Plugs into the stack your team already runs.</h2>
-							<p>Connect knowledge sources in minutes, not months.</p>
-						</div>
-						<div className="integration-grid reveal" aria-label="Supported integrations">
-							<span>Slack</span>
-							<span>Notion</span>
-							<span>Google Drive</span>
-							<span>GitHub</span>
-							<span>HubSpot</span>
-							<span>Salesforce</span>
-							<span>Jira</span>
-							<span>Confluence</span>
-						</div>
-						<p className="api-note">REST API and webhooks for everything else.</p>
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="text-center mb-12 flex flex-col items-center">
+						<span className="font-label-caps text-label-caps text-status-blue border border-status-blue/20 px-4 py-1.5 rounded-full inline-block mb-stack-md">INTEGRATIONS</span>
+						<h2 className="font-headline-md text-headline-md text-primary mb-4 font-bold tracking-tight">Plugs into the stack your team already runs.</h2>
+						<p className="font-body-md text-body-md text-white/50">Connect knowledge sources in minutes, not months.</p>
 					</div>
-				</section>
-
-				{/* ── PRICING SECTION ── */}
-				<section className="section pricing-section" id="pricing">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Pricing</span>
-							<h2>Start narrow. Scale into governed team intelligence.</h2>
+					<div className="max-w-4xl mx-auto">
+						<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Slack</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Notion</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Google Drive</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">GitHub</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">HubSpot</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Salesforce</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Jira</span>
+							</div>
+							<div className="h-24 rounded-lg flex items-center justify-center border border-white/[0.08] bg-transparent hover:bg-white/[0.02] transition-colors duration-150">
+								<span className="text-sm font-medium text-white/80">Confluence</span>
+							</div>
 						</div>
-						<div className="billing-toggle reveal" role="group" aria-label="Billing period">
-							<button 
-								className={billingPeriod === "monthly" ? "active" : ""} 
-								type="button" 
-								onClick={() => setBillingPeriod("monthly")}
-							>
-								Monthly
-							</button>
-							<button 
-								className={billingPeriod === "annual" ? "active" : ""} 
-								type="button" 
-								onClick={() => setBillingPeriod("annual")}
-							>
-								Annual, save 20%
-							</button>
-						</div>
-						<div className="pricing-grid reveal">
-							<article className="price-card">
-								<span className="plan-name">Starter</span>
-								<strong>
-									<span>{billingPeriod === "annual" ? "$39" : "$49"}</span>
-									<small>/mo</small>
-								</strong>
-								<p>Solo operators and micro-teams validating shared memory.</p>
-								<ul>
-									<li>Up to 3 users</li>
-									<li>3 knowledge clusters</li>
-									<li>5 automations</li>
-									<li>Community support</li>
-								</ul>
-								<Link className="button secondary full" to="/contact">Start a pilot</Link>
-							</article>
-							<article className="price-card featured">
-								<span className="popular-badge">Most popular</span>
-								<span className="plan-name">Teams</span>
-								<strong>
-									<span>{billingPeriod === "annual" ? "$159" : "$199"}</span>
-									<small>/mo</small>
-								</strong>
-								<p>Teams of 5 to 50 building a shared intelligence layer.</p>
-								<ul>
-									<li>Unlimited clusters</li>
-									<li>Unlimited agent sessions</li>
-									<li>Skill registry</li>
-									<li>RBAC and audit logs</li>
-								</ul>
-								<Link className="button primary full" to="/contact">Request demo</Link>
-							</article>
-							<article className="price-card">
-								<span className="plan-name">Enterprise</span>
-								<strong>Custom</strong>
-								<p>Organizations that need governance, scale, SLAs, and deeper support.</p>
-								<ul>
-									<li>Unlimited workspaces</li>
-									<li>Custom data retention</li>
-									<li>SSO and MFA roadmap</li>
-									<li>Dedicated support</li>
-								</ul>
-								<Link className="button secondary full" to="/contact">Talk to sales</Link>
-							</article>
+						<div className="text-center mt-8">
+							<p className="text-sm font-medium text-white/60">REST API and webhooks for everything else.</p>
 						</div>
 					</div>
 				</section>
 
-				{/* ── COMPARISON SECTION ── */}
-				<section className="section comparison-section">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Competitive context</span>
-							<h2>The team intelligence layer. Not another chatbot wrapper.</h2>
-						</div>
-						<div className="table-wrap reveal">
-							<table>
-								<thead>
-									<tr>
-										<th>Capability</th>
-										<th>Nuerova</th>
-										<th>ChatGPT Teams</th>
-										<th>Copilot</th>
-										<th>Notion AI</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Scoped team memory</td>
-										<td className="winner">Cluster-based</td>
-										<td>Per-user</td>
-										<td>M365-bound</td>
-										<td>Workspace-wide</td>
-									</tr>
-									<tr>
-										<td>Agent-native automation</td>
-										<td className="winner">Visual builder</td>
-										<td>No</td>
-										<td>Limited</td>
-										<td>No</td>
-									</tr>
-									<tr>
-										<td>Reusable skill registry</td>
-										<td className="winner">Team-publishable</td>
-										<td>Limited</td>
-										<td>Complex setup</td>
-										<td>No</td>
-									</tr>
-									<tr>
-										<td>RBAC and audit logs</td>
-										<td className="winner">Built in</td>
-										<td>Limited</td>
-										<td>Available</td>
-										<td>Limited</td>
-									</tr>
-									<tr>
-										<td>Setup time</td>
-										<td className="winner">Days</td>
-										<td>Minutes</td>
-										<td>Months</td>
-										<td>Minutes</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</section>
-
-				{/* ── TESTIMONIALS SECTION ── */}
-				<section className="section testimonial-section">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Early signal</span>
-							<h2>Trusted by teams who outgrew generic AI tools.</h2>
-						</div>
-						<div className="testimonial-grid reveal">
-							<figure>
-								<blockquote>We lost two years of knowledge when our ops lead left. Nuerova is the first tool that would have prevented that.</blockquote>
-								<figcaption><span>HO</span> Head of Operations, Series B SaaS</figcaption>
-							</figure>
-							<figure>
-								<blockquote>Our CSMs used to brief themselves from six different tabs. Now every account starts from a shared cluster.</blockquote>
-								<figcaption><span>CS</span> VP Customer Success, Fintech</figcaption>
-							</figure>
-							<figure>
-								<blockquote>The audit log and RBAC were the first things InfoSec asked about. Having both in the product story changed the conversation.</blockquote>
-								<figcaption><span>VE</span> VP Engineering, Enterprise Software</figcaption>
-							</figure>
-						</div>
-					</div>
-				</section>
-
-				{/* ── INSIGHTS (BLOGS) SECTION ── */}
-				<section className="section insights-section" id="insights">
-					<div className="container">
-						<div className="section-heading reveal">
-							<span className="kicker">Insights</span>
-							<h2>Enterprise AI intelligence for teams who need it to work.</h2>
-						</div>
-						<div className="blog-grid reveal">
-							<article>
-								<span>Strategy</span>
-								<h3>Why scoped team memory is the moat generic AI tools cannot copy</h3>
-								<Link to="/blog/$slug" params={{ slug: "scoped-team-memory" }}>Read preview</Link>
-							</article>
-							<article>
-								<span>Product</span>
-								<h3>From prompt library to skill registry: what enterprise AI actually needs</h3>
-								<Link to="/blog/$slug" params={{ slug: "skill-registry" }}>Read preview</Link>
-							</article>
-							<article>
-								<span>Operations</span>
-								<h3>Agent-native vs rule-based automation: why the difference matters</h3>
-								<Link to="/blog/$slug" params={{ slug: "agent-native-automation" }}>Read preview</Link>
-							</article>
-						</div>
-					</div>
-				</section>
-
-				{/* ── CONTACT SECTION ── */}
-				<section className="section contact-section" id="contact">
-					<div className="container contact-grid">
-						<div className="contact-copy reveal">
-							<span className="kicker">Request a demo</span>
-							<h2>Your team's knowledge should not depend on one person being in the room.</h2>
-							<p>Nuerova gives teams a shared AI brain that persists, scales, and can be governed.</p>
-							<div className="contact-promises">
-								<span>No lock-in</span>
-								<span>Data stays yours</span>
-								<span>Setup support included</span>
-								<span>Enterprise controls built in</span>
+				{/* ── REQUEST A DEMO SECTION ── */}
+				<section className="w-full bg-[#111315] py-section-gap border-y border-white/[0.08] reveal" id="contact">
+					<div className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-16 items-center">
+						<div className="flex-1">
+							<span className="font-label-caps text-label-caps text-white/80 border border-white/20 px-3 py-1 rounded-full inline-block mb-stack-md">REQUEST A DEMO</span>
+							<h2 className="font-headline-lg text-5xl md:text-6xl text-primary mb-stack-md font-bold tracking-tight leading-none">Your team's knowledge should not depend on one person being in the room.</h2>
+							<p className="font-body-md text-body-md text-white/60 mb-stack-lg max-w-xl leading-relaxed">
+								Nuerova gives teams a shared AI brain that persists, scales, and can be governed.
+							</p>
+							<div className="flex flex-wrap gap-3">
+								<span className="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">No lock-in</span>
+								<span className="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Data stays yours</span>
+								<span className="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Setup support included</span>
+								<span className="text-xs font-medium text-white/70 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">Enterprise controls built in</span>
 							</div>
 						</div>
 
-						{demoSubmitted ? (
-							<div className="demo-form reveal bg-white p-8 rounded-xl border border-outline shadow flex flex-col items-center justify-center text-center" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "rgba(255, 255, 255, 0.95)", border: "1px solid var(--outline)", borderRadius: "12px", padding: "32px", textAlign: "center" }}>
-								<h3 className="text-2xl font-bold text-gray-900 mb-4" style={{ color: "var(--ink)", margin: "0 0 12px", fontSize: "24px" }}>Request Staged!</h3>
-								<p className="text-gray-600 mb-0" style={{ color: "var(--ink-soft)", margin: 0 }}>
-									{demoMessage || "We've recorded your demo request. Our team will reach out shortly."}
-								</p>
-							</div>
-						) : (
-							<form className="demo-form reveal" aria-label="Request a Nuerova demo" onSubmit={handleDemoSubmit}>
-								<label>
-									<span>Name</span>
-									<input name="name" type="text" autoComplete="name" required disabled={isDemoSubmitting} />
-								</label>
-								<label>
-									<span>Work email</span>
-									<input name="email" type="email" autoComplete="email" required disabled={isDemoSubmitting} />
-								</label>
-								<label>
-									<span>Company</span>
-									<input name="company" type="text" autoComplete="organization" required disabled={isDemoSubmitting} />
-								</label>
-								<label>
-									<span>Team size</span>
-									<select name="team-size" required disabled={isDemoSubmitting}>
-										<option value="">Select team size</option>
-										<option>5-25</option>
-										<option>26-50</option>
-										<option>51-200</option>
-										<option>201-500</option>
-										<option>500+</option>
-									</select>
-								</label>
-								<label className="full-field">
-									<span>Primary use case</span>
-									<select name="use-case" required disabled={isDemoSubmitting}>
-										<option value="">Select use case</option>
-										<option>Operations</option>
-										<option>Customer Success</option>
-										<option>Engineering</option>
-										<option>RevOps</option>
-										<option>Other</option>
-									</select>
-								</label>
-								<label className="full-field">
-									<span>What should Nuerova help with?</span>
-									<textarea name="message" rows={4} disabled={isDemoSubmitting}></textarea>
-								</label>
-								{demoError && (
-									<p className="full-field" style={{ color: "#ff5b5b", fontSize: "14px", margin: "4px 0 0" }}>
-										{demoError}
+						{/* Demo Submission Card */}
+						<div className="w-full md:w-[500px] bg-[#1a1c1e] border border-white/10 rounded-xl p-8">
+							{demoSubmitted ? (
+								<div className="flex flex-col items-center justify-center text-center py-12">
+									<h3 className="text-2xl font-bold text-white mb-4">Request Staged!</h3>
+									<p className="text-white/70 mb-0">
+										{demoMessage || "We've recorded your demo request. Our team will reach out shortly."}
 									</p>
-								)}
-								<button className="button primary full full-field" type="submit" disabled={isDemoSubmitting}>
-									{isDemoSubmitting ? "Requesting..." : "Request your demo"}
-								</button>
-								<p className="form-note">A human reviews every request. No pressure, no generic sales loop.</p>
-							</form>
-						)}
+								</div>
+							) : (
+								<form className="space-y-4" onSubmit={handleDemoSubmit}>
+									<div className="grid grid-cols-2 gap-4">
+										<div>
+											<label className="block text-xs font-medium text-white/70 mb-1">Name</label>
+											<input 
+												name="name" 
+												type="text" 
+												required
+												disabled={isDemoSubmitting}
+												className="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 outline-none" 
+											/>
+										</div>
+										<div>
+											<label className="block text-xs font-medium text-white/70 mb-1">Work email</label>
+											<input 
+												name="email" 
+												type="email" 
+												required
+												disabled={isDemoSubmitting}
+												className="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 outline-none" 
+											/>
+										</div>
+									</div>
+									<div className="grid grid-cols-2 gap-4">
+										<div>
+											<label className="block text-xs font-medium text-white/70 mb-1">Company</label>
+											<input 
+												name="company" 
+												type="text" 
+												required
+												disabled={isDemoSubmitting}
+												className="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 outline-none" 
+											/>
+										</div>
+										<div>
+											<label className="block text-xs font-medium text-white/70 mb-1">Team size</label>
+											<select 
+												name="team-size" 
+												required
+												disabled={isDemoSubmitting}
+												className="w-full bg-[#2a2c2e] border-none rounded text-white/70 text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 outline-none"
+											>
+												<option value="">Select team size</option>
+												<option value="5-25">5-25</option>
+												<option value="26-50">26-50</option>
+												<option value="51-200">51-200</option>
+												<option value="201-500">201-500</option>
+												<option value="500+">500+</option>
+											</select>
+										</div>
+									</div>
+									<div>
+										<label className="block text-xs font-medium text-white/70 mb-1">Primary use case</label>
+										<select 
+											name="use-case" 
+											required
+											disabled={isDemoSubmitting}
+											className="w-full bg-[#2a2c2e] border-none rounded text-white/70 text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 outline-none"
+										>
+											<option value="">Select use case</option>
+											<option value="Operations">Operations</option>
+											<option value="Customer Success">Customer Success</option>
+											<option value="Engineering">Engineering</option>
+											<option value="RevOps">RevOps</option>
+											<option value="Other">Other</option>
+										</select>
+									</div>
+									<div>
+										<label className="block text-xs font-medium text-white/70 mb-1">What should Nuerova help with?</label>
+										<textarea 
+											name="message" 
+											disabled={isDemoSubmitting}
+											className="w-full bg-[#2a2c2e] border-none rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-2.5 px-3 h-24 resize-none outline-none"
+										></textarea>
+									</div>
+									{demoError && (
+										<p style={{ color: "#ff5b5b", fontSize: "14px", margin: "4px 0 0" }}>
+											{demoError}
+										</p>
+									)}
+									<button 
+										type="submit"
+										disabled={isDemoSubmitting}
+										className="w-full bg-[#0066cc] text-white font-medium py-3 rounded hover:bg-[#0052a3] transition-colors mt-2"
+									>
+										{isDemoSubmitting ? "Requesting..." : "Request your demo"}
+									</button>
+									<p className="text-[10px] text-white/40 text-center mt-4">A human reviews every request. No pressure, no generic sales loop.</p>
+								</form>
+							)}
+						</div>
 					</div>
 				</section>
 
-				{/* ── EARLY ACCESS CTA ── */}
-				<section className="section cta-section">
-					<div className="container cta-inner">
-						<h2>Be first when we open the gates.</h2>
-						<p>Limited pilot with 50 teams. No credit card required.</p>
+				{/* ── EARLY ACCESS WAITLIST SECTION ── */}
+				<section className="section cta-section bg-[#0a0a0a] border-t border-white/10 py-24 text-center reveal">
+					<div className="container max-w-4xl mx-auto px-gutter">
+						<h2 className="font-headline-md text-headline-md text-primary mb-4 font-bold tracking-tight">Be first when we open the gates.</h2>
+						<p className="font-body-md text-white/50 mb-8 max-w-2xl mx-auto">Limited pilot with 50 teams. No credit card required.</p>
 						{!waitlistSubmitted ? (
-							<form className="cta-form" onSubmit={handleWaitlistSubmit}>
+							<form className="cta-form flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto" onSubmit={handleWaitlistSubmit}>
 								<input 
 									type="email" 
 									placeholder="Work email" 
@@ -860,13 +917,18 @@ export function HomePage() {
 									value={waitlistEmail}
 									onChange={(e) => setWaitlistEmail(e.target.value)}
 									disabled={isWaitlistSubmitting}
+									className="flex-grow bg-[#131313] border border-white/10 rounded text-white text-sm focus:ring-1 focus:ring-status-blue py-3 px-4 outline-none"
 								/>
-								<button type="submit" className="button primary" disabled={isWaitlistSubmitting}>
+								<button 
+									type="submit" 
+									disabled={isWaitlistSubmitting}
+									className="font-button text-button bg-primary text-black px-6 py-3 rounded hover:opacity-90 transition-opacity duration-150 font-bold"
+								>
 									{isWaitlistSubmitting ? "Requesting..." : "Request Access →"}
 								</button>
 							</form>
 						) : (
-							<p className="success-msg">You're on the list. We'll be in touch.</p>
+							<p className="font-body-md text-emerald-400 font-medium">You're on the list. We'll be in touch.</p>
 						)}
 						{waitlistError && (
 							<p style={{ color: "#ff8b8b", fontSize: "14px", marginTop: "12px", marginBottom: 0 }}>
@@ -876,6 +938,8 @@ export function HomePage() {
 					</div>
 				</section>
 			</main>
+
+			<Footer />
 		</div>
 	);
 }

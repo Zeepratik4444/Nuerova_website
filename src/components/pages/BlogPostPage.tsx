@@ -104,23 +104,23 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 								marginBottom: "32px",
 								borderRadius: "8px",
 								border: "1px solid var(--outline)",
-								background: "rgba(255, 255, 255, 0.4)",
+								background: "var(--surface-low)",
 								padding: "24px",
 							}}
 						>
 							<p className="text-xs font-bold uppercase tracking-wide text-slate-500" style={{ margin: 0, textTransform: "uppercase", fontSize: "12px", fontWeight: 800, color: "var(--muted)" }}>
 								Direct answer
 							</p>
-							<h2 className="mt-2 text-2xl font-bold text-slate-950" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
+							<h2 className="mt-2 text-2xl font-bold text-white" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
 								{answerBlock.question}
 							</h2>
-							<p className="mt-3 text-base leading-relaxed text-slate-700" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
+							<p className="mt-3 text-base leading-relaxed text-white/70" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
 								{answerBlock.answer}
 							</p>
 							{answerBlock.facts && (
 								<ul className="mt-5 grid gap-3 md:grid-cols-3" style={{ marginTop: "20px", display: "grid", gap: "12px", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", paddingLeft: 0, listStyle: "none" }}>
 									{answerBlock.facts.map((fact) => (
-										<li key={fact} className="text-sm text-slate-700" style={{ fontSize: "14px", color: "var(--ink-soft)" }}>
+										<li key={fact} className="text-sm text-white/70" style={{ fontSize: "14px", color: "var(--ink-soft)" }}>
 											• {fact}
 										</li>
 									))}
@@ -161,10 +161,10 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 							<p className="text-sm font-semibold text-blue-700" style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "var(--primary-deep)" }}>
 								Recommended next step
 							</p>
-							<h2 className="mt-2 text-2xl font-bold text-gray-900" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
+							<h2 className="mt-2 text-2xl font-bold text-white" style={{ marginTop: "8px", fontSize: "24px", fontWeight: 700 }}>
 								{nextStep.title}
 							</h2>
-							<p className="mt-3 text-gray-600 leading-relaxed" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
+							<p className="mt-3 text-white/70 leading-relaxed" style={{ marginTop: "12px", fontSize: "16px", color: "var(--ink-soft)" }}>
 								{nextStep.description}
 							</p>
 							<Link

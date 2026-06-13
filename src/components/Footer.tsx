@@ -2,24 +2,18 @@ import { Link } from "@tanstack/react-router";
 
 export function Footer() {
 	return (
-		<footer className="site-footer">
-			<div className="container footer-grid">
-				<Link className="brand footer-brand" to="/" aria-label="Nuerova home">
-					<span className="brand-mark" aria-hidden="true"><span></span></span>
-					<span>Nuerova</span>
+		<footer className="w-full bg-background border-t border-border-subtle transition-opacity duration-150">
+			<div className="max-w-container-max mx-auto py-stack-lg px-gutter flex flex-col md:flex-row justify-between items-center gap-stack-md">
+				<Link className="font-headline-sm text-headline-sm text-primary font-bold" to="/">
+					Nuerova
 				</Link>
-				<div>
-					<strong>Product</strong>
-					<Link to="/features">Features</Link>
-					<Link to="/pricing">Pricing</Link>
+				<div className="flex gap-stack-md flex-wrap justify-center">
+					<Link className="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" to="/terms">Privacy Policy</Link>
+					<Link className="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" to="/terms">Terms of Service</Link>
+					<Link className="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" to="/security">Security</Link>
+					<a className="font-body-md text-body-md text-text-muted hover:text-primary transition-colors duration-150" href="#">Status</a>
 				</div>
-				<div>
-					<strong>Trust</strong>
-					<Link to="/security">Security</Link>
-					<Link to="/contact">Demo</Link>
-					<Link to="/blog">Blog</Link>
-				</div>
-				<p>Team intelligence and agent-native automation for companies that cannot afford to lose context.</p>
+				<div className="font-body-md text-body-md text-text-muted">© {new Date().getFullYear()} Nuerova Intelligence. All rights reserved.</div>
 			</div>
 		</footer>
 	);

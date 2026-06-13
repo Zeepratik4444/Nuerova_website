@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -11,72 +12,101 @@ export function AboutPage() {
 	useScrollReveal();
 
 	return (
-		<div className="js-enabled">
+		<div className="bg-background text-white min-h-screen flex flex-col selection:bg-white/20 selection:text-white">
 			<Navigation />
 
-			<main id="main">
+			<main id="main" className="flex-grow pb-section-gap pt-24">
 				{/* ── HERO ── */}
-				<section className="page-hero">
-					<div className="container">
-						<div className="reveal">
-							<span className="kicker">About</span>
-							<h1>Make teams smarter than any individual within them.</h1>
-							<p>Nuerova started from a simple frustration: the most valuable team knowledge usually lives in the places least prepared to preserve it.</p>
-						</div>
-						<div className="page-visual reveal">
-							<div className="mini-metric-grid">
-								<span>Trust first</span>
-								<span>Team memory</span>
-								<span>Reusable skills</span>
-								<span>Governed action</span>
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg pt-8 pb-section-gap reveal">
+					<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
+						ABOUT
+					</span>
+					<h1 className="font-headline-md text-4xl md:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight max-w-3xl">
+						Make teams smarter than any individual within them.
+					</h1>
+					<p className="font-body-md text-body-md text-white/50 max-w-2xl mb-10">
+						Nuerova started from a simple frustration: the most valuable team knowledge usually lives in the places least prepared to preserve it.
+					</p>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+						{["Trust first", "Team memory", "Reusable skills", "Governed action"].map((label) => (
+							<div key={label} className="border border-white/10 px-4 py-3 rounded text-sm text-white/70 text-center">
+								{label}
 							</div>
-						</div>
+						))}
 					</div>
 				</section>
 
 				{/* ── MISSION & STORY ── */}
-				<section className="section">
-					<div className="container">
-						<div className="security-grid reveal">
-							<article className="story-block">
-								<span className="kicker">Founding story</span>
-								<h2>Institutional knowledge should not walk out the door.</h2>
-								<p>Teams repeat context, reconstruct decisions, and lose operating playbooks whenever work is trapped in individual chats or private workflows. Nuerova exists to make that context durable.</p>
-							</article>
-							<article className="story-block">
-								<span className="kicker">Mission</span>
-								<h2>A shared intelligence layer for serious work.</h2>
-								<p>The goal is not another personal AI surface. It is a governed system where team memory, reusable skills, agents, and automations compound together.</p>
-							</article>
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
+							<span className="font-label-caps text-[10px] text-status-blue tracking-widest block mb-4">FOUNDING STORY</span>
+							<h2 className="font-headline-sm text-2xl text-primary mb-4 font-semibold leading-snug">
+								Institutional knowledge should not walk out the door.
+							</h2>
+							<p className="font-body-md text-sm text-white/50 leading-relaxed">
+								Teams repeat context, reconstruct decisions, and lose operating playbooks whenever work is trapped in individual chats or private workflows. Nuerova exists to make that context durable.
+							</p>
 						</div>
-
-						{/* ── VALUES ── */}
-						<div className="section-heading reveal" style={{ marginTop: "64px" }}>
-							<span className="kicker">Values</span>
-							<h2>Built for trust first, performance second.</h2>
-						</div>
-
-						<div className="values-grid reveal">
-							<article className="story-card">
-								<h3>Context should be owned by the team</h3>
-								<p>Knowledge is most useful when it survives transitions and remains accessible to the right people.</p>
-							</article>
-							<article className="story-card">
-								<h3>Automation needs judgment</h3>
-								<p>Workflows should reason, branch, and escalate instead of blindly chaining actions.</p>
-							</article>
-							<article className="story-card">
-								<h3>Security is product design</h3>
-								<p>RBAC, audit logs, and scoped isolation are not late-stage enterprise checkboxes.</p>
-							</article>
-							<article className="story-card">
-								<h3>Reusable intelligence compounds</h3>
-								<p>Skills should become governed assets, not scattered prompt snippets.</p>
-							</article>
+						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
+							<span className="font-label-caps text-[10px] text-status-blue tracking-widest block mb-4">MISSION</span>
+							<h2 className="font-headline-sm text-2xl text-primary mb-4 font-semibold leading-snug">
+								A shared intelligence layer for serious work.
+							</h2>
+							<p className="font-body-md text-sm text-white/50 leading-relaxed">
+								The goal is not another personal AI surface. It is a governed system where team memory, reusable skills, agents, and automations compound together.
+							</p>
 						</div>
 					</div>
 				</section>
+
+				{/* ── VALUES ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+					<div className="text-center mb-16 flex flex-col items-center">
+						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
+							VALUES
+						</span>
+						<h2 className="font-headline-md text-headline-md text-primary max-w-3xl font-bold tracking-tight">
+							Built for trust first, performance second.
+						</h2>
+					</div>
+
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+						{[
+							{
+								num: "01",
+								title: "Context should be owned by the team",
+								body: "Knowledge is most useful when it survives transitions and remains accessible to the right people.",
+							},
+							{
+								num: "02",
+								title: "Automation needs judgment",
+								body: "Workflows should reason, branch, and escalate instead of blindly chaining actions.",
+							},
+							{
+								num: "03",
+								title: "Security is product design",
+								body: "RBAC, audit logs, and scoped isolation are not late-stage enterprise checkboxes.",
+							},
+							{
+								num: "04",
+								title: "Reusable intelligence compounds",
+								body: "Skills should become governed assets, not scattered prompt snippets.",
+							},
+						].map((value) => (
+							<div key={value.num} className="border border-white/10 p-8 rounded-lg bg-transparent">
+								<div className="text-xs text-status-blue font-bold mb-4 bg-status-blue/10 w-8 h-8 flex items-center justify-center rounded">
+									{value.num}
+								</div>
+								<h3 className="font-headline-sm text-lg text-primary mb-3 font-semibold">{value.title}</h3>
+								<p className="font-body-md text-sm text-white/50 leading-relaxed">{value.body}</p>
+							</div>
+						))}
+					</div>
+				</section>
 			</main>
+
+			<Footer />
 		</div>
 	);
 }

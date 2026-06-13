@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -11,103 +12,134 @@ export function HowItWorksPage() {
 
 	useScrollReveal();
 
+	const steps = [
+		{
+			num: "01",
+			title: "Connect your knowledge sources",
+			body: "Link Notion, Confluence, Google Drive, Slack, CRM records, GitHub, or any REST source. Nuerova ingests, chunks, and indexes content without manual tagging.",
+			note: "Setup: 1 to 2 days. Your sources stay authoritative.",
+			tags: ["Notion", "Slack", "Drive", "GitHub", "CRM"],
+		},
+		{
+			num: "02",
+			title: "Create your first cluster",
+			body: "A cluster is a scoped knowledge pool: a team, client account, project, or department. Add members, set permissions, and Nuerova routes queries through that context.",
+			note: "No cluster is visible outside its permission boundary.",
+			tags: ["Team scope", "Permissions", "Isolation"],
+		},
+		{
+			num: "03",
+			title: "Deploy agents against your clusters",
+			body: "Agents inside a cluster inherit its knowledge automatically. Ask a question and the agent reasons over your team's actual context, not generic training data.",
+			note: "Agents cite sources. Output is reviewable.",
+			tags: ["Context-aware", "Cited responses", "No re-explaining"],
+		},
+		{
+			num: "04",
+			title: "Build automations on top of context",
+			body: "Create workflows that trigger, reason over cluster knowledge, execute, and optionally wait for approval before taking action.",
+			note: "Every automation has a run log.",
+			tags: ["Triggers", "Reasoning", "Approval gates"],
+		},
+		{
+			num: "05",
+			title: "Govern, observe, and scale",
+			body: "The admin panel shows who used what, what agents did, and which automations ran. RBAC controls enforce boundaries and audit logs capture key actions.",
+			note: "Leaders get one source of truth.",
+			tags: ["RBAC", "Audit logs", "Usage visibility"],
+		},
+	];
+
 	return (
-		<div className="js-enabled">
+		<div className="bg-background text-white min-h-screen flex flex-col selection:bg-white/20 selection:text-white">
 			<Navigation />
 
-			<main id="main">
+			<main id="main" className="flex-grow pb-section-gap pt-24">
 				{/* ── HERO ── */}
-				<section className="page-hero">
-					<div className="container">
-						<div className="reveal">
-							<span className="kicker">How it works</span>
-							<h1>Here is what happens after you connect your first knowledge source.</h1>
-							<p>Nuerova turns your team's scattered context into a governed intelligence layer in five steps.</p>
-						</div>
-						<div className="page-visual reveal">
-							<div className="visual-stack">
-								<div className="visual-row">
-									<span className="card-icon">01</span>
-									<strong>Connect</strong>
-									<small>Sources</small>
-								</div>
-								<div className="visual-row">
-									<span className="card-icon">03</span>
-									<strong>Deploy</strong>
-									<small>Agents</small>
-								</div>
-								<div className="visual-row">
-									<span className="card-icon">05</span>
-									<strong>Govern</strong>
-									<small>Scale</small>
-								</div>
-							</div>
-						</div>
-					</div>
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg pt-8 pb-section-gap reveal">
+					<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
+						HOW IT WORKS
+					</span>
+					<h1 className="font-headline-md text-4xl md:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight max-w-3xl">
+						Here is what happens after you connect your first knowledge source.
+					</h1>
+					<p className="font-body-md text-body-md text-white/50 max-w-2xl">
+						Nuerova turns your team's scattered context into a governed intelligence layer in five steps.
+					</p>
 				</section>
 
 				{/* ── TIMELINE ── */}
-				<section className="section">
-					<div className="container timeline">
-						<article className="timeline-item reveal">
-							<span className="timeline-number">01</span>
-							<div className="timeline-detail">
-								<h2>Connect your knowledge sources</h2>
-								<p>Link Notion, Confluence, Google Drive, Slack, CRM records, GitHub, or any REST source. Nuerova ingests, chunks, and indexes content without manual tagging.</p>
-								<span className="detail-note">Setup: 1 to 2 days. Your sources stay authoritative.</span>
-							</div>
-						</article>
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg border-t border-white/10 reveal">
+					<div className="relative">
+						{steps.map((step, index) => (
+							<div
+								key={step.num}
+								className={`flex flex-col md:flex-row gap-8 md:gap-16 py-section-gap ${index < steps.length - 1 ? "border-b border-white/10" : ""}`}
+							>
+								{/* Step number */}
+								<div className="flex-shrink-0 md:w-24 flex md:flex-col items-center md:items-start gap-4 md:gap-0">
+									<div className="w-12 h-12 rounded-full border border-status-blue/30 bg-status-blue/5 flex items-center justify-center text-status-blue font-bold text-sm flex-shrink-0">
+										{step.num}
+									</div>
+								</div>
 
-						<article className="timeline-item reveal">
-							<span className="timeline-number">02</span>
-							<div className="timeline-detail">
-								<h2>Create your first cluster</h2>
-								<p>A cluster is a scoped knowledge pool: a team, client account, project, or department. Add members, set permissions, and Nuerova routes queries through that context.</p>
-								<span className="detail-note">No cluster is visible outside its permission boundary.</span>
-							</div>
-						</article>
+								{/* Step content */}
+								<div className="flex-1">
+									<h2 className="font-headline-md text-2xl md:text-3xl text-primary mb-4 font-bold tracking-tight">
+										{step.title}
+									</h2>
+									<p className="font-body-md text-sm text-white/50 mb-6 leading-relaxed max-w-2xl">
+										{step.body}
+									</p>
+									<div className="flex flex-wrap gap-3 mb-4">
+										{step.tags.map((tag) => (
+											<span key={tag} className="text-[11px] text-white/60 border border-white/10 px-3 py-1 rounded-full">
+												{tag}
+											</span>
+										))}
+									</div>
+									<p className="text-xs text-status-blue font-medium">{step.note}</p>
+								</div>
 
-						<article className="timeline-item reveal">
-							<span className="timeline-number">03</span>
-							<div className="timeline-detail">
-								<h2>Deploy agents against your clusters</h2>
-								<p>Agents inside a cluster inherit its knowledge automatically. Ask a question and the agent reasons over your team's actual context, not generic training data.</p>
-								<span className="detail-note">Agents cite sources. Output is reviewable.</span>
+								{/* Step connector line (desktop) */}
+								<div className="hidden md:block flex-shrink-0 w-64">
+									<div className="border border-white/10 rounded-lg bg-[#0f0f0f] p-4 h-full min-h-[80px] flex items-center justify-center">
+										<div className="text-center">
+											<div className="text-status-blue font-bold text-2xl mb-1">{step.num}</div>
+											<div className="text-xs text-white/40">Step {parseInt(step.num)} of 5</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</article>
-
-						<article className="timeline-item reveal">
-							<span className="timeline-number">04</span>
-							<div className="timeline-detail">
-								<h2>Build automations on top of context</h2>
-								<p>Create workflows that trigger, reason over cluster knowledge, execute, and optionally wait for approval before taking action.</p>
-								<span className="detail-note">Every automation has a run log.</span>
-							</div>
-						</article>
-
-						<article className="timeline-item reveal">
-							<span className="timeline-number">05</span>
-							<div className="timeline-detail">
-								<h2>Govern, observe, and scale</h2>
-								<p>The admin panel shows who used what, what agents did, and which automations ran. RBAC controls enforce boundaries and audit logs capture key actions.</p>
-								<span className="detail-note">Leaders get one source of truth.</span>
-							</div>
-						</article>
+						))}
 					</div>
 				</section>
 
 				{/* ── BOTTOM CTA ── */}
-				<section className="section contact-section">
-					<div className="container contact-grid">
-						<div className="contact-copy reveal">
-							<span className="kicker">Live walkthrough</span>
-							<h2>Map this flow to one team process.</h2>
-							<p>A focused demo is the fastest way to see whether Nuerova fits your stack.</p>
+				<section className="w-full bg-[#111315] py-section-gap border-y border-white/[0.08] reveal">
+					<div className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-8 items-center justify-between">
+						<div>
+							<span className="font-label-caps text-label-caps text-white/60 border border-white/20 px-3 py-1 rounded-full inline-block mb-4">
+								LIVE WALKTHROUGH
+							</span>
+							<h2 className="font-headline-md text-3xl text-primary mb-2 font-bold tracking-tight">
+								Map this flow to one team process.
+							</h2>
+							<p className="font-body-md text-sm text-white/60">
+								A focused demo is the fastest way to see whether Nuerova fits your stack.
+							</p>
 						</div>
-						<Link className="button primary reveal" to="/contact">Request a demo</Link>
+						<Link
+							to="/contact"
+							className="flex-shrink-0 bg-status-blue text-white px-8 py-3 rounded hover:opacity-90 transition-opacity font-bold text-sm"
+						>
+							Request a demo
+						</Link>
 					</div>
 				</section>
 			</main>
+
+			<Footer />
 		</div>
 	);
 }
