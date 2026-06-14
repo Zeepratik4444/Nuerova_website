@@ -80,7 +80,49 @@ SSL_KEY="/etc/letsencrypt/live/${DOMAIN}/privkey.pem"
 echo "⚙️  Writing Nginx configuration to $NGINX_FILE ..."
 
 if sudo test -f "$SSL_CERT" && sudo test -f "$SSL_KEY"; then
+    echo "✅ SSL certs found"
+else
+    echo "⚠️  SSL certs not found — obtaining via Let's Encrypt..."
+
+    # Write a temporary HTTP-only config so certbot can complete its HTTP-01 challenge
     sudo tee "$NGINX_FILE" > /dev/null << EOF
+server {
+    listen 80;
+    server_name ${DOMAIN} www.${DOMAIN};
+
+    location / {
+        proxy_pass http://127.0.0.1:${APP_PORT};
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+}
+EOF
+    sudo ln -sf "$NGINX_FILE" /etc/nginx/sites-enabled/nuerova-website
+    if [ -f /etc/nginx/sites-enabled/default ]; then
+        sudo rm /etc/nginx/sites-enabled/default
+    fi
+    sudo nginx -t && sudo systemctl reload nginx
+
+    # Start the app now so certbot's HTTP-01 challenge can reach the server
+    sudo systemctl restart "$SERVICE" || true
+
+    sudo certbot certonly --nginx \
+        -d "${DOMAIN}" -d "www.${DOMAIN}" \
+        --non-interactive --agree-tos \
+        -m "admin@${DOMAIN}" \
+        --redirect
+
+    if sudo test -f "$SSL_CERT" && sudo test -f "$SSL_KEY"; then
+        echo "✅ Certificate issued successfully"
+    else
+        echo "❌ Certbot failed — check DNS records for ${DOMAIN} point to this server, then re-run deploy.sh"
+        exit 1
+    fi
+fi
+
+sudo tee "$NGINX_FILE" > /dev/null << EOF
 server {
     listen 80;
     server_name ${DOMAIN} www.${DOMAIN};
@@ -105,25 +147,7 @@ server {
     }
 }
 EOF
-    echo "✅ Nginx configured with HTTPS"
-else
-    sudo tee "$NGINX_FILE" > /dev/null << EOF
-server {
-    listen 80;
-    server_name ${DOMAIN} www.${DOMAIN};
-
-    location / {
-        proxy_pass http://127.0.0.1:${APP_PORT};
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-}
-EOF
-    echo "⚠️  SSL certs not found — Nginx configured for HTTP only."
-    echo "    Run: sudo certbot --nginx -d ${DOMAIN} -d www.${DOMAIN} --non-interactive --agree-tos -m admin@${DOMAIN}"
-fi
+echo "✅ Nginx configured with HTTPS"
 
 # Enable the site
 sudo ln -sf "$NGINX_FILE" /etc/nginx/sites-enabled/nuerova-website
