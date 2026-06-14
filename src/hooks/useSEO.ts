@@ -15,9 +15,13 @@ interface SEOProps {
 	 * Sets <meta name="robots" content="noindex, nofollow">
 	 */
 	noIndex?: boolean;
+	/**
+	 * JSON-LD Structured Data payload for AEO/GEO engine compatibility
+	 */
+	schemaOrg?: Record<string, any> | Record<string, any>[];
 }
 
-export function useSEO({ title, description, canonicalPath, ogImage, noIndex = false }: SEOProps) {
+export function useSEO({ title, description, canonicalPath, ogImage, noIndex = false, schemaOrg }: SEOProps) {
 	useEffect(() => {
 		const path = canonicalPath ?? window.location.pathname;
 		const canonicalUrl = `${BASE_URL}${path === "/" ? "/" : path.replace(/\/$/, "")}`;
@@ -47,6 +51,24 @@ export function useSEO({ title, description, canonicalPath, ogImage, noIndex = f
 			}
 			el.setAttribute("href", href);
 		};
+
+		// ─── JSON-LD Structured Data (Schema.org) ──────────────────
+		let schemaEl = document.getElementById("json-ld-schema") as HTMLScriptElement | null;
+		if (schemaOrg) {
+			if (!schemaEl) {
+				schemaEl = document.createElement("script");
+				schemaEl.setAttribute("type", "application/ld+json");
+				schemaEl.setAttribute("id", "json-ld-schema");
+				document.head.appendChild(schemaEl);
+			}
+			schemaEl.textContent = JSON.stringify(
+				Array.isArray(schemaOrg) 
+					? schemaOrg.map(s => ({ "@context": "https://schema.org", ...s }))
+					: { "@context": "https://schema.org", ...schemaOrg }
+			);
+		} else if (schemaEl) {
+			schemaEl.remove();
+		}
 
 		// ─── Robots (noindex) ──────────────────────────────────────
 		if (noIndex) {
@@ -97,6 +119,13 @@ export function useSEO({ title, description, canonicalPath, ogImage, noIndex = f
 			setMeta("name", "twitter:description", defaultDesc);
 			setMeta("name", "twitter:image", DEFAULT_OG_IMAGE);
 			setMeta("name", "twitter:image:alt", defaultTitle);
+
+			// Remove the specific schema script when component unmounts
+			// (The next page will mount and inject its own schema if it has one)
+			const oldSchemaEl = document.getElementById("json-ld-schema");
+			if (oldSchemaEl) {
+				oldSchemaEl.remove();
+			}
 		};
-	}, [title, description, canonicalPath, ogImage, noIndex]);
+	}, [title, description, canonicalPath, ogImage, noIndex, schemaOrg]);
 }

@@ -8,6 +8,11 @@ import post7Html from '@/content/blog/blog-7-fragmented-knowledge-cost.html?raw'
 import post8Html from '@/content/blog/blog-8-cs-automation-human-touch.html?raw';
 import post9Html from '@/content/blog/blog-9-agent-workflow-readiness.html?raw';
 import post10Html from '@/content/blog/blog-10-setup-guide-72-hours.html?raw';
+import post11Html from '@/content/blog/blog-11-governance-vs-velocity.html?raw';
+import post12Html from '@/content/blog/blog-12-roi-of-shared-memory.html?raw';
+import post13Html from '@/content/blog/blog-13-ops-stack-breaks.html?raw';
+import post14Html from '@/content/blog/blog-14-ai-rollout-no-shadow-ai.html?raw';
+import post15Html from '@/content/blog/blog-15-stop-buying-point-ai-tools.html?raw';
 
 export type BlogPost = {
 	slug: string;
@@ -18,6 +23,8 @@ export type BlogPost = {
 	publishedAt: string;
 	accent: string;
 	contentHtml: string;
+	author?: string;
+	date?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -120,5 +127,55 @@ export const blogPosts: BlogPost[] = [
 		publishedAt: 'June 2026',
 		accent: 'blue',
 		contentHtml: post10Html,
+	},
+	{
+		slug: 'governance-vs-velocity',
+		title: 'The False Choice: Governance vs Velocity in AI',
+		summary: 'Why shadow AI happens — and how scoped cluster architecture solves it without sacrificing team speed.',
+		tags: ['Enterprise', 'Security'],
+		readTime: '5 min read',
+		publishedAt: 'June 2026',
+		accent: 'indigo',
+		contentHtml: post11Html,
+	},
+	{
+		slug: 'roi-of-shared-memory',
+		title: 'Measuring the ROI of Shared Memory',
+		summary: 'How to calculate the business impact of an intelligence layer.',
+		tags: ['Strategy', 'ROI'],
+		readTime: '4 min read',
+		publishedAt: 'June 2026',
+		accent: 'blue',
+		contentHtml: post12Html,
+	},
+	{
+		slug: 'ops-stack-breaks',
+		title: 'Why the Notion + Slack + ChatGPT Stack Breaks at 30 People',
+		summary: 'The ops stack most teams assemble by default — and the four failure modes that show up at scale.',
+		tags: ['Operations', 'Strategy'],
+		readTime: '5 min read',
+		publishedAt: 'June 2026',
+		accent: 'indigo',
+		contentHtml: post13Html,
+	},
+	{
+		slug: 'ai-rollout-no-shadow-ai',
+		title: 'How to Roll Out AI Without Creating Shadow AI',
+		summary: 'Shadow AI is a supply problem, not a discipline problem. Here is how to fix the supply.',
+		tags: ['Enterprise AI', 'Governance'],
+		readTime: '6 min read',
+		publishedAt: 'June 2026',
+		accent: 'blue',
+		contentHtml: post14Html,
+	},
+	{
+		slug: 'stop-buying-point-ai-tools',
+		title: 'When to Stop Buying Point AI Tools',
+		summary: 'Five signs your AI stack has hit the inflection point — and what building a shared intelligence layer changes.',
+		tags: ['Strategy', 'ROI'],
+		readTime: '5 min read',
+		publishedAt: 'June 2026',
+		accent: 'indigo',
+		contentHtml: post15Html,
 	},
 ];

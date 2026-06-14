@@ -79,4 +79,58 @@ export const BLOG_NEXT_STEPS: Record<string, BlogNextStep> = {
 		label: "Request a demo",
 		to: "/contact",
 	},
+	"governance-vs-velocity": {
+		stage: "consideration",
+		title: "See how Nuerova governs without slowing teams down",
+		description: "Explore the audit log and RBAC controls that keep enterprise AI teams moving fast and safe.",
+		label: "Explore security",
+		to: "/security",
+	},
+	"roi-of-shared-memory": {
+		stage: "decision",
+		title: "Start measuring your team's context ROI",
+		description: "Request a pilot and we'll help you build a baseline for knowledge recovery time.",
+		label: "Request a demo",
+		to: "/contact",
+	},
+	"ops-stack-breaks": {
+		stage: "awareness",
+		title: "See what a connected intelligence layer looks like",
+		description: "Nuerova connects to Notion, Slack, and your CRM — and adds the memory, governance, and automation layer your stack is missing.",
+		label: "See the platform",
+		to: "/features",
+	},
+	"ai-rollout-no-shadow-ai": {
+		stage: "consideration",
+		title: "Plan your rollout with the team",
+		description: "Talk to the Nuerova team about rolling out AI with governance built in from day one.",
+		label: "Talk to the team",
+		to: "/contact",
+	},
+	"stop-buying-point-ai-tools": {
+		stage: "decision",
+		title: "See how Nuerova unifies your AI stack",
+		description: "Connect your existing tools into a governed intelligence layer with shared memory and end-to-end workflows.",
+		label: "Request a demo",
+		to: "/contact",
+	},
+};
+
+// Two most relevant next-reads per post, ordered by funnel progression
+export const BLOG_RELATED_POSTS: Record<string, [string, string]> = {
+	"ops-stack-breaks":         ["enterprise-ai-needs",      "scoped-team-memory"],
+	"scoped-team-memory":       ["fragmented-knowledge-cost", "roi-of-shared-memory"],
+	"fragmented-knowledge-cost":["roi-of-shared-memory",     "setup-guide-72-hours"],
+	"knowledge-cluster-turnover":["scoped-team-memory",      "roi-of-shared-memory"],
+	"skill-registry":           ["agent-native-automation",  "agent-workflow-readiness"],
+	"agent-native-automation":  ["cs-automation-human-touch","agent-workflow-readiness"],
+	"cs-automation-human-touch":["agent-workflow-readiness", "setup-guide-72-hours"],
+	"agent-workflow-readiness": ["setup-guide-72-hours",     "copilot-alternative"],
+	"enterprise-ai-needs":      ["governance-vs-velocity",   "ai-rollout-no-shadow-ai"],
+	"governance-vs-velocity":   ["ai-rollout-no-shadow-ai",  "setup-guide-72-hours"],
+	"ai-rollout-no-shadow-ai":  ["governance-vs-velocity",   "setup-guide-72-hours"],
+	"copilot-alternative":      ["setup-guide-72-hours",     "roi-of-shared-memory"],
+	"stop-buying-point-ai-tools":["roi-of-shared-memory",   "setup-guide-72-hours"],
+	"roi-of-shared-memory":     ["setup-guide-72-hours",     "copilot-alternative"],
+	"setup-guide-72-hours":     ["copilot-alternative",      "roi-of-shared-memory"],
 };

@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -7,6 +6,35 @@ export function AboutPage() {
 	useSEO({
 		title: "About | Nuerova",
 		description: "Our mission is to make teams smarter than any individual within them by creating a durable, governed shared intelligence layer.",
+		canonicalPath: "/about",
+		schemaOrg: [
+			{
+				"@type": "Organization",
+				"name": "Nuerova",
+				"url": "https://nuerova.xyz",
+				"logo": "https://nuerova.xyz/brand-logo.png",
+				"description": "Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations.",
+				"mission": "Make teams smarter than any individual within them by creating a durable, governed shared intelligence layer.",
+				"knowsAbout": [
+					"Team intelligence platforms",
+					"Scoped knowledge clusters",
+					"Context-aware AI agents",
+					"Enterprise AI governance",
+					"Visual workflow automation",
+				],
+			},
+			{
+				"@type": "AboutPage",
+				"name": "About Nuerova",
+				"url": "https://nuerova.xyz/about",
+				"description": "Learn about Nuerova's mission to eliminate team knowledge silos through scoped memory clusters, governed agents, and secure automation.",
+				"publisher": {
+					"@type": "Organization",
+					"name": "Nuerova",
+					"url": "https://nuerova.xyz",
+				},
+			},
+		],
 	});
 
 	useScrollReveal();
@@ -106,7 +134,6 @@ export function AboutPage() {
 				</section>
 			</main>
 
-			<Footer />
 		</div>
 	);
 }

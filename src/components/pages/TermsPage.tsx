@@ -1,5 +1,4 @@
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -83,7 +82,6 @@ export function TermsPage() {
 				</section>
 			</main>
 
-			<Footer />
 		</div>
 	);
 }

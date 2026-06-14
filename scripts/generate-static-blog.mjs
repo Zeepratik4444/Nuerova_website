@@ -101,6 +101,51 @@ const posts = [
 		readTime: "6 min read",
 		publishedAt: "2026-06-07",
 	},
+	{
+		slug: "governance-vs-velocity",
+		source: "blog-11-governance-vs-velocity.html",
+		title: "The False Choice: Governance vs Velocity in AI",
+		description: "Why enterprise AI governance and team velocity are not opposites — and how to achieve both.",
+		tags: ["Governance", "Enterprise AI", "Strategy"],
+		readTime: "6 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "roi-of-shared-memory",
+		source: "blog-12-roi-of-shared-memory.html",
+		title: "Measuring the ROI of Shared Memory",
+		description: "How to quantify the compounding return of a shared AI intelligence layer across your team.",
+		tags: ["ROI", "Strategy", "Knowledge Management"],
+		readTime: "6 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "ops-stack-breaks",
+		source: "blog-13-ops-stack-breaks.html",
+		title: "Why the Notion + Slack + ChatGPT Stack Breaks at 30 People",
+		description: "The four failure modes that show up in every team's default AI stack — and what a connected intelligence layer changes.",
+		tags: ["Operations", "Strategy", "AI Stack"],
+		readTime: "5 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "ai-rollout-no-shadow-ai",
+		source: "blog-14-ai-rollout-no-shadow-ai.html",
+		title: "How to Roll Out AI Without Creating Shadow AI",
+		description: "Shadow AI is a supply problem, not a discipline problem. A practical rollout sequence that prevents it.",
+		tags: ["Enterprise AI", "Governance", "Rollout"],
+		readTime: "6 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "stop-buying-point-ai-tools",
+		source: "blog-15-stop-buying-point-ai-tools.html",
+		title: "When to Stop Buying Point AI Tools",
+		description: "Five signs your AI stack has hit the inflection point where a shared intelligence layer generates more ROI than another point tool.",
+		tags: ["Strategy", "ROI", "Enterprise AI"],
+		readTime: "5 min read",
+		publishedAt: "2026-06-14",
+	},
 ];
 
 const blogNextSteps = {
@@ -174,6 +219,41 @@ const blogNextSteps = {
 		label: "Request a demo",
 		to: "/contact",
 	},
+	"governance-vs-velocity": {
+		stage: "consideration",
+		title: "See how Nuerova governs without slowing teams down",
+		description: "Explore the audit log and RBAC controls that keep enterprise AI teams moving fast and safe.",
+		label: "Explore security",
+		to: "/security",
+	},
+	"roi-of-shared-memory": {
+		stage: "decision",
+		title: "Start measuring your team's context ROI",
+		description: "Request a pilot and we'll help you build a baseline for knowledge recovery time.",
+		label: "Request a demo",
+		to: "/contact",
+	},
+	"ops-stack-breaks": {
+		stage: "awareness",
+		title: "See what a connected intelligence layer looks like",
+		description: "Nuerova connects to Notion, Slack, and your CRM — and adds the memory, governance, and automation layer your stack is missing.",
+		label: "See the platform",
+		to: "/features",
+	},
+	"ai-rollout-no-shadow-ai": {
+		stage: "consideration",
+		title: "Plan your rollout with the team",
+		description: "Talk to the Nuerova team about rolling out AI with governance built in from day one.",
+		label: "Talk to the team",
+		to: "/contact",
+	},
+	"stop-buying-point-ai-tools": {
+		stage: "decision",
+		title: "See how Nuerova unifies your AI stack",
+		description: "Connect your existing tools into a governed intelligence layer with shared memory and end-to-end workflows.",
+		label: "Request a demo",
+		to: "/contact",
+	},
 };
 
 const blogAeoBlocks = {
@@ -193,6 +273,51 @@ const blogAeoBlocks = {
 	"agent-native-automation": {
 		question: "How does agent-native automation differ from rule-based tools?",
 		answer: "Rule-based automation triggers rigid, linear actions. Agent-native automation inserts a reasoning step between trigger and action, allowing an agent to consult scoped knowledge, evaluate confidence, branch, or request approval.",
+	},
+	"governance-vs-velocity": {
+		question: "Can enterprise AI be both governed and fast?",
+		answer: "Yes. Governance and velocity become opposites only when controls are bolt-on afterthoughts. Nuerova builds RBAC, audit logs, and approval queues directly into the workflow layer, so teams move quickly within safe boundaries rather than around them.",
+		facts: [
+			"Tamper-resistant audit logs on every agent action",
+			"Granular RBAC prevents unauthorized cluster access",
+			"Human approval gates built into visual workflows",
+		],
+	},
+	"roi-of-shared-memory": {
+		question: "How do you calculate the ROI of shared AI memory?",
+		answer: "ROI of shared AI memory compounds from three sources: time recovered from repeated context re-gathering, institutional knowledge preserved through employee turnover, and reduction in onboarding time for new team members who can query the cluster instead of asking colleagues.",
+		facts: [
+			"Eliminates repeated re-explanation of team context to AI tools",
+			"Preserves institutional knowledge across employee turnover",
+			"Reduces onboarding time by making runbooks queryable",
+		],
+	},
+	"ops-stack-breaks": {
+		question: "Why does the Notion + Slack + ChatGPT stack break at scale?",
+		answer: "The stack breaks because none of the tools share context — knowledge lives in people, not systems. AI added on top has no memory of decisions made in Notion or Slack, automation tops out at simple if-then logic, and there is no governance layer to satisfy IT requirements.",
+		facts: [
+			"Context lives in people, not systems",
+			"Rule-based automation can't handle unstructured inputs",
+			"No shared memory between tools",
+		],
+	},
+	"ai-rollout-no-shadow-ai": {
+		question: "How do you prevent shadow AI during an enterprise AI rollout?",
+		answer: "Shadow AI is a supply problem — teams use unsanctioned tools because approved tools don't do the job. The solution is deploying governed tools that solve specific high-friction tasks better than the alternatives, with RBAC and audit logging built into the architecture from day one.",
+		facts: [
+			"Shadow AI follows tool gaps, not policy failures",
+			"Governance must be architectural, not policy-based",
+			"Start with highest-friction use cases per team",
+		],
+	},
+	"stop-buying-point-ai-tools": {
+		question: "When should a company stop buying point AI tools and build an intelligence layer?",
+		answer: "The inflection point is when AI outputs from one tool need to inform another, when workflows require cross-system context that no single tool has, or when AI spend is growing but efficiency gains have plateaued. At that point, shared memory and integration across tools generates more ROI than additional point tools.",
+		facts: [
+			"Point tools generate additive ROI; intelligence layers compound",
+			"Cross-tool context is the bottleneck, not model capability",
+			"Inflection point: recurring workflows that need cross-system context",
+		],
 	},
 };
 

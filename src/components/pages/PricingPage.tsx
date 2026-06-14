@@ -1,41 +1,44 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const featureRows = [
 	{ label: "Knowledge clusters", starter: "3", teams: "Unlimited", enterprise: "Unlimited" },
 	{ label: "Automations", starter: "5", teams: "Unlimited", enterprise: "Unlimited + custom" },
-	{ label: "Skill registry", starter: "Personal", teams: "Team publishing", enterprise: "Org governance" },
-	{ label: "RBAC", starter: "Basic", teams: "3 roles", enterprise: "Custom roles" },
+	{ label: "Skill registry", starter: "Personal only", teams: "Team publishing", enterprise: "Org governance" },
+	{ label: "Role-based access", starter: "Basic", teams: "3 predefined roles", enterprise: "Custom roles" },
 	{ label: "Audit logs", starter: "—", teams: "30 days", enterprise: "90 days + export" },
-	{ label: "Support", starter: "Community", teams: "Email", enterprise: "Dedicated CSM" },
+	{ label: "Support", starter: "Community", teams: "Email & Onboarding", enterprise: "Dedicated CSM" },
 ];
 
 const pricingFaqs = [
-	{ q: "Do agents use my data to train base models?", a: "No. Customer data is used to provide the product experience, not to train external base models." },
-	{ q: "What happens to my data if I cancel?", a: "We support export and deletion workflows during offboarding." },
-	{ q: "How long does setup take?", a: "Most teams can be live with an initial workspace and cluster within three days." },
-	{ q: "Is Nuerova SOC 2 certified?", a: "Not yet. The security page documents the controls and roadmap." },
-	{ q: "Can I self-host?", a: "Enterprise deployments can include architecture discussions for stricter data requirements." },
+	{ q: "Do agents use my data to train base models?", a: "No. Customer data is used strictly to provide your product experience. We explicitly opt out of data sharing with LLM providers." },
+	{ q: "What happens to my data if I cancel?", a: "We provide one-click export and automatic deletion workflows during offboarding. Your data remains yours." },
+	{ q: "How long does setup take?", a: "Most teams connect their sources and have their first functional knowledge cluster live within three days." },
+	{ q: "Is Nuerova SOC 2 certified?", a: "Not yet, but our architecture is ISO-aligned. The security page documents our current controls and roadmap." },
+	{ q: "Can I self-host Nuerova?", a: "Enterprise deployments can include hybrid architecture discussions for stricter data residency requirements." },
 ];
 
 function FAQItem({ q, a }: { q: string; a: string }) {
 	const [open, setOpen] = useState(false);
 	return (
-		<div className="border-b border-white/10 last:border-0">
+		<div className="border border-white/5 bg-[#0a0a0a] rounded-xl mb-4 overflow-hidden transition-colors hover:border-white/10">
 			<button
 				type="button"
-				className="w-full flex justify-between items-center py-5 text-left gap-4 group"
+				className="w-full flex justify-between items-center p-6 text-left gap-4"
 				onClick={() => setOpen(!open)}
 				aria-expanded={open}
 			>
-				<span className="font-body-md text-sm text-white/90 font-medium group-hover:text-white transition-colors">{q}</span>
-				<span className={`text-status-blue text-lg flex-shrink-0 transition-transform duration-200 ${open ? "rotate-45" : ""}`}>+</span>
+				<span className="text-base text-white/90 font-medium">{q}</span>
+				<div className={`w-8 h-8 rounded-full border border-white/10 flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${open ? "rotate-45 bg-white/10" : "bg-[#111]"}`}>
+					<svg className="w-4 h-4 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+				</div>
 			</button>
-			{open && <p className="pb-5 font-body-md text-sm text-white/50 leading-relaxed">{a}</p>}
+			<div className={`overflow-hidden transition-all duration-300 ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+				<p className="px-6 pb-6 text-sm text-white/50 leading-relaxed">{a}</p>
+			</div>
 		</div>
 	);
 }
@@ -43,7 +46,35 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export function PricingPage() {
 	useSEO({
 		title: "Pricing | Nuerova",
-		description: "Start narrow and scale. Scoped memory, reusable skills, and agent-native automation plans for growing teams.",
+		description: "Transparent, per-seat pricing for teams ready to build a shared intelligence layer.",
+		schemaOrg: {
+			"@type": "WebPage",
+			"name": "Pricing | Nuerova",
+			"description": "Transparent, per-seat pricing for teams ready to build a shared intelligence layer.",
+			"mainEntity": {
+				"@type": "ItemList",
+				"itemListElement": [
+					{
+						"@type": "Offer",
+						"name": "Starter",
+						"price": "49",
+						"priceCurrency": "USD"
+					},
+					{
+						"@type": "Offer",
+						"name": "Teams",
+						"price": "149",
+						"priceCurrency": "USD"
+					},
+					{
+						"@type": "Offer",
+						"name": "Enterprise",
+						"price": "Custom",
+						"priceCurrency": "USD"
+					}
+				]
+			}
+		}
 	});
 
 	useScrollReveal();
@@ -52,195 +83,209 @@ export function PricingPage() {
 	const annual = billingPeriod === "annual";
 
 	return (
-		<div className="bg-background text-white min-h-screen flex flex-col selection:bg-white/20 selection:text-white">
+		<div className="bg-[#050505] text-white min-h-screen flex flex-col selection:bg-status-blue/30 selection:text-white font-sans">
 			<Navigation />
 
-			<main id="main" className="flex-grow pb-section-gap pt-24">
+			<main id="main" className="flex-grow pb-24 pt-32">
 				{/* ── HERO ── */}
-				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg pt-8 pb-section-gap text-center flex flex-col items-center reveal">
-					<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
-						PRICING
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg mb-16 text-center flex flex-col items-center reveal">
+					<span className="font-label-caps text-xs text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-6">
+						SIMPLE PRICING
 					</span>
-					<h1 className="font-headline-md text-4xl md:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight max-w-3xl">
-						Transparent pricing for teams that need AI to work at the enterprise level.
+					<h1 className="font-headline-lg text-5xl md:text-6xl text-white mb-6 font-bold tracking-tight leading-tight max-w-4xl">
+						Pricing that scales with your intelligence.
 					</h1>
-					<p className="font-body-md text-body-md text-white/50 max-w-2xl">
+					<p className="font-body-md text-xl text-white/50 max-w-2xl leading-relaxed">
 						Start with one workspace. Expand into clusters, automations, skill publishing, and governance as your team grows.
 					</p>
 				</section>
 
 				{/* ── BILLING TOGGLE ── */}
-				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg border-t border-white/10 pt-section-gap reveal">
-					<div className="flex justify-center mb-12">
-						<div className="flex items-center gap-1 border border-white/10 rounded-lg p-1 bg-[#131313]">
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg reveal mb-16">
+					<div className="flex justify-center">
+						<div className="relative p-1.5 bg-[#0a0a0a] border border-white/10 rounded-full flex items-center shadow-inner">
+							<div 
+								className={`absolute top-1.5 bottom-1.5 w-1/2 bg-white/10 border border-white/20 rounded-full transition-transform duration-300 ${annual ? "translate-x-full" : "translate-x-0"}`}
+							></div>
 							<button
 								type="button"
 								onClick={() => setBillingPeriod("monthly")}
-								className={`px-5 py-2 rounded text-sm font-medium transition-all ${
-									!annual ? "bg-status-blue text-white" : "text-white/60 hover:text-white"
-								}`}
+								className={`relative z-10 w-32 py-2.5 text-sm font-medium transition-colors ${!annual ? "text-white" : "text-white/50 hover:text-white/80"}`}
 							>
 								Monthly
 							</button>
 							<button
 								type="button"
 								onClick={() => setBillingPeriod("annual")}
-								className={`px-5 py-2 rounded text-sm font-medium transition-all flex items-center gap-2 ${
-									annual ? "bg-status-blue text-white" : "text-white/60 hover:text-white"
-								}`}
+								className={`relative z-10 w-32 py-2.5 text-sm font-medium transition-colors flex items-center justify-center gap-2 ${annual ? "text-white" : "text-white/50 hover:text-white/80"}`}
 							>
 								Annual
-								<span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${annual ? "bg-white/20 text-white" : "bg-emerald-500/20 text-emerald-400"}`}>
+								<span className="text-[9px] font-bold bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded-full border border-emerald-500/20">
 									-20%
 								</span>
 							</button>
 						</div>
 					</div>
+				</section>
 
-					{/* ── PRICING CARDS ── */}
-					<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+				{/* ── PRICING CARDS ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg mb-24 reveal">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+						
 						{/* Starter */}
-						<div className="border border-white/10 rounded-xl p-8 bg-transparent flex flex-col">
-							<span className="font-label-caps text-[10px] text-white/60 tracking-widest block mb-6">STARTER</span>
-							<div className="mb-2">
-								<span className="text-4xl font-bold text-white">{annual ? "$39" : "$49"}</span>
-								<span className="text-white/50 text-sm ml-1">/mo</span>
+						<div className="border border-white/10 rounded-3xl p-8 bg-[#0a0a0a] flex flex-col hover:border-white/20 transition-colors">
+							<span className="font-label-caps text-[10px] text-white/50 tracking-widest block mb-6 font-bold">STARTER</span>
+							<div className="mb-2 flex items-end gap-1">
+								<span className="text-5xl font-bold text-white tracking-tight">{annual ? "$39" : "$49"}</span>
+								<span className="text-white/40 text-sm mb-1">/ user / mo</span>
 							</div>
-							{annual && <p className="text-[11px] text-emerald-500 mb-4">Billed annually — save $120/yr</p>}
-							<p className="text-sm text-white/50 mb-6">Solo operators and micro-teams.</p>
-							<ul className="space-y-2.5 mb-8 flex-1">
+							<div className="h-5 mb-4">
+								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually — save $120/yr</p>}
+							</div>
+							<p className="text-sm text-white/50 mb-8 pb-8 border-b border-white/10">Solo operators and micro-teams building a personal intelligence layer.</p>
+							
+							<ul className="space-y-4 mb-10 flex-1">
 								{["1 workspace", "Up to 3 users", "3 knowledge clusters", "10 agent sessions/day", "5 automations", "Community support"].map((feat) => (
-									<li key={feat} className="flex items-center gap-3 text-sm text-white/70">
-										<div className="w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
+									<li key={feat} className="flex items-start gap-3 text-sm text-white/70">
+										<svg className="w-5 h-5 text-status-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
 										{feat}
 									</li>
 								))}
 							</ul>
 							<Link
 								to="/contact"
-								className="w-full text-center border border-white/20 text-white px-6 py-3 rounded hover:bg-white/5 transition-colors font-medium text-sm"
+								className="w-full text-center border border-white/20 bg-white/5 text-white px-6 py-4 rounded-xl hover:bg-white/10 transition-colors font-bold text-sm"
 							>
 								Start a pilot
 							</Link>
 						</div>
 
 						{/* Teams (featured) */}
-						<div className="border border-status-blue/40 rounded-xl p-8 bg-status-blue/5 flex flex-col relative">
-							<div className="absolute -top-3 left-1/2 -translate-x-1/2">
-								<span className="text-[10px] font-bold text-white bg-status-blue px-3 py-1 rounded-full">Most popular</span>
+						<div className="border border-status-blue/30 rounded-3xl p-8 bg-[#0f1219] flex flex-col relative shadow-[0_0_40px_rgba(59,130,246,0.1)] transform md:-translate-y-4">
+							<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+								<span className="text-[10px] font-bold tracking-wider text-white bg-status-blue border border-status-blue/50 px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.5)]">MOST POPULAR</span>
 							</div>
-							<span className="font-label-caps text-[10px] text-status-blue tracking-widest block mb-6">TEAMS</span>
-							<div className="mb-2">
-								<span className="text-4xl font-bold text-white">{annual ? "$159" : "$199"}</span>
-								<span className="text-white/50 text-sm ml-1">/mo</span>
+							
+							{/* Background glow */}
+							<div className="absolute top-0 right-0 w-64 h-64 bg-status-blue/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+							<span className="relative z-10 font-label-caps text-[10px] text-status-blue tracking-widest block mb-6 font-bold">TEAMS</span>
+							<div className="relative z-10 mb-2 flex items-end gap-1">
+								<span className="text-5xl font-bold text-white tracking-tight">{annual ? "$159" : "$199"}</span>
+								<span className="text-white/40 text-sm mb-1">/ user / mo</span>
 							</div>
-							{annual && <p className="text-[11px] text-emerald-500 mb-4">Billed annually — save $480/yr</p>}
-							<p className="text-sm text-white/50 mb-6">Teams of 5 to 50 building shared intelligence.</p>
-							<ul className="space-y-2.5 mb-8 flex-1">
+							<div className="relative z-10 h-5 mb-4">
+								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually — save $480/yr</p>}
+							</div>
+							<p className="relative z-10 text-sm text-white/50 mb-8 pb-8 border-b border-white/10">Teams of 5 to 50 who need shared context, workflows, and permissions.</p>
+							
+							<ul className="relative z-10 space-y-4 mb-10 flex-1">
 								{[
 									"Up to 25 users",
-									"Unlimited clusters",
+									"Unlimited knowledge clusters",
 									"Unlimited agent sessions",
 									"Unlimited automations",
-									"Skill registry",
+									"Skill registry & publishing",
 									"RBAC and 30-day audit logs",
-									"Email support and onboarding call",
+									"Email support & onboarding call",
 								].map((feat) => (
-									<li key={feat} className="flex items-center gap-3 text-sm text-white/70">
-										<div className="w-1.5 h-1.5 rounded-full bg-status-blue flex-shrink-0" />
+									<li key={feat} className="flex items-start gap-3 text-sm text-white/90">
+										<svg className="w-5 h-5 text-status-blue flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
 										{feat}
 									</li>
 								))}
 							</ul>
 							<Link
 								to="/contact"
-								className="w-full text-center bg-status-blue text-white px-6 py-3 rounded hover:opacity-90 transition-opacity font-bold text-sm"
+								className="relative z-10 w-full text-center bg-gradient-to-r from-status-blue to-blue-600 text-white px-6 py-4 rounded-xl hover:shadow-[0_8px_24px_rgba(59,130,246,0.2)] hover:-translate-y-0.5 transition-all font-bold text-sm"
 							>
-								Request demo
+								Request a demo
 							</Link>
 						</div>
 
 						{/* Enterprise */}
-						<div className="border border-white/10 rounded-xl p-8 bg-transparent flex flex-col">
-							<span className="font-label-caps text-[10px] text-white/60 tracking-widest block mb-6">ENTERPRISE</span>
-							<div className="mb-2">
-								<span className="text-4xl font-bold text-white">Custom</span>
+						<div className="border border-white/10 rounded-3xl p-8 bg-[#0a0a0a] flex flex-col hover:border-white/20 transition-colors">
+							<span className="font-label-caps text-[10px] text-white/50 tracking-widest block mb-6 font-bold">ENTERPRISE</span>
+							<div className="mb-2 flex items-end gap-1">
+								<span className="text-4xl font-bold text-white tracking-tight leading-[48px]">Custom</span>
 							</div>
-							<p className="text-sm text-white/50 mb-6">Organizations that need governance, scale, and SLAs.</p>
-							<ul className="space-y-2.5 mb-8 flex-1">
+							<div className="h-5 mb-4"></div>
+							<p className="text-sm text-white/50 mb-8 pb-8 border-b border-white/10">Organizations that need custom integrations, strict governance, and SLAs.</p>
+							
+							<ul className="space-y-4 mb-10 flex-1">
 								{[
 									"Unlimited workspaces and users",
-									"Custom retention",
-									"SSO and MFA roadmap",
-									"90-day audit logs",
-									"Dedicated CSM",
-									"SLA and custom integrations",
+									"Custom data retention policies",
+									"SSO and MFA roadmap access",
+									"90-day comprehensive audit logs",
+									"Dedicated Customer Success Manager",
+									"SLA and custom CRM integrations",
 								].map((feat) => (
-									<li key={feat} className="flex items-center gap-3 text-sm text-white/70">
-										<div className="w-1.5 h-1.5 rounded-full bg-white/30 flex-shrink-0" />
+									<li key={feat} className="flex items-start gap-3 text-sm text-white/70">
+										<svg className="w-5 h-5 text-white/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
 										{feat}
 									</li>
 								))}
 							</ul>
 							<Link
 								to="/contact"
-								className="w-full text-center border border-white/20 text-white px-6 py-3 rounded hover:bg-white/5 transition-colors font-medium text-sm"
+								className="w-full text-center border border-white/20 bg-white/5 text-white px-6 py-4 rounded-xl hover:bg-white/10 transition-colors font-bold text-sm"
 							>
 								Talk to sales
 							</Link>
 						</div>
+
 					</div>
 				</section>
 
 				{/* ── FEATURE COMPARISON ── */}
-				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-16 reveal">
 					<div className="text-center mb-12 flex flex-col items-center">
-						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
-							FEATURE COMPARISON
-						</span>
-						<h2 className="font-headline-md text-headline-md text-primary font-bold tracking-tight">What each plan unlocks.</h2>
+						<h2 className="text-3xl font-bold text-white mb-4 tracking-tight">Compare all features</h2>
+						<p className="text-white/50 max-w-2xl text-lg">A detailed breakdown of what is included in each plan.</p>
 					</div>
-					<div className="overflow-x-auto">
-						<table className="w-full text-sm">
-							<thead>
-								<tr className="border-b border-white/10">
-									<th className="text-left py-4 pr-6 text-white/60 font-medium w-1/3">Feature</th>
-									<th className="text-center py-4 px-4 text-white/60 font-medium">Starter</th>
-									<th className="text-center py-4 px-4 text-status-blue font-semibold">Teams</th>
-									<th className="text-center py-4 px-4 text-white/60 font-medium">Enterprise</th>
-								</tr>
-							</thead>
-							<tbody>
-								{featureRows.map((row, i) => (
-									<tr key={row.label} className={`border-b border-white/5 ${i % 2 === 0 ? "" : "bg-white/[0.02]"}`}>
-										<td className="py-4 pr-6 text-white/70">{row.label}</td>
-										<td className="py-4 px-4 text-center text-white/50">{row.starter}</td>
-										<td className="py-4 px-4 text-center text-status-blue font-medium">{row.teams}</td>
-										<td className="py-4 px-4 text-center text-white/70">{row.enterprise}</td>
+					
+					<div className="border border-white/10 rounded-2xl bg-[#0a0a0a] overflow-hidden shadow-2xl">
+						<div className="overflow-x-auto">
+							<table className="w-full text-left border-collapse min-w-[700px]">
+								<thead>
+									<tr className="bg-black/40 border-b border-white/10">
+										<th className="p-6 text-sm font-bold text-white/80 tracking-wider w-1/3">Feature</th>
+										<th className="p-6 text-sm font-bold text-white/80 text-center border-l border-white/5 w-1/5">Starter</th>
+										<th className="p-6 text-sm font-bold text-status-blue text-center border-l border-white/5 w-1/5 bg-status-blue/[0.03]">Teams</th>
+										<th className="p-6 text-sm font-bold text-white/80 text-center border-l border-white/5 w-1/5">Enterprise</th>
 									</tr>
-								))}
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									{featureRows.map((row, i) => (
+										<tr key={i} className="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+											<td className="p-6 text-sm text-white/80 font-medium">{row.label}</td>
+											<td className="p-6 text-center text-sm text-white/50 border-l border-white/5">{row.starter}</td>
+											<td className="p-6 text-center text-sm font-medium text-status-blue border-l border-white/5 bg-status-blue/[0.02]">{row.teams}</td>
+											<td className="p-6 text-center text-sm text-white/50 border-l border-white/5">{row.enterprise}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</section>
 
 				{/* ── FAQ ── */}
-				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-16 reveal">
 					<div className="text-center mb-12 flex flex-col items-center">
-						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
-							PRICING FAQ
+						<span className="font-label-caps text-xs text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-4">
+							FAQ
 						</span>
-						<h2 className="font-headline-md text-headline-md text-primary font-bold tracking-tight">Common buying questions.</h2>
+						<h2 className="text-3xl font-bold text-white tracking-tight">Common buying questions</h2>
 					</div>
-					<div className="max-w-2xl mx-auto">
+					<div className="max-w-3xl mx-auto">
 						{pricingFaqs.map((item) => (
 							<FAQItem key={item.q} q={item.q} a={item.a} />
 						))}
 					</div>
 				</section>
 			</main>
-
-			<Footer />
 		</div>
 	);
 }

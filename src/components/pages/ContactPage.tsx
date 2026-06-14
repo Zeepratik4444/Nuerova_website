@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { trackEvent } from "@/lib/analytics";
@@ -219,7 +218,6 @@ export function ContactPage() {
 				</section>
 			</main>
 
-			<Footer />
 		</div>
 	);
 }

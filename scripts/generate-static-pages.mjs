@@ -33,7 +33,7 @@ const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 const publicDir = path.join(root, "public");
 const siteUrl = "https://nuerova.xyz";
-const currentContentLastmod = "2026-06-07";
+const currentContentLastmod = "2026-06-14";
 
 // ── Core pages to generate ─────────────────────────────────────────────────
 const pages = [
@@ -84,6 +84,13 @@ const pages = [
         title: "Security & Governance — Enterprise Grade Data Protection | Nuerova",
         description:
             "Explore Nuerova's enterprise-grade security standards. Learn about workspace isolation, role-based access control, SOC2 compliance, and audit trails.",
+    },
+    {
+        route: "terms",
+        title: "Terms of Service | Nuerova",
+        description:
+            "Read the Nuerova terms of service covering acceptable use, data ownership, subscription plans, and governing legal terms.",
+        noIndex: false,
     },
 ];
 
@@ -301,6 +308,46 @@ const pageFaqs = {
     ],
     faq: [
         {
+            question: "How long does setup take?",
+            answer:
+                "Most teams can connect initial sources and launch a first knowledge cluster within three days. Our onboarding team provides a white-glove setup experience to ensure you see value immediately.",
+        },
+        {
+            question: "Do I need an IT team to get started?",
+            answer:
+                "No, not for an initial pilot. Business users can easily authorize OAuth connections (like Google Drive, Slack, or Notion). IT typically joins when a company-wide security review, SSO implementation, or custom database integrations are required.",
+        },
+        {
+            question: "What is the difference between a cluster and a workspace?",
+            answer:
+                "A workspace is your company's broad environment. A cluster is a strictly scoped memory pool inside it—usually tied to a specific team, client account, project, or department. Agents operate securely within these clusters.",
+        },
+        {
+            question: "Can agents use data from multiple clusters at once?",
+            answer:
+                "Only if explicit cross-cluster permissions are granted by an Admin. By default, reasoning is kept in strict silos to prevent cross-contamination of sensitive data.",
+        },
+        {
+            question: "What happens when an automation fails?",
+            answer:
+                "All automation runs are captured in the Audit Log. Failures immediately alert the automation owners, and human-in-the-loop approval gates can be configured to stop risky actions from running silently.",
+        },
+        {
+            question: "Does Nuerova train on my data?",
+            answer:
+                "Absolutely not. Customer data is strictly used for retrieval and context generation within your own workspace. We explicitly opt-out of data sharing with LLM providers.",
+        },
+        {
+            question: "Where is my data stored?",
+            answer:
+                "Storage depends on your deployment choice. Our multi-tenant cloud is hosted securely on AWS. We also offer hybrid and dedicated tenant architectures for enterprise customers with strict data residency requirements.",
+        },
+        {
+            question: "How do I export everything if I leave?",
+            answer:
+                "We don't lock your data away. One-click export and certified deletion workflows are part of responsible offboarding for all paid tier teams.",
+        },
+        {
             question: "How quickly can Nuerova go live?",
             answer:
                 "Onboarding is rapid. You can link your tools, configure initial clusters, and run a test workflow in under an hour.",
@@ -333,6 +380,65 @@ function faqSchema(items) {
     };
 }
 
+function howItWorksSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to deploy team intelligence with Nuerova",
+        "description": "A five-step process to go from fragmented team context to governed, context-aware AI automation.",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Connect your sources",
+                "text": "Sync Notion, Slack, Google Drive, CRM, GitHub, Jira, and internal file sources to build your team's raw knowledge base.",
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Scope into clusters",
+                "text": "Organize ingested knowledge into logical, permission-bounded clusters scoped by team, project, client account, or department.",
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Deploy context-aware agents",
+                "text": "Configure agent personas with custom instructions, model settings, and memory clearance so agents inherit the right cluster context before responding.",
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Automate with reasoning workflows",
+                "text": "Build trigger-action workflows that reason through conditions, branch on context, and request human approval before executing actions.",
+            },
+            {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Govern with audit trails and RBAC",
+                "text": "Maintain visibility through immutable audit logs, granular role-based access control, and approval trails on every agent action.",
+            },
+        ],
+    };
+}
+
+function aboutSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Nuerova",
+        "url": "https://nuerova.xyz",
+        "logo": "https://nuerova.xyz/brand-logo.png",
+        "description": "Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations.",
+        "knowsAbout": [
+            "Team intelligence platforms",
+            "Scoped knowledge clusters",
+            "Context-aware AI agents",
+            "Enterprise AI governance",
+            "Visual workflow automation",
+        ],
+    };
+}
+
 function buildSchemaScripts(page) {
     const schemas = [JSON.parse(softwareSchema), breadcrumbSchema(page)];
 
@@ -341,6 +447,12 @@ function buildSchemaScripts(page) {
     }
     if (page.route === "pricing") {
         schemas.push(pricingSchema());
+    }
+    if (page.route === "how-it-works") {
+        schemas.push(howItWorksSchema());
+    }
+    if (page.route === "about") {
+        schemas.push(aboutSchema());
     }
     if (pageFaqs[page.route]) {
         schemas.push(faqSchema(pageFaqs[page.route]));

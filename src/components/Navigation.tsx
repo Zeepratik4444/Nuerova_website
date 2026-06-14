@@ -19,9 +19,9 @@ export function Navigation() {
 
 	return (
 		<>
-			<header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border-subtle shadow-md" : "bg-transparent border-b border-transparent"}`}>
+			<header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-lg" : "bg-transparent border-b border-transparent"}`}>
 				<nav className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto w-full relative">
-					<Link to="/" className="font-headline-sm text-headline-sm tracking-tight text-primary font-bold" onClick={() => setIsMenuOpen(false)}>
+					<Link to="/" className="font-headline-sm text-headline-sm tracking-tight text-white font-bold" onClick={() => setIsMenuOpen(false)}>
 						Nuerova
 					</Link>
 					
@@ -31,7 +31,17 @@ export function Navigation() {
 						<Link to="/how-it-works" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150">How It Works</Link>
 						<Link to="/security" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150">Security</Link>
 						<Link to="/pricing" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150">Pricing</Link>
-						<Link to="/blog" className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150">Blog</Link>
+						<div className="relative group">
+							<button className="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-150 flex items-center gap-1">
+								More
+								<svg className="w-3 h-3 text-white/50 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+							</button>
+							<div className="absolute left-0 mt-2 w-48 bg-[#111] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0 flex flex-col p-2">
+								<Link to="/blog" className="px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors">Blog</Link>
+								<Link to="/faq" className="px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors">FAQ</Link>
+								<a href="/#glimpses" className="px-3 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded transition-colors">Glimpses</a>
+							</div>
+						</div>
 					</div>
 					
 					{/* Desktop Navigation Actions */}
@@ -41,7 +51,7 @@ export function Navigation() {
 						</Link>
 						<Link 
 							to="/contact" 
-							className="font-button text-button bg-primary text-black px-4 py-2 rounded hover:opacity-90 transition-opacity duration-150 font-bold"
+							className="font-button text-button bg-status-blue text-white px-5 py-2 rounded-lg hover:shadow-[0_0_16px_rgba(59,130,246,0.5)] hover:-translate-y-0.5 transition-all duration-200 font-bold"
 							onClick={() =>
 								trackCtaClick({
 									cta_text: "Request Demo",
@@ -74,10 +84,15 @@ export function Navigation() {
 							<Link to="/how-it-works" className="text-white text-base py-1" onClick={() => setIsMenuOpen(false)}>How It Works</Link>
 							<Link to="/security" className="text-white text-base py-1" onClick={() => setIsMenuOpen(false)}>Security</Link>
 							<Link to="/pricing" className="text-white text-base py-1" onClick={() => setIsMenuOpen(false)}>Pricing</Link>
-							<Link to="/blog" className="text-white text-base py-1" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+							<div className="flex flex-col gap-2 pl-4 border-l border-white/10 my-2">
+								<span className="text-white/40 text-xs font-bold uppercase tracking-wider mb-1">More</span>
+								<Link to="/blog" className="text-white text-sm py-1" onClick={() => setIsMenuOpen(false)}>Blog</Link>
+								<Link to="/faq" className="text-white text-sm py-1" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
+								<a href="/#glimpses" className="text-white text-sm py-1" onClick={() => setIsMenuOpen(false)}>Glimpses</a>
+							</div>
 							<hr className="border-white/10 my-2" />
 							<Link to="/contact" className="text-white/50 text-center py-2 hover:text-white" onClick={() => setIsMenuOpen(false)}>Sign In</Link>
-							<Link to="/contact" className="bg-primary text-black text-center py-2.5 rounded font-bold hover:opacity-90" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
+							<Link to="/contact" className="bg-status-blue text-white text-center py-2.5 rounded font-bold hover:shadow-[0_0_16px_rgba(59,130,246,0.5)] transition-shadow" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
 						</div>
 					)}
 				</nav>
