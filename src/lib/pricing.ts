@@ -225,7 +225,7 @@ export const FEATURE_COMPARISON: ComparisonSection[] = [
         category: "Workspaces & Seats",
         rows: [
             { feature: "Workspaces", starter: "1", teams: "1 (Shared)", enterprise: "Unlimited" },
-            { feature: "Seats / Users", starter: "5", teams: "Up to 25", enterprise: "Unlimited" },
+            { feature: "Seats / Users", starter: "3", teams: "Up to 25", enterprise: "Unlimited" },
             { feature: "Knowledge Clusters", starter: "3 per Workspace", teams: "Unlimited", enterprise: "Unlimited" },
             { feature: "Contextual Automations", starter: "5 per Workspace", teams: "Unlimited", enterprise: "Unlimited" },
         ],

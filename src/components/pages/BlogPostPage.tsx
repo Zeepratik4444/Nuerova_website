@@ -14,8 +14,7 @@ type BlogPostPageProps = {
 };
 
 function extractArticleHtml(html: string) {
-	const match = html.match(/<header[\s\S]*?(?=<footer|$)/i);
-	let articleHtml = match ? match[0].trim() : "";
+	let articleHtml = html.trim();
 
 	articleHtml = articleHtml.replace(
 		/<p[^>]*>\s*Related reading:\s*([\s\S]*?)\s*<\/p>/gi,

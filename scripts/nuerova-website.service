@@ -1,0 +1,14 @@
+[Unit]
+Description=Nuerova Website Service
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/home/Nuerova_website
+# Using npx serve to host the static dist directory on port 3000
+ExecStart=/usr/bin/npx serve -s dist -l tcp://0.0.0.0:3000
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -32,7 +32,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 const publicDir = path.join(root, "public");
-const siteUrl = "https://nuerova.com";
+const siteUrl = "https://nuerova.xyz";
 const currentContentLastmod = "2026-06-07";
 
 // ── Core pages to generate ─────────────────────────────────────────────────
@@ -53,7 +53,7 @@ const pages = [
         route: "pricing",
         title: "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
         description:
-            "See Nuerova pricing for team intelligence and contextual agents. Start with a 7-day trial of Teams plan. Unlimited seats at every tier.",
+            "See Nuerova pricing for team intelligence and contextual agents. Start with a 7-day trial of Teams plan. Starter includes up to 3 user seats, and Teams supports up to 25 user seats.",
     },
     {
         route: "how-it-works",
@@ -260,9 +260,9 @@ const pageFaqs = {
                 "Nuerova is built for departments (Engineering, Operations, Customer Success, Product) looking to consolidate scattered team knowledge, build shared context-aware memory, and run secure AI agents to execute playbooks.",
         },
         {
-            question: "Does Nuerova charge per user?",
+            question: "How do user seat limits work on Nuerova?",
             answer:
-                "No. Nuerova is built to break down silos, which is why we do not charge per seat. All plans support unlimited users so your entire team can collaborate within the same workspace.",
+                "Our Starter plan includes up to 3 user seats, and our Teams plan scales to support up to 25 user seats. If you need more seats or dedicated enterprise support, our Enterprise plan offers unlimited user seats.",
         },
     ],
     features: [

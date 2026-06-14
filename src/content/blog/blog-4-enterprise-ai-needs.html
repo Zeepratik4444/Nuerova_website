@@ -1,1 +1,85 @@
-<p>Most enterprise AI conversations start with model quality. That matters, but the operational blockers usually live elsewhere: data scope, permissions, observability, and repeatable workflows.</p><h2>Models are not the whole product</h2><p>A team needs to know what context the agent used, who allowed access, what action was taken, and how to repeat a useful capability safely.</p><h2>The practical checklist</h2><ul><li>Scoped memory by team or workflow.</li><li>RBAC and audit logs from the start.</li><li>Reusable skills instead of scattered prompts.</li><li>Automation runs that can be reviewed.</li></ul><p>Enterprise AI works when the operating system around the model is trustworthy.</p>
+<p>
+  The AI conversation on LinkedIn and Twitter is entirely dominated by model capabilities: who has the most parameters, the longest context window, or the highest benchmark scores. But for enterprise operations leaders trying to deploy AI in production, the foundational model is almost never the bottleneck.
+</p>
+<p>
+  What enterprise teams actually struggle with is operationalization. An incredibly smart LLM is useless if it doesn't know what your company decided in last week's product all-hands meeting, or if it hallucinates compliance policies from three years ago because it lacks scoped memory.
+</p>
+
+<h2>The Real Bottlenecks: Memory and Permissions</h2>
+<p>
+  Furthermore, without strict role-based access control (RBAC), deploying AI across a company is a security nightmare. You cannot have an intern querying the same vector database that holds executive compensation data or pre-release financial reports. Yet, most generic AI chat tools provide no mechanism for isolating this data effectively.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">The Architecture Shift</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.25rem;">Models vs. Operating Layers</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    The model is just an engine. To drive a car, you need a steering wheel, brakes, seatbelts, and a dashboard. Nuerova is the operating layer that sits between the LLM engine and your enterprise data, providing the governance, routing, and safety mechanisms required for production.
+  </p>
+</div>
+
+<h2>The Nuerova Blueprint for Enterprise AI</h2>
+<p>
+  To move beyond pilots and endless "proof of concepts," organizations must prioritize the operating layer. Here is what enterprise teams actually require to succeed:
+</p>
+
+<div style="margin: 2rem 0;">
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">1</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Organizational Data Isolation</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Ensure that knowledge clusters are logically siloed according to department, project, and clearance level. Security policies should be enforced by default.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">2</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Observability and Audit Logs</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">SOC-2 compliance requires knowing exactly what an agent did, why it did it, the sources it cited, and who authorized it. Blind black-box AI is unacceptable.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">3</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Human-in-the-Loop Validation</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Give operations managers visual queues to approve, edit, or reject agent actions before they impact the real world or communicate with a client.</p>
+    </div>
+  </div>
+</div>
+
+<div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
+  <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">The Nuerova Difference</strong>
+  <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
+    Stop worrying about which model is marginally better at writing poetry. With Nuerova, you can plug in OpenAI, Anthropic, or open-source models as the engine, while relying on our secure operating layer to make the intelligence safe, aware, and genuinely useful for your team.
+  </p>
+</div>
+
+<!-- Inline CTA -->
+<div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
+  <h2 style="color: white; margin: 0 0 1rem; font-size: 2rem;">Secure your enterprise AI operations</h2>
+  <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.1rem; max-width: 32rem; line-height: 1.6;">
+    Bring governance, auditability, and scoped context to your AI workflows. Book a customized security briefing.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="/security" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem; transition: background 0.2s;">
+      Review Security Docs
+    </a>
+    <a href="/contact" style="display: inline-block; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem; transition: background 0.2s;">
+      Request Security Demo
+    </a>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+  <h2 style="margin-bottom: 2rem; font-size: 1.8rem;">Frequently Asked Questions</h2>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0 0 0.5rem;">Does Nuerova use our enterprise data to train models?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">No. Nuerova uses your data exclusively to populate your secure vector clusters for Retrieval-Augmented Generation (RAG). Your data is never used to fine-tune or train foundational models.</p>
+  </div>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0 0 0.5rem;">Can we connect our SSO provider?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Nuerova integrates with major SSO providers via SAML and OAuth to ensure that identity and permissions match your corporate directory seamlessly.</p>
+  </div>
+</section>

@@ -59,7 +59,7 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 		question: "How does Nuerova compare to Microsoft Copilot?",
 		answer: "While Microsoft Copilot acts as a broad personal office assistant for M365 files, Nuerova is a collaborative intelligence operating layer designed for team context clusters, reusable skill registries, and reasoning-driven visual playbooks.",
 		facts: [
-			"Nuerova offers unlimited seats",
+			"Tiers by user seats",
 			"Visual multi-agent workflow builder",
 			"Focus on custom team capabilities",
 		],
@@ -76,8 +76,8 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 			},
 			{
 				label: "Pricing model",
-				value: "Unlimited seats, no user fees",
-				detail: "Avoids per-user seat lock-in so your entire department can share context freely.",
+				value: "Flexible tiered seats",
+				detail: "Starter includes up to 3 seats, and Teams supports up to 25 seats, with Enterprise offering unlimited.",
 			},
 		],
 	},

@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
@@ -280,7 +280,7 @@ export function HomePage() {
 								<span className="whitespace-nowrap"><span className="hero-tw-text">{twText}</span><span className="hero-tw-cursor">|</span></span>
 							</h1>
 							<p className="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-xl hero-enter" style={{ animationDelay: '0.2s' }}>
-								Your best answers are buried in Slack, Salesforce, and last quarter's docs. Neuronova finds them instantly, runs the follow-up automatically, and makes sure everyone benefits — not just whoever was in the room.
+								Your best answers are buried in Slack, Salesforce, and last quarter's docs. Nuerova finds them instantly, runs the follow-up automatically, and makes sure everyone benefits — not just whoever was in the room.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-stack-md mb-stack-lg hero-enter" style={{ animationDelay: '0.3s' }}>
 								<button
@@ -315,7 +315,7 @@ export function HomePage() {
 									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
 									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
 								</div>
-								<div className="text-[10px] text-white/40 font-medium tracking-wide">Neuronova — Team Intelligence</div>
+								<div className="text-[10px] text-white/40 font-medium tracking-wide">Nuerova — Team Intelligence</div>
 								<div className="flex items-center gap-1.5">
 									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 hero-dot-pulse"></div>
 									<span className="text-[10px] text-emerald-400">Live</span>

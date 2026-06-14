@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const siteUrl = "https://nuerova.com";
+const siteUrl = "https://nuerova.xyz";
 const sourceDir = path.join(root, "src", "content", "blog");
 const outputDir = path.join(root, "public", "blog");
 const publicDir = path.join(root, "public");
@@ -333,10 +333,10 @@ function pageShell({ title, description, canonicalPath, body, schema, schemas })
   <meta name="twitter:title" content="${escapedTitle}" />
   <meta name="twitter:description" content="${escapedDescription}" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <meta property="og:image" content="https://nuerova.com/og-image.png" />
+  <meta property="og:image" content="https://nuerova.xyz/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta name="twitter:image" content="https://nuerova.com/og-image.png" />
+  <meta name="twitter:image" content="https://nuerova.xyz/og-image.png" />
   ${schemaScripts}
   <style>
     :root { color-scheme: light; }
@@ -601,13 +601,13 @@ Nuerova is a team intelligence platform that centralizes department knowledge in
 
 ## Product
 
-- Homepage: https://nuerova.com/
-- Features: https://nuerova.com/features
-- Security: https://nuerova.com/security
-- Pricing: https://nuerova.com/pricing
-- How It Works: https://nuerova.com/how-it-works
-- FAQ: https://nuerova.com/faq
-- Contact / Free Trial: https://nuerova.com/contact
+- Homepage: https://nuerova.xyz/
+- Features: https://nuerova.xyz/features
+- Security: https://nuerova.xyz/security
+- Pricing: https://nuerova.xyz/pricing
+- How It Works: https://nuerova.xyz/how-it-works
+- FAQ: https://nuerova.xyz/faq
+- Contact / Free Trial: https://nuerova.xyz/contact
 
 ## Who It's For
 
@@ -629,16 +629,43 @@ const quoteReadyFacts = `## Quote-Ready Product Facts
 - Nuerova runs on context-aware agents and scoped knowledge clusters.
 - The platform supports Slack, Confluence, Gmail, Google Calendar, Jira, and CSV/JSON file uploads.
 - Teams can start with a 7-day Teams trial (no credit card required).
-- Nuerova charges no seat fees (all plans support unlimited users).
+- Nuerova plans scale by user seats: Starter supports up to 3 users, and Teams supports up to 25 users.
 - Granular role-based access control (RBAC) secures cluster permissions.
 `;
 
 const llmsTxtContent = `${staticLlmsIntro}\n${quoteReadyFacts}`;
 fs.writeFileSync(path.join(publicDir, "llms.txt"), llmsTxtContent);
-fs.writeFileSync(path.join(publicDir, "llms-full.txt"), llmsTxtContent);
+
+// Build differentiated, technical full content for llms-full.txt
+let fullContent = `${llmsTxtContent}\n\n## Technical Architecture Deep-Dive\n\n`;
+fullContent += `### Scoped Knowledge Clusters\n`;
+fullContent += `- Dynamic vector databases isolated by department or role context.\n`;
+fullContent += `- Sync frequencies can be scheduled in intervals or triggered via Webhooks.\n`;
+fullContent += `- Support for file uploads (JSON, CSV, PDF, Markdown) and native sync endpoints.\n\n`;
+
+fullContent += `### Reusable Skill Registry\n`;
+fullContent += `- Shared catalog of validated tools and prompt scripts written in Python or Javascript.\n`;
+fullContent += `- Skills accept defined parameter schemas and can execute database queries or REST calls.\n\n`;
+
+fullContent += `### Agent Personas & Visual Playbooks\n`;
+fullContent += `- Visual node editor to wire triggers (e.g. email received, webhook, cron) to agent reasoning steps.\n`;
+fullContent += `- Custom instructions, model choices, and memory clearance levels configured per agent.\n\n`;
+
+fullContent += `### Human-in-the-Loop Verification\n`;
+fullContent += `- Visual queues for approval where operations teams can review, edit, or reject agent-drafted responses before execution.\n\n`;
+
+fullContent += `## Index of Articles and Resources\n\n`;
+posts.forEach(post => {
+	fullContent += `### ${post.title}\n`;
+	fullContent += `- URL: https://nuerova.xyz/blog/${post.slug}\n`;
+	fullContent += `- Summary: ${post.description}\n`;
+	fullContent += `- Published: ${post.publishedAt} | Read Time: ${post.readTime} | Tags: ${post.tags.join(", ")}\n\n`;
+});
+
+fs.writeFileSync(path.join(publicDir, "llms-full.txt"), fullContent);
 
 fs.mkdirSync(distDir, { recursive: true });
 fs.writeFileSync(path.join(distDir, "llms.txt"), llmsTxtContent);
-fs.writeFileSync(path.join(distDir, "llms-full.txt"), llmsTxtContent);
+fs.writeFileSync(path.join(distDir, "llms-full.txt"), fullContent);
 
 console.log("Generated public/llms.txt and public/llms-full.txt");

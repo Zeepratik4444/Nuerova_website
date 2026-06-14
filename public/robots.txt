@@ -121,9 +121,9 @@ Disallow: /set-password
 Disallow: /dashboard
 Disallow: /settings
 
-Sitemap: https://nuerova.com/sitemap.xml
-Sitemap: https://nuerova.com/sitemap-blog.xml
+Sitemap: https://nuerova.xyz/sitemap.xml
+Sitemap: https://nuerova.xyz/sitemap-blog.xml
 
 # LLM context files
-LLM: https://nuerova.com/llms.txt
-LLM: https://nuerova.com/llms-full.txt
+LLM: https://nuerova.xyz/llms.txt
+LLM: https://nuerova.xyz/llms-full.txt

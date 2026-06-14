@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const BASE_URL = "https://nuerova.com";
+const BASE_URL = "https://nuerova.xyz";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
 
 interface SEOProps {

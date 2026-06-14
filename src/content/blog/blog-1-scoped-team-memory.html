@@ -1,1 +1,111 @@
-<p>Generic AI tools are useful, but they usually start from a personal session. That is a poor match for work that depends on team history, account context, implementation details, and decisions made months ago.</p><h2>The team layer is the missing layer</h2><p>Scoped memory changes AI from a clever interface into a shared operating asset. The agent is not just answering from the model. It is reasoning over the approved context that a team has already built.</p><h2>Scope is the trust mechanism</h2><p>Without scope, shared memory becomes risky. With clusters, teams can decide which knowledge belongs to operations, customer success, engineering, a client account, or the whole organization.</p><ul><li>Knowledge survives turnover.</li><li>Agents stop asking teams to repeat background.</li><li>Permissions remain visible and enforceable.</li></ul><p>That combination is hard for generic tools to copy because it is not only a feature. It is an architecture choice.</p>
+<p>
+  Most enterprise AI initiatives fail at the deployment line. A company buys licenses for a generic AI assistant, gives it to their operations team, and expects productivity to soar. But within a month, usage drops. Why? Because the AI starts every conversation with amnesia. It doesn't know what was decided in last week's Slack thread, it doesn't know the specifics of a client's contract, and it doesn't know the standard operating procedures (SOPs) the team spent six months refining. 
+</p>
+<p>
+  Generic AI tools are built for individuals; they are personal assistants. But enterprise work is inherently collaborative. Operations run on <strong>shared context</strong>. This is why scoped team memory is the defining architecture of a true enterprise AI platform.
+</p>
+
+<h2>The Hidden Cost of the Blank Slate</h2>
+<p>
+  When an operations manager asks a generic AI to draft a client update, they must spend five minutes typing out the background context: the client's tier, the recent outage they experienced, the tone to use, and the promises made by the account executive. If they forget a single detail, the AI produces an unusable draft. 
+</p>
+<p>
+  This constant context-loading negates the efficiency gains of the AI. Instead of automating work, the human has simply traded the task of writing for the task of prompting.
+</p>
+
+<!-- Concept 1 -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">Core Concept</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.25rem;">What is a Knowledge Cluster?</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    A knowledge cluster is a continuously updated, secure vector database that ingests a specific team's operational reality. By syncing with the team's Slack channels, Jira boards, Confluence wikis, and Google Drive folders, the cluster maintains a real-time index of the team's shared context. When an agent is queried, it doesn't just guess—it reasons against this specific cluster.
+  </p>
+</div>
+
+<h2>How Scoped Memory Changes the Operations Paradigm</h2>
+<p>
+  When you replace generic AI with a context-aware agent backed by a knowledge cluster, the entire workflow changes. Here is how scoped memory fundamentally alters daily operations:
+</p>
+
+<div style="margin: 2rem 0;">
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">1</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Zero-Prompt Context</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Agents already know the background. You don't have to explain the client's history; the agent pulls it instantly from the cluster before executing the task.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">2</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Institutional Continuity</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">When a senior team member leaves, their historical knowledge doesn't leave with them. The cluster retains their decisions, ensuring new hires have instant access to historical intuition.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 48px; height: 48px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.1rem;">3</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1.1rem; color: #0f172a;">Strict Data Governance</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Because clusters are scoped by team or client, Role-Based Access Control (RBAC) is enforceable at the vector level. The HR agent cannot access the Engineering cluster.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Scope is the Ultimate Trust Mechanism</h2>
+<p>
+  Without defined scopes, enterprise shared memory becomes a massive security liability. You cannot build a single, monolithic vector database for a 500-person company and simply hope the LLM won't leak executive compensation details to an intern. 
+</p>
+<p>
+  Nuerova isolates knowledge into logical clusters. An agent deployed for the Customer Success team only has clearance to query the CS cluster. This hard boundary is what makes IT and Security teams comfortable deploying AI into production environments.
+</p>
+
+<div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
+  <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">The Nuerova Difference</strong>
+  <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
+    Generic platforms view memory as a side-effect of chatting. Nuerova treats memory as a <strong>governed infrastructure layer</strong>. It is not an afterthought; it is the foundation upon which all reliable automation is built.
+  </p>
+</div>
+
+<h2>Moving from Chatbots to Coworkers</h2>
+<p>
+  When an AI possesses scoped memory, it stops feeling like a software tool and starts acting like a highly capable coworker. It understands the acronyms your team uses. It knows which reports are due on Fridays. It remembers the edge-case workaround that Engineering posted in Slack three months ago.
+</p>
+<p>
+  This level of contextual awareness is the only way to achieve true operational leverage. It is the moat that generic AI tools simply cannot cross.
+</p>
+
+<!-- Inline CTA -->
+<div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
+  <h2 style="color: white; margin: 0 0 1rem; font-size: 2rem;">Ready to build your team's cluster?</h2>
+  <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.1rem; max-width: 32rem; line-height: 1.6;">
+    Stop repeating yourself to generic AI. Connect your tools, define your scope, and deploy your first context-aware agent in under 72 hours.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="/contact" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem; transition: background 0.2s;">
+      Request a Custom Demo
+    </a>
+    <a href="/features" style="display: inline-block; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem; transition: background 0.2s;">
+      Explore the Platform
+    </a>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+  <h2 style="margin-bottom: 2rem; font-size: 1.8rem;">Frequently Asked Questions</h2>
+  
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0 0 0.5rem;">How secure is a scoped knowledge cluster?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Clusters are completely logically isolated. Nuerova enforces strict Role-Based Access Control (RBAC), meaning agents and users can only query vectors they explicitly have permission to access. We do not use your data to train foundational models.</p>
+  </div>
+  
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0 0 0.5rem;">How does the cluster stay up to date?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Knowledge clusters sync with your connected tools (Slack, Jira, Confluence, etc.) on scheduled intervals or via webhook triggers. This ensures the agent is always reasoning over the most current operational reality, preventing stale answers.</p>
+  </div>
+  
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.1rem; color: #0f172a; margin: 0 0 0.5rem;">What happens if the agent doesn't know the answer?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Unlike generic AI that hallucinates when lacking context, Nuerova agents evaluate their confidence based on the retrieved cluster data. If the context is missing, the agent is programmed to halt the workflow and route a query to a human manager for clarification.</p>
+  </div>
+</section>
