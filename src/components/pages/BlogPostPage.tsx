@@ -9,6 +9,7 @@ import { BLOG_NEXT_STEPS, BLOG_RELATED_POSTS } from "@/lib/funnelNextSteps";
 import { BLOG_ANSWER_BLOCKS } from "@/lib/aeoGeoContent";
 import { ComparisonSummary } from "@/components/AeoGeoBlocks";
 import { RelatedPosts } from "@/components/RelatedPosts";
+import { EarlyAccessCapture } from "@/components/EarlyAccessCapture";
 
 type BlogPostPageProps = {
 	slug: string;
@@ -236,6 +237,8 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 					{relatedPosts && relatedPosts.length === 2 && (
 						<RelatedPosts posts={relatedPosts as [import("@/lib/blogPosts").BlogPost, import("@/lib/blogPosts").BlogPost]} />
 					)}
+
+					<EarlyAccessCapture source={`blog_${post.slug}`} />
 
 					{nextStep && (
 						<div
