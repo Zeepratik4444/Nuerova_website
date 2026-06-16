@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SetPasswordRouteImport } from './routes/set-password'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -25,6 +26,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SetPasswordRoute = SetPasswordRouteImport.update({
+  id: '/set-password',
+  path: '/set-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityRoute = SecurityRouteImport.update({
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
+  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
+  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/pricing': typeof PricingRoute
   '/security': typeof SecurityRoute
+  '/set-password': typeof SetPasswordRoute
   '/terms': typeof TermsRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/pricing'
     | '/security'
+    | '/set-password'
     | '/terms'
     | '/blog/$slug'
     | '/blog/'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/pricing'
     | '/security'
+    | '/set-password'
     | '/terms'
     | '/blog/$slug'
     | '/blog'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/pricing'
     | '/security'
+    | '/set-password'
     | '/terms'
     | '/blog_/$slug'
     | '/blog/'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   PricingRoute: typeof PricingRoute
   SecurityRoute: typeof SecurityRoute
+  SetPasswordRoute: typeof SetPasswordRoute
   TermsRoute: typeof TermsRoute
   BlogSlugRoute: typeof BlogSlugRoute
 }
@@ -190,6 +203,13 @@ declare module '@tanstack/react-router' {
       path: '/terms'
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/set-password': {
+      id: '/set-password'
+      path: '/set-password'
+      fullPath: '/set-password'
+      preLoaderRoute: typeof SetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -292,6 +312,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   PricingRoute: PricingRoute,
   SecurityRoute: SecurityRoute,
+  SetPasswordRoute: SetPasswordRoute,
   TermsRoute: TermsRoute,
   BlogSlugRoute: BlogSlugRoute,
 }
