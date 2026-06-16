@@ -1,11 +1,11 @@
 {
-  "name": "Renewal360",
-  "short_name": "Renewal360",
-  "description": "The CS Platform That Prevents Churn",
+  "name": "Nuerova",
+  "short_name": "Nuerova",
+  "description": "Scoped Knowledge Clusters & Team Intelligence Platform",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
+  "theme_color": "#1275e2",
+  "background_color": "#050505",
   "icons": [
     {
       "src": "/favicon-96x96.png",

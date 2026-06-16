@@ -577,6 +577,7 @@ function renderPost(post) {
 	const fullArticleHtml = `${injectBlogAeoHtml(articleHtml, post)}\n<main>${buildBlogNextStepHtml(post)}</main>`;
 	const canonicalPath = `/blog/${post.slug}`;
 	const plainText = stripTags(fullArticleHtml).slice(0, 4500);
+	const wordCount = plainText.split(/\s+/).filter(Boolean).length;
 	const blogPostingSchema = {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
@@ -585,6 +586,12 @@ function renderPost(post) {
 		url: `${siteUrl}${canonicalPath}`,
 		datePublished: post.publishedAt,
 		dateModified: post.publishedAt,
+		image: {
+			"@type": "ImageObject",
+			url: `${siteUrl}/og-image.png`,
+			width: 1200,
+			height: 630,
+		},
 		author: {
 			"@type": "Organization",
 			name: "Nuerova",
@@ -594,8 +601,14 @@ function renderPost(post) {
 			"@type": "Organization",
 			name: "Nuerova",
 			url: siteUrl,
+			logo: {
+				"@type": "ImageObject",
+				url: `${siteUrl}/brand-logo.png`,
+			},
 		},
 		keywords: post.tags.join(", "),
+		articleSection: post.tags[0],
+		wordCount,
 		articleBody: plainText,
 	};
 

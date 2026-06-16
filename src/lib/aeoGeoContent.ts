@@ -117,4 +117,49 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 			"Syncs existing stack via OAuth",
 		],
 	},
+	"governance-vs-velocity": {
+		question: "How do enterprise AI teams achieve governance without slowing down?",
+		answer: "Governance and team velocity are not opposites. Scoped cluster architecture lets teams move fast within defined boundaries — permissions, model settings, and approval gates are set once at the cluster level, so individuals don't choose between speed and compliance on every task.",
+		facts: [
+			"Permissions enforced at the cluster, not the prompt level",
+			"Shadow AI stems from supply gaps, not bad intent",
+			"One-time governance setup unlocks permanent speed",
+		],
+	},
+	"roi-of-shared-memory": {
+		question: "How do you measure the ROI of a shared AI memory layer?",
+		answer: "ROI compounds across three vectors: reduced context-switching time per employee, faster onboarding for new hires who inherit the team's full knowledge base, and fewer decision-stalling loops caused by missing documentation. Teams typically identify the payback period within the first 30 days.",
+		facts: [
+			"Context-switching costs 20–40 minutes per interruption",
+			"New hire ramp time drops when clusters capture tribal knowledge",
+			"Audit trails reduce compliance review overhead",
+		],
+	},
+	"ops-stack-breaks": {
+		question: "Why does the Notion + Slack + ChatGPT stack break at 30 people?",
+		answer: "Below 30 people, informal knowledge sharing works because everyone knows who to ask. Above that threshold, four failure modes converge: tribal knowledge is no longer universal, search returns too many results, ChatGPT has no team context, and onboarding slows because new hires cannot distinguish current from outdated documentation.",
+		facts: [
+			"Knowledge silos form when teams exceed ~25–30 members",
+			"Generic AI tools lack team-specific context by design",
+			"Disconnected tools create compounding coordination debt",
+		],
+	},
+	"ai-rollout-no-shadow-ai": {
+		question: "How do you roll out AI company-wide without creating shadow AI?",
+		answer: "Shadow AI is a supply problem: employees use unsanctioned tools because approved alternatives are too slow or too generic. The fix is deploying governed, team-specific AI access — scoped clusters with real team context — before employees resort to workarounds. Governance follows fast adoption, not the other way around.",
+		facts: [
+			"Shadow AI persists when approved tools don't solve real workflows",
+			"Scoped clusters give IT visibility without blocking productivity",
+			"Rollout sequence: pilot teams first, then expand with audit trails live",
+		],
+	},
+	"stop-buying-point-ai-tools": {
+		question: "When should a team stop buying individual AI tools?",
+		answer: "The inflection point arrives when you are paying for five or more AI tools that each solve one narrow task, none of them share context, and integration work is consuming engineering capacity. At that point, a shared intelligence layer generates more ROI than another point tool because it compounds across every workflow instead of solving just one.",
+		facts: [
+			"Five or more disconnected AI tools signal the inflection point",
+			"Point tools do not share context or compound knowledge",
+			"A shared layer replaces multiple subscriptions and integration debt",
+		],
+	},
 };

@@ -9,16 +9,27 @@ const FEATURED_SLUG = "setup-guide-72-hours";
 
 export function BlogPage() {
 	useSEO({
-		title: "Blog | Nuerova",
-		description: "Insights on team memory, agent-native workflows, and the reality of enterprise AI.",
+		title: "Blog — Team Intelligence, Agent Workflows & Enterprise AI | Nuerova",
+		description: "Insights on team memory, agent-native workflows, and the reality of enterprise AI for operations and CS teams.",
 		schemaOrg: {
 			"@type": "Blog",
 			"name": "Nuerova Blog",
-			"description": "Insights on team memory, agent-native workflows, and the reality of enterprise AI.",
+			"description": "Insights on team memory, agent-native workflows, and the reality of enterprise AI for operations and CS teams.",
+			"url": "https://nuerova.xyz/blog",
 			"publisher": {
 				"@type": "Organization",
-				"name": "Nuerova"
-			}
+				"name": "Nuerova",
+				"url": "https://nuerova.xyz",
+				"logo": "https://nuerova.xyz/brand-logo.png"
+			},
+			"blogPost": blogPosts.map(p => ({
+				"@type": "BlogPosting",
+				"headline": p.title,
+				"description": p.summary,
+				"url": `https://nuerova.xyz/blog/${p.slug}`,
+				"datePublished": p.date ?? "2026-06-07",
+				"keywords": p.tags.join(", "),
+			}))
 		}
 	});
 

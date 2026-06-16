@@ -54,8 +54,45 @@ const steps = [
 
 export function HowItWorksPage() {
 	useSEO({
-		title: "How It Works | Nuerova",
-		description: "Learn how Nuerova connects your knowledge sources, builds scoped clusters, deploys agents, and automates workflows with enterprise controls.",
+		title: "How Nuerova Works — Context Ingestion to Governed Action | Nuerova",
+		description: "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
+		schemaOrg: {
+			"@type": "HowTo",
+			"name": "How to deploy team intelligence with Nuerova",
+			"description": "A five-step process to go from fragmented team context to governed, context-aware AI automation.",
+			"step": [
+				{
+					"@type": "HowToStep",
+					"position": 1,
+					"name": "Connect your sources",
+					"text": "Sync Notion, Slack, Google Drive, CRM, GitHub, Jira, and internal file sources to build your team's raw knowledge base.",
+				},
+				{
+					"@type": "HowToStep",
+					"position": 2,
+					"name": "Scope into clusters",
+					"text": "Organize ingested knowledge into logical, permission-bounded clusters scoped by team, project, client account, or department.",
+				},
+				{
+					"@type": "HowToStep",
+					"position": 3,
+					"name": "Deploy context-aware agents",
+					"text": "Configure agent personas with custom instructions, model settings, and memory clearance so agents inherit the right cluster context before responding.",
+				},
+				{
+					"@type": "HowToStep",
+					"position": 4,
+					"name": "Automate with reasoning workflows",
+					"text": "Build trigger-action workflows that reason through conditions, branch on context, and request human approval before executing actions.",
+				},
+				{
+					"@type": "HowToStep",
+					"position": 5,
+					"name": "Govern with audit trails and RBAC",
+					"text": "Maintain visibility through immutable audit logs, granular role-based access control, and approval trails on every agent action.",
+				},
+			],
+		},
 	});
 
 	useScrollReveal();

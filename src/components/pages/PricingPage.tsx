@@ -46,11 +46,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export function PricingPage() {
 	useSEO({
 		title: "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
-		description: "See Nuerova pricing for team intelligence and contextual agents. Start with a 7-day trial of Teams plan. Starter includes up to 3 user seats, and Teams supports up to 25 user seats.",
+		description: "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
 		schemaOrg: {
 			"@type": "WebPage",
 			"name": "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
-			"description": "See Nuerova pricing for team intelligence and contextual agents. Start with a 7-day trial of Teams plan. Starter includes up to 3 user seats, and Teams supports up to 25 user seats.",
+			"description": "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
 			"mainEntity": {
 				"@type": "ItemList",
 				"itemListElement": [

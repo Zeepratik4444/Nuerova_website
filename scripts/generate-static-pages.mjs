@@ -41,7 +41,7 @@ const pages = [
         route: "",
         title: "Nuerova — Scoped Knowledge Clusters & Team Intelligence Platforms",
         description:
-            "Nuerova centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations so your momentum is never lost.",
+            "Nuerova centralizes team knowledge in scoped clusters, deploys context-aware agents, and builds secure trigger-action automations with enterprise governance.",
     },
     {
         route: "features",
@@ -53,13 +53,13 @@ const pages = [
         route: "pricing",
         title: "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
         description:
-            "See Nuerova pricing for team intelligence and contextual agents. Start with a 7-day trial of Teams plan. Starter includes up to 3 user seats, and Teams supports up to 25 user seats.",
+            "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
     },
     {
         route: "how-it-works",
         title: "How Nuerova Works — Context Ingestion to Governed Action | Nuerova",
         description:
-            "See how Nuerova ingests fragmented team data, organizes it into logical knowledge clusters, deploys custom-instructed agent helpers, and triggers visual workflows.",
+            "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
     },
     {
         route: "faq",
@@ -198,7 +198,12 @@ function organizationSchema() {
         "@type": "Organization",
         name: "Nuerova",
         url: siteUrl,
-        logo: `${siteUrl}/favicon.svg`,
+        logo: `${siteUrl}/brand-logo.png`,
+        sameAs: [
+            "https://twitter.com/nuerova",
+            "https://github.com/nuerova",
+            "https://linkedin.com/company/nuerova",
+        ],
         knowsAbout: [
             "Team intelligence platforms",
             "Context-aware agents",
@@ -215,6 +220,14 @@ function websiteSchema() {
         "@type": "WebSite",
         name: "Nuerova",
         url: siteUrl,
+        potentialAction: {
+            "@type": "SearchAction",
+            target: {
+                "@type": "EntryPoint",
+                urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+            },
+            "query-input": "required name=search_term_string",
+        },
     };
 }
 
