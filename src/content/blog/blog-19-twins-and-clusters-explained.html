@@ -1,0 +1,223 @@
+<p>
+  The two failure modes of AI at work are opposites, and most teams have experienced both.
+</p>
+<p>
+  The first is the personal assistant that knows you but not your team. You spend weeks building a ChatGPT configuration with your communication style, your role context, your preferences. It helps you write faster, research better, draft more effectively. Then a colleague needs to use it. They get a blank slate — your carefully built context isn't theirs, and they start from scratch. The knowledge never leaves you.
+</p>
+<p>
+  The second is the generic enterprise tool that knows neither you nor your team. The company deploys Microsoft Copilot or an internal ChatGPT instance. It can access company files in the broadest sense — everything uploaded to the company's M365 tenant, everything indexed by a corporate search tool. But "everything" is noisy. The marketing team's files pollute the engineering team's queries. Last year's deprecated strategy documents surface alongside current ones. Personal salary discussions sit in the same index as public project specs. Broadening access to solve the sharing problem creates a privacy and precision problem.
+</p>
+<p>
+  Twins and Clusters are Nuerova's answer to both failure modes simultaneously. They are not two separate features that happen to be adjacent — they are one architecture designed to solve the same problem from two directions. Understanding how they work together is the key to understanding why Nuerova's knowledge system produces qualitatively different results from either personal AI tools or generic enterprise search.
+</p>
+
+<h2>What a Twin Is</h2>
+<p>
+  A Twin is a personal knowledge profile. Specifically, it is a private semantic index built from the sources a user has consented to connect through OAuth: Gmail, Google Drive, Slack, Salesforce, GitHub, Outlook, Shopify, and other integrated sources. Each connected source is ingested, chunked into semantically meaningful segments, and embedded into a vector index that can be queried by the user's agent.
+</p>
+<p>
+  The word "personal" here is load-bearing. A Twin is not a shared resource. It is not visible to other team members by default. It is not queryable by other agents without the user's explicit consent. It belongs to the user who built it, in the same way their email inbox belongs to them. The platform has access to it for ingestion and indexing purposes — but the privacy model is opt-in contribution, not opt-out protection.
+</p>
+<p>
+  When a user connects Gmail to their Twin, Nuerova ingests their email history — sent messages, received messages, threads — and builds a semantic index of that content. The user's agent can then answer questions grounded in that email history: "What did I tell the Acme team about delivery timelines last month?" retrieves actual email context rather than asking the user to go search their inbox. "Summarize the thread about the Q3 roadmap" pulls the actual thread and summarizes it accurately.
+</p>
+<p>
+  The same applies to every connected source. Google Drive documents are indexed so the agent can reference specific files, quote from them accurately, and identify relevant sections without the user having to remember the exact document name. Slack messages are indexed so the agent can surface relevant conversations. Salesforce records are indexed so the agent can answer questions about specific accounts and opportunities.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">Privacy Model</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">Twins Are Private by Default. Nothing Leaks Without Explicit Consent.</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    A Twin's contents are never visible to other users, other agents, or other teams unless the Twin's owner explicitly grants contribution to a specific Cluster. There is no passive sharing, no "because they're in the same org" access, no admin visibility into individual Twin contents. Privacy is architectural, not policy-based.
+  </p>
+</div>
+
+<h2>What Goes Into a Twin</h2>
+<p>
+  The content of a Twin depends on which OAuth sources the user has chosen to connect. A typical knowledge worker connecting all available sources might have a Twin that includes:
+</p>
+<ul>
+  <li><strong>Email</strong> — sent and received messages, threads, attachments referenced in conversations, with full context preserved (who wrote to whom, when, about what)</li>
+  <li><strong>Documents</strong> — Google Drive files, Outlook attachments, shared Notion pages, with semantic chunking that preserves document structure (headings, sections, lists) for accurate retrieval</li>
+  <li><strong>Slack messages</strong> — channel conversations, direct messages, threads, with channel context preserved so retrieval understands which workspace, which channel, which team context applies</li>
+  <li><strong>CRM records</strong> — Salesforce contacts, accounts, opportunities, activity history, notes, with relationship context between records preserved</li>
+  <li><strong>Code and issues</strong> — GitHub repositories, issues, pull requests, comments, with code-aware chunking that preserves function and module context</li>
+</ul>
+<p>
+  Each of these sources is ingested incrementally — new content is added to the Twin as it appears, so the index reflects the current state of the user's knowledge sources rather than a snapshot taken at setup time. A conversation that happened yesterday is in the Twin. A document updated this morning reflects its current content.
+</p>
+<p>
+  The ingestion process handles each source differently because each source has different structural properties. Email threads are ingested as conversation units with sender/recipient/date metadata. Documents are chunked at the paragraph level with heading hierarchy preserved. Slack messages are chunked as thread units with channel and workspace context. The structural differences matter because they affect retrieval quality: a flat-chunked corpus loses the context that makes retrieval meaningful.
+</p>
+
+<h2>Why Twins Are Private by Default</h2>
+<p>
+  The privacy model for Twins is consent-based and explicit, and understanding why that matters requires understanding what personal knowledge includes.
+</p>
+<p>
+  A user's Gmail twin contains their salary negotiation emails. Their performance review discussions. Their private conversations with colleagues about organizational dynamics. Their health insurance questions. Their job application correspondence. This is not hypothetical — these are the kinds of emails that live in a professional inbox. The technical capability to index them is not a justification for sharing them.
+</p>
+<p>
+  Most enterprise AI tools handle this problem with role-based access control: admins can see what non-admins cannot. That model is insufficient for personal knowledge because the sensitivity isn't correlated with role. An IC's emails about their career concerns are just as sensitive as an executive's. RBAC doesn't protect personal knowledge — it only controls which managers can see it.
+</p>
+<p>
+  Nuerova's answer is that Twins are not admin-visible by default. The platform processes the content for indexing purposes, but the index is private to the user and the data access policies are enforced at the query layer — when an agent tries to retrieve from a Twin, the system checks whether the querying agent is authorized for that user's Twin, and rejects unauthorized queries regardless of the requester's role in the org.
+</p>
+<p>
+  This is the foundation on which Clusters can be built safely. Because users know their Twins are private, they can make informed decisions about what to contribute to shared spaces. Contribution is opt-in specifically because the default is private.
+</p>
+
+<h2>What a Cluster Is</h2>
+<p>
+  A Cluster is a bounded pool of multiple users' Twins, scoped to a specific purpose. It is not a shared folder. It is not a team wiki. It is not a conversation history. It is a defined knowledge scope that draws from multiple Twins — specifically, from the parts of those Twins that each member has explicitly agreed to contribute.
+</p>
+<p>
+  The definition of a Cluster has four components:
+</p>
+<ul>
+  <li><strong>Members</strong> — which users are part of this cluster, and for each member, which sources they're contributing</li>
+  <li><strong>Charter</strong> — a written description of the cluster's purpose, the in-scope topics agents should draw from, and the out-of-scope topics that should be excluded</li>
+  <li><strong>Mode</strong> — FAST mode queries the cluster's pre-built vector index in a single search pass; DEEP mode conducts per-member live retrieval for freshness-sensitive queries</li>
+  <li><strong>Access controls</strong> — which agents and automations are authorized to query the cluster, enforced at the retrieval layer</li>
+</ul>
+<p>
+  A practical example: a five-person customer success team creates a CS Cluster. Each member contributes their Gmail (customer email threads) and Salesforce access (account records). The charter defines the cluster as scoped to "customer escalations, renewal conversations, and account health signals" with explicit exclusions: "compensation discussions, internal performance conversations, personal matters." Agents authorized for the CS Cluster can query it for customer-related context. They cannot query individual members' personal Twin content. They cannot access content from out-of-scope sources even if those sources are connected to a member's Twin.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">How Clusters Work</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">The Consent Mechanism: Per-Member, Per-Source, Per-Cluster</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    Every member of a Cluster explicitly grants which sources from their Twin they contribute to that specific Cluster. A sales rep might contribute Salesforce and Gmail to the Sales Cluster but not Slack. A CS manager might contribute Salesforce and Gmail to the CS Cluster but not GitHub. Consent is granular — joining a cluster doesn't mean sharing everything. It means sharing what you've agreed to share, for the purpose the cluster was created for.
+  </p>
+</div>
+
+<h2>The Consent Mechanism in Practice</h2>
+<p>
+  When a user is invited to a Cluster, they see a clear interface showing: what the cluster is for (the charter), which other members are in the cluster, and what they're being asked to contribute. They then make source-level decisions: "Yes, I'll contribute my Gmail to this cluster. No, I won't contribute my Slack. Yes, I'll contribute my Salesforce access."
+</p>
+<p>
+  These decisions can be changed at any time. A member can add a source they previously withheld, or remove a source they previously contributed, and the cluster's index updates accordingly. Removing a contribution doesn't delete the historical content from the index instantly — there's a sync cycle — but the consent withdrawal is immediate and the index reflects it on the next update.
+</p>
+<p>
+  This consent model is important for adoption, not just for privacy. Teams that try to share knowledge with employees who don't feel they've consented to the sharing get resistance, shadow behaviors, and workarounds. When team members understand exactly what they're contributing, to which cluster, for what purpose, and maintain the ability to revoke that contribution, participation rates are higher because trust is higher. The consent mechanism is not a compliance checkbox — it's the foundation of a system people actually use.
+</p>
+
+<h2>FAST Mode vs. DEEP Mode</h2>
+<p>
+  Clusters operate in two query modes that trade off speed against freshness.
+</p>
+<p>
+  <strong>FAST mode</strong> queries the cluster's pre-built vector index in a single pgvector search pass across all consented source contributions. The index is built from the most recent sync cycle — typically within hours of new content. For most queries, the indexed content is recent enough that the staleness is irrelevant. FAST mode is the default for most agent sessions because it returns results in milliseconds rather than seconds.
+</p>
+<p>
+  <strong>DEEP mode</strong> conducts per-member, live retrieval — the agent makes fresh API calls to each member's connected sources for the specific query, bypassing the index entirely. This is slower (typically 5–30 seconds depending on the number of members and sources) but returns results that reflect the current state of the source as of the moment of the query. DEEP mode is appropriate for queries where recency matters critically: "What did Sarah just email the Acme team about?" requires live email access, not an index snapshot.
+</p>
+<p>
+  The choice of mode is set at the cluster level with agent-level overrides for specific queries. Most clusters run FAST mode by default with DEEP mode available for specific agent tasks that declare a freshness requirement.
+</p>
+
+<h2>Charter-Based Scoping: Why It Matters</h2>
+<p>
+  The charter is what distinguishes a Cluster from a shared data dump. Without a charter, a cluster that contains five members' email, Slack, and Salesforce would return indiscriminate results for any query — including results from completely unrelated conversations that happen to mention the same keywords as the query.
+</p>
+<p>
+  A charter defines: what topics are in scope for this cluster's purpose, what topics are explicitly out of scope, and what the cluster is intended to help with. An agent querying the cluster uses the charter as a filter: results that fall outside the charter's scope are suppressed, even if they technically match the query's keywords.
+</p>
+<p>
+  The out-of-scope list in the charter is particularly important for sensitive topics. A CS team might include "salary discussions" or "performance concerns" in their out-of-scope list even though those topics appear in their email. The charter tells the cluster to exclude those matches from retrieval, so an agent querying the CS Cluster for customer context won't surface a Slack message about someone's compensation review just because it happened to mention the same customer.
+</p>
+<p>
+  This is a qualitatively different approach to knowledge scoping than RBAC-based access control. RBAC says "this person can access this folder." Charter scoping says "this cluster is for this purpose, and content outside that purpose is filtered regardless of access level." The distinction matters because most enterprise knowledge doesn't split cleanly by who-can-see-it — it splits by what it's about and why it matters.
+</p>
+
+<h2>A Complete Example: The CS Escalation Cluster</h2>
+<p>
+  To make this concrete: a five-member customer success team at a B2B SaaS company creates an Escalations Cluster.
+</p>
+<p>
+  Each of the five CSMs connects their Gmail and Salesforce to the cluster. The charter reads: "This cluster is scoped to customer escalation management, churn risk identification, and renewal conversation tracking. In scope: all customer email threads, Salesforce opportunity and account records, support ticket discussions. Out of scope: compensation and performance conversations, personal matters, internal hiring discussions."
+</p>
+<p>
+  When a new escalation arrives from Acme Corp, a CSM opens an agent session and asks: "What's the full history on the Acme account — what were their complaints during renewal, who's been involved on their side, and what commitments have we made?" The agent queries the Escalations Cluster with DEEP mode (since live email matters here), retrieves the relevant threads from all five CSMs' email history that mention Acme, pulls the Salesforce account record and recent activity history, and returns a synthesized answer grounded in actual sources.
+</p>
+<p>
+  What the agent does not return: the CSM's personal email correspondence about unrelated matters, any content from the Slack channels those CSMs are members of (since Slack wasn't consented for this cluster), or any financial data from the Salesforce fields that fall outside the charter scope. The query is answered within the cluster's defined purpose, with each member's consent honored precisely.
+</p>
+
+<h2>What Agents See When Querying a Cluster vs. a Personal Twin</h2>
+<p>
+  The distinction between a cluster query and a personal Twin query is meaningful and surfaced to the agent explicitly.
+</p>
+<p>
+  When an agent queries a personal Twin, the results come from that one user's consented sources. Attribution is clear: "This was in Sarah's email on March 12th." When an agent queries a Cluster, the results may come from any consented member's sources. Attribution is still maintained at the source level — the agent knows that a specific email came from Mark's Gmail and was contributed to the CS Cluster — but the query searched across the whole cluster's indexed content, not just one person's.
+</p>
+<p>
+  This attribution transparency is important for trust. Team members who contribute to a cluster can see, through the audit log, which cluster queries retrieved results from their contributed sources, and what context was returned. This is not surveillance — they see the retrieval events for their own contributions, not other members'. But it means contribution is auditable by the contributor, which reinforces the consent model by making it verifiable rather than merely promised.
+</p>
+
+<h2>Privacy, Audit, and Access Logs</h2>
+<p>
+  Every cluster query is logged in Nuerova's run history with full context: which agent queried, which cluster, what the query was, what results were returned, and which contributing members' sources appeared in the results. This log is immutable and visible to Org Admins and Cluster Owners.
+</p>
+<p>
+  The audit architecture serves two purposes. For compliance teams, it answers the question "who accessed what and when" — a requirement for SOC 2, GDPR data access requests, and internal security reviews. For team members, it makes the consent model visible and verifiable: you can see that your contribution to a cluster was used for customer escalation queries, not for purposes outside the charter.
+</p>
+<p>
+  Cross-cluster access is not automatic. An agent configured for the CS Cluster cannot query the Engineering Cluster or the Finance Cluster unless an Org Admin explicitly configures cross-cluster access. Cluster isolation is enforced at the retrieval layer, not just the interface layer — an API call that tries to query a cluster without authorization receives a rejection, not partial results.
+</p>
+
+<h2>How This Differs From Sharing Data in a ChatGPT Folder</h2>
+<p>
+  The intuitive comparison for Clusters is "a shared folder where you upload company documents and then ask questions about them." That model is how most off-the-shelf RAG implementations work, and it has a consistent set of limitations that Clusters are specifically designed to avoid.
+</p>
+<p>
+  A shared-folder RAG approach is static. You upload documents at a point in time and ask questions about them. When new emails arrive, new Salesforce records are updated, or new documents are created, the index doesn't update unless someone manually re-uploads. Twins and Clusters sync continuously from live sources.
+</p>
+<p>
+  A shared-folder approach is attribution-free. The RAG system returns chunks of text that match the query with no clear source attribution, recency signal, or contributor identity. Cluster queries return attributed results with source, contributor, and timestamp metadata.
+</p>
+<p>
+  A shared-folder approach has no consent mechanism. Documents are uploaded to the folder by whoever has access, and the RAG queries them without tracking whether contributors agreed to make their content queryable. Clusters are built on per-source, per-cluster, revocable consent.
+</p>
+<p>
+  And a shared-folder approach has no scoping beyond file permissions. The RAG searches everything in the folder for every query. Charter-based scoping means cluster queries are filtered to the cluster's defined purpose, suppressing off-topic content even when it technically matches the query.
+</p>
+<p>
+  These differences explain why Nuerova's Twins and Clusters architecture produces query results that are qualitatively more accurate, more trustworthy, and more appropriate for enterprise use than a flat-RAG implementation — and why teams that try RAG-over-shared-folders first often end up rebuilding with a consent-based, scoped approach.
+</p>
+
+<!-- Inline CTA -->
+<div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
+  <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">Build knowledge that teams can actually share</h2>
+  <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
+    Nuerova's Twins and Clusters give every team member a private knowledge foundation — and a consent-based way to pool it into scoped team intelligence that agents can query with precision.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="/how-it-works" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      See How It Works
+    </a>
+    <a href="/contact" style="display: inline-block; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      Request Demo
+    </a>
+  </div>
+</div>
+
+<section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+  <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Common Questions</h2>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Can a user be a member of multiple clusters?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. A user can contribute to as many clusters as they choose, with different source selections for each. A product manager might contribute Google Drive to a Product Cluster, Gmail to a Customer Feedback Cluster, and both to a Company Strategy Cluster — with separate consent decisions for each.</p>
+  </div>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">What happens to the cluster if a team member leaves?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">When a user's account is deactivated, their contributions to clusters are deprecated on the next sync cycle. The historical content they contributed remains accessible to the cluster for a retention period defined in org settings, then is purged. This can be configured based on your data retention policy.</p>
+  </div>
+  <div style="padding-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Does building a Twin require connecting every source at once?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">No. Users connect sources incrementally and the Twin builds as each source is added. A useful Twin can start with just Gmail or just Salesforce — the value compounds as more sources are connected over time. There's no minimum source requirement to get started.</p>
+  </div>
+</section>

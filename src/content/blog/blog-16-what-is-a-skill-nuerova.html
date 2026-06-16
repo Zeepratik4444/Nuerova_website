@@ -1,0 +1,236 @@
+<p>
+  It starts the same way every time. A product manager opens a new agent session, types out a careful prompt explaining exactly what kind of competitive analysis she needs, what format she wants, what sources to prioritize, what length is appropriate, and what tone fits the audience. The agent produces something useful. She closes the tab.
+</p>
+<p>
+  The next week, a colleague on the same team needs a competitive analysis. He opens a new agent session and types out a careful prompt explaining exactly what kind of competitive analysis he needs.
+</p>
+<p>
+  The same prompt. Written from scratch. Again.
+</p>
+<p>
+  This is not a minor inefficiency. Across a twelve-person team running dozens of AI-assisted tasks per week, repeated prompt-writing consumes hours that compound into something worse: inconsistency. Two people asking the same question get different answers because they phrased their prompts differently. An analyst who leaves the company takes their best prompts with them. A new hire who joins has no way to inherit the team's accumulated prompting knowledge. Every AI session starts from zero.
+</p>
+<p>
+  Skills are Nuerova's solution to this problem. They are not prompt templates. They are something structurally different — and understanding what makes them different is the first step to understanding how they change the ceiling on what a team's AI capability can become.
+</p>
+
+<h2>What a Skill Actually Is</h2>
+<p>
+  A Skill in Nuerova is a structured, versioned AI instruction set stored as Markdown and published at the organization level. When a user opens an agent session and applies a Skill, the agent inherits that Skill's full instruction set before seeing the user's specific request. The user doesn't have to write the Skill's logic — they only write the specific task at hand.
+</p>
+<p>
+  Think of it this way: a prompt tells the agent what to do right now. A Skill tells the agent who it is and how it works, permanently. The Skill carries the domain expertise, the output format preferences, the quality standards, and the workflow logic that someone has already worked out. The user's prompt sits on top of that foundation, which means every session using that Skill starts from an expert baseline rather than from scratch.
+</p>
+<p>
+  Skills are stored as Markdown files because Markdown is readable, versionable, and lightweight. They can be created by anyone on the team, reviewed and refined collaboratively, and published to the entire organization with a single action. Once published, every member of the org has access to that Skill in every agent session — no installs, no copy-pasting, no chasing down who wrote the original prompt.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">Core Concept</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">A Skill Is an Instruction Set, Not a Prompt Template</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    Prompt templates are static text that users fill in. Skills are active instruction sets that an agent follows — defining behavior, output format, quality standards, and workflow logic before the user's specific request ever arrives. The distinction matters: one saves typing, the other multiplies expertise.
+  </p>
+</div>
+
+<h2>The Difference Between a Prompt and a Skill</h2>
+<p>
+  Most discussions of AI in enterprise contexts focus on prompting — how to write better inputs to get better outputs. Prompting matters. But prompting is a dead end for teams because it cannot be governed, shared, or compounded across people.
+</p>
+<p>
+  The differences between a prompt and a Skill break down into four dimensions:
+</p>
+
+<div style="margin: 2rem 0;">
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">1</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Versioning</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">A prompt is a string of text with no history. A Skill is a versioned document — you can see what it said last month, compare changes, roll back to a previous version, and know exactly which version an agent was using when it produced a given output. This is the same property that makes software reliable at scale.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">2</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Org-Level Sharing</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">A prompt lives in someone's notes or clipboard. A published Skill is available to every member of the organization, instantly, without anyone having to share a document or train a colleague. The person who writes the best competitive analysis framework once now powers every competitive analysis the team runs, forever.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">3</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Org Context Awareness</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">A prompt is context-free. A Skill can reference cluster knowledge — so a "Client Proposal" Skill can instruct the agent to pull relevant account history from the CRM cluster, reference the company's approved pricing tiers, and format output according to the team's established proposal template. The Skill carries awareness of the organization's specific context, not just generic instructions.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">4</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Hot-Reload Without Retraining</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">When a Skill is updated, the change takes effect immediately for every agent session that uses it — no retraining, no re-deployment, no notification to team members required. Your legal team updates the contract review Skill's compliance checklist, and every subsequent contract review across the org benefits automatically.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Five Built-In Skills, Explained</h2>
+<p>
+  Nuerova ships with 20+ built-in Skills covering the most common enterprise AI use cases. Five of them illustrate how broad the practical impact can be.
+</p>
+
+<h3>PDF Creator</h3>
+<p>
+  The PDF Creator Skill transforms agent output into a formatted, downloadable PDF file. It's not a formatter that takes text and applies styling — it's a full document generation pipeline. The agent reasons through the content requirements, structures the document (cover page, sections, headers, body text, formatting), and produces a WeasyPrint-rendered PDF that can be sent directly to a client, attached to an email, or stored in Drive.
+</p>
+<p>
+  The most common use case is client-facing documents: proposals, reports, executive summaries. Instead of an agent producing markdown that a team member then copies into a Word doc and exports manually, the PDF Creator Skill means the agent produces the finished document in one step. For teams that send dozens of client deliverables per month, this collapses a multi-step workflow into a single agent session.
+</p>
+
+<h3>Web Research</h3>
+<p>
+  The Web Research Skill instructs the agent to conduct structured, cited research using live web data. It defines how the agent should prioritize source types, how to handle conflicting information, what citation format to use, and how to distinguish signal from noise across a large search space.
+</p>
+<p>
+  The value of having this as a Skill versus a prompt is consistency and quality control. A team that does competitive analysis, market research, or due diligence needs those outputs to follow a consistent standard. The Web Research Skill encodes that standard. A junior analyst running Web Research through the Skill gets the same source credibility heuristics and citation discipline as a senior analyst — because both are operating under the same instruction set.
+</p>
+
+<h3>SQL Analyst</h3>
+<p>
+  The SQL Analyst Skill is designed for data teams that need agents to reason over structured data. It instructs the agent on how to interpret a user's natural language question, translate it into sound SQL logic, identify edge cases (null handling, date range issues, aggregation ambiguities), and explain its reasoning before producing the final query.
+</p>
+<p>
+  This Skill is particularly valuable for cross-functional teams where not everyone writes SQL. A marketing manager who needs weekly cohort data can ask the SQL Analyst Skill-equipped agent "how many users who signed up in Q1 returned in Q2" and receive a correct, explained query — rather than waiting for a data analyst to have bandwidth. The Skill carries the query quality standards that a good data analyst would apply, available to any team member any time.
+</p>
+
+<h3>Code Reviewer</h3>
+<p>
+  The Code Reviewer Skill gives agents the instruction set of a rigorous senior engineer. It defines what the agent should look for in a code review: correctness, edge case handling, security vulnerabilities, performance issues, and documentation quality. It specifies how feedback should be structured, how severe issues should be flagged, and what suggestions should be explanatory rather than prescriptive.
+</p>
+<p>
+  Engineering teams use this for first-pass reviews before human review, for reviewing PRs outside the core contributor's domain expertise, and for ensuring that contributors get consistent, high-quality feedback on style and security practices even when the senior reviewer is context-switching between multiple projects. The Skill doesn't replace human judgment — it raises the floor before human judgment applies.
+</p>
+
+<h3>Email Composer</h3>
+<p>
+  The Email Composer Skill instructs the agent on professional communication standards: tone calibration by recipient type, appropriate length for context, persuasion structure for different email purposes (follow-up, escalation, introduction, proposal), and quality checks before output. It can be combined with cluster context so the agent pulls relevant account history, CRM data, or prior conversation context into the email it drafts.
+</p>
+<p>
+  The practical impact is that a sales rep who needs to send a thoughtful follow-up to a complex enterprise account doesn't spend twenty minutes composing it. The Email Composer Skill, combined with CRM cluster context, produces a draft that already knows the account's status, the prior conversation history, and the rep's communication preferences. The rep reviews, edits, sends. Total time: three minutes instead of twenty.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">The Full Library</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">20+ Built-In Skills at Launch</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    In addition to the five above, Nuerova's built-in Skill library includes: Presentation Builder (PPTX), Data Visualizer, DOCX Writer, Spreadsheet Creator, Marketing Suite, Slack Integration, GitHub Integration, Salesforce Analyst, Meeting Summarizer, Contract Reviewer, and more. Each is production-ready from day one.
+  </p>
+</div>
+
+<h2>How Skills Work With Agents and Clusters</h2>
+<p>
+  Understanding Skills in isolation understates their power. The full picture requires understanding how they interact with Nuerova's agent system and cluster architecture.
+</p>
+<p>
+  When a user runs an agent session in Nuerova's AgentHub, the agent operates with three layers of context stacked:
+</p>
+<ul>
+  <li><strong>The Skill layer</strong> — the instruction set from the applied Skill, defining how the agent reasons and what quality standards it applies</li>
+  <li><strong>The Cluster layer</strong> — the relevant knowledge from the team's cluster, including connected source data from Gmail, Slack, Salesforce, Google Drive, GitHub, and other OAuth sources</li>
+  <li><strong>The User's request layer</strong> — the specific task the user is asking the agent to complete right now</li>
+</ul>
+<p>
+  These three layers operate together. The Email Composer Skill tells the agent how to write emails. The CRM cluster tells the agent about this specific account. The user's request tells the agent which email to write. Remove any one layer and the output degrades. Combine all three and the output is something no generic AI tool can produce: expert-quality work, grounded in real organizational context, applied to this exact situation.
+</p>
+<p>
+  This is why the combination of Skills and Clusters is architectural rather than cosmetic. The Skill provides the domain expertise ceiling. The Cluster provides the organizational knowledge floor. The agent's job is to execute within those bounds, for every session, consistently.
+</p>
+
+<h2>Creating Custom Skills</h2>
+<p>
+  Built-in Skills cover the most common use cases, but every organization has workflows that are specific to their industry, their clients, their internal processes. Nuerova allows any team member with the appropriate permissions to create custom Skills from scratch.
+</p>
+<p>
+  Creating a Skill requires writing a Markdown instruction set — a structured set of directions that the agent will follow when the Skill is applied. This doesn't require engineering expertise. It requires domain expertise: the ability to articulate what good output looks like, what steps the agent should follow, and what failure modes to avoid. In most organizations, the people with that domain expertise are the practitioners themselves — the head of CS who knows exactly what a quality escalation response looks like, the finance lead who knows what a correct budget variance analysis requires.
+</p>
+<p>
+  The process is: write the instruction set, test it in an agent session, iterate based on output quality, then publish it to the org when it's production-ready. From that point, the Skill is available org-wide and carries the creator's domain expertise into every session it's applied to, indefinitely.
+</p>
+<p>
+  Teams often discover that the most valuable custom Skills are for tasks that seem too specific for a generic tool to handle well — the exact format for a quarterly business review for a particular client, the specific risk factors to check for in a particular type of contract, the communication tone that works for a specific segment of enterprise customers. These specifics are exactly what generic AI tools cannot carry, and exactly what a custom Skill preserves.
+</p>
+
+<h2>Org-Level Publishing: One Install, Universal Access</h2>
+<p>
+  The distribution mechanism for Skills is one of the details that separates them from prompt libraries. Publishing a Skill to the organization requires a single action from an Admin or Owner. Once published, the Skill appears in every team member's Skill selection menu in AgentHub, immediately, without any further configuration.
+</p>
+<p>
+  This matters because the historical alternative — sharing prompts via Notion pages, Slack threads, email chains, or dedicated prompt library tools — has a failure mode baked in: discoverability. The best prompts get written, shared once, and then gradually forgotten as they get buried in chat history or archived in docs that nobody opens. New hires don't know they exist. Existing team members don't think to look for them when they're in the middle of a task.
+</p>
+<p>
+  Org-level Skill publishing solves this by making the Skill present at the point of action, not buried somewhere in documentation. When a team member opens an agent session, the published Skills are right there. There's no discovery failure because there's nothing to discover — the capability is already in the interface.
+</p>
+<p>
+  RBAC controls what each role can do with Skills. Member and Viewer roles can apply published Skills. Admin and Owner roles can create, edit, publish, and deprecate Skills. This means the governance of which Skills are active is controlled, without restricting access to the Skills that are approved.
+</p>
+
+<h2>The Compounding Effect</h2>
+<p>
+  The most important property of a Skill library is not any individual Skill — it's what happens as Skills accumulate over time.
+</p>
+<p>
+  A team that starts with five built-in Skills and adds two custom Skills per quarter has, after a year, roughly thirteen Skills covering the most common tasks in their workflows. Each new team member who joins inherits all thirteen immediately. Each Skill that gets refined based on real usage becomes more accurate. Each workflow that graduates from "agent session with manual prompt" to "agent session with dedicated Skill" becomes faster and more consistent.
+</p>
+<p>
+  The compounding works in another direction too: as the team's Cluster grows richer — more sources connected, more context indexed, more historical data available — the same Skills produce better outputs because they have more to draw from. A Code Reviewer Skill running against a cluster that includes the team's GitHub history produces better code reviews than the same Skill running without that context. An Email Composer Skill with two years of account history in the CRM cluster produces more contextually relevant emails than the same Skill with a blank cluster.
+</p>
+
+<div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
+  <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">The Accumulation Advantage</strong>
+  <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
+    A team's AI capability doesn't improve because models get better — that happens automatically. It improves because the team's Skills get more refined, the Clusters get richer, and the combination of both raises the quality floor on every agent session. The gap between a team with a mature Skill library and one without it grows every month. Generic AI tools reset that gap to zero every time the context window closes.
+  </p>
+</div>
+
+<h2>Getting Started With Skills in Nuerova</h2>
+<p>
+  The practical starting point for most teams is the built-in Skill library. Spend a week using built-in Skills for the five most common tasks your team delegates to AI agents. Identify where the outputs are close but not quite right — too generic in tone, missing specific context, formatted differently than your internal standard. Those gaps are the specification for your first custom Skill.
+</p>
+<p>
+  Write the custom Skill to close that gap. Test it. Publish it. Then watch what happens when the rest of the team starts using it without being trained on it — because the instruction set is already doing the training for them.
+</p>
+<p>
+  Nuerova's AgentHub is built around this model: Skills as the persistent intelligence layer, Clusters as the persistent knowledge layer, and agent sessions as the execution layer where the two combine for every task. The result is an AI capability that compounds rather than resets — which is the only kind that generates durable ROI for an enterprise team.
+</p>
+
+<!-- Inline CTA -->
+<div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
+  <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">See the Skill library in action</h2>
+  <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
+    Nuerova's 20+ built-in Skills give your team expert-quality AI from day one — and every custom Skill you add compounds your team's capability permanently.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="/features" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      Explore Features
+    </a>
+    <a href="/contact" style="display: inline-block; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      Request Demo
+    </a>
+  </div>
+</div>
+
+<section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+  <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Common Questions</h2>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Do we need technical staff to create custom Skills?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">No. Skills are written in Markdown — a plain text format. Anyone who can describe their workflow clearly can write a Skill. The people with the most valuable domain knowledge to encode into Skills are usually practitioners, not engineers.</p>
+  </div>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">What happens to a Skill when the person who wrote it leaves?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Nothing. Skills are org-scoped assets, not personal ones. When their creator leaves, the Skill continues to function exactly as before. Ownership can be transferred to another Admin at any time.</p>
+  </div>
+  <div style="padding-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Can we apply multiple Skills in a single agent session?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Skills are composable — a session can combine a Web Research Skill with a PDF Creator Skill, for example, to produce a research document in one step. The agent applies both instruction sets and the output reflects both.</p>
+  </div>
+</section>

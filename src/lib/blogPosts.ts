@@ -13,6 +13,11 @@ import post12Html from '@/content/blog/blog-12-roi-of-shared-memory.html?raw';
 import post13Html from '@/content/blog/blog-13-ops-stack-breaks.html?raw';
 import post14Html from '@/content/blog/blog-14-ai-rollout-no-shadow-ai.html?raw';
 import post15Html from '@/content/blog/blog-15-stop-buying-point-ai-tools.html?raw';
+import post16Html from '@/content/blog/blog-16-what-is-a-skill-nuerova.html?raw';
+import post17Html from '@/content/blog/blog-17-ai-document-generation-pdf-pptx.html?raw';
+import post18Html from '@/content/blog/blog-18-byok-bring-your-own-llm-keys.html?raw';
+import post19Html from '@/content/blog/blog-19-twins-and-clusters-explained.html?raw';
+import post20Html from '@/content/blog/blog-20-salesforce-ai-integration-what-works.html?raw';
 
 export type BlogPost = {
 	slug: string;
@@ -192,5 +197,60 @@ export const blogPosts: BlogPost[] = [
 		date: '2026-06-14',
 		accent: 'indigo',
 		contentHtml: post15Html,
+	},
+	{
+		slug: 'what-is-a-skill-nuerova',
+		title: "What Is a Skill? The Reusable AI Instruction That Changes How Teams Work",
+		summary: "Most teams treat AI prompts like single-use tools. Skills change that — packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
+		publishedAt: "Jun 14, 2026",
+		readTime: "9 min read",
+		date: "2026-06-14",
+		tags: ['Product', 'Skills', 'AI Teams'],
+		accent: 'blue',
+		contentHtml: post16Html,
+	},
+	{
+		slug: 'ai-document-generation-pdf-pptx',
+		title: "From Prompt to PDF: How AI Document Generation Actually Works",
+		summary: "AI that generates formatted, structured documents — PDFs, PPTX decks, DOCX reports, XLSX sheets — from a single agent prompt. Here's how the pipeline works and why it matters.",
+		publishedAt: "Jun 14, 2026",
+		readTime: "9 min read",
+		date: "2026-06-14",
+		tags: ['Product', 'Automation', 'Document Generation'],
+		accent: 'indigo',
+		contentHtml: post17Html,
+	},
+	{
+		slug: 'byok-bring-your-own-llm-keys',
+		title: "BYOK: Why Enterprise Teams Should Control Their Own LLM Keys",
+		summary: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost — it's about data control, compliance, and not being locked into a vendor's model choices.",
+		publishedAt: "Jun 14, 2026",
+		readTime: "9 min read",
+		date: "2026-06-14",
+		tags: ['Security', 'Enterprise', 'BYOK'],
+		accent: 'blue',
+		contentHtml: post18Html,
+	},
+	{
+		slug: 'twins-and-clusters-explained',
+		title: "Twins and Clusters: How Personal and Team Knowledge Connect in Nuerova",
+		summary: "Most team AI tools are either personal (one user's context) or generic (no one's context). Twins and Clusters are the architecture that makes shared knowledge work without exposing what shouldn't be shared.",
+		publishedAt: "Jun 21, 2026",
+		readTime: "10 min read",
+		date: "2026-06-21",
+		tags: ['Product', 'Architecture', 'Knowledge Management'],
+		accent: 'indigo',
+		contentHtml: post19Html,
+	},
+	{
+		slug: 'salesforce-ai-integration-what-works',
+		title: "Salesforce + AI: What Actually Works (And What Vendors Won't Tell You)",
+		summary: "Connecting Salesforce to an AI layer sounds straightforward. In practice, most approaches fail because they treat CRM data as read-only context. Here's what actually works and why.",
+		publishedAt: "Jun 21, 2026",
+		readTime: "9 min read",
+		date: "2026-06-21",
+		tags: ['Integrations', 'CRM', 'Salesforce'],
+		accent: 'blue',
+		contentHtml: post20Html,
 	},
 ];

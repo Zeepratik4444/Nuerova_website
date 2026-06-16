@@ -1,0 +1,212 @@
+<p>
+  It is 3:30 PM on a Thursday. A client has requested a proposal by end of business Friday. The account executive has everything she needs: the client's requirements from the discovery call, the pricing structure from the latest rate card, case studies from similar accounts, a clear picture of the proposed scope. The knowledge is all there.
+</p>
+<p>
+  What she doesn't have is the time to turn it into a document. She knows what a good proposal looks like — cover page with the client's name, executive summary, proposed solution section, three-tier pricing comparison, case studies, next steps. She knows the content. She doesn't have four hours to format it.
+</p>
+<p>
+  This is the gap that AI document generation closes. Not the gap of not knowing what to write — that's a different problem. The gap between having the content and having a finished, formatted, client-ready document is where most AI tools fail quietly, and where genuine document generation capability changes what's possible.
+</p>
+
+<h2>The Gap Between "AI Can Write" and "AI Can Produce a Document"</h2>
+<p>
+  Most AI tools can write content. Ask Claude, GPT-4o, or Gemini to draft a proposal and you'll get structured text back. The problem is that structured text is not a document. It is prose in a text box. To turn it into an actual PDF you can send to a client, or a PPTX deck you can present to a board, or a DOCX report you can route through approval, you still have to do the formatting work manually.
+</p>
+<p>
+  That manual step — copy the AI output, open a template, paste section by section, fix the formatting, add the header and footer, adjust the typography, export — takes anywhere from thirty minutes to three hours depending on the document complexity. For teams producing dozens of client-facing documents per month, that time adds up to a substantial recurring cost. More insidiously, it introduces quality variance: different people apply different levels of formatting discipline, and the "finished document" looks different depending on who had the time to do it properly.
+</p>
+<p>
+  AI document generation — real document generation, not "AI writes text that you then format" — collapses this entirely. The agent reasons through the content, applies the document structure, and produces a formatted file in a single pipeline. The output is a PDF you can send, a PPTX deck you can present, or a DOCX file you can route for signature.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">The Distinction</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">Content Generation vs. Document Generation</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    Content generation produces text. Document generation produces a file. The difference is the formatting, structure, and file rendering pipeline that sits between the model's output and something you can actually send to a client or present to a board. Most AI tools do the first. Nuerova does both.
+  </p>
+</div>
+
+<h2>What Document Generation Actually Involves</h2>
+<p>
+  Behind a working AI document generation pipeline are three distinct components that must all function correctly together:
+</p>
+<p>
+  <strong>Content reasoning.</strong> The agent has to understand what goes in the document: what sections are required, what information belongs where, how to handle the specific request from the user, and how to draw on available context to fill each section accurately. This is the LLM component — the language model reasoning through the document structure and content.
+</p>
+<p>
+  <strong>Formatting logic.</strong> The agent has to know how to structure the output for the specific document type — PDF layout with page breaks and headers, PPTX slide structure with titles and bullet hierarchies, DOCX formatting with styles and section breaks, XLSX with named sheets and proper cell types. Each format has its own structural logic, and the formatting instructions have to be applied correctly before the rendering step.
+</p>
+<p>
+  <strong>File output.</strong> The formatted content has to be passed to a rendering library that produces an actual file — not a description of a file, not markdown, but a binary file in the target format. This rendering step is where most "document generation" approaches break down. Without a production-quality rendering library, the output is either low-quality or fails entirely.
+</p>
+<p>
+  Nuerova's document generation pipeline handles all three components for four file formats: PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl. Each renderer is the standard production library for its format, which means the output quality is consistent with documents produced by dedicated tools.
+</p>
+
+<h2>PDF Documents: Proposals, Reports, Executive Summaries</h2>
+<p>
+  PDF is the most universal document format for client-facing work. Proposals, reports, one-pagers, case studies, executive briefings — anything that gets sent to an external party typically lives as a PDF. Nuerova generates PDFs using WeasyPrint, which converts HTML and CSS into print-quality PDF output.
+</p>
+<p>
+  The practical result is that an agent using the PDF Creator Skill can produce a multi-page, formatted PDF with a cover page, table of contents, section headers, body text, bullet lists, tables, and page numbering — in a single session. The agent reasons through what the document should contain based on the user's request and available cluster context, generates the structured HTML, and WeasyPrint renders it into a PDF file that can be downloaded immediately.
+</p>
+<p>
+  The quality ceiling for PDF output is high because WeasyPrint supports the full CSS specification, including custom fonts, colors, page margins, print-specific layout rules, and embedded images. A team that establishes a CSS template for their PDF brand style can apply that template to every PDF the agent generates, ensuring brand consistency across every client deliverable without manual formatting.
+</p>
+
+<h2>PPTX Decks: Board Presentations, Client Decks, QBRs</h2>
+<p>
+  PowerPoint presentations are the dominant format for anything that gets presented live — board meetings, quarterly business reviews, client kickoffs, executive briefings, investor updates. Nuerova generates PPTX files using python-pptx, the standard Python library for programmatic PowerPoint creation.
+</p>
+<p>
+  The Presentation Builder Skill instructs the agent to reason through the slide structure before generating content — how many slides, what each slide should cover, how information should be chunked for a presentation format versus a reading format. The agent then produces slide-by-slide content with title, body, and speaker notes, and python-pptx renders it into a PPTX file with proper slide transitions and layout structure.
+</p>
+<p>
+  The use case that produces the clearest time savings is recurring presentations. A team that runs weekly status decks, monthly board updates, or quarterly client QBRs can build a Skill for each recurring presentation type. The Skill carries the structural template — always twelve slides, always these sections in this order, always these design choices. The agent fills the content from cluster context (Salesforce data, GitHub metrics, Slack updates) and outputs a complete deck that requires review and light editing rather than construction from scratch.
+</p>
+
+<h2>DOCX Reports: Internal Documentation, Contract Drafts, Technical Specs</h2>
+<p>
+  DOCX is the workhorse format for internal business documents: specification documents, contract drafts, policy updates, technical reports, SOPs, and any document that will go through tracked-changes review or needs to be editable by recipients. Nuerova generates DOCX files using python-docx, applying Word styles (Heading 1, Heading 2, Normal, etc.) programmatically.
+</p>
+<p>
+  A critical difference between DOCX generation and PDF generation is the expectation of editability. A PDF is final. A DOCX is a starting point — someone will open it, make changes, track those changes, and route it for approval. The DOCX Writer Skill accounts for this by producing documents with proper Word styles applied rather than ad-hoc formatting, which means recipients can make tracked changes, apply their organization's Normal template, and work with the document as a true Word file rather than fighting formatting issues.
+</p>
+<p>
+  For legal and compliance teams, DOCX generation is particularly valuable for first-draft contract creation. An agent using the DOCX Writer Skill, with access to a contracts cluster (standard clauses, approved vendor terms, past agreements), can draft a contract that is substantively correct and structurally complete. A lawyer still reviews it — but reviews a draft, not a blank page.
+</p>
+
+<h2>XLSX Spreadsheets: Data Exports, Financial Models, Analysis Outputs</h2>
+<p>
+  XLSX is the format for structured data: financial models, data exports, analysis results, tracking spreadsheets, reporting dashboards. Nuerova generates XLSX files using openpyxl, which supports multiple named sheets, cell formatting, formulas, column widths, and data validation rules.
+</p>
+<p>
+  The most common use case is data export from agent analysis. An agent using the SQL Analyst Skill or Data Visualizer Skill can run an analysis, format the results into a multi-sheet XLSX file with a summary tab and raw data tabs, and produce a file ready for distribution — without anyone manually copying query results into a spreadsheet. For recurring reports (weekly sales pipeline, monthly churn metrics, quarterly capacity planning), this turns a manual data-wrangling task into a scheduled agent run.
+</p>
+
+<!-- Concept block -->
+<div style="background: #f0f7ff; border-left: 4px solid #1275e2; border-radius: 0 0.5rem 0.5rem 0; padding: 1.5rem; margin: 2rem 0;">
+  <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">Format Comparison</div>
+  <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">When to Use Each Format</h3>
+  <p style="margin: 0; color: #475569; line-height: 1.7;">
+    PDF for anything client-facing and final. PPTX for anything presented live. DOCX for anything that requires tracked changes, legal review, or will be edited by recipients. XLSX for any structured data output, analysis result, or recurring data export. Nuerova's Skills cover all four — you apply the right one for the job.
+  </p>
+</div>
+
+<h2>How Cluster Context Makes Documents Accurate</h2>
+<p>
+  The most important differentiator in AI document generation is not the rendering quality — any team with a few hours and the right Python libraries can produce a basic PDF renderer. The differentiator is the accuracy of the content that goes into the document.
+</p>
+<p>
+  A generic AI tool generating a client proposal has no idea who the client is, what they asked for, what your pricing structure is, or what case studies are most relevant. It produces a generic proposal with placeholder content that someone has to replace manually. That manual replacement step is where most of the time savings evaporates — you're back to doing the content work the AI was supposed to handle.
+</p>
+<p>
+  When a Nuerova agent generates a document, it draws on the cluster context available to it: CRM records from Salesforce, email history from Gmail, product specifications from Google Drive, pricing data from the cluster's knowledge base. The proposal it generates knows the client's name, their stated requirements from the discovery call notes, the pricing tier that applies to their deal size, and the case studies from accounts with similar use cases. The content is accurate because it's sourced from the team's actual data, not generated from a model's generic training.
+</p>
+<p>
+  This is the difference between AI document generation as a novelty and AI document generation as a workflow. The novelty version produces something that requires extensive manual correction. The workflow version produces something that requires light review and approval.
+</p>
+
+<h2>The Generation Workflow</h2>
+<p>
+  The end-to-end workflow for document generation in Nuerova follows a consistent pattern regardless of output format:
+</p>
+
+<div style="margin: 2rem 0;">
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">1</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">User prompt</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">The user describes what they need: "Create a client proposal for Acme Corp's infrastructure modernization project, three-tier pricing, include the retail case study." This is the specific request, not the general instructions — those are handled by the Skill.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">2</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Agent reasoning</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">The agent, operating under the PDF Creator Skill and with cluster access, queries the CRM for Acme Corp's account history, retrieves the retail case study from the case studies cluster, references the pricing structure from the rate card, and reasons through what each section of the proposal should contain.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">3</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Skill execution</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">The agent produces the formatted HTML structure for the PDF — cover page, sections, tables, formatting directives — and passes it to the WeasyPrint renderer. The rendering step applies the typography, page layout, and visual structure.</p>
+    </div>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
+    <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">4</div>
+    <div>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">File output and distribution</h4>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">The finished file is available for download from the agent session. It can be shared directly, saved to Google Drive, or attached to an email drafted in the same session using the Email Composer Skill. The entire cycle — request to finished document — typically takes under three minutes.</p>
+    </div>
+  </div>
+</div>
+
+<h2>Real Use Cases</h2>
+<p>
+  The use cases where AI document generation delivers the clearest return cluster around recurring, high-stakes, time-consuming document types:
+</p>
+<ul>
+  <li><strong>Client proposals</strong> — generated from CRM context and pricing data, reviewed and approved by the account executive, sent the same day the request arrives instead of two days later</li>
+  <li><strong>Board decks</strong> — assembled from the company's quarterly metrics, structured using the Presentation Builder Skill, requiring edits to narrative framing rather than construction from scratch</li>
+  <li><strong>Weekly status reports</strong> — generated as a scheduled automation that pulls from GitHub for engineering metrics, Salesforce for pipeline data, and Slack for team updates, delivered to stakeholders as a PDF every Monday morning</li>
+  <li><strong>Data exports</strong> — SQL analysis results formatted as a multi-sheet XLSX file with summary statistics, trend data, and raw data tabs, produced from an agent session without manual spreadsheet assembly</li>
+  <li><strong>Contract first drafts</strong> — DOCX files using standard clauses from the contracts cluster, structured for legal review with tracked-changes enabled, cutting first-draft time from hours to minutes</li>
+</ul>
+
+<h2>Why This Is Different From Copying Claude Output Into a Template</h2>
+<p>
+  The most common objection to AI document generation is that you can already get most of the way there by asking an AI to write the content and then pasting it into a template. This is true. It is also slower, less consistent, and more error-prone than integrated document generation.
+</p>
+<p>
+  The copy-paste workflow has three failure modes. First, the content the AI generates is generic unless you manually inject context into the prompt — which is itself time-consuming and produces different results depending on how carefully you wrote the context. Second, the pasting and formatting step takes real time, varies in quality, and breaks every time the template changes or the content doesn't fit the pre-built template sections cleanly. Third, there's no audit trail: you can't see what context the agent used, can't reproduce the document reliably, and can't hand it off to a colleague who can regenerate it with updated data.
+</p>
+<p>
+  Integrated document generation through Nuerova solves all three: cluster context is injected automatically, formatting is handled by the rendering pipeline, and every generation is logged in the Run History with the full context chain visible. The document is reproducible — someone else can run the same request against the same cluster and get a structurally equivalent document with updated data.
+</p>
+
+<h2>Limitations Worth Knowing</h2>
+<p>
+  AI document generation in its current state has limits that are worth being direct about. Complex visual layouts — multi-column designs with image-text interweaving, highly customized chart styles, pixel-precise graphic design — are not what this pipeline is for. The output quality is high for text-heavy business documents, tables, and structured content. It is not a replacement for a graphic designer producing a brand campaign one-pager.
+</p>
+<p>
+  PPTX generation in particular produces structurally correct decks with standard layouts — it does not produce highly designed slides with custom animations, precise image placement, or complex visual treatments. The right mental model is "draft quality that a designer could polish" rather than "finished quality that goes directly to print."
+</p>
+<p>
+  For the use cases AI document generation is well suited to — proposals, reports, data exports, contract drafts, status decks — the quality ceiling is high enough that review and light editing is sufficient before use. For use cases requiring high design fidelity, the pipeline is better used as a first draft that informs a designer's work rather than a replacement for it.
+</p>
+
+<!-- Inline CTA -->
+<div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
+  <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">From prompt to finished document in one session</h2>
+  <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
+    Nuerova generates PDFs, PPTX decks, DOCX reports, and XLSX files from a single agent prompt — grounded in your actual cluster data, not generic content.
+  </p>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+    <a href="/features" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      See the Document Skills
+    </a>
+    <a href="/contact" style="display: inline-block; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
+      Request Demo
+    </a>
+  </div>
+</div>
+
+<section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+  <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Common Questions</h2>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Can we apply our brand's colors and fonts to generated PDFs?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Nuerova's PDF generation uses CSS for styling, which means a team CSS template can apply your brand's typography, colors, and layout to every generated document. The template is set once and applied automatically.</p>
+  </div>
+  <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Can document generation be automated on a schedule?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Nuerova's Automations system supports scheduled triggers, so a weekly report generation can be set to run every Monday at 7 AM, pull current data from connected sources, and deliver the finished document automatically.</p>
+  </div>
+  <div style="padding-bottom: 1.5rem;">
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Where do the generated files go?</h3>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Generated files are available for download directly from the agent session. They can also be configured to save to Google Drive, attach to an email for sending, or be stored in the session's artifact history for later access.</p>
+  </div>
+</section>

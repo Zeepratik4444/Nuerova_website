@@ -146,6 +146,56 @@ const posts = [
 		readTime: "5 min read",
 		publishedAt: "2026-06-14",
 	},
+	{
+		slug: "what-is-a-skill-nuerova",
+		source: "blog-16-what-is-a-skill-nuerova.html",
+		title: "What Is a Skill? The Reusable AI Instruction That Changes How Teams Work",
+		description: "Most teams treat AI prompts like single-use tools. Skills change that — packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
+		date: "2026-06-14",
+		tags: ["Product", "Skills", "AI Teams"],
+		readTime: "9 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "ai-document-generation-pdf-pptx",
+		source: "blog-17-ai-document-generation-pdf-pptx.html",
+		title: "From Prompt to PDF: How AI Document Generation Actually Works",
+		description: "AI that generates formatted, structured documents — PDFs, PPTX decks, DOCX reports, XLSX sheets — from a single agent prompt. Here's how the pipeline works and why it matters.",
+		date: "2026-06-14",
+		tags: ["Product", "Automation", "Document Generation"],
+		readTime: "9 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "byok-bring-your-own-llm-keys",
+		source: "blog-18-byok-bring-your-own-llm-keys.html",
+		title: "BYOK: Why Enterprise Teams Should Control Their Own LLM Keys",
+		description: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost — it's about data control, compliance, and not being locked into a vendor's model choices.",
+		date: "2026-06-14",
+		tags: ["Security", "Enterprise", "BYOK"],
+		readTime: "9 min read",
+		publishedAt: "2026-06-14",
+	},
+	{
+		slug: "twins-and-clusters-explained",
+		source: "blog-19-twins-and-clusters-explained.html",
+		title: "Twins and Clusters: How Personal and Team Knowledge Connect in Nuerova",
+		description: "Most team AI tools are either personal (one user's context) or generic (no one's context). Twins and Clusters are the architecture that makes shared knowledge work without exposing what shouldn't be shared.",
+		date: "2026-06-21",
+		tags: ["Product", "Architecture", "Knowledge Management"],
+		readTime: "10 min read",
+		publishedAt: "2026-06-21",
+	},
+	{
+		slug: "salesforce-ai-integration-what-works",
+		source: "blog-20-salesforce-ai-integration-what-works.html",
+		title: "Salesforce + AI: What Actually Works (And What Vendors Won't Tell You)",
+		description: "Connecting Salesforce to an AI layer sounds straightforward. In practice, most approaches fail because they treat CRM data as read-only context. Here's what actually works and why.",
+		date: "2026-06-21",
+		tags: ["Integrations", "CRM", "Salesforce"],
+		readTime: "9 min read",
+		publishedAt: "2026-06-21",
+	},
 ];
 
 const blogNextSteps = {
@@ -254,6 +304,41 @@ const blogNextSteps = {
 		label: "Request a demo",
 		to: "/contact",
 	},
+	"what-is-a-skill-nuerova": {
+		stage: "consideration",
+		title: "Explore Nuerova's Skill library",
+		description: "See the 20+ built-in Skills that give your team expert-quality AI from day one — and how to create your own.",
+		label: "Explore features",
+		to: "/features",
+	},
+	"ai-document-generation-pdf-pptx": {
+		stage: "consideration",
+		title: "See document generation in action",
+		description: "Watch how Nuerova generates a finished PDF proposal, PPTX deck, or DOCX report from a single agent prompt.",
+		label: "See how it works",
+		to: "/how-it-works",
+	},
+	"byok-bring-your-own-llm-keys": {
+		stage: "decision",
+		title: "Review Nuerova's security architecture",
+		description: "See how BYOK, Fernet key encryption, RBAC, and audit logs work together in Nuerova's enterprise security model.",
+		label: "Read security details",
+		to: "/security",
+	},
+	"twins-and-clusters-explained": {
+		stage: "awareness",
+		title: "See how Twins and Clusters work together",
+		description: "Explore the consent model, FAST vs. DEEP mode, and how charter-based scoping keeps team knowledge precise.",
+		label: "See how it works",
+		to: "/how-it-works",
+	},
+	"salesforce-ai-integration-what-works": {
+		stage: "consideration",
+		title: "See Salesforce integration in Nuerova",
+		description: "Connect your Salesforce account and see how agents synthesize CRM data with email and Slack for complete account intelligence.",
+		label: "Explore integrations",
+		to: "/features",
+	},
 };
 
 const blogAeoBlocks = {
@@ -317,6 +402,51 @@ const blogAeoBlocks = {
 			"Point tools generate additive ROI; intelligence layers compound",
 			"Cross-tool context is the bottleneck, not model capability",
 			"Inflection point: recurring workflows that need cross-system context",
+		],
+	},
+	"what-is-a-skill-nuerova": {
+		question: "What is a Skill in an AI platform?",
+		answer: "A Skill is a reusable, versioned AI instruction set that packages a specific capability — like generating PDFs or writing SQL queries — into an installable module that agents apply before seeing a user's specific request. Unlike prompt templates, Skills are versioned, org-scoped, and hot-reload without retraining.",
+		facts: [
+			"Nuerova includes 20+ built-in Skills covering document creation, research, data analytics, and integrations",
+			"Skills are org-scoped — one publish makes them available to every team member",
+			"Custom Skills can be created from any instruction set and published to the org",
+		],
+	},
+	"ai-document-generation-pdf-pptx": {
+		question: "How does AI document generation work?",
+		answer: "AI document generation combines content reasoning (the LLM understands what to write), formatting logic (structured output for the target file format), and file rendering (a production library produces the actual binary file). Nuerova generates PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl — all from a single agent prompt grounded in cluster context.",
+		facts: [
+			"PDF, PPTX, DOCX, and XLSX generation from a single agent session",
+			"Documents are grounded in cluster context — not generic placeholder content",
+			"Generation is logged in Run History and reproducible with updated data",
+		],
+	},
+	"byok-bring-your-own-llm-keys": {
+		question: "What is BYOK (Bring Your Own Keys) for LLMs?",
+		answer: "BYOK means you connect your own API keys for LLM providers — OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, or Bedrock — and the platform routes model calls through your account. You pay model costs directly, your data flows under your API terms, and you control which model version runs. The platform provides orchestration, not model access.",
+		facts: [
+			"Nuerova supports BYOK for 6+ providers via LiteLLM abstraction",
+			"API keys are encrypted at rest using Fernet symmetric encryption",
+			"Model selection is configurable at the org level with per-session overrides",
+		],
+	},
+	"twins-and-clusters-explained": {
+		question: "What are Twins and Clusters in Nuerova?",
+		answer: "A Twin is a private semantic index built from a user's consented OAuth sources (Gmail, Slack, Salesforce, Google Drive, GitHub). A Cluster is a bounded pool of multiple Twins, scoped by a charter that defines the cluster's purpose and out-of-scope exclusions. Members explicitly grant which sources they contribute per cluster. Agents query clusters within charter scope, not across all data indiscriminately.",
+		facts: [
+			"Twins are private by default — no admin visibility into individual Twin contents",
+			"Cluster consent is per-member, per-source, per-cluster, and revocable at any time",
+			"Charter-based scoping filters out-of-scope content even when it keyword-matches a query",
+		],
+	},
+	"salesforce-ai-integration-what-works": {
+		question: "What makes a Salesforce AI integration actually work in production?",
+		answer: "A production-viable Salesforce AI integration requires live data with relational context preserved (not flat exports), cross-channel synthesis with email and Slack alongside CRM records, and the ability to initiate actions (with human approval) rather than only answer questions. Most implementations fail one or more of these requirements.",
+		facts: [
+			"Salesforce data is relational — flat RAG exports lose account-contact-opportunity context",
+			"The full account story spans email, Slack, and CRM — single-source AI gives partial answers",
+			"Read-only AI informs; action-capable AI with approval gates changes actual workflows",
 		],
 	},
 };
