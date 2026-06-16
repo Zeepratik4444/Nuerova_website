@@ -14,8 +14,8 @@ const permissionMatrix = [
 
 export function SecurityPage() {
 	useSEO({
-		title: "Security & Trust | Nuerova",
-		description: "Data governance, tenant isolation, compliance, and our commitment to not training on customer data.",
+		title: "Security & Governance — Enterprise Grade Data Protection | Nuerova",
+		description: "Explore Nuerova's enterprise-grade security standards. Learn about workspace isolation, role-based access control, SOC2 compliance, and audit trails.",
 		schemaOrg: {
 			"@type": "WebPage",
 			"name": "Security & Trust | Nuerova",

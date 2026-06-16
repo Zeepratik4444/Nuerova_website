@@ -187,12 +187,12 @@ const features = [
 
 export function FeaturesPage() {
 	useSEO({
-		title: "Features | Nuerova Platform",
-		description: "Explore the enterprise intelligence layer: Memory Clusters, Triage Agents, secure automations, and deep RBAC controls.",
+		title: "Features — Scoped Clusters, Custom Agents & Governance | Nuerova",
+		description: "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
 		schemaOrg: {
 			"@type": "WebPage",
-			"name": "Features | Nuerova Platform",
-			"description": "Explore the enterprise intelligence layer: Memory Clusters, Triage Agents, secure automations, and deep RBAC controls.",
+			"name": "Features — Scoped Clusters, Custom Agents & Governance | Nuerova",
+			"description": "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
 			"about": {
 				"@type": "SoftwareApplication",
 				"name": "Nuerova Platform",

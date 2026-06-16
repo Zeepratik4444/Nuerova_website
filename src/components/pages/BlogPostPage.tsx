@@ -112,20 +112,24 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 
 	useSEO({
 		title: post
-			? `${post.title} | Nuerova`
+			? `${post.title} | Nuerova Blog`
 			: "Blog article not found - Nuerova",
 		description: post
 			? post.summary
 			: "The requested Nuerova blog article could not be found.",
+		ogType: post ? "article" : "website",
 		schemaOrg: post ? {
-			"@type": "Article",
+			"@type": "BlogPosting",
 			"headline": post.title,
 			"description": post.summary,
+			"url": `https://nuerova.xyz/blog/${post.slug}`,
+			"datePublished": post.date ?? "2026-06-07",
+			"dateModified": post.date ?? "2026-06-07",
 			"author": {
-				"@type": "Person",
-				"name": post.author || "Nuerova Team"
+				"@type": "Organization",
+				"name": "Nuerova",
+				"url": "https://nuerova.xyz"
 			},
-			"datePublished": post.date ? new Date(post.date).toISOString() : new Date("2026-06-14").toISOString(),
 			"publisher": {
 				"@type": "Organization",
 				"name": "Nuerova",
@@ -133,7 +137,8 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 					"@type": "ImageObject",
 					"url": "https://nuerova.xyz/brand-logo.png"
 				}
-			}
+			},
+			"keywords": post.tags.join(", ")
 		} : undefined
 	});
 

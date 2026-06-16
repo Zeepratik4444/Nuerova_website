@@ -16,12 +16,16 @@ interface SEOProps {
 	 */
 	noIndex?: boolean;
 	/**
+	 * Override og:type. Defaults to "website". Use "article" for blog posts.
+	 */
+	ogType?: string;
+	/**
 	 * JSON-LD Structured Data payload for AEO/GEO engine compatibility
 	 */
 	schemaOrg?: Record<string, any> | Record<string, any>[];
 }
 
-export function useSEO({ title, description, canonicalPath, ogImage, noIndex = false, schemaOrg }: SEOProps) {
+export function useSEO({ title, description, canonicalPath, ogImage, noIndex = false, ogType = "website", schemaOrg }: SEOProps) {
 	useEffect(() => {
 		const path = canonicalPath ?? window.location.pathname;
 		const canonicalUrl = `${BASE_URL}${path === "/" ? "/" : path.replace(/\/$/, "")}`;
@@ -89,7 +93,7 @@ export function useSEO({ title, description, canonicalPath, ogImage, noIndex = f
 		setMeta("property", "og:image:width", "1200");
 		setMeta("property", "og:image:height", "630");
 		setMeta("property", "og:image:alt", title);
-		setMeta("property", "og:type", "website");
+		setMeta("property", "og:type", ogType);
 		setMeta("property", "og:site_name", "Nuerova");
 
 		// ─── Twitter Card ──────────────────────────────────────────
