@@ -8,44 +8,53 @@ const steps = [
 	{
 		num: "01",
 		title: "Connect Knowledge Sources",
-		body: "Link Notion, Confluence, Google Drive, Slack, CRM records, or any REST source. Nuerova ingests, chunks, and indexes content without manual tagging.",
-		tags: ["Notion", "Slack", "Drive", "GitHub", "CRM"],
+		body: "Link Gmail, Slack, Google Drive, Salesforce, GitHub, Notion, Confluence, Outlook, or Shopify via OAuth. Nuerova ingests, chunks, and embeds content without manual tagging.",
+		tags: ["Gmail", "Slack", "Drive", "GitHub", "Salesforce"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
 		)
 	},
 	{
 		num: "02",
-		title: "Create Scoped Clusters",
-		body: "A cluster is a scoped knowledge pool: a team, client account, project, or department. Add members, set permissions, and Nuerova routes queries exclusively through that context.",
+		title: "Build Your Personal Twin",
+		body: "Your Twin is your personal knowledge profile. As you connect sources, Nuerova builds a private, searchable index of your context — emails, docs, conversations, CRM records. This is the raw material clusters draw from.",
+		tags: ["Personal context", "Private index", "Consent-based"],
+		icon: (
+			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+		)
+	},
+	{
+		num: "03",
+		title: "Pool Twins into Clusters",
+		body: "A cluster is a scoped knowledge pool: a team, client account, project, or department. Members consent to contributing their Twin's relevant sources. Nuerova routes queries across the pool, never outside it.",
 		tags: ["Team scope", "Permissions", "Isolation"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
 		)
 	},
 	{
-		num: "03",
+		num: "04",
 		title: "Deploy Context-Aware Agents",
-		body: "Agents inside a cluster inherit its knowledge automatically. Ask a question and the agent reasons over your team's actual context, not generic training data. All answers are cited.",
-		tags: ["Cited responses", "No re-explaining"],
+		body: "Agents inside a cluster inherit its knowledge automatically. Ask a question and the agent reasons over your team's actual context, not generic training data. All answers are cited. Pair with Skills to extend what agents can do.",
+		tags: ["Cited responses", "Skills", "No re-explaining"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
 		)
 	},
 	{
-		num: "04",
+		num: "05",
 		title: "Build Agent-Native Automations",
-		body: "Create workflows that trigger, reason over cluster knowledge, execute actions, and optionally wait for human approval before proceeding.",
+		body: "Create workflows that trigger, reason over cluster knowledge, execute actions, and optionally wait for human approval before proceeding. Automations know your context before they run.",
 		tags: ["Triggers", "Reasoning", "Approval gates"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
 		)
 	},
 	{
-		num: "05",
+		num: "06",
 		title: "Govern and Scale",
-		body: "The admin panel shows who used what, what agents did, and which automations ran. RBAC controls enforce boundaries and audit logs capture every critical action.",
-		tags: ["RBAC", "Audit logs", "Visibility"],
+		body: "The admin panel shows who used what, what agents did, and which automations ran. RBAC controls enforce boundaries. Run History and audit logs capture every critical action for compliance.",
+		tags: ["RBAC", "Audit logs", "Run History"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
 		)
@@ -65,31 +74,37 @@ export function HowItWorksPage() {
 					"@type": "HowToStep",
 					"position": 1,
 					"name": "Connect your sources",
-					"text": "Sync Notion, Slack, Google Drive, CRM, GitHub, Jira, and internal file sources to build your team's raw knowledge base.",
+					"text": "Sync Gmail, Slack, Google Drive, Salesforce, GitHub, Notion, Confluence, Outlook, and Shopify via OAuth to build your team's raw knowledge base.",
 				},
 				{
 					"@type": "HowToStep",
 					"position": 2,
-					"name": "Scope into clusters",
-					"text": "Organize ingested knowledge into logical, permission-bounded clusters scoped by team, project, client account, or department.",
+					"name": "Build your personal Twin",
+					"text": "Nuerova creates a private knowledge profile (Twin) for each user from their connected sources — a personal, consent-gated index of their context.",
 				},
 				{
 					"@type": "HowToStep",
 					"position": 3,
-					"name": "Deploy context-aware agents",
-					"text": "Configure agent personas with custom instructions, model settings, and memory clearance so agents inherit the right cluster context before responding.",
+					"name": "Pool Twins into Clusters",
+					"text": "Organize members' Twins into permission-bounded clusters scoped by team, project, client account, or department. Members consent to which sources they share.",
 				},
 				{
 					"@type": "HowToStep",
 					"position": 4,
+					"name": "Deploy context-aware agents",
+					"text": "Configure agents with custom instructions and Skills so they inherit the right cluster context before responding. All answers are cited.",
+				},
+				{
+					"@type": "HowToStep",
+					"position": 5,
 					"name": "Automate with reasoning workflows",
 					"text": "Build trigger-action workflows that reason through conditions, branch on context, and request human approval before executing actions.",
 				},
 				{
 					"@type": "HowToStep",
-					"position": 5,
+					"position": 6,
 					"name": "Govern with audit trails and RBAC",
-					"text": "Maintain visibility through immutable audit logs, granular role-based access control, and approval trails on every agent action.",
+					"text": "Maintain visibility through Run History, immutable audit logs, granular role-based access control, and approval trails on every agent action.",
 				},
 			],
 		},

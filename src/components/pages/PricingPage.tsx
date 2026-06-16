@@ -8,8 +8,10 @@ const featureRows = [
 	{ label: "Knowledge clusters", starter: "3", teams: "Unlimited", enterprise: "Unlimited" },
 	{ label: "Automations", starter: "5", teams: "Unlimited", enterprise: "Unlimited + custom" },
 	{ label: "Skill registry", starter: "Personal only", teams: "Team publishing", enterprise: "Org governance" },
+	{ label: "Bring your own LLM keys (BYOK)", starter: "1 provider", teams: "OpenAI, Anthropic, Gemini", enterprise: "All providers incl. Azure & Bedrock" },
 	{ label: "Role-based access", starter: "Basic", teams: "3 predefined roles", enterprise: "Custom roles" },
 	{ label: "Audit logs", starter: "—", teams: "30 days", enterprise: "90 days + export" },
+	{ label: "Integrations", starter: "2 OAuth sources", teams: "All 8 integrations", enterprise: "All + custom REST" },
 	{ label: "Support", starter: "Community", teams: "Email & Onboarding", enterprise: "Dedicated CSM" },
 ];
 

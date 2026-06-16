@@ -182,7 +182,84 @@ const features = [
 				</div>
 			</div>
 		)
-	}
+	},
+	{
+		id: "skills",
+		title: "Built-in Skill Library",
+		description: "Reusable AI instruction sets your team installs once and runs across every agent session. No prompt re-engineering on every conversation.",
+		points: [
+			"20+ built-in skills: document creation, research, data analytics, integrations",
+			"Create custom skills from any instruction set and publish org-wide",
+			"Skills are org-scoped — one install, available to your entire team",
+		],
+		mockUi: (
+			<div className="flex flex-col h-full bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl relative">
+				<div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent pointer-events-none"></div>
+				<div className="px-4 py-3 border-b border-white/10 flex items-center justify-between bg-black/40">
+					<span className="text-[10px] font-bold tracking-widest text-white/60">SKILL LIBRARY</span>
+					<span className="text-[10px] text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded font-bold">20+ Built-in</span>
+				</div>
+				<div className="p-4 grid grid-cols-2 gap-2 overflow-y-auto flex-1 relative z-10">
+					{[
+						{ name: "PDF Creator", color: "bg-red-500/20 text-red-400" },
+						{ name: "Presentation Builder", color: "bg-orange-500/20 text-orange-400" },
+						{ name: "Web Research", color: "bg-status-blue/20 text-status-blue" },
+						{ name: "Data Visualizer", color: "bg-emerald-500/20 text-emerald-400" },
+						{ name: "SQL Analyst", color: "bg-yellow-500/20 text-yellow-400" },
+						{ name: "Code Reviewer", color: "bg-purple-500/20 text-purple-400" },
+						{ name: "Email Composer", color: "bg-pink-500/20 text-pink-400" },
+						{ name: "Marketing Suite", color: "bg-cyan-500/20 text-cyan-400" },
+					].map((skill, i) => (
+						<div key={i} className="flex items-center gap-2.5 p-2.5 rounded-lg border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors cursor-pointer">
+							<div className={`w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0 ${skill.color}`}>
+								<svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+							</div>
+							<span className="text-xs text-white/80 font-medium leading-tight">{skill.name}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		)
+	},
+	{
+		id: "integrations",
+		title: "Deep Integrations",
+		description: "Connect the tools your team already uses. Each OAuth connection feeds your personal knowledge profile — the raw material that makes cluster answers context-aware.",
+		points: [
+			"Gmail, Google Workspace, Slack, GitHub, Salesforce, Outlook, Shopify",
+			"OAuth-based — no API keys or IT tickets for standard integrations",
+			"Granular consent: each member controls which sources they share with a cluster",
+		],
+		mockUi: (
+			<div className="flex flex-col h-full bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl relative">
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-500/8 via-transparent to-transparent pointer-events-none"></div>
+				<div className="px-4 py-3 border-b border-white/10 flex items-center justify-between bg-black/40">
+					<span className="text-[10px] font-bold tracking-widest text-white/60">INTEGRATIONS</span>
+					<span className="text-[10px] text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded font-bold">OAuth secured</span>
+				</div>
+				<div className="p-5 grid grid-cols-3 gap-3 flex-1 relative z-10 content-start">
+					{[
+						{ name: "Gmail", abbr: "GM" },
+						{ name: "Slack", abbr: "SL" },
+						{ name: "Salesforce", abbr: "SF" },
+						{ name: "GitHub", abbr: "GH" },
+						{ name: "Outlook", abbr: "OL" },
+						{ name: "Shopify", abbr: "SH" },
+						{ name: "Google Drive", abbr: "GD" },
+						{ name: "Notion", abbr: "N" },
+						{ name: "Confluence", abbr: "CF" },
+					].map((int, i) => (
+						<div key={i} className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl border border-white/10 bg-white/[0.02] hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all cursor-pointer group">
+							<div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-[11px] font-bold text-white/70 group-hover:text-emerald-400 transition-colors">
+								{int.abbr}
+							</div>
+							<span className="text-[10px] text-white/40 font-medium group-hover:text-white/70 transition-colors text-center leading-tight">{int.name}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		)
+	},
 ];
 
 export function FeaturesPage() {
@@ -291,6 +368,36 @@ export function FeaturesPage() {
 								</div>
 							</div>
 						</div>
+					</div>
+				</section>
+
+				{/* ── SKILLS GALLERY ── */}
+				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-16 reveal">
+					<div className="mb-10">
+						<span className="font-label-caps text-xs text-purple-400 bg-purple-400/10 border border-purple-400/20 px-3 py-1 rounded-full inline-block mb-4">BUILT-IN SKILLS</span>
+						<h2 className="font-headline-md text-3xl text-white font-bold tracking-tight mb-3">Everything your team needs, pre-built and ready to run.</h2>
+						<p className="text-white/50 max-w-2xl">Install any skill in one click. Each skill is a structured AI instruction set — tested, versioned, and org-shareable.</p>
+					</div>
+					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+						{[
+							{ name: "PDF Creator", desc: "Generate formatted PDFs from any prompt", color: "text-red-400", bg: "bg-red-500/10 border-red-500/20" },
+							{ name: "Presentation Builder", desc: "Create PPTX slide decks with structured content", color: "text-orange-400", bg: "bg-orange-500/10 border-orange-500/20" },
+							{ name: "DOCX Writer", desc: "Produce Word documents with enterprise formatting", color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+							{ name: "Spreadsheet Creator", desc: "Build structured XLSX sheets from data or prompts", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" },
+							{ name: "Web Research", desc: "Search, scrape, and synthesize live web sources", color: "text-status-blue", bg: "bg-status-blue/10 border-status-blue/20" },
+							{ name: "Data Visualizer", desc: "Generate charts and dashboards from raw data", color: "text-yellow-400", bg: "bg-yellow-500/10 border-yellow-500/20" },
+							{ name: "SQL Analyst", desc: "Write and validate SQL queries against your schema", color: "text-cyan-400", bg: "bg-cyan-500/10 border-cyan-500/20" },
+							{ name: "Code Reviewer", desc: "Security and complexity analysis for code changes", color: "text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
+							{ name: "Email Composer", desc: "Draft tone-adjusted emails with context from your CRM", color: "text-pink-400", bg: "bg-pink-500/10 border-pink-500/20" },
+							{ name: "Marketing Suite", desc: "Ad copy, landing pages, and campaign briefs", color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" },
+							{ name: "Slack Integration", desc: "Post summaries and updates directly to Slack channels", color: "text-violet-400", bg: "bg-violet-500/10 border-violet-500/20" },
+							{ name: "Skill Creator", desc: "Build and publish custom skills from any instruction set", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
+						].map((skill) => (
+							<div key={skill.name} className={`p-4 rounded-xl border ${skill.bg} bg-white/[0.01] hover:bg-white/[0.04] transition-all group cursor-pointer`}>
+								<div className={`text-xs font-bold mb-2 ${skill.color}`}>{skill.name}</div>
+								<p className="text-[11px] text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{skill.desc}</p>
+							</div>
+						))}
 					</div>
 				</section>
 
