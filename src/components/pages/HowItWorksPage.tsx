@@ -136,7 +136,7 @@ export function HowItWorksPage() {
 						Here is what happens after you connect your first source.
 					</h1>
 					<p className="font-body-md text-xl text-white/50 max-w-2xl leading-relaxed">
-						Nuerova turns your team's scattered context into a governed intelligence layer in five distinct steps.
+						Nuerova turns your team's scattered context into a governed intelligence layer in six distinct steps.
 					</p>
 				</section>
 
@@ -189,25 +189,291 @@ export function HowItWorksPage() {
 							})}
 						</div>
 
-						{/* Right: Dynamic Visual Representation */}
+						{/* Right: Step-specific UI mockups */}
 						<div className="w-full md:w-1/2 relative">
-							<div className="sticky top-32 w-full h-[500px] border border-white/10 bg-[#0a0a0a] rounded-2xl shadow-2xl flex items-center justify-center p-8 overflow-hidden">
-								{/* Background Glow */}
-								<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-status-blue/10 rounded-full blur-[100px] pointer-events-none transition-opacity duration-1000"></div>
-								
-								{/* Dynamic Content based on active step */}
-								<div key={activeStep} className="animate-in fade-in zoom-in-95 duration-500 w-full h-full flex flex-col items-center justify-center text-center relative z-10">
-									<div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-status-blue/20 to-blue-600/20 border border-status-blue/30 flex items-center justify-center text-status-blue mb-8 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-										{steps[activeStep].icon}
+							<div className="sticky top-32 w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden border border-white/10" style={{ background: "#0d0d0d" }}>
+								{/* Window chrome */}
+								<div className="h-9 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313] flex-shrink-0">
+									<div className="flex gap-1.5">
+										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
+										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
+										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
 									</div>
-									<h3 className="text-2xl font-bold text-white mb-4">Step {steps[activeStep].num}</h3>
-									<p className="text-white/50 max-w-xs">{steps[activeStep].title}</p>
-									
-									{/* Decorative flow lines */}
-									<div className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
-										<div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-1/4 bg-gradient-to-b from-transparent to-status-blue/50"></div>
-										<div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1px] h-1/4 bg-gradient-to-t from-transparent to-status-blue/50"></div>
+									<div className="text-[10px] text-white/35 font-medium tracking-wide">NueroNova — {steps[activeStep].title}</div>
+									<div className="flex items-center gap-1.5">
+										<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+										<span className="text-[10px] text-emerald-400">Live</span>
 									</div>
+								</div>
+
+								{/* Step-specific content */}
+								<div key={activeStep} className="animate-in fade-in duration-400 h-[calc(100%-36px)] overflow-hidden">
+
+									{/* STEP 01 — Connect Knowledge Sources */}
+									{activeStep === 0 && (
+										<div className="h-full flex flex-col">
+											<div className="px-4 pt-3 pb-2 border-b border-white/5">
+												<div className="flex gap-3">
+													{["Applications", "MCP Servers", "Agents"].map((t, i) => (
+														<button key={t} className={`text-[11px] pb-1.5 font-medium transition-colors ${i === 0 ? "text-status-blue border-b border-status-blue" : "text-white/35"}`}>{t}</button>
+													))}
+												</div>
+											</div>
+											<div className="flex-1 p-4 grid grid-cols-2 gap-3 overflow-y-auto content-start">
+												{[
+													{ name: "Gmail", icon: "G", color: "text-red-400 bg-red-500/10", status: "Connected", dot: "bg-emerald-400" },
+													{ name: "Slack", icon: "SL", color: "text-purple-400 bg-purple-500/10", status: "Connected", dot: "bg-emerald-400" },
+													{ name: "Salesforce", icon: "SF", color: "text-blue-400 bg-blue-500/10", status: "Syncing…", dot: "bg-yellow-400 animate-pulse" },
+													{ name: "GitHub", icon: "GH", color: "text-white/70 bg-white/10", status: "Connected", dot: "bg-emerald-400" },
+													{ name: "Outlook 365", icon: "OL", color: "text-sky-400 bg-sky-500/10", status: "Connected", dot: "bg-emerald-400" },
+													{ name: "Shopify", icon: "SH", color: "text-emerald-400 bg-emerald-500/10", status: "— Connect", dot: "" },
+												].map((int) => (
+													<div key={int.name} className="bg-[#111] border border-white/8 rounded-xl p-3 flex flex-col gap-2 hover:border-white/15 transition-colors">
+														<div className="flex items-center justify-between">
+															<div className={`w-8 h-8 rounded-lg ${int.color} flex items-center justify-center text-[10px] font-bold`}>{int.icon}</div>
+															{int.dot && <div className={`w-1.5 h-1.5 rounded-full ${int.dot}`}></div>}
+														</div>
+														<div>
+															<div className="text-[11px] font-semibold text-white/90">{int.name}</div>
+															<div className={`text-[10px] mt-0.5 ${int.status === "— Connect" ? "text-white/30" : int.status.includes("Sync") ? "text-yellow-400" : "text-emerald-400"}`}>{int.status}</div>
+														</div>
+													</div>
+												))}
+											</div>
+										</div>
+									)}
+
+									{/* STEP 02 — Build Your Personal Twin */}
+									{activeStep === 1 && (
+										<div className="h-full flex flex-col p-4 gap-3">
+											<div className="flex items-center gap-3 pb-3 border-b border-white/8">
+												<div className="w-10 h-10 rounded-full bg-status-blue/20 border border-status-blue/30 flex items-center justify-center text-sm font-bold text-status-blue">JD</div>
+												<div>
+													<div className="text-sm font-semibold text-white">Your Personal Twin</div>
+													<div className="text-[10px] text-white/40">Private · Consent-gated · Always yours</div>
+												</div>
+												<div className="ml-auto text-[10px] text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded font-medium">Indexing</div>
+											</div>
+											<div className="flex flex-col gap-3 flex-1">
+												{[
+													{ name: "Gmail", chunks: 1247, total: 1312, pct: 95, color: "bg-red-400" },
+													{ name: "Slack", chunks: 4891, total: 4891, pct: 100, color: "bg-purple-400" },
+													{ name: "Salesforce", chunks: 203, total: 580, pct: 35, color: "bg-blue-400", active: true },
+													{ name: "Google Drive", chunks: 41, total: 41, pct: 100, color: "bg-emerald-400" },
+												].map((src) => (
+													<div key={src.name}>
+														<div className="flex justify-between items-center mb-1">
+															<span className="text-[11px] font-medium text-white/80">{src.name}</span>
+															<span className={`text-[10px] ${src.active ? "text-yellow-400" : "text-white/35"}`}>
+																{src.active ? "indexing…" : `${src.chunks.toLocaleString()} chunks`}
+															</span>
+														</div>
+														<div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+															<div className={`h-full rounded-full ${src.color} ${src.active ? "opacity-60" : "opacity-80"} transition-all duration-1000`} style={{ width: `${src.pct}%` }}></div>
+														</div>
+													</div>
+												))}
+											</div>
+											<div className="border border-white/8 rounded-xl p-3 bg-[#111] flex items-center justify-between">
+												<div className="text-[11px] text-white/50">Total indexed</div>
+												<div className="text-[11px] font-mono text-status-blue font-semibold">6,382 chunks · 384-dim vectors</div>
+											</div>
+										</div>
+									)}
+
+									{/* STEP 03 — Pool Twins into Clusters */}
+									{activeStep === 2 && (
+										<div className="h-full flex">
+											{/* Cluster list */}
+											<div className="w-36 border-r border-white/8 flex flex-col p-2 gap-1 bg-[#0a0a0a]">
+												<div className="text-[9px] font-bold tracking-widest text-white/25 px-2 py-1">CLUSTERS</div>
+												{[
+													{ name: "CS Operations", color: "bg-status-blue", active: true },
+													{ name: "Engineering", color: "bg-purple-500", active: false },
+													{ name: "Sales Playbook", color: "bg-orange-500", active: false },
+												].map((c) => (
+													<div key={c.name} className={`flex items-center gap-2 px-2 py-2 rounded-lg cursor-pointer transition-colors ${c.active ? "bg-status-blue/10 border border-status-blue/20" : "hover:bg-white/5"}`}>
+														<div className={`w-2 h-2 rounded-full ${c.color} flex-shrink-0`}></div>
+														<span className={`text-[10px] font-medium leading-tight ${c.active ? "text-white" : "text-white/40"}`}>{c.name}</span>
+													</div>
+												))}
+											</div>
+											{/* Cluster workspace */}
+											<div className="flex-1 flex flex-col p-3 gap-2 overflow-hidden">
+												<div className="text-[10px] font-bold text-white/90">CS Operations</div>
+												<div className="bg-status-blue/5 border border-status-blue/15 rounded-lg p-2.5 text-[10px]">
+													<div className="text-status-blue font-bold mb-1">Charter</div>
+													<div className="text-white/50 leading-relaxed">Customer escalations & renewals<br/><span className="text-white/30">Out-of-scope: salaries, HR, legal</span></div>
+												</div>
+												<div className="text-[10px] font-bold text-white/40 mt-1">MEMBERS (3)</div>
+												{[
+													{ init: "JD", name: "John D.", sources: "Gmail, Salesforce" },
+													{ init: "SA", name: "Sarah A.", sources: "Slack, Drive" },
+													{ init: "MK", name: "Mike K.", sources: "Salesforce" },
+												].map((m) => (
+													<div key={m.init} className="flex items-center gap-2 px-2 py-1.5 bg-[#111] border border-white/5 rounded-lg">
+														<div className="w-6 h-6 rounded-full bg-status-blue/20 border border-status-blue/30 flex items-center justify-center text-[9px] font-bold text-status-blue flex-shrink-0">{m.init}</div>
+														<div className="min-w-0">
+															<div className="text-[10px] font-medium text-white/80">{m.name}</div>
+															<div className="text-[9px] text-white/30 truncate">{m.sources} ✓</div>
+														</div>
+													</div>
+												))}
+											</div>
+										</div>
+									)}
+
+									{/* STEP 04 — Deploy Context-Aware Agents */}
+									{activeStep === 3 && (
+										<div className="h-full flex">
+											{/* Mini icon sidebar */}
+											<div className="w-10 border-r border-white/8 flex flex-col items-center py-3 gap-3 bg-[#0a0a0a]">
+												{[
+													{ icon: <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.5"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>, active: true },
+													{ icon: <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5"/></svg>, active: false },
+													{ icon: <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><ellipse cx="8" cy="5" rx="5" ry="2.5" stroke="currentColor" strokeWidth="1.5"/><path d="M3 5v6c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V5" stroke="currentColor" strokeWidth="1.5"/></svg>, active: false },
+												].map((btn, i) => (
+													<div key={i} className={`w-7 h-7 rounded-lg flex items-center justify-center ${btn.active ? "bg-status-blue/20 border border-status-blue/30 text-status-blue" : "text-white/30"}`}>{btn.icon}</div>
+												))}
+											</div>
+											{/* Chat */}
+											<div className="flex-1 flex flex-col overflow-hidden">
+												<div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+													<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex items-center justify-center text-[9px] font-bold text-status-blue">N</div>
+													<span className="text-[11px] font-medium text-white/80">CS Support Agent</span>
+													<span className="ml-auto text-[9px] text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded">Online</span>
+												</div>
+												<div className="flex-1 p-3 flex flex-col gap-2.5 overflow-y-auto">
+													<div className="flex justify-end">
+														<div className="bg-status-blue/15 border border-status-blue/20 px-3 py-2 rounded-xl rounded-tr-sm max-w-[85%]">
+															<p className="text-[11px] text-white leading-relaxed">What's the SLA for Enterprise tier?</p>
+														</div>
+													</div>
+													<div className="bg-white/[0.03] border border-white/8 px-2.5 py-1.5 rounded-lg">
+														<div className="flex items-center gap-1.5 mb-1">
+															<div className="w-1 h-1 bg-status-blue rounded-full animate-ping"></div>
+															<span className="text-[9px] text-status-blue font-mono font-medium">searching CS cluster…</span>
+														</div>
+														<code className="text-[9px] text-white/30 font-mono">query: enterprise sla uptime response time</code>
+													</div>
+													<div className="flex items-start gap-2">
+														<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex-shrink-0 flex items-center justify-center text-[8px] text-status-blue font-bold mt-0.5">N</div>
+														<div className="flex-1 bg-[#111] border border-white/8 px-3 py-2.5 rounded-xl rounded-tl-sm">
+															<p className="text-[11px] text-white/85 leading-relaxed mb-2">Enterprise tier guarantees <strong className="text-white">99.9% uptime</strong> with a <strong className="text-white">1-hour priority response</strong> window.</p>
+															<div className="flex gap-1.5 flex-wrap">
+																<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-1.5 py-0.5 rounded">SLA Policy 2024 ↗</span>
+																<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-1.5 py-0.5 rounded">CS Cluster ↗</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									)}
+
+									{/* STEP 05 — Build Automations */}
+									{activeStep === 4 && (
+										<div className="h-full flex flex-col">
+											<div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
+												<span className="text-[10px] font-semibold text-white/60">CS Triage Flow</span>
+												<span className="text-[9px] bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 px-1.5 py-0.5 rounded">saved</span>
+												<span className="ml-auto text-[9px] text-white/30">Run History</span>
+											</div>
+											<div className="flex-1 relative overflow-hidden" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0)", backgroundSize: "16px 16px" }}>
+												<div className="absolute inset-0 flex flex-col items-center justify-center gap-0 pointer-events-none select-none" style={{ paddingTop: "8px" }}>
+													{/* Trigger */}
+													<div className="bg-[#1a1a1a] border border-orange-500/40 rounded-lg px-4 py-2.5 w-52 shadow-[0_0_16px_rgba(249,115,22,0.12)] relative">
+														<div className="flex items-center gap-2 mb-0.5">
+															<div className="w-4 h-4 rounded bg-orange-500/20 flex items-center justify-center"><div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div></div>
+															<span className="text-[10px] font-bold text-white">Webhook Trigger</span>
+															<span className="ml-auto text-[8px] bg-orange-500/20 text-orange-400 px-1 py-0.5 rounded uppercase">trigger</span>
+														</div>
+														<div className="text-[9px] text-white/35 pl-6">Zendesk · Account health dropped</div>
+														<div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1a1a1a] border border-orange-500/40 rounded-full flex items-center justify-center"><div className="w-1 h-1 bg-orange-500/60 rounded-full animate-pulse"></div></div>
+													</div>
+													{/* Line */}
+													<div className="w-px h-4 bg-gradient-to-b from-orange-500/40 to-status-blue/40"></div>
+													{/* Agent */}
+													<div className="bg-status-blue/[0.07] border border-status-blue/40 rounded-lg px-4 py-2.5 w-56 shadow-[0_0_20px_rgba(59,130,246,0.15)] relative">
+														<div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#111] border border-status-blue/40 rounded-full"></div>
+														<div className="flex items-center gap-2 mb-0.5">
+															<div className="w-4 h-4 rounded bg-status-blue/20 flex items-center justify-center text-[8px] text-status-blue font-bold">N</div>
+															<span className="text-[10px] font-bold text-white">Triage Agent</span>
+															<span className="ml-auto text-[8px] bg-status-blue/20 text-status-blue px-1 py-0.5 rounded uppercase">reasoning</span>
+														</div>
+														<div className="text-[9px] text-white/35 pl-6">Evaluate vs CS cluster · route severity</div>
+														<div className="bg-black/30 border border-white/5 rounded p-1.5 mt-2 flex flex-col gap-1">
+															<div className="h-1 bg-status-blue/50 rounded w-full"></div>
+															<div className="h-1 bg-status-blue/30 rounded w-3/4"></div>
+														</div>
+														<div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#111] border border-status-blue/40 rounded-full flex items-center justify-center"><div className="w-1 h-1 bg-status-blue/60 rounded-full animate-pulse"></div></div>
+													</div>
+													{/* Split */}
+													<div className="relative w-52 h-5 flex justify-center flex-shrink-0">
+														<div className="w-px h-2.5 bg-white/10 absolute top-0"></div>
+														<div className="absolute top-2.5 left-[20%] right-[20%] h-px bg-white/10"></div>
+														<div className="absolute top-2.5 left-[20%] w-px h-2.5 bg-white/10"></div>
+														<div className="absolute top-2.5 right-[20%] w-px h-2.5 bg-white/10"></div>
+													</div>
+													{/* Bottom actions */}
+													<div className="flex gap-3">
+														<div className="bg-[#1a1a1a] border border-emerald-500/30 rounded-lg px-3 py-2 text-center w-24">
+															<div className="text-[9px] font-bold text-emerald-400">Send Email</div>
+															<div className="text-[8px] text-white/25 mt-0.5">via Gmail</div>
+														</div>
+														<div className="bg-[#1a1a1a] border border-red-500/30 rounded-lg px-3 py-2 text-center w-24">
+															<div className="text-[9px] font-bold text-red-400">Escalate</div>
+															<div className="text-[8px] text-white/25 mt-0.5">+ approval gate</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									)}
+
+									{/* STEP 06 — Govern and Scale */}
+									{activeStep === 5 && (
+										<div className="h-full flex flex-col p-3 gap-3">
+											{/* Stats row */}
+											<div className="grid grid-cols-3 gap-2">
+												{[
+													{ label: "Actions logged", value: "847", color: "text-status-blue" },
+													{ label: "Error rate", value: "0.2%", color: "text-emerald-400" },
+													{ label: "Retention", value: "90 days", color: "text-white/70" },
+												].map((s) => (
+													<div key={s.label} className="bg-[#111] border border-white/8 rounded-xl p-2.5 text-center">
+														<div className={`text-sm font-bold ${s.color}`}>{s.value}</div>
+														<div className="text-[9px] text-white/30 mt-0.5">{s.label}</div>
+													</div>
+												))}
+											</div>
+											{/* Audit log */}
+											<div className="bg-[#0a0a0a] border border-white/8 rounded-xl flex-1 overflow-hidden">
+												<div className="text-[9px] font-bold tracking-widest text-white/25 px-3 py-2 border-b border-white/5">AUDIT LOG</div>
+												<div className="flex flex-col">
+													{[
+														{ actor: "ADMIN", action: "Updated CS cluster permissions", time: "2m", alert: false },
+														{ actor: "SYSTEM", action: "Blocked unauthorized API key", time: "14m", alert: true },
+														{ actor: "AGENT", action: "Generated Q3 report via PDF skill", time: "1h", alert: false },
+														{ actor: "MEMBER", action: "Connected Salesforce OAuth", time: "3h", alert: false },
+													].map((log, i) => (
+														<div key={i} className="flex items-center gap-2 px-3 py-2 border-b border-white/[0.04] hover:bg-white/[0.02]">
+															<span className={`text-[8px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${log.alert ? "bg-red-500/20 text-red-400" : "bg-white/8 text-white/50"}`}>{log.actor}</span>
+															<span className="text-[10px] text-white/65 flex-1 truncate">{log.action}</span>
+															<span className="text-[9px] text-white/25 flex-shrink-0">{log.time}</span>
+														</div>
+													))}
+												</div>
+											</div>
+											{/* RBAC pill row */}
+											<div className="flex gap-2 flex-wrap">
+												{[["Owners", "1", "text-amber-400 bg-amber-400/10"], ["Admins", "2", "text-status-blue bg-status-blue/10"], ["Members", "10", "text-white/60 bg-white/5"], ["Viewers", "3", "text-white/40 bg-white/5"]].map(([role, count, cls]) => (
+													<div key={role} className={`text-[10px] font-medium px-2.5 py-1 rounded-full ${cls}`}>{role} · {count}</div>
+												))}
+											</div>
+										</div>
+									)}
+
 								</div>
 							</div>
 						</div>
