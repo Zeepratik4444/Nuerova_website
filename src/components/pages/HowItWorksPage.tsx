@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
@@ -111,15 +111,29 @@ export function HowItWorksPage() {
 	});
 
 	useScrollReveal();
-	
-	const [activeStep, setActiveStep] = useState(0);
 
-	// Auto-progress steps
+	const [activeStep, setActiveStep] = useState(0);
+	const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+	// Scroll-based step activation via IntersectionObserver
 	useEffect(() => {
-		const interval = setInterval(() => {
-			setActiveStep((current) => (current + 1) % steps.length);
-		}, 4000);
-		return () => clearInterval(interval);
+		const observers: IntersectionObserver[] = [];
+
+		stepRefs.current.forEach((el, index) => {
+			if (!el) return;
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) setActiveStep(index);
+					});
+				},
+				{ rootMargin: "-35% 0px -45% 0px", threshold: 0 }
+			);
+			observer.observe(el);
+			observers.push(observer);
+		});
+
+		return () => observers.forEach((o) => o.disconnect());
 	}, []);
 
 	return (
@@ -152,8 +166,9 @@ export function HowItWorksPage() {
 							{steps.map((step, index) => {
 								const isActive = index === activeStep;
 								return (
-									<div 
+									<div
 										key={step.num}
+										ref={(el) => { stepRefs.current[index] = el; }}
 										className="flex items-start gap-6 relative z-10 mb-8 last:mb-0 cursor-pointer group"
 										onClick={() => setActiveStep(index)}
 									>
