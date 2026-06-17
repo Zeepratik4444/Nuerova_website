@@ -7,9 +7,9 @@ import { trackEvent } from "@/lib/analytics";
 
 export function HomePage() {
 	useSEO({
-		title: "Nuerova — Scoped Knowledge Clusters & Team Intelligence Platforms",
+		title: "Nuerova — AI Skills, Shared Knowledge & Automated Workflows for Enterprise Teams",
 		description:
-			"Nuerova centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations so your momentum is never lost.",
+			"Nuerova gives teams ready-made and customizable AI skills, shared knowledge clusters that persist across the org, and automated workflows that reason before acting — with enterprise governance built in.",
 		schemaOrg: [
 			{
 				"@type": "Organization",
@@ -311,7 +311,7 @@ export function HomePage() {
 								<span className="whitespace-nowrap"><span className="hero-tw-text">{twText}</span><span className="hero-tw-cursor">|</span></span>
 							</h1>
 							<p className="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-xl hero-enter" style={{ animationDelay: '0.2s' }}>
-								Your best answers are buried in Slack, Salesforce, and last quarter's docs. Nuerova finds them instantly and runs the follow-up automatically so your entire team benefits.
+								Your best answers are buried in Slack, Salesforce, and last quarter's docs. Nuerova surfaces them instantly and runs the follow-up automatically — so the whole team gets smarter, not just the person who asked.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-stack-md mb-stack-lg hero-enter" style={{ animationDelay: '0.3s' }}>
 								<button
@@ -691,9 +691,9 @@ export function HomePage() {
 							<div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-3">Knowledge Clusters</h3>
+							<h3 className="text-xl font-bold text-white mb-3">Shared Knowledge That Persists</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Scope memory by team, project, or permission boundary. Agents only reason over the context they are allowed to use—nothing bleeds across teams.
+								Every solved problem, call transcript, and decision your team makes is indexed into a shared cluster — instantly available to every agent and every teammate. The answer worked out last quarter doesn't get reconstructed from scratch next quarter.
 							</p>
 						</div>
 
@@ -703,9 +703,9 @@ export function HomePage() {
 							<div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="9" height="9" rx="2"/><rect x="13" y="2" width="9" height="9" rx="2"/><rect x="2" y="13" width="9" height="9" rx="2"/><rect x="13" y="13" width="9" height="9" rx="2"/></svg>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-3">Skill Registry</h3>
+							<h3 className="text-xl font-bold text-white mb-3">Skills Your Team Actually Uses</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Curate and distribute approved prompts and agent skills. Give your team access to high-quality, standardized AI capabilities.
+								Ready-made skills for research, writing, analysis, code review, and more — use them immediately, fork and reshape any to fit your workflow, or build new ones from scratch. Wire skills into automated workflows that run on a schedule without anyone asking.
 							</p>
 						</div>
 
@@ -715,9 +715,9 @@ export function HomePage() {
 							<div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-3">Automated Workflows</h3>
+							<h3 className="text-xl font-bold text-white mb-3">Workflows That Reason, Not Just Execute</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Build logic that reasons before it runs. Triggers can consult scoped knowledge, choose execution paths, and ask for human verification before acting.
+								Build logic that consults your team's knowledge before acting. Triggers reason through edge cases, branch by outcome, request approvals when needed, and execute across your connected tools — without fragile if-then chains that break on the first exception.
 							</p>
 						</div>
 
@@ -727,9 +727,9 @@ export function HomePage() {
 							<div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-3">Enterprise Governance</h3>
+							<h3 className="text-xl font-bold text-white mb-3">Governance That Procurement Expects</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Maintain complete visibility with immutable audit logs, granular RBAC roles, and approval trails. AI actions are fully cited and easily audited.
+								Every action is logged. Every agent is scoped. RBAC controls what AI can see and do. Approval flows, immutable audit trails, and per-cluster access boundaries give your compliance and security teams exactly the posture they need to say yes.
 							</p>
 						</div>
 					</div>
