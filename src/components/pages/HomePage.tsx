@@ -311,7 +311,7 @@ export function HomePage() {
 								<span className="whitespace-nowrap"><span className="hero-tw-text">{twText}</span><span className="hero-tw-cursor">|</span></span>
 							</h1>
 							<p className="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-xl hero-enter" style={{ animationDelay: '0.2s' }}>
-								Every other AI tool starts from a blank slate. Nuerova builds Clusters — persistent, scoped knowledge pools your agents inherit before responding. Create a Cluster for CS, a Twin for each enterprise account, one per product line. Your team’s intelligence compounds with every contribution, and every agent draws from it automatically.
+								Every other AI tool starts from a blank slate. Nuerova gives your team persistent, scoped knowledge that agents inherit before every response — so the intelligence your team builds compounds instead of disappearing with the next tab close.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-stack-md mb-stack-lg hero-enter" style={{ animationDelay: '0.3s' }}>
 								<button
@@ -615,15 +615,15 @@ export function HomePage() {
 								<li className="flex gap-4">
 									<div className="w-1.5 h-1.5 rounded-full bg-status-blue/50 mt-2 flex-shrink-0"></div>
 									<div>
-										<strong className="block text-white mb-1">Clusters and Twins give your team a shared brain</strong>
-										<span className="text-sm text-white/50">Every solved ticket, call, and decision compounds into a Cluster — a scoped, agent-accessible memory pool unique to Nuerova. Build a Twin for each enterprise account and it remembers everything, indefinitely.</span>
+										<strong className="block text-white mb-1">Knowledge compounds instead of walking out the door</strong>
+										<span className="text-sm text-white/50">Every solved ticket, call, and decision your team contributes is indexed into a shared Cluster. What one person figured out last quarter is immediately available to everyone — and every agent — this quarter.</span>
 									</div>
 								</li>
 								<li className="flex gap-4">
 									<div className="w-1.5 h-1.5 rounded-full bg-status-blue/50 mt-2 flex-shrink-0"></div>
 									<div>
-										<strong className="block text-white mb-1">Every agent draws from your Cluster before responding</strong>
-										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit the relevant Cluster context automatically — your team’s accumulated knowledge is the starting point, not the afterthought.</span>
+										<strong className="block text-white mb-1">Agents answer from your team's context, not the internet</strong>
+										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit your team’s accumulated knowledge automatically — it’s the starting point, not the afterthought.</span>
 									</div>
 								</li>
 								<li className="flex gap-4">
@@ -693,7 +693,7 @@ export function HomePage() {
 							</div>
 							<h3 className="text-xl font-bold text-white mb-3">Clusters &amp; Twins — What Makes Nuerova Different</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								A Cluster is a living, scoped knowledge pool your agents actively draw from before responding — not a folder, not a chat history, not a search index. Build a CS Cluster, a Twin for each enterprise account, a product Cluster per line. Every call, decision, and doc your team contributes compounds into context that every agent inherits automatically. This is what no other AI tool gives you.
+								A Cluster is a scoped, active knowledge pool your agents draw from before every response — not a search index, not a chat history. Create one per team, per product line, or per enterprise account as a Twin. The more your team contributes, the smarter every agent gets.
 							</p>
 						</div>
 
