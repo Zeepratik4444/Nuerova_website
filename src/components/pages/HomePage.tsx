@@ -304,7 +304,7 @@ export function HomePage() {
 						<div className="flex-1">
 							<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md mt-10 hero-enter transition-all duration-200 hover:bg-status-blue/20 hover:border-status-blue/40 hover:text-white cursor-default">
 								<div className="w-1.5 h-1.5 rounded-full bg-status-blue hero-dot-pulse"></div>
-								Finally, AI that works for the whole team
+								Introducing Clusters & Twins — AI with persistent team memory
 							</span>
 							<h1 className="font-headline-md text-3xl md:text-4xl lg:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight hero-enter" style={{ animationDelay: '0.1s' }}>
 								Your team's AI, built for{' '}
