@@ -39,9 +39,9 @@ const currentContentLastmod = "2026-06-14";
 const pages = [
     {
         route: "",
-        title: "Nuerova — Scoped Knowledge Clusters & Team Intelligence Platforms",
+        title: "Nuerova | AI Skills, Shared Knowledge & Automated Workflows for Enterprise Teams",
         description:
-            "Nuerova centralizes team knowledge in scoped clusters, deploys context-aware agents, and builds secure trigger-action automations with enterprise governance.",
+            "Persistent team knowledge, scoped clusters, and reasoning-driven agents.",
     },
     {
         route: "features",
@@ -139,7 +139,7 @@ const softwareSchema = JSON.stringify({
     name: "Nuerova",
     url: siteUrl,
     description:
-        "The team intelligence platform that centralizes department knowledge, deploys context-aware agents, and builds secure visual automations.",
+        "Persistent team knowledge, scoped clusters, and reasoning-driven agents.",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     audience: {
