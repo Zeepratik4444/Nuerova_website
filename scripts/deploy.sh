@@ -123,15 +123,32 @@ EOF
 fi
 
 sudo tee "$NGINX_FILE" > /dev/null << EOF
+# ── HTTP (both hosts) → canonical HTTPS non-www ───────────────
+# Always land on https://${DOMAIN} in a single hop so Google sees
+# exactly one canonical host (prevents duplicate-content variants).
 server {
     listen 80;
     server_name ${DOMAIN} www.${DOMAIN};
-    return 301 https://\$host\$request_uri;
+    return 301 https://${DOMAIN}\$request_uri;
 }
 
+# ── HTTPS www → canonical HTTPS non-www ───────────────────────
 server {
     listen 443 ssl;
-    server_name ${DOMAIN} www.${DOMAIN};
+    server_name www.${DOMAIN};
+
+    ssl_certificate     ${SSL_CERT};
+    ssl_certificate_key ${SSL_KEY};
+    include             /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
+
+    return 301 https://${DOMAIN}\$request_uri;
+}
+
+# ── Canonical HTTPS non-www host ──────────────────────────────
+server {
+    listen 443 ssl;
+    server_name ${DOMAIN};
 
     ssl_certificate     ${SSL_CERT};
     ssl_certificate_key ${SSL_KEY};

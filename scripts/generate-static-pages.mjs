@@ -601,27 +601,32 @@ function readNewestLastmodFromSitemap(filePath, fallback) {
     return matches.map((match) => match[1]).sort().at(-1) || fallback;
 }
 
-// Key pages to include directly in sitemap.xml for GSC readability
-const keyRoutes = ["", "features", "pricing", "how-it-works", "contact"];
-
+// sitemap.xml is a sitemap *index* that points to the per-section sitemaps.
+// Declaring just this one file in robots.txt guarantees every page sitemap
+// (core pages + blog) is submitted to Google — no page gets left out.
 function buildMainSitemap() {
-    const keyPages = pages
-        .filter((p) => keyRoutes.includes(p.route))
-        .map(pageSitemapMetadata)
-        .map(
-            (page) => `  <url>
-    <loc>${siteUrl}${canonicalPath(page.route)}</loc>
-    <lastmod>${page.lastmod}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`,
-        )
-        .join("\n");
+    const pagesLastmod = currentContentLastmod;
+    const blogLastmod = readNewestLastmodFromSitemap(
+        path.join(publicDir, "sitemap-blog.xml"),
+        currentContentLastmod,
+    );
+
+    const children = [
+        { loc: `${siteUrl}/sitemap-pages.xml`, lastmod: pagesLastmod },
+        { loc: `${siteUrl}/sitemap-blog.xml`, lastmod: blogLastmod },
+    ];
 
     return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${keyPages}
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${children
+    .map(
+        (child) => `  <sitemap>
+    <loc>${child.loc}</loc>
+    <lastmod>${child.lastmod}</lastmod>
+  </sitemap>`,
+    )
+    .join("\n")}
+</sitemapindex>
 `;
 }
 
@@ -649,4 +654,4 @@ console.log(`\nGenerated ${count} static page shells in dist/`);
 console.log(
     "Each file carries correct per-page title, description, canonical, OG tags, and JSON-LD schema.",
 );
-console.log("Generated sitemap.xml (flat combined) and sitemap-pages.xml from page/blog metadata.");
+console.log("Generated sitemap.xml (sitemap index → pages + blog) and sitemap-pages.xml.");

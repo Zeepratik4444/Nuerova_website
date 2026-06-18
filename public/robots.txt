@@ -121,9 +121,5 @@ Disallow: /set-password
 Disallow: /dashboard
 Disallow: /settings
 
+# Sitemap index → references sitemap-pages.xml and sitemap-blog.xml
 Sitemap: https://nuerova.xyz/sitemap.xml
-Sitemap: https://nuerova.xyz/sitemap-blog.xml
-
-# LLM context files
-LLM: https://nuerova.xyz/llms.txt
-LLM: https://nuerova.xyz/llms-full.txt
