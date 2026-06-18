@@ -11,7 +11,7 @@ import { Eye, EyeOff, CheckCircle2, XCircle, Loader2 } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 import { API_BASE_URL } from "@/lib/utils";
 
-const APP_URL = import.meta.env.VITE_APP_URL || "https://neuronova.cloud";
+const APP_URL = import.meta.env.VITE_APP_URL || "https://nuerova.cloud";
 const BRAND = "rgb(18,117,226)";
 
 const schema = z.object({

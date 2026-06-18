@@ -7,9 +7,9 @@ import { trackEvent } from "@/lib/analytics";
 
 export function HomePage() {
 	useSEO({
-		title: "Nuerova — AI Skills, Shared Knowledge & Automated Workflows for Enterprise Teams",
+		title: "Nuerova: AI Skills, Shared Knowledge & Automated Workflows for Enterprise Teams",
 		description:
-			"Nuerova gives teams ready-made and customizable AI skills, shared knowledge clusters that persist across the org, and automated workflows that reason before acting — with enterprise governance built in.",
+			"Nuerova gives teams ready-made and customizable AI skills, shared knowledge clusters that persist across the org, and automated workflows that reason before acting, with enterprise governance built in.",
 		schemaOrg: [
 			{
 				"@type": "Organization",
@@ -304,14 +304,14 @@ export function HomePage() {
 						<div className="flex-1">
 							<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md mt-10 hero-enter transition-all duration-200 hover:bg-status-blue/20 hover:border-status-blue/40 hover:text-white cursor-default">
 								<div className="w-1.5 h-1.5 rounded-full bg-status-blue hero-dot-pulse"></div>
-								Introducing Clusters & Twins — AI with persistent team memory
+								Introducing Clusters & Twins: AI with persistent team memory
 							</span>
 							<h1 className="font-headline-md text-3xl md:text-4xl lg:text-5xl text-primary mb-stack-lg leading-tight font-bold tracking-tight hero-enter" style={{ animationDelay: '0.1s' }}>
 								Your team's AI, built for{' '}
 								<span className="whitespace-nowrap"><span className="hero-tw-text">{twText}</span><span className="hero-tw-cursor">|</span></span>
 							</h1>
 							<p className="font-body-lg text-body-lg text-white/50 mb-stack-lg max-w-xl hero-enter" style={{ animationDelay: '0.2s' }}>
-								Every other AI tool starts from a blank slate. Nuerova gives your team persistent, scoped knowledge that agents inherit before every response — so the intelligence your team builds compounds instead of disappearing with the next tab close.
+								Every other AI tool starts from a blank slate. Nuerova gives your team persistent, scoped knowledge that agents inherit before every response, so the intelligence your team builds compounds instead of disappearing with the next tab close.
 							</p>
 							<div className="flex flex-col sm:flex-row gap-stack-md mb-stack-lg hero-enter" style={{ animationDelay: '0.3s' }}>
 								<button
@@ -341,12 +341,18 @@ export function HomePage() {
 						<div className="flex-1 w-full md:mt-0 border border-white/10 rounded-xl bg-[#0f0f0f] overflow-hidden mt-8 hero-console-float h-[420px] flex flex-col" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
 							{/* Window chrome */}
 							<div className="h-10 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313]">
-								<div className="flex gap-2">
-									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
-									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
-									<div className="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+								<div className="flex gap-2 group">
+									<div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] flex items-center justify-center cursor-pointer">
+										<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,2 L8,8 M8,2 L2,8"/></svg>
+									</div>
+									<div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] flex items-center justify-center cursor-pointer">
+										<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,5 L8,5"/></svg>
+									</div>
+									<div className="w-2.5 h-2.5 rounded-full bg-[#27C93F] flex items-center justify-center cursor-pointer">
+										<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,8 L8,2 M2,2 L2,8 L8,8"/></svg>
+									</div>
 								</div>
-								<div className="text-[10px] text-white/40 font-medium tracking-wide">Nuerova — Team Intelligence</div>
+								<div className="text-[10px] text-white/40 font-medium tracking-wide">Nuerova | Team Intelligence</div>
 								<div className="flex items-center gap-1.5">
 									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 hero-dot-pulse"></div>
 									<span className="text-[10px] text-emerald-400">Live</span>
@@ -556,7 +562,7 @@ export function HomePage() {
 								</div>
 								<div className="flex items-center gap-1.5">
 									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-									<span className="text-[9px] text-white/35">mem0 memory · RBAC enforced</span>
+									<span className="text-[9px] text-white/35">Persistent memory · RBAC enforced</span>
 								</div>
 							</div>
 						</div>
@@ -616,14 +622,14 @@ export function HomePage() {
 									<div className="w-1.5 h-1.5 rounded-full bg-status-blue/50 mt-2 flex-shrink-0"></div>
 									<div>
 										<strong className="block text-white mb-1">Knowledge compounds instead of walking out the door</strong>
-										<span className="text-sm text-white/50">Every solved ticket, call, and decision your team contributes is indexed into a shared Cluster. What one person figured out last quarter is immediately available to everyone — and every agent — this quarter.</span>
+										<span className="text-sm text-white/50">Every solved ticket, call, and decision your team contributes is indexed into a shared Cluster. What one person figured out last quarter is immediately available to everyone, and every agent, this quarter.</span>
 									</div>
 								</li>
 								<li className="flex gap-4">
 									<div className="w-1.5 h-1.5 rounded-full bg-status-blue/50 mt-2 flex-shrink-0"></div>
 									<div>
 										<strong className="block text-white mb-1">Agents answer from your team's context, not the internet</strong>
-										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit your team’s accumulated knowledge automatically — it’s the starting point, not the afterthought.</span>
+										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit your team’s accumulated knowledge automatically: it’s the starting point, not the afterthought.</span>
 									</div>
 								</li>
 								<li className="flex gap-4">
@@ -691,9 +697,9 @@ export function HomePage() {
 							<div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center mb-6">
 								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
 							</div>
-							<h3 className="text-xl font-bold text-white mb-3">Clusters &amp; Twins — What Makes Nuerova Different</h3>
+							<h3 className="text-xl font-bold text-white mb-3">Clusters &amp; Twins: What Makes Nuerova Different</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								A Cluster is a scoped, active knowledge pool your agents draw from before every response — not a search index, not a chat history. Create one per team, per product line, or per enterprise account as a Twin. The more your team contributes, the smarter every agent gets.
+								A Cluster is a scoped, active knowledge pool your agents draw from before every response, not a search index or a chat history. Create one per team, per product line, or per enterprise account as a Twin. The more your team contributes, the smarter every agent gets.
 							</p>
 						</div>
 
@@ -705,7 +711,7 @@ export function HomePage() {
 							</div>
 							<h3 className="text-xl font-bold text-white mb-3">Skills Your Team Actually Uses</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Ready-made skills for research, writing, analysis, code review, and more — use them immediately, fork and reshape any to fit your workflow, or build new ones from scratch. Wire skills into automated workflows that run on a schedule without anyone asking.
+								Ready-made skills for research, writing, analysis, code review, and more. Use them immediately, fork and reshape any to fit your workflow, or build new ones from scratch. Wire skills into automated workflows that run on a schedule without anyone asking.
 							</p>
 						</div>
 
@@ -717,7 +723,7 @@ export function HomePage() {
 							</div>
 							<h3 className="text-xl font-bold text-white mb-3">Workflows That Reason, Not Just Execute</h3>
 							<p className="text-sm text-white/50 leading-relaxed">
-								Build logic that consults your team's knowledge before acting. Triggers reason through edge cases, branch by outcome, request approvals when needed, and execute across your connected tools — without fragile if-then chains that break on the first exception.
+								Build logic that consults your team's knowledge before acting. Triggers reason through edge cases, branch by outcome, request approvals when needed, and execute across your connected tools, without fragile if-then chains that break on the first exception.
 							</p>
 						</div>
 
@@ -778,7 +784,7 @@ export function HomePage() {
 							</div>
 						</div>
 						<div className="text-center mt-8">
-							<p className="text-sm font-medium text-white/60">REST API and webhooks for everything else.</p>
+							<p className="text-sm font-medium text-white/60">MCP Support. Custom MCP development on request.</p>
 						</div>
 					</div>
 				</section>

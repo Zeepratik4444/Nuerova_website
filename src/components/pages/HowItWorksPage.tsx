@@ -209,12 +209,18 @@ export function HowItWorksPage() {
 							<div className="sticky top-32 w-full h-[500px] rounded-2xl shadow-2xl overflow-hidden border border-white/10" style={{ background: "#0d0d0d" }}>
 								{/* Window chrome */}
 								<div className="h-9 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313] flex-shrink-0">
-									<div className="flex gap-1.5">
-										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
-										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
-										<div className="w-2.5 h-2.5 rounded-full bg-white/15"></div>
+									<div className="flex gap-1.5 group">
+										<div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56] flex items-center justify-center cursor-pointer">
+											<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,2 L8,8 M8,2 L2,8"/></svg>
+										</div>
+										<div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] flex items-center justify-center cursor-pointer">
+											<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,5 L8,5"/></svg>
+										</div>
+										<div className="w-2.5 h-2.5 rounded-full bg-[#27C93F] flex items-center justify-center cursor-pointer">
+											<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,8 L8,2 M2,2 L2,8 L8,8"/></svg>
+										</div>
 									</div>
-									<div className="text-[10px] text-white/35 font-medium tracking-wide">NueroNova — {steps[activeStep].title}</div>
+									<div className="text-[10px] text-white/35 font-medium tracking-wide">Nuerova — {steps[activeStep].title}</div>
 									<div className="flex items-center gap-1.5">
 										<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
 										<span className="text-[10px] text-emerald-400">Live</span>

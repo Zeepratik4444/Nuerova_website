@@ -105,7 +105,7 @@ export function useSEO({ title, description, canonicalPath, ogImage, noIndex = f
 
 		// ─── Cleanup: restore homepage defaults on unmount ─────────
 		return () => {
-			const defaultTitle = "Nuerova — Scoped Knowledge Clusters & Team Intelligence Platforms";
+			const defaultTitle = "Nuerova: Scoped Knowledge Clusters & Team Intelligence Platforms";
 			const defaultDesc =
 				"Nuerova centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations so your momentum is never lost.";
 			const defaultUrl = `${BASE_URL}/`;
