@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { NuerovaLogo } from "@/components/Logo";
 
 export function Footer() {
 	return (
@@ -11,13 +12,8 @@ export function Footer() {
 					
 					{/* Brand Column */}
 					<div className="lg:col-span-2">
-						<Link className="font-headline-sm text-2xl text-white font-bold tracking-tight mb-6 inline-block" to="/">
-							<div className="flex items-center gap-2">
-								<div className="w-8 h-8 rounded-lg bg-gradient-to-br from-status-blue to-blue-600 flex items-center justify-center">
-									<svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-								</div>
-								Nuerova
-							</div>
+						<Link className="inline-block mb-6" to="/">
+							<NuerovaLogo size={28} />
 						</Link>
 						<p className="text-white/50 text-sm leading-relaxed max-w-sm mb-8">
 							The enterprise intelligence layer. Connect your team's knowledge sources, deploy scoped agents, and automate workflows with absolute governance.

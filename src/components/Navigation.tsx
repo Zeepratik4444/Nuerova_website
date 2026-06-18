@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { trackCtaClick } from "@/lib/analytics";
+import { NuerovaLogo } from "@/components/Logo";
 
 export function Navigation() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +22,8 @@ export function Navigation() {
 		<>
 			<header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-lg" : "bg-transparent border-b border-transparent"}`}>
 				<nav className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto w-full relative">
-					<Link to="/" className="font-headline-sm text-headline-sm tracking-tight text-white font-bold" onClick={() => setIsMenuOpen(false)}>
-						Nuerova
+					<Link to="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+						<NuerovaLogo size={30} />
 					</Link>
 					
 					{/* Desktop Navigation Links */}

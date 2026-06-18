@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
@@ -15,7 +15,7 @@ export function HomePage() {
 				"@type": "Organization",
 				"name": "Nuerova",
 				"url": "https://nuerova.xyz",
-				"logo": "https://nuerova.xyz/brand-logo.png",
+				"logo": "https://nuerova.xyz/apple-touch-icon.png",
 				"sameAs": [
 					"https://twitter.com/nuerova",
 					"https://github.com/nuerova",
@@ -290,7 +290,7 @@ export function HomePage() {
 			<Navigation />
 
 			<main id="main" className="flex-grow pb-section-gap pt-16">
-				{/* ── HERO SECTION ── */}
+				{/* â”€â”€ HERO SECTION â”€â”€ */}
 				<section className="relative overflow-hidden" style={{ height: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center' }}>
 					{/* Particle canvas */}
 					<canvas ref={heroCanvasRef} className="hero-canvas" />
@@ -395,25 +395,25 @@ export function HomePage() {
       							<div className="border border-orange-500/20 bg-orange-500/[0.04] rounded-lg px-3 py-2">
         							<div className="flex items-center gap-2 mb-1">
           							<span className="text-[10px] text-orange-400 font-mono font-medium">sql_query</span>
-          							<span className="text-[9px] text-white/30">→ CS Cluster · Salesforce</span>
+          							<span className="text-[9px] text-white/30">â†’ CS Cluster Â· Salesforce</span>
         							</div>
         							<code className="text-[9px] text-white/45 font-mono">SELECT account, health_score FROM accounts WHERE churn_risk &gt; 0.65</code>
       							</div>
       							<div className="border border-purple-500/20 bg-purple-500/[0.04] rounded-lg px-3 py-2">
         							<div className="flex items-center gap-2 mb-1">
           							<span className="text-[10px] text-purple-400 font-mono font-medium">web_search</span>
-          							<span className="text-[9px] text-white/30">→ Gong calls · Slack history</span>
+          							<span className="text-[9px] text-white/30">â†’ Gong calls Â· Slack history</span>
         							</div>
         							<code className="text-[9px] text-white/45 font-mono">Q2 sentiment: acme globaltech meridian</code>
       							</div>
       							<div className="flex gap-2 items-start">
         							<div className="w-5 h-5 rounded bg-status-blue/20 border border-status-blue/30 flex-shrink-0 flex items-center justify-center mt-0.5"><span className="text-[7px] text-status-blue font-bold">N</span></div>
         							<div className="flex-1 min-w-0">
-          							<p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-semibold">3 accounts flagged:</span> Acme Corp (usage ↓28%), GlobalTech (renewal Sept), Meridian (negative sentiment ×3). Recommend immediate outreach.</p>
+          							<p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-semibold">3 accounts flagged:</span> Acme Corp (usage â†“28%), GlobalTech (renewal Sept), Meridian (negative sentiment Ã—3). Recommend immediate outreach.</p>
           							<div className="flex flex-wrap gap-1.5 mt-2">
-            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">CS Cluster ↗</span>
-            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Salesforce ↗</span>
-            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Gong Calls ↗</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">CS Cluster â†—</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Salesforce â†—</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Gong Calls â†—</span>
           							</div>
         							</div>
       							</div>
@@ -436,7 +436,7 @@ export function HomePage() {
 												</div>
 												<span className="text-[9px] bg-white/10 text-white/60 px-1.5 py-0.5 rounded uppercase tracking-wide">Trigger</span>
 											</div>
-											<div className="text-[10px] text-white/40">Zendesk · Account health dropped</div>
+											<div className="text-[10px] text-white/40">Zendesk Â· Account health dropped</div>
 											<div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#1a1a1a] border border-orange-500/30 rounded-full z-10 flex items-center justify-center"><div className="w-1.5 h-1.5 bg-orange-500/60 rounded-full animate-pulse"></div></div>
 										</div>
 
@@ -501,11 +501,11 @@ export function HomePage() {
   							{consoleTab === 'clusters' && (
     							<div className="p-3 space-y-2.5">
       							<div className="border border-white/10 bg-white/[0.02] rounded-lg px-3 py-2">
-        							<div className="text-[10px] text-white/40 mb-2">CS Cluster · 3 members contributing</div>
+        							<div className="text-[10px] text-white/40 mb-2">CS Cluster Â· 3 members contributing</div>
         							<div className="space-y-1.5">
-          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-status-blue/30 border border-status-blue/40 flex items-center justify-center"><span className="text-[7px] text-status-blue">A</span></div><span className="text-[10px] text-white/70">Alice</span><span className="text-[9px] text-white/30">Salesforce · Gong Calls</span></div>
-          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-purple-500/30 border border-purple-500/40 flex items-center justify-center"><span className="text-[7px] text-purple-400">B</span></div><span className="text-[10px] text-white/70">Bob</span><span className="text-[9px] text-white/30">Slack · Gmail</span></div>
-          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-emerald-500/30 border border-emerald-500/40 flex items-center justify-center"><span className="text-[7px] text-emerald-400">C</span></div><span className="text-[10px] text-white/70">Carol</span><span className="text-[9px] text-white/30">Google Drive · Confluence</span></div>
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-status-blue/30 border border-status-blue/40 flex items-center justify-center"><span className="text-[7px] text-status-blue">A</span></div><span className="text-[10px] text-white/70">Alice</span><span className="text-[9px] text-white/30">Salesforce Â· Gong Calls</span></div>
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-purple-500/30 border border-purple-500/40 flex items-center justify-center"><span className="text-[7px] text-purple-400">B</span></div><span className="text-[10px] text-white/70">Bob</span><span className="text-[9px] text-white/30">Slack Â· Gmail</span></div>
+          							<div className="flex items-center gap-2"><div className="w-4 h-4 rounded-full bg-emerald-500/30 border border-emerald-500/40 flex items-center justify-center"><span className="text-[7px] text-emerald-400">C</span></div><span className="text-[10px] text-white/70">Carol</span><span className="text-[9px] text-white/30">Google Drive Â· Confluence</span></div>
         							</div>
       							</div>
       							<div className="flex justify-end">
@@ -516,8 +516,8 @@ export function HomePage() {
         							<div className="flex-1 min-w-0">
           							<p className="text-[11px] text-white/80 leading-relaxed"><span className="text-white font-semibold">From Alice's Gong call (Jun 11):</span> GlobalTech raised pricing concerns and asked for a dedicated CSM. Bob's Slack thread confirms exec sponsor is disengaged since May.</p>
           							<div className="flex flex-wrap gap-1.5 mt-2">
-            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Alice / Gong ↗</span>
-            							<span className="text-[9px] text-purple-400 bg-purple-400/10 border border-purple-400/20 px-2 py-0.5 rounded">Bob / Slack ↗</span>
+            							<span className="text-[9px] text-status-blue bg-status-blue/10 border border-status-blue/20 px-2 py-0.5 rounded">Alice / Gong â†—</span>
+            							<span className="text-[9px] text-purple-400 bg-purple-400/10 border border-purple-400/20 px-2 py-0.5 rounded">Bob / Slack â†—</span>
           							</div>
         							</div>
       							</div>
@@ -562,14 +562,14 @@ export function HomePage() {
 								</div>
 								<div className="flex items-center gap-1.5">
 									<div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-									<span className="text-[9px] text-white/35">Persistent memory · RBAC enforced</span>
+									<span className="text-[9px] text-white/35">Persistent memory Â· RBAC enforced</span>
 								</div>
 							</div>
 						</div>
 					</div>
 				</section>
 
-				{/* ── CURRENT REALITY SECTION ── */}
+				{/* â”€â”€ CURRENT REALITY SECTION â”€â”€ */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="text-center mb-stack-lg flex flex-col items-center">
 						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">THE CURRENT REALITY</span>
@@ -582,7 +582,7 @@ export function HomePage() {
 						<div className="border border-red-500/20 bg-red-500/5 rounded-2xl p-8 relative overflow-hidden transition-all duration-300 hover:border-red-500/30">
 							<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500/50 to-transparent"></div>
 							<h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-								<span className="w-8 h-8 rounded bg-red-500/20 text-red-400 flex items-center justify-center font-bold">✕</span>
+								<span className="w-8 h-8 rounded bg-red-500/20 text-red-400 flex items-center justify-center font-bold">âœ•</span>
 								The Status Quo
 							</h3>
 							<ul className="space-y-6">
@@ -614,7 +614,7 @@ export function HomePage() {
 						<div className="border border-status-blue/30 bg-status-blue/5 rounded-2xl p-8 relative overflow-hidden transition-all duration-300 hover:border-status-blue/50 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)]">
 							<div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-status-blue/50 to-transparent"></div>
 							<h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
-								<span className="w-8 h-8 rounded bg-status-blue/20 text-status-blue flex items-center justify-center font-bold">✓</span>
+								<span className="w-8 h-8 rounded bg-status-blue/20 text-status-blue flex items-center justify-center font-bold">âœ“</span>
 								With Nuerova
 							</h3>
 							<ul className="space-y-6">
@@ -629,7 +629,7 @@ export function HomePage() {
 									<div className="w-1.5 h-1.5 rounded-full bg-status-blue/50 mt-2 flex-shrink-0"></div>
 									<div>
 										<strong className="block text-white mb-1">Agents answer from your team's context, not the internet</strong>
-										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit your team’s accumulated knowledge automatically: it’s the starting point, not the afterthought.</span>
+										<span className="text-sm text-white/50">No re-explaining. No blank slates. Agents inherit your teamâ€™s accumulated knowledge automatically: itâ€™s the starting point, not the afterthought.</span>
 									</div>
 								</li>
 								<li className="flex gap-4">
@@ -644,7 +644,7 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* ── HOW IT WORKS SECTION ── */}
+				{/* â”€â”€ HOW IT WORKS SECTION â”€â”€ */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="text-center mb-16 flex flex-col items-center">
 						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">HOW IT WORKS</span>
@@ -682,7 +682,7 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* ── PLATFORM CAPABILITIES SECTION (Bento Grid) ── */}
+				{/* â”€â”€ PLATFORM CAPABILITIES SECTION (Bento Grid) â”€â”€ */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="text-center mb-16 flex flex-col items-center">
 						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">PLATFORM CAPABILITIES</span>
@@ -741,7 +741,7 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* ── INTEGRATIONS SECTION ── */}
+				{/* â”€â”€ INTEGRATIONS SECTION â”€â”€ */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="text-center mb-12 flex flex-col items-center">
 						<span className="font-label-caps text-label-caps text-status-blue border border-status-blue/20 px-4 py-1.5 rounded-full inline-block mb-stack-md">INTEGRATIONS</span>
@@ -789,7 +789,7 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* ── REQUEST A DEMO SECTION ── */}
+				{/* â”€â”€ REQUEST A DEMO SECTION â”€â”€ */}
 				<section className="w-full bg-[#111315] py-section-gap border-y border-white/[0.08] reveal" id="contact">
 					<div className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-16 items-center">
 						<div className="flex-1">
@@ -914,7 +914,7 @@ export function HomePage() {
 					</div>
 				</section>
 
-				{/* ── EARLY ACCESS WAITLIST SECTION ── */}
+				{/* â”€â”€ EARLY ACCESS WAITLIST SECTION â”€â”€ */}
 				<section className="section cta-section bg-[#050505] border-t border-white/10 py-24 text-center reveal relative overflow-hidden">
 					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-64 bg-status-blue/5 rounded-full blur-3xl pointer-events-none"></div>
 					<div className="container max-w-4xl mx-auto px-gutter relative z-10">
@@ -936,7 +936,7 @@ export function HomePage() {
 									disabled={isWaitlistSubmitting}
 									className="font-button text-button bg-gradient-to-r from-status-blue to-blue-600 text-white px-6 py-3 rounded-lg hover:shadow-lg hover:shadow-status-blue/20 hover:-translate-y-0.5 transition-all duration-300 font-bold border border-white/10"
 								>
-									{isWaitlistSubmitting ? "Requesting..." : "Request Access →"}
+									{isWaitlistSubmitting ? "Requesting..." : "Request Access â†’"}
 								</button>
 							</form>
 						) : (
@@ -954,3 +954,4 @@ export function HomePage() {
 		</div>
 	);
 }
+

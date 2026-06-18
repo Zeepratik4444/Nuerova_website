@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+﻿import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -20,7 +20,7 @@ export function BlogPage() {
 				"@type": "Organization",
 				"name": "Nuerova",
 				"url": "https://nuerova.xyz",
-				"logo": "https://nuerova.xyz/brand-logo.png"
+				"logo": "https://nuerova.xyz/apple-touch-icon.png"
 			},
 			"blogPost": blogPosts.map(p => ({
 				"@type": "BlogPosting",
@@ -43,7 +43,7 @@ export function BlogPage() {
 			<Navigation />
 
 			<main id="main" className="flex-grow pb-24 pt-32">
-				{/* ── HERO ── */}
+				{/* â”€â”€ HERO â”€â”€ */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg mb-20 reveal">
 					<div className="max-w-3xl">
 						<span className="font-label-caps text-xs text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-6">INSIGHTS & ESSAYS</span>
@@ -57,7 +57,7 @@ export function BlogPage() {
 				</section>
 
 				<div className="max-w-container-max mx-auto px-gutter md:px-stack-lg">
-					{/* ── FEATURED POST ── */}
+					{/* â”€â”€ FEATURED POST â”€â”€ */}
 					{featured && (
 						<section className="mb-14 reveal">
 							<p
@@ -120,7 +120,7 @@ export function BlogPage() {
 											{featured.tags[0]}
 										</span>
 										<span style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>
-											{featured.publishedAt} · {featured.readTime}
+											{featured.publishedAt} Â· {featured.readTime}
 										</span>
 									</div>
 									<h2
@@ -166,7 +166,7 @@ export function BlogPage() {
 						</section>
 					)}
 
-					{/* ── BLOG INDEX GRID ── */}
+					{/* â”€â”€ BLOG INDEX GRID â”€â”€ */}
 					<section>
 						<p
 							style={{
@@ -220,7 +220,7 @@ export function BlogPage() {
 						</div>
 					</section>
 
-					{/* ── EMAIL CAPTURE ── */}
+					{/* â”€â”€ EMAIL CAPTURE â”€â”€ */}
 					<div className="max-w-2xl reveal">
 						<EarlyAccessCapture source="blog_listing_page" />
 					</div>
@@ -229,3 +229,4 @@ export function BlogPage() {
 		</div>
 	);
 }
+
