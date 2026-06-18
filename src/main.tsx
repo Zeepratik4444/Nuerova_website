@@ -33,9 +33,10 @@ declare module "@tanstack/react-router" {
 	}
 }
 
-// Render the app
+// Render the app — always mount even when #app has static SSG content.
+// Static HTML is injected at build time for Googlebot; React replaces it on load.
 const rootElement = document.getElementById("app");
-if (rootElement && !rootElement.innerHTML) {
+if (rootElement) {
 	const root = ReactDOM.createRoot(rootElement);
 	root.render(
 		<StrictMode>

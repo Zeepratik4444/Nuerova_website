@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "node scripts/generate-static-blog.mjs",
-    "postbuild": "node scripts/generate-static-pages.mjs && node scripts/prerender.mjs",
+    "postbuild": "node scripts/generate-static-pages.mjs",
     "generate:static-blog": "node scripts/generate-static-blog.mjs",
     "generate:static-pages": "node scripts/generate-static-pages.mjs",
     "dev": "vite --port 3000",

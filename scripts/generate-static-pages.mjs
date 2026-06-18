@@ -36,54 +36,244 @@ const siteUrl = "https://nuerova.xyz";
 const currentContentLastmod = "2026-06-14";
 
 // ── Core pages to generate ─────────────────────────────────────────────────
+// staticBody: server-side HTML injected directly into <body> so Googlebot sees
+// real, unique content on every page without needing JavaScript to render.
+// This mirrors how generate-static-blog.mjs handles blog posts. The React app
+// hydrates on top of this once the JS bundle loads.
 const pages = [
     {
         route: "",
         title: "Nuerova | AI Skills, Shared Knowledge & Automated Workflows for Enterprise Teams",
         description:
             "Persistent team knowledge, scoped clusters, and reasoning-driven agents.",
+        staticBody: `
+<main>
+  <h1>AI Skills, Shared Knowledge &amp; Automated Workflows for Enterprise Teams</h1>
+  <p>Nuerova gives your team persistent, scoped knowledge clusters and context-aware agents that reason over your real operational data — not generic prompts.</p>
+  <ul>
+    <li>Scoped knowledge clusters that survive turnover and silos</li>
+    <li>Context-aware agent personas trained on your team's actual workflows</li>
+    <li>Visual workflow builder with human-in-the-loop approval gates</li>
+    <li>Tamper-resistant audit logs and role-based access control</li>
+    <li>7-day free trial on the Teams plan — no credit card required</li>
+  </ul>
+</main>`,
     },
     {
         route: "features",
         title: "Features - Scoped Clusters, Custom Agents & Governance | Nuerova",
         description:
             "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
+        staticBody: `
+<main>
+  <h1>Nuerova Features</h1>
+  <p>Every feature is built for teams that need AI to reason over real context, not generic prompts.</p>
+  <section>
+    <h2>Scoped Memory Clusters</h2>
+    <p>Team memory that survives turnover, silos, and one-off chats. Knowledge is scoped by team, project, client, or org.</p>
+    <ul>
+      <li>Create clusters by team, department, or client</li>
+      <li>Granular read, write, and contribute permissions</li>
+      <li>Activity logs showing which knowledge an agent used</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Context-Aware Agents</h2>
+    <p>Agents that know your context, not just your question. They reason over team memory and cite their sources.</p>
+    <ul>
+      <li>Persona-level instructions scoped to each cluster</li>
+      <li>Source citation with every agent response</li>
+      <li>Human escalation paths for low-confidence answers</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Agent-Native Workflows</h2>
+    <p>Automations that reason before they run. Nuerova workflows include intelligent decision nodes.</p>
+    <ul>
+      <li>Visual workflow builder with reasoning nodes</li>
+      <li>Human approval validation queue</li>
+      <li>Trigger automations from agent responses or external events</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Enterprise Governance</h2>
+    <p>Enterprise controls from day one. Audit logs, RBAC, and org-level data boundaries.</p>
+    <ul>
+      <li>Org-level data isolation</li>
+      <li>Role-based access control across all clusters</li>
+      <li>Tamper-resistant audit trails</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Built-in Skill Library</h2>
+    <p>Reusable AI instruction sets your team installs once and runs across every agent session. No prompt re-engineering on every conversation.</p>
+  </section>
+  <section>
+    <h2>Deep Integrations</h2>
+    <p>Connect the tools your team already uses. Each OAuth connection feeds your personal knowledge profile — the raw material that makes cluster answers context-aware.</p>
+  </section>
+</main>`,
     },
     {
         route: "pricing",
         title: "Pricing - Scoped Knowledge Clusters & Team Intelligence | Nuerova",
         description:
             "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
+        staticBody: `
+<main>
+  <h1>Nuerova Pricing</h1>
+  <p>Simple plans for teams of every size. 7-day free trial on the Teams plan.</p>
+  <section>
+    <h2>Starter</h2>
+    <p>For small teams getting started with shared knowledge and contextual agents. Up to 3 seats.</p>
+  </section>
+  <section>
+    <h2>Teams</h2>
+    <p>For growing departments that need scoped clusters, custom agent personas, and visual workflow automation. Up to 25 seats. Includes 7-day free trial.</p>
+  </section>
+  <section>
+    <h2>Enterprise</h2>
+    <p>Unlimited seats, hybrid architecture options, dedicated onboarding, and SLA-backed support for large organizations.</p>
+  </section>
+  <section>
+    <h2>Frequently Asked Pricing Questions</h2>
+    <dl>
+      <dt>What happens to my data if I cancel?</dt>
+      <dd>We provide one-click export and automatic deletion workflows during offboarding. Your data remains yours.</dd>
+      <dt>How long does setup take?</dt>
+      <dd>Most teams connect their sources and have their first functional knowledge cluster live within three days.</dd>
+      <dt>Can I self-host Nuerova?</dt>
+      <dd>Enterprise deployments can include hybrid architecture discussions for stricter data residency requirements.</dd>
+    </dl>
+  </section>
+</main>`,
     },
     {
         route: "how-it-works",
         title: "How Nuerova Works - Context Ingestion to Governed Action | Nuerova",
         description:
             "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
+        staticBody: `
+<main>
+  <h1>How Nuerova Works</h1>
+  <p>From context ingestion to governed action in six steps.</p>
+  <ol>
+    <li>
+      <h2>Connect Knowledge Sources</h2>
+      <p>Link the tools your team already uses — Slack, Notion, Google Drive, CRM, ticketing systems. Nuerova ingests and indexes your team's operational knowledge.</p>
+    </li>
+    <li>
+      <h2>Build Your Personal Twin</h2>
+      <p>Each team member gets a personal knowledge profile built from their connected sources. This is the raw material that makes cluster answers context-aware.</p>
+    </li>
+    <li>
+      <h2>Pool Twins into Clusters</h2>
+      <p>Combine personal profiles into scoped knowledge clusters by team, department, client, or project. Clusters are isolated and permission-controlled.</p>
+    </li>
+    <li>
+      <h2>Deploy Context-Aware Agents</h2>
+      <p>Agents reason over your cluster's knowledge, cite sources, and know when to escalate to a human. No hallucinations from generic prompts.</p>
+    </li>
+    <li>
+      <h2>Build Agent-Native Automations</h2>
+      <p>Use the visual workflow builder to chain agent reasoning with approval gates, external triggers, and governed action steps.</p>
+    </li>
+    <li>
+      <h2>Govern and Scale</h2>
+      <p>Monitor every agent action through tamper-resistant audit logs. Role-based access control and org-level data boundaries scale as your team grows.</p>
+    </li>
+  </ol>
+</main>`,
     },
     {
         route: "faq",
         title: "FAQ - Nuerova Clusters, Agents & Security Questions",
         description:
             "Answers to Nuerova setup, data source integrations, pricing, security, and team intelligence automation questions.",
+        staticBody: `
+<main>
+  <h1>Frequently Asked Questions</h1>
+  <dl>
+    <dt>How long does setup take?</dt>
+    <dd>Most teams connect their data sources and have their first functional knowledge cluster running within three days. Enterprise deployments with custom integrations typically take one to two weeks.</dd>
+    <dt>What is the difference between a cluster and a workspace?</dt>
+    <dd>A workspace is your organization's top-level container. Clusters are scoped subsets within a workspace — one per team, department, client, or project — each with its own permissions and agent configuration.</dd>
+    <dt>What happens when an automation fails?</dt>
+    <dd>Failed automations are logged with full context in the audit trail. Depending on workflow configuration, Nuerova either retries automatically or routes to the human approval queue for manual review.</dd>
+    <dt>How do I export everything if I leave?</dt>
+    <dd>All clusters, agent configurations, workflow definitions, and indexed knowledge are exportable in standard formats. One-click export is available from the workspace settings page.</dd>
+    <dt>What data sources does Nuerova support?</dt>
+    <dd>Nuerova connects via OAuth to Slack, Notion, Google Workspace, Microsoft 365, Salesforce, HubSpot, Jira, Confluence, Zendesk, and more. Custom integrations are available on the Enterprise plan.</dd>
+    <dt>Is Nuerova SOC 2 compliant?</dt>
+    <dd>Nuerova is SOC 2 Type II compliant. All data is encrypted in transit and at rest. Org-level isolation ensures no cross-tenant data access.</dd>
+  </dl>
+</main>`,
     },
     {
         route: "about",
         title: "About Nuerova - Built to Eliminate Team Knowledge Silos",
         description:
             "Read the story of Nuerova. Built by operational and engineering practitioners who outgrew fragmented Slack histories and document silos.",
+        staticBody: `
+<main>
+  <h1>About Nuerova</h1>
+  <p>Nuerova was built by operational and engineering practitioners who outgrew fragmented Slack histories and document silos. We watched enterprise AI initiatives stall because the knowledge that makes a team effective — the context, the decisions, the tacit know-how — was scattered and inaccessible to agents.</p>
+  <p>Our answer is a platform that treats team knowledge as a first-class infrastructure layer: scoped, governed, and wired directly into agent reasoning and automated workflows.</p>
+  <section>
+    <h2>Our Principles</h2>
+    <ul>
+      <li><strong>Context should be owned by the team.</strong> Knowledge that exists in individuals' heads or siloed tools is a liability. Nuerova makes it a shared, queryable asset.</li>
+      <li><strong>Automation needs judgment.</strong> Workflows that can't reason over context aren't automations — they're scripts. Nuerova agents reason before they act.</li>
+      <li><strong>Security is product design.</strong> Enterprise controls aren't bolt-ons. RBAC, org-level isolation, and audit trails are built into every layer of the platform.</li>
+      <li><strong>Reusable intelligence compounds.</strong> Skills and clusters built once get reused across every agent session, every team, every workflow.</li>
+    </ul>
+  </section>
+</main>`,
     },
     {
         route: "contact",
         title: "Contact Nuerova - Start Your Team Intelligence Trial | Nuerova",
         description:
             "Talk to Nuerova about centralizing department knowledge in scoped clusters and setting up secure, context-aware agent workflows.",
+        staticBody: `
+<main>
+  <h1>Request a Demo</h1>
+  <p>Talk to the Nuerova team about mapping scoped knowledge clusters and agent-native automations to your department's workflows.</p>
+  <p>Every demo includes a live walkthrough of how Nuerova ingests your existing knowledge sources, builds team clusters, and deploys context-aware agents — tailored to your team's actual use case.</p>
+  <ul>
+    <li>No lock-in</li>
+    <li>Data stays yours</li>
+    <li>Setup support included</li>
+    <li>Enterprise controls built in</li>
+  </ul>
+</main>`,
     },
     {
         route: "security",
         title: "Security & Governance - Enterprise Grade Data Protection | Nuerova",
         description:
             "Explore Nuerova's enterprise-grade security standards. Learn about workspace isolation, role-based access control, SOC2 compliance, and audit trails.",
+        staticBody: `
+<main>
+  <h1>Security &amp; Governance</h1>
+  <p>Enterprise-grade data protection built into every layer of the Nuerova platform.</p>
+  <section>
+    <h2>Org-Level Isolation &amp; Boundaries</h2>
+    <p>Every workspace operates in a fully isolated environment. No cross-tenant data access is architecturally possible. Cluster boundaries are enforced at the data layer, not just the UI.</p>
+  </section>
+  <section>
+    <h2>Role-Based Access Control</h2>
+    <p>Granular RBAC maps to real team structures. Assign read, write, contribute, and admin roles per cluster. Permissions are inherited, auditable, and revocable in real time.</p>
+  </section>
+  <section>
+    <h2>Controls for Production</h2>
+    <p>SOC 2 Type II compliant. All data encrypted in transit (TLS 1.2+) and at rest (AES-256). SSO and SAML support for enterprise identity providers.</p>
+  </section>
+  <section>
+    <h2>Tamper-Resistant Audit Logs</h2>
+    <p>Every agent action, workflow execution, and data access event is logged with full context. Logs are immutable and exportable for compliance review.</p>
+  </section>
+</main>`,
     },
     {
         route: "terms",
@@ -91,6 +281,12 @@ const pages = [
         description:
             "Read the Nuerova terms of service covering acceptable use, data ownership, subscription plans, and governing legal terms.",
         noIndex: false,
+        staticBody: `
+<main>
+  <h1>Terms of Service</h1>
+  <p>These terms govern your use of the Nuerova platform. By creating an account you agree to these terms.</p>
+  <p>Key areas covered: acceptable use policy, data ownership and portability, subscription plan terms, payment and cancellation, and governing legal jurisdiction.</p>
+</main>`,
     },
 ];
 
@@ -490,7 +686,7 @@ function escapeHtml(value) {
         .replaceAll('"', "&quot;");
 }
 
-function buildPageHtml({ route, title, description }) {
+function buildPageHtml({ route, title, description, staticBody = "" }) {
     const canonicalUrl = `${siteUrl}/${route}`;
     const escapedTitle = escapeHtml(title);
     const escapedDescription = escapeHtml(description);
@@ -549,7 +745,9 @@ function buildPageHtml({ route, title, description }) {
   ${cssLinkTag}
 </head>
 
-<body>${bodyContent}</body>
+<body>${staticBody
+        ? bodyContent.replace('<div id="app"></div>', `<div id="app">${staticBody}</div>`)
+        : bodyContent}</body>
 
 </html>
 `;
