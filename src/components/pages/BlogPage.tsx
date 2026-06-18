@@ -9,7 +9,7 @@ const FEATURED_SLUG = "setup-guide-72-hours";
 
 export function BlogPage() {
 	useSEO({
-		title: "Blog — Team Intelligence, Agent Workflows & Enterprise AI | Nuerova",
+		title: "Blog - Team Intelligence, Agent Workflows & Enterprise AI | Nuerova",
 		description: "Insights on team memory, agent-native workflows, and the reality of enterprise AI for operations and CS teams.",
 		schemaOrg: {
 			"@type": "Blog",

@@ -45,43 +45,43 @@ const pages = [
     },
     {
         route: "features",
-        title: "Features — Scoped Clusters, Custom Agents & Governance | Nuerova",
+        title: "Features - Scoped Clusters, Custom Agents & Governance | Nuerova",
         description:
             "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
     },
     {
         route: "pricing",
-        title: "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
+        title: "Pricing - Scoped Knowledge Clusters & Team Intelligence | Nuerova",
         description:
             "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
     },
     {
         route: "how-it-works",
-        title: "How Nuerova Works — Context Ingestion to Governed Action | Nuerova",
+        title: "How Nuerova Works - Context Ingestion to Governed Action | Nuerova",
         description:
             "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
     },
     {
         route: "faq",
-        title: "FAQ — Nuerova Clusters, Agents & Security Questions",
+        title: "FAQ - Nuerova Clusters, Agents & Security Questions",
         description:
             "Answers to Nuerova setup, data source integrations, pricing, security, and team intelligence automation questions.",
     },
     {
         route: "about",
-        title: "About Nuerova — Built to Eliminate Team Knowledge Silos",
+        title: "About Nuerova - Built to Eliminate Team Knowledge Silos",
         description:
             "Read the story of Nuerova. Built by operational and engineering practitioners who outgrew fragmented Slack histories and document silos.",
     },
     {
         route: "contact",
-        title: "Contact Nuerova — Start Your Team Intelligence Trial | Nuerova",
+        title: "Contact Nuerova - Start Your Team Intelligence Trial | Nuerova",
         description:
             "Talk to Nuerova about centralizing department knowledge in scoped clusters and setting up secure, context-aware agent workflows.",
     },
     {
         route: "security",
-        title: "Security & Governance — Enterprise Grade Data Protection | Nuerova",
+        title: "Security & Governance - Enterprise Grade Data Protection | Nuerova",
         description:
             "Explore Nuerova's enterprise-grade security standards. Learn about workspace isolation, role-based access control, SOC2 compliance, and audit trails.",
     },

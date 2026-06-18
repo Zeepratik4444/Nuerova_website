@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function AboutPage() {
 	useSEO({
-		title: "About Nuerova — Built to Eliminate Team Knowledge Silos",
+		title: "About Nuerova - Built to Eliminate Team Knowledge Silos",
 		description: "Read the story of Nuerova. Built by operational and engineering practitioners who outgrew fragmented Slack histories and document silos.",
 		canonicalPath: "/about",
 		schemaOrg: [

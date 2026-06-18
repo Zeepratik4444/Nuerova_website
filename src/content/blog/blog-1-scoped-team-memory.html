@@ -5,10 +5,10 @@
   On Monday morning, a new CS hire opens your company AI assistant and types: <em>"How do we handle Enterprise tier escalations?"</em>
 </p>
 <p>
-  The AI has no idea. It gives a generic five-step framework from its training data — not the process your team refined through a quarter of real friction. The new hire either follows the wrong process or goes back to shoulder-tapping a senior.
+  The AI has no idea. It gives a generic five-step framework from its training data - not the process your team refined through a quarter of real friction. The new hire either follows the wrong process or goes back to shoulder-tapping a senior.
 </p>
 <p>
-  This is not a prompting problem. It is a memory architecture problem — and it explains why most enterprise AI deployments quietly fail after the first 90 days.
+  This is not a prompting problem. It is a memory architecture problem - and it explains why most enterprise AI deployments quietly fail after the first 90 days.
 </p>
 
 <h2>Why Generic AI Starts Every Conversation With Amnesia</h2>
@@ -19,9 +19,9 @@
   When someone asks your AI assistant a meaningful operational question, the answer requires three layers of context:
 </p>
 <ul>
-  <li><strong>Company context</strong> — your product, customers, and org structure</li>
-  <li><strong>Department context</strong> — the processes, playbooks, and tribal knowledge specific to that team</li>
-  <li><strong>Live context</strong> — the current state of that account, ticket, or project right now</li>
+  <li><strong>Company context</strong> - your product, customers, and org structure</li>
+  <li><strong>Department context</strong> - the processes, playbooks, and tribal knowledge specific to that team</li>
+  <li><strong>Live context</strong> - the current state of that account, ticket, or project right now</li>
 </ul>
 <p>
   Generic tools have none of this. You get impressive model intelligence applied to your question with zero situational awareness. The result is technically plausible, operationally useless.
@@ -38,7 +38,7 @@
 
 <h2>Why "Just Paste the Context" Breaks at Scale</h2>
 <p>
-  The standard workaround is to manually paste context into every prompt — the SOP, the client notes, the relevant Slack thread. For one person doing occasional research, this works. It collapses the moment you have fifteen people doing this across forty clients, a dozen evolving SOPs, and live data that changes daily.
+  The standard workaround is to manually paste context into every prompt - the SOP, the client notes, the relevant Slack thread. For one person doing occasional research, this works. It collapses the moment you have fifteen people doing this across forty clients, a dozen evolving SOPs, and live data that changes daily.
 </p>
 <p>
   More critically: it cannot work for automated workflows at all. An agent that triggers off a new Zendesk ticket can't paste context into its own prompt. It needs that context pre-structured and accessible before the LLM ever runs.
@@ -51,20 +51,20 @@
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">1</div>
     <div>
       <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Knowledge is organized into team clusters, not one giant blob</h4>
-      <p style="margin: 0; color: #475569; line-height: 1.6;">CS knowledge lives separately from Engineering knowledge. Agents and users only pull from clusters they're authorized to access — preventing data leakage and keeping retrieval precise rather than noisy.</p>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">CS knowledge lives separately from Engineering knowledge. Agents and users only pull from clusters they're authorized to access - preventing data leakage and keeping retrieval precise rather than noisy.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">2</div>
     <div>
       <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Memory is maintained, not just stored</h4>
-      <p style="margin: 0; color: #475569; line-height: 1.6;">An SOP that was valid in Q1 but superseded in Q3 can be deprecated — so the AI stops citing outdated processes. Static wikis get stale. Knowledge clusters are designed to reflect reality as it changes.</p>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">An SOP that was valid in Q1 but superseded in Q3 can be deprecated - so the AI stops citing outdated processes. Static wikis get stale. Knowledge clusters are designed to reflect reality as it changes.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">3</div>
     <div>
-      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Context is injected automatically — nobody pastes anything</h4>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Context is injected automatically - nobody pastes anything</h4>
       <p style="margin: 0; color: #475569; line-height: 1.6;">When a Nuerova agent handles a task, the relevant cluster context is retrieved and structured before the LLM sees the prompt. The retrieval step happens invisibly, for every workflow, every time.</p>
     </div>
   </div>
@@ -73,7 +73,7 @@
 <div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
   <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Why This Compounds</strong>
   <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
-    A new CS hire on day one gets the same quality of AI-assisted answers as your most experienced team member — not because the model is smarter, but because the institutional knowledge is structured and accessible. That compounding effect is the moat generic AI tools cannot copy. They can match the model. They cannot copy your team's specific operational intelligence.
+    A new CS hire on day one gets the same quality of AI-assisted answers as your most experienced team member - not because the model is smarter, but because the institutional knowledge is structured and accessible. That compounding effect is the moat generic AI tools cannot copy. They can match the model. They cannot copy your team's specific operational intelligence.
   </p>
 </div>
 
@@ -82,14 +82,14 @@
   Does your current AI setup get smarter every week as your team uses it? Or does it reset to zero every Monday morning?
 </p>
 <p>
-  If it's the latter, the ROI of AI at team scale isn't going to come from better prompts or a newer model — it's going to come from building a memory layer that remembers what your team actually knows.
+  If it's the latter, the ROI of AI at team scale isn't going to come from better prompts or a newer model - it's going to come from building a memory layer that remembers what your team actually knows.
 </p>
 
 <!-- Inline CTA -->
 <div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
   <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">See how scoped memory works in practice</h2>
   <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
-    Nuerova's knowledge cluster system gives your team AI that gets sharper every week — not one that starts over every Monday.
+    Nuerova's knowledge cluster system gives your team AI that gets sharper every week - not one that starts over every Monday.
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
     <a href="/features" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
@@ -105,7 +105,7 @@
   <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Common Questions</h2>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Can we connect our existing Notion or Confluence docs to a cluster?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Nuerova ingests from Notion, Confluence, Google Drive, and uploaded files. You're not starting from scratch — you're making what already exists structured and queryable.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Nuerova ingests from Notion, Confluence, Google Drive, and uploaded files. You're not starting from scratch - you're making what already exists structured and queryable.</p>
   </div>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">What stops one team from accessing another team's cluster?</h3>
@@ -113,6 +113,6 @@
   </div>
   <div style="padding-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Does this replace our documentation tools?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">No — your team keeps writing in Notion or Confluence. Nuerova pulls from those sources, structures the knowledge for AI retrieval, and keeps memory current as documents change.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">No - your team keeps writing in Notion or Confluence. Nuerova pulls from those sources, structures the knowledge for AI retrieval, and keeps memory current as documents change.</p>
   </div>
 </section>

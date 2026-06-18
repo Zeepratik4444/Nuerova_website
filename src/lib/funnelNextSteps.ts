@@ -96,7 +96,7 @@ export const BLOG_NEXT_STEPS: Record<string, BlogNextStep> = {
 	"ops-stack-breaks": {
 		stage: "awareness",
 		title: "See what a connected intelligence layer looks like",
-		description: "Nuerova connects to Notion, Slack, and your CRM — and adds the memory, governance, and automation layer your stack is missing.",
+		description: "Nuerova connects to Notion, Slack, and your CRM - and adds the memory, governance, and automation layer your stack is missing.",
 		label: "See the platform",
 		to: "/features",
 	},

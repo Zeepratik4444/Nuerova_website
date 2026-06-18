@@ -2,10 +2,10 @@
   When you sign up for most enterprise AI SaaS tools, you agree to a pricing plan, connect your data sources, and start using the platform. What you don't see is the economic structure underneath: the vendor is calling OpenAI, Anthropic, or Google on their API account, paying model costs at scale, marking them up by 2x to 5x, and embedding that markup in your monthly bill as a line item called "AI usage" or "token credits" or simply absorbed into the seat price.
 </p>
 <p>
-  You're paying for the model access. You're just not in control of it — which provider they use, which model version they call, whether they pass your data through without logging it, and what happens to your context when their API contract changes. Most teams accept this without examining it closely because the alternative seems complex: manage your own API keys, worry about rate limits, handle billing separately.
+  You're paying for the model access. You're just not in control of it - which provider they use, which model version they call, whether they pass your data through without logging it, and what happens to your context when their API contract changes. Most teams accept this without examining it closely because the alternative seems complex: manage your own API keys, worry about rate limits, handle billing separately.
 </p>
 <p>
-  BYOK — Bring Your Own Keys — changes this arrangement. It means you connect your own API keys for the LLM providers you use, and the platform routes your requests through your account. You pay the model costs directly. You control which model runs. Your data flows through your API account, not through the vendor's. The platform provides the orchestration, the agent infrastructure, the Skills, the Clusters — but not the model access, which stays under your control.
+  BYOK - Bring Your Own Keys - changes this arrangement. It means you connect your own API keys for the LLM providers you use, and the platform routes your requests through your account. You pay the model costs directly. You control which model runs. Your data flows through your API account, not through the vendor's. The platform provides the orchestration, the agent infrastructure, the Skills, the Clusters - but not the model access, which stays under your control.
 </p>
 <p>
   This distinction sounds operational but has significant implications for cost, compliance, and strategic flexibility. Here's why enterprise teams increasingly require it.
@@ -13,13 +13,13 @@
 
 <h2>What BYOK Means in Practice</h2>
 <p>
-  In a BYOK-enabled platform, you configure API keys for one or more LLM providers in your platform settings. In Nuerova, that means connecting keys for OpenAI, Anthropic, Google Gemini, Vertex AI, Azure OpenAI, Groq, or Amazon Bedrock — or any combination. The platform routes model calls through LiteLLM, a unified LLM abstraction layer, which means you can use multiple providers simultaneously and switch between them without changing anything in your agent configurations.
+  In a BYOK-enabled platform, you configure API keys for one or more LLM providers in your platform settings. In Nuerova, that means connecting keys for OpenAI, Anthropic, Google Gemini, Vertex AI, Azure OpenAI, Groq, or Amazon Bedrock - or any combination. The platform routes model calls through LiteLLM, a unified LLM abstraction layer, which means you can use multiple providers simultaneously and switch between them without changing anything in your agent configurations.
 </p>
 <p>
-  The key management side is handled with Fernet symmetric encryption. Your API keys are encrypted at rest in Nuerova's database — the platform never stores them in plaintext. When a model call is made, the key is decrypted in memory for the duration of the call and never written back to disk unencrypted. This is the same key management pattern used by password managers and secrets management systems.
+  The key management side is handled with Fernet symmetric encryption. Your API keys are encrypted at rest in Nuerova's database - the platform never stores them in plaintext. When a model call is made, the key is decrypted in memory for the duration of the call and never written back to disk unencrypted. This is the same key management pattern used by password managers and secrets management systems.
 </p>
 <p>
-  From a user experience perspective, BYOK is invisible after initial setup. Team members run agent sessions, build automations, generate documents — all the same. The difference is that the model calls are being billed directly to your OpenAI or Anthropic account, the data is flowing through your API subscription, and you can see exactly what's being used in your API dashboard.
+  From a user experience perspective, BYOK is invisible after initial setup. Team members run agent sessions, build automations, generate documents - all the same. The difference is that the model calls are being billed directly to your OpenAI or Anthropic account, the data is flowing through your API subscription, and you can see exactly what's being used in your API dashboard.
 </p>
 
 <!-- Concept block -->
@@ -39,24 +39,24 @@
   To make this concrete: GPT-4o costs approximately $2.50 per million input tokens and $10 per million output tokens at direct API pricing. A team running a hundred detailed agent sessions per day might consume roughly 50 million tokens per month. At direct API pricing, that's $125–500 per month in model costs, depending on the input/output ratio. A SaaS platform that marks up 3x and buries it in a $100-per-seat plan for a 20-person team is charging $2,000 per month in "seat fees" against the same underlying model cost.
 </p>
 <p>
-  These numbers vary substantially by usage pattern. Teams that primarily run short sessions with small context windows will see much lower model costs than teams running deep research workflows with large context payloads. The point is not the exact number — it's the visibility. Without BYOK, you don't know what the actual model cost is, which means you can't optimize it, allocate it to departments, or evaluate whether it's proportionate to the value produced. With BYOK, model cost appears as a line item in your API dashboard, attributable to actual usage.
+  These numbers vary substantially by usage pattern. Teams that primarily run short sessions with small context windows will see much lower model costs than teams running deep research workflows with large context payloads. The point is not the exact number - it's the visibility. Without BYOK, you don't know what the actual model cost is, which means you can't optimize it, allocate it to departments, or evaluate whether it's proportionate to the value produced. With BYOK, model cost appears as a line item in your API dashboard, attributable to actual usage.
 </p>
 <p>
-  For finance and procurement teams, this visibility also changes the contract conversation. Instead of negotiating a black-box seat price with an AI vendor, you negotiate a platform fee (for the orchestration, agents, clusters, and skills) separately from the model cost (which you control directly). These are structurally different purchases that should be evaluated differently — and BYOK enables that separation.
+  For finance and procurement teams, this visibility also changes the contract conversation. Instead of negotiating a black-box seat price with an AI vendor, you negotiate a platform fee (for the orchestration, agents, clusters, and skills) separately from the model cost (which you control directly). These are structurally different purchases that should be evaluated differently - and BYOK enables that separation.
 </p>
 
 <h2>Reason Two: Data Residency and Compliance</h2>
 <p>
-  The second reason enterprises care about BYOK is data residency. When you use an AI SaaS platform without BYOK, your data — customer records, internal documents, email content, Slack messages, Salesforce opportunities — flows through the vendor's API account to the LLM provider. You have the vendor's privacy policy, which tells you what they promise to do. You may not know what they actually do.
+  The second reason enterprises care about BYOK is data residency. When you use an AI SaaS platform without BYOK, your data - customer records, internal documents, email content, Slack messages, Salesforce opportunities - flows through the vendor's API account to the LLM provider. You have the vendor's privacy policy, which tells you what they promise to do. You may not know what they actually do.
 </p>
 <p>
-  With BYOK, the data flow changes materially. Your API keys mean your data goes from Nuerova's infrastructure directly to OpenAI's or Anthropic's API under your account's terms of service. The SaaS vendor orchestrates the request but doesn't see the content — your key is used to authenticate your account, and the API response comes back to the platform. The vendor processes metadata (which model was called, how many tokens, when) but not the content.
+  With BYOK, the data flow changes materially. Your API keys mean your data goes from Nuerova's infrastructure directly to OpenAI's or Anthropic's API under your account's terms of service. The SaaS vendor orchestrates the request but doesn't see the content - your key is used to authenticate your account, and the API response comes back to the platform. The vendor processes metadata (which model was called, how many tokens, when) but not the content.
 </p>
 <p>
   This matters for specific regulatory contexts. HIPAA covered entities need to be able to demonstrate that PHI doesn't flow through unauthorized third parties. GDPR-regulated companies need to know where their EU residents' data goes. FedRAMP environments require audit trails of every system that processes sensitive data. SOC 2 audits will ask about data flows and who can see what.
 </p>
 <p>
-  BYOK doesn't automatically make a platform compliant with any of these frameworks — that depends on the full architecture, not just model key ownership. But it removes a class of compliance questions by ensuring that the entity with contractual access to your data is the LLM provider (with their own enterprise compliance certifications) rather than an intermediate SaaS vendor.
+  BYOK doesn't automatically make a platform compliant with any of these frameworks - that depends on the full architecture, not just model key ownership. But it removes a class of compliance questions by ensuring that the entity with contractual access to your data is the LLM provider (with their own enterprise compliance certifications) rather than an intermediate SaaS vendor.
 </p>
 <p>
   For teams evaluating multiple AI tools, the data residency question should be explicit: when I use this tool, which legal entities have access to my content? With BYOK, that answer is: the platform (for orchestration and metadata) and the LLM provider (for model inference). Without BYOK, the platform is also accessing model-level content, which adds a party to the audit scope.
@@ -67,19 +67,19 @@
   The LLM landscape is moving fast. GPT-4's capabilities and pricing changed substantially across its release window. Claude's context window expanded from 100K to 200K tokens with significant implications for long-document workflows. Gemini 1.5 Pro introduced multimodal capabilities at scale. Groq introduced inference speeds that changed the viability of real-time agent workflows.
 </p>
 <p>
-  When you're locked into a SaaS vendor's model abstraction — where they choose which model to call and when — you're at the mercy of their upgrade schedule and model selection decisions. If they're running GPT-4 Turbo because they have a contract that makes it cheaper for them at scale, you may not be getting the best model for your use case. If they upgrade to a newer model version, you find out when something starts behaving differently, not when you choose to evaluate the upgrade.
+  When you're locked into a SaaS vendor's model abstraction - where they choose which model to call and when - you're at the mercy of their upgrade schedule and model selection decisions. If they're running GPT-4 Turbo because they have a contract that makes it cheaper for them at scale, you may not be getting the best model for your use case. If they upgrade to a newer model version, you find out when something starts behaving differently, not when you choose to evaluate the upgrade.
 </p>
 <p>
   With BYOK, model selection is under your control. You can run Claude Opus for deep analysis tasks where context quality matters most, Claude Haiku or GPT-4o Mini for high-volume classification tasks where speed and cost matter more, and GPT-4o for standard agent sessions where both performance and cost need to be balanced. You can experiment with a new model release on a subset of workflows before committing to it broadly. If a provider changes their pricing structure in a way that affects your team's cost profile, you switch models without waiting for a vendor decision.
 </p>
 <p>
-  For organizations with specific model requirements — a legal department that requires models with no training data retention, or a team that has negotiated an enterprise contract with a specific provider — BYOK is the only way to satisfy those requirements with a SaaS platform. Without it, you're using whatever model the vendor decided to use, under whatever data terms they have with that provider.
+  For organizations with specific model requirements - a legal department that requires models with no training data retention, or a team that has negotiated an enterprise contract with a specific provider - BYOK is the only way to satisfy those requirements with a SaaS platform. Without it, you're using whatever model the vendor decided to use, under whatever data terms they have with that provider.
 </p>
 
 <div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
   <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">The Strategic Question</strong>
   <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
-    Vendor lock-in for AI tools doesn't look like traditional lock-in. It's not your data — you can export that. It's your model relationship: if the platform controls your LLM access, you lose the ability to negotiate directly with model providers, to use enterprise contracts you've already negotiated, and to move to a competing model without the platform's participation. BYOK keeps that relationship in your hands.
+    Vendor lock-in for AI tools doesn't look like traditional lock-in. It's not your data - you can export that. It's your model relationship: if the platform controls your LLM access, you lose the ability to negotiate directly with model providers, to use enterprise contracts you've already negotiated, and to move to a competing model without the platform's participation. BYOK keeps that relationship in your hands.
   </p>
 </div>
 
@@ -88,13 +88,13 @@
   The BYOK configuration in Nuerova is handled at the organization level by an Admin or Owner. The process: navigate to org settings, select the LLM provider, enter the API key. The key is encrypted with Fernet symmetric encryption before storage. When a model call is made, the key is decrypted in memory for the duration of that specific call.
 </p>
 <p>
-  LiteLLM handles the abstraction layer between Nuerova's agent infrastructure and the various provider APIs. This means the same agent session configuration works regardless of which provider is selected — you don't rebuild your agent configurations when you switch from OpenAI to Anthropic. The platform handles the API format differences, the response schema normalization, and the error handling uniformly across providers.
+  LiteLLM handles the abstraction layer between Nuerova's agent infrastructure and the various provider APIs. This means the same agent session configuration works regardless of which provider is selected - you don't rebuild your agent configurations when you switch from OpenAI to Anthropic. The platform handles the API format differences, the response schema normalization, and the error handling uniformly across providers.
 </p>
 <p>
   Org Admins can set a default model for all agent sessions and automations, and individual Users with appropriate permissions can override the model for specific tasks. This allows a sensible default that works for most workflows while preserving the flexibility for power users to route specific tasks to the optimal model.
 </p>
 <p>
-  Usage is tracked and visible in the org's run history — which sessions ran, which model was called, how many tokens were consumed. This gives finance teams the attribution they need to understand AI spend without requiring them to dig through the LLM provider's raw API logs. The platform-level tracking and the API-level billing are separate but complementary views of the same usage.
+  Usage is tracked and visible in the org's run history - which sessions ran, which model was called, how many tokens were consumed. This gives finance teams the attribution they need to understand AI spend without requiring them to dig through the LLM provider's raw API logs. The platform-level tracking and the API-level billing are separate but complementary views of the same usage.
 </p>
 
 <h2>What to Look For When Evaluating BYOK in AI Tools</h2>
@@ -156,7 +156,7 @@
 <div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
   <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">Keep your LLM keys where they belong</h2>
   <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
-    Nuerova's BYOK support covers OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, and Bedrock — with Fernet-encrypted key storage and full LiteLLM abstraction. Your data stays in your account.
+    Nuerova's BYOK support covers OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, and Bedrock - with Fernet-encrypted key storage and full LiteLLM abstraction. Your data stays in your account.
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
     <a href="/security" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
@@ -176,10 +176,10 @@
   </div>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Does BYOK affect Nuerova's pricing?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">BYOK is available on Teams and Enterprise plans. Nuerova's platform fee covers orchestration, agent infrastructure, clusters, skills, and automation — not the model costs. With BYOK, model costs flow directly to your LLM provider account and are not included in Nuerova's pricing.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">BYOK is available on Teams and Enterprise plans. Nuerova's platform fee covers orchestration, agent infrastructure, clusters, skills, and automation - not the model costs. With BYOK, model costs flow directly to your LLM provider account and are not included in Nuerova's pricing.</p>
   </div>
   <div style="padding-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">What happens if an API key expires or gets rotated?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">Model calls that use an expired or revoked key will fail with an authentication error, surfaced in the run history. Admins are notified. Key rotation is handled by updating the key in org settings — the new key takes effect immediately for all subsequent agent sessions and automations.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Model calls that use an expired or revoked key will fail with an authentication error, surfaced in the run history. Admins are notified. Key rotation is handled by updating the key in org settings - the new key takes effect immediately for all subsequent agent sessions and automations.</p>
   </div>
 </section>

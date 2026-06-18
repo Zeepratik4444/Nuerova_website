@@ -17,7 +17,7 @@ const steps = [
 	{
 		num: "02",
 		title: "Build Your Personal Twin",
-		body: "Your Twin is your personal knowledge profile. As you connect sources, Nuerova builds a private, searchable index of your context — emails, docs, conversations, CRM records. This is the raw material clusters draw from.",
+		body: "Your Twin is your personal knowledge profile. As you connect sources, Nuerova builds a private, searchable index of your context - emails, docs, conversations, CRM records. This is the raw material clusters draw from.",
 		tags: ["Personal context", "Private index", "Consent-based"],
 		icon: (
 			<svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
@@ -63,7 +63,7 @@ const steps = [
 
 export function HowItWorksPage() {
 	useSEO({
-		title: "How Nuerova Works — Context Ingestion to Governed Action | Nuerova",
+		title: "How Nuerova Works - Context Ingestion to Governed Action | Nuerova",
 		description: "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
 		schemaOrg: {
 			"@type": "HowTo",
@@ -80,7 +80,7 @@ export function HowItWorksPage() {
 					"@type": "HowToStep",
 					"position": 2,
 					"name": "Build your personal Twin",
-					"text": "Nuerova creates a private knowledge profile (Twin) for each user from their connected sources — a personal, consent-gated index of their context.",
+					"text": "Nuerova creates a private knowledge profile (Twin) for each user from their connected sources - a personal, consent-gated index of their context.",
 				},
 				{
 					"@type": "HowToStep",
@@ -220,7 +220,7 @@ export function HowItWorksPage() {
 											<svg className="opacity-0 group-hover:opacity-100 w-1.5 h-1.5 text-black/60" viewBox="0 0 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M2,8 L8,2 M2,2 L2,8 L8,8"/></svg>
 										</div>
 									</div>
-									<div className="text-[10px] text-white/35 font-medium tracking-wide">Nuerova — {steps[activeStep].title}</div>
+									<div className="text-[10px] text-white/35 font-medium tracking-wide">Nuerova - {steps[activeStep].title}</div>
 									<div className="flex items-center gap-1.5">
 										<div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
 										<span className="text-[10px] text-emerald-400">Live</span>
@@ -230,7 +230,7 @@ export function HowItWorksPage() {
 								{/* Step-specific content */}
 								<div key={activeStep} className="animate-in fade-in duration-400 h-[calc(100%-36px)] overflow-hidden">
 
-									{/* STEP 01 — Connect Knowledge Sources */}
+									{/* STEP 01 - Connect Knowledge Sources */}
 									{activeStep === 0 && (
 										<div className="h-full flex flex-col">
 											<div className="px-4 pt-3 pb-2 border-b border-white/5">
@@ -264,7 +264,7 @@ export function HowItWorksPage() {
 										</div>
 									)}
 
-									{/* STEP 02 — Build Your Personal Twin */}
+									{/* STEP 02 - Build Your Personal Twin */}
 									{activeStep === 1 && (
 										<div className="h-full flex flex-col p-4 gap-3">
 											<div className="flex items-center gap-3 pb-3 border-b border-white/8">
@@ -302,7 +302,7 @@ export function HowItWorksPage() {
 										</div>
 									)}
 
-									{/* STEP 03 — Pool Twins into Clusters */}
+									{/* STEP 03 - Pool Twins into Clusters */}
 									{activeStep === 2 && (
 										<div className="h-full flex">
 											{/* Cluster list */}
@@ -344,7 +344,7 @@ export function HowItWorksPage() {
 										</div>
 									)}
 
-									{/* STEP 04 — Deploy Context-Aware Agents */}
+									{/* STEP 04 - Deploy Context-Aware Agents */}
 									{activeStep === 3 && (
 										<div className="h-full flex">
 											{/* Mini icon sidebar */}
@@ -392,7 +392,7 @@ export function HowItWorksPage() {
 										</div>
 									)}
 
-									{/* STEP 05 — Build Automations */}
+									{/* STEP 05 - Build Automations */}
 									{activeStep === 4 && (
 										<div className="h-full flex flex-col">
 											<div className="px-3 py-2 border-b border-white/5 flex items-center gap-2">
@@ -452,7 +452,7 @@ export function HowItWorksPage() {
 										</div>
 									)}
 
-									{/* STEP 06 — Govern and Scale */}
+									{/* STEP 06 - Govern and Scale */}
 									{activeStep === 5 && (
 										<div className="h-full flex flex-col p-3 gap-3">
 											{/* Stats row */}

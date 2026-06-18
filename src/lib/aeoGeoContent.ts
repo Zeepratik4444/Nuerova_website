@@ -119,7 +119,7 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 	},
 	"governance-vs-velocity": {
 		question: "How do enterprise AI teams achieve governance without slowing down?",
-		answer: "Governance and team velocity are not opposites. Scoped cluster architecture lets teams move fast within defined boundaries — permissions, model settings, and approval gates are set once at the cluster level, so individuals don't choose between speed and compliance on every task.",
+		answer: "Governance and team velocity are not opposites. Scoped cluster architecture lets teams move fast within defined boundaries - permissions, model settings, and approval gates are set once at the cluster level, so individuals don't choose between speed and compliance on every task.",
 		facts: [
 			"Permissions enforced at the cluster, not the prompt level",
 			"Shadow AI stems from supply gaps, not bad intent",
@@ -146,7 +146,7 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 	},
 	"ai-rollout-no-shadow-ai": {
 		question: "How do you roll out AI company-wide without creating shadow AI?",
-		answer: "Shadow AI is a supply problem: employees use unsanctioned tools because approved alternatives are too slow or too generic. The fix is deploying governed, team-specific AI access — scoped clusters with real team context — before employees resort to workarounds. Governance follows fast adoption, not the other way around.",
+		answer: "Shadow AI is a supply problem: employees use unsanctioned tools because approved alternatives are too slow or too generic. The fix is deploying governed, team-specific AI access - scoped clusters with real team context - before employees resort to workarounds. Governance follows fast adoption, not the other way around.",
 		facts: [
 			"Shadow AI persists when approved tools don't solve real workflows",
 			"Scoped clusters give IT visibility without blocking productivity",
@@ -164,25 +164,25 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 	},
 	"what-is-a-skill-nuerova": {
 		question: "What is a Skill in an AI platform?",
-		answer: "A Skill is a reusable, versioned AI instruction set that packages a specific capability — like generating PDFs or writing SQL queries — into an installable module that agents apply before seeing a user's specific request. Unlike prompt templates, Skills are versioned, org-scoped, and hot-reload without retraining.",
+		answer: "A Skill is a reusable, versioned AI instruction set that packages a specific capability - like generating PDFs or writing SQL queries - into an installable module that agents apply before seeing a user's specific request. Unlike prompt templates, Skills are versioned, org-scoped, and hot-reload without retraining.",
 		facts: [
 			"Nuerova includes 20+ built-in Skills covering document creation, research, data analytics, and integrations",
-			"Skills are org-scoped — one publish makes them available to every team member",
+			"Skills are org-scoped - one publish makes them available to every team member",
 			"Custom Skills can be created from any instruction set and published to the org",
 		],
 	},
 	"ai-document-generation-pdf-pptx": {
 		question: "How does AI document generation work?",
-		answer: "AI document generation combines content reasoning (the LLM understands what to write), formatting logic (structured output for the target file format), and file rendering (a production library produces the actual binary file). Nuerova generates PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl — all from a single agent prompt grounded in cluster context.",
+		answer: "AI document generation combines content reasoning (the LLM understands what to write), formatting logic (structured output for the target file format), and file rendering (a production library produces the actual binary file). Nuerova generates PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl - all from a single agent prompt grounded in cluster context.",
 		facts: [
 			"PDF, PPTX, DOCX, and XLSX generation from a single agent session",
-			"Documents are grounded in cluster context — not generic placeholder content",
+			"Documents are grounded in cluster context - not generic placeholder content",
 			"Generation is logged in Run History and reproducible with updated data",
 		],
 	},
 	"byok-bring-your-own-llm-keys": {
 		question: "What is BYOK (Bring Your Own Keys) for LLMs?",
-		answer: "BYOK means you connect your own API keys for LLM providers — OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, or Bedrock — and the platform routes model calls through your account. You pay model costs directly, your data flows under your API terms, and you control which model version runs. The platform provides orchestration, not model access.",
+		answer: "BYOK means you connect your own API keys for LLM providers - OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, or Bedrock - and the platform routes model calls through your account. You pay model costs directly, your data flows under your API terms, and you control which model version runs. The platform provides orchestration, not model access.",
 		facts: [
 			"Nuerova supports BYOK for 6+ providers via LiteLLM abstraction",
 			"API keys are encrypted at rest using Fernet symmetric encryption",
@@ -193,7 +193,7 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 		question: "What are Twins and Clusters in Nuerova?",
 		answer: "A Twin is a private semantic index built from a user's consented OAuth sources (Gmail, Slack, Salesforce, Google Drive, GitHub). A Cluster is a bounded pool of multiple Twins, scoped by a charter that defines the cluster's purpose and out-of-scope exclusions. Members explicitly grant which sources they contribute per cluster. Agents query clusters within charter scope, not across all data indiscriminately.",
 		facts: [
-			"Twins are private by default — no admin visibility into individual Twin contents",
+			"Twins are private by default - no admin visibility into individual Twin contents",
 			"Cluster consent is per-member, per-source, per-cluster, and revocable at any time",
 			"Charter-based scoping filters out-of-scope content even when it keyword-matches a query",
 		],
@@ -202,8 +202,8 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 		question: "What makes a Salesforce AI integration actually work in production?",
 		answer: "A production-viable Salesforce AI integration requires live data with relational context preserved (not flat exports), cross-channel synthesis with email and Slack alongside CRM records, and the ability to initiate actions (with human approval) rather than only answer questions. Most implementations fail one or more of these requirements.",
 		facts: [
-			"Salesforce data is relational — flat RAG exports lose account-contact-opportunity context",
-			"The full account story spans email, Slack, and CRM — single-source AI gives partial answers",
+			"Salesforce data is relational - flat RAG exports lose account-contact-opportunity context",
+			"The full account story spans email, Slack, and CRM - single-source AI gives partial answers",
 			"Read-only AI informs; action-capable AI with approval gates changes actual workflows",
 		],
 	},

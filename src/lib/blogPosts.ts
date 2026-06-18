@@ -146,7 +146,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		slug: 'governance-vs-velocity',
 		title: 'The False Choice: Governance vs Velocity in AI',
-		summary: 'Why enterprise AI governance and team velocity are not opposites — and how to achieve both.',
+		summary: 'Why enterprise AI governance and team velocity are not opposites - and how to achieve both.',
 		tags: ['Governance', 'Enterprise AI', 'Strategy'],
 		readTime: '5 min read',
 		publishedAt: 'June 14, 2026',
@@ -168,7 +168,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		slug: 'ops-stack-breaks',
 		title: 'Why the Notion + Slack + ChatGPT Stack Breaks at 30 People',
-		summary: 'The four failure modes that show up in every team\'s default AI stack — and what a connected intelligence layer changes.',
+		summary: 'The four failure modes that show up in every team\'s default AI stack - and what a connected intelligence layer changes.',
 		tags: ['Operations', 'Strategy', 'AI Stack'],
 		readTime: '5 min read',
 		publishedAt: 'June 14, 2026',
@@ -201,7 +201,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		slug: 'what-is-a-skill-nuerova',
 		title: "What Is a Skill? The Reusable AI Instruction That Changes How Teams Work",
-		summary: "Most teams treat AI prompts like single-use tools. Skills change that — packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
+		summary: "Most teams treat AI prompts like single-use tools. Skills change that - packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
 		publishedAt: "Jun 14, 2026",
 		readTime: "9 min read",
 		date: "2026-06-14",
@@ -212,7 +212,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		slug: 'ai-document-generation-pdf-pptx',
 		title: "From Prompt to PDF: How AI Document Generation Actually Works",
-		summary: "AI that generates formatted, structured documents — PDFs, PPTX decks, DOCX reports, XLSX sheets — from a single agent prompt. Here's how the pipeline works and why it matters.",
+		summary: "AI that generates formatted, structured documents - PDFs, PPTX decks, DOCX reports, XLSX sheets - from a single agent prompt. Here's how the pipeline works and why it matters.",
 		publishedAt: "Jun 14, 2026",
 		readTime: "9 min read",
 		date: "2026-06-14",
@@ -223,7 +223,7 @@ export const blogPosts: BlogPost[] = [
 	{
 		slug: 'byok-bring-your-own-llm-keys',
 		title: "BYOK: Why Enterprise Teams Should Control Their Own LLM Keys",
-		summary: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost — it's about data control, compliance, and not being locked into a vendor's model choices.",
+		summary: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost - it's about data control, compliance, and not being locked into a vendor's model choices.",
 		publishedAt: "Jun 14, 2026",
 		readTime: "9 min read",
 		date: "2026-06-14",

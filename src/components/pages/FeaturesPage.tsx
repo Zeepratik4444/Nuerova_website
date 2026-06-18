@@ -190,7 +190,7 @@ const features = [
 		points: [
 			"20+ built-in skills: document creation, research, data analytics, integrations",
 			"Create custom skills from any instruction set and publish org-wide",
-			"Skills are org-scoped — one install, available to your entire team",
+			"Skills are org-scoped - one install, available to your entire team",
 		],
 		mockUi: (
 			<div className="flex flex-col h-full bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden shadow-2xl relative">
@@ -224,10 +224,10 @@ const features = [
 	{
 		id: "integrations",
 		title: "Deep Integrations",
-		description: "Connect the tools your team already uses. Each OAuth connection feeds your personal knowledge profile — the raw material that makes cluster answers context-aware.",
+		description: "Connect the tools your team already uses. Each OAuth connection feeds your personal knowledge profile - the raw material that makes cluster answers context-aware.",
 		points: [
 			"Gmail, Google Workspace, Slack, GitHub, Salesforce, Outlook, Shopify",
-			"OAuth-based — no API keys or IT tickets for standard integrations",
+			"OAuth-based - no API keys or IT tickets for standard integrations",
 			"Granular consent: each member controls which sources they share with a cluster",
 		],
 		mockUi: (
@@ -264,11 +264,11 @@ const features = [
 
 export function FeaturesPage() {
 	useSEO({
-		title: "Features — Scoped Clusters, Custom Agents & Governance | Nuerova",
+		title: "Features - Scoped Clusters, Custom Agents & Governance | Nuerova",
 		description: "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
 		schemaOrg: {
 			"@type": "WebPage",
-			"name": "Features — Scoped Clusters, Custom Agents & Governance | Nuerova",
+			"name": "Features - Scoped Clusters, Custom Agents & Governance | Nuerova",
 			"description": "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
 			"about": {
 				"@type": "SoftwareApplication",
@@ -376,7 +376,7 @@ export function FeaturesPage() {
 					<div className="mb-10">
 						<span className="font-label-caps text-xs text-purple-400 bg-purple-400/10 border border-purple-400/20 px-3 py-1 rounded-full inline-block mb-4">BUILT-IN SKILLS</span>
 						<h2 className="font-headline-md text-3xl text-white font-bold tracking-tight mb-3">Everything your team needs, pre-built and ready to run.</h2>
-						<p className="text-white/50 max-w-2xl">Install any skill in one click. Each skill is a structured AI instruction set — tested, versioned, and org-shareable.</p>
+						<p className="text-white/50 max-w-2xl">Install any skill in one click. Each skill is a structured AI instruction set - tested, versioned, and org-shareable.</p>
 					</div>
 					<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
 						{[

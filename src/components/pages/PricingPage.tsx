@@ -47,11 +47,11 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function PricingPage() {
 	useSEO({
-		title: "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
+		title: "Pricing - Scoped Knowledge Clusters & Team Intelligence | Nuerova",
 		description: "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
 		schemaOrg: {
 			"@type": "WebPage",
-			"name": "Pricing — Scoped Knowledge Clusters & Team Intelligence | Nuerova",
+			"name": "Pricing - Scoped Knowledge Clusters & Team Intelligence | Nuerova",
 			"description": "Nuerova pricing for team intelligence and contextual agents. 7-day trial of Teams plan. Starter: up to 3 seats. Teams: up to 25 seats. Enterprise: unlimited.",
 			"mainEntity": {
 				"@type": "ItemList",
@@ -142,7 +142,7 @@ export function PricingPage() {
 								<span className="text-white/40 text-sm mb-1">/ user / mo</span>
 							</div>
 							<div className="h-5 mb-4">
-								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually — save $120/yr</p>}
+								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually - save $120/yr</p>}
 							</div>
 							<p className="text-sm text-white/50 mb-8 pb-8 border-b border-white/10">Solo operators and micro-teams building a personal intelligence layer.</p>
 							
@@ -177,7 +177,7 @@ export function PricingPage() {
 								<span className="text-white/40 text-sm mb-1">/ user / mo</span>
 							</div>
 							<div className="relative z-10 h-5 mb-4">
-								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually — save $480/yr</p>}
+								{annual && <p className="text-xs text-emerald-500 font-medium">Billed annually - save $480/yr</p>}
 							</div>
 							<p className="relative z-10 text-sm text-white/50 mb-8 pb-8 border-b border-white/10">Teams of 5 to 50 who need shared context, workflows, and permissions.</p>
 							

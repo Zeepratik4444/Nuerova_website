@@ -41,7 +41,7 @@ const STRENGTH_COLORS = ["", "#ef4444", "#f97316", "#eab308", "#22c55e"];
 
 export function SetPasswordPage() {
 	useSEO({
-		title: "Activate Account — Nuerova",
+		title: "Activate Account - Nuerova",
 		description: "Set your password to activate your Nuerova account.",
 	});
 
@@ -166,7 +166,7 @@ export function SetPasswordPage() {
 					</div>
 					{resendSent ? (
 						<div className="p-3 bg-green-50 border border-green-200 rounded-lg text-sm text-green-800 text-center">
-							New activation email sent — check your inbox.
+							New activation email sent - check your inbox.
 						</div>
 					) : (
 						<>
@@ -230,7 +230,7 @@ export function SetPasswordPage() {
 		<PageShell>
 			{userName && (
 				<p className="text-center text-gray-500 text-sm -mt-2 mb-2">
-					Hi <strong>{userName}</strong> — choose a secure password to activate your account.
+					Hi <strong>{userName}</strong> - choose a secure password to activate your account.
 				</p>
 			)}
 

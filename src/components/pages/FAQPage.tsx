@@ -95,7 +95,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 
 export function FAQPage() {
 	useSEO({
-		title: "FAQ — Nuerova Clusters, Agents & Security Questions",
+		title: "FAQ - Nuerova Clusters, Agents & Security Questions",
 		description: "Answers to Nuerova setup, data source integrations, pricing, security, and team intelligence automation questions.",
 		schemaOrg: {
 			"@type": "FAQPage",

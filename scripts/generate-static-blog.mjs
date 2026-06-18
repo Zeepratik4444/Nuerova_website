@@ -105,7 +105,7 @@ const posts = [
 		slug: "governance-vs-velocity",
 		source: "blog-11-governance-vs-velocity.html",
 		title: "The False Choice: Governance vs Velocity in AI",
-		description: "Why enterprise AI governance and team velocity are not opposites — and how to achieve both.",
+		description: "Why enterprise AI governance and team velocity are not opposites - and how to achieve both.",
 		tags: ["Governance", "Enterprise AI", "Strategy"],
 		readTime: "6 min read",
 		publishedAt: "2026-06-14",
@@ -123,7 +123,7 @@ const posts = [
 		slug: "ops-stack-breaks",
 		source: "blog-13-ops-stack-breaks.html",
 		title: "Why the Notion + Slack + ChatGPT Stack Breaks at 30 People",
-		description: "The four failure modes that show up in every team's default AI stack — and what a connected intelligence layer changes.",
+		description: "The four failure modes that show up in every team's default AI stack - and what a connected intelligence layer changes.",
 		tags: ["Operations", "Strategy", "AI Stack"],
 		readTime: "5 min read",
 		publishedAt: "2026-06-14",
@@ -150,7 +150,7 @@ const posts = [
 		slug: "what-is-a-skill-nuerova",
 		source: "blog-16-what-is-a-skill-nuerova.html",
 		title: "What Is a Skill? The Reusable AI Instruction That Changes How Teams Work",
-		description: "Most teams treat AI prompts like single-use tools. Skills change that — packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
+		description: "Most teams treat AI prompts like single-use tools. Skills change that - packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.",
 		date: "2026-06-14",
 		tags: ["Product", "Skills", "AI Teams"],
 		readTime: "9 min read",
@@ -160,7 +160,7 @@ const posts = [
 		slug: "ai-document-generation-pdf-pptx",
 		source: "blog-17-ai-document-generation-pdf-pptx.html",
 		title: "From Prompt to PDF: How AI Document Generation Actually Works",
-		description: "AI that generates formatted, structured documents — PDFs, PPTX decks, DOCX reports, XLSX sheets — from a single agent prompt. Here's how the pipeline works and why it matters.",
+		description: "AI that generates formatted, structured documents - PDFs, PPTX decks, DOCX reports, XLSX sheets - from a single agent prompt. Here's how the pipeline works and why it matters.",
 		date: "2026-06-14",
 		tags: ["Product", "Automation", "Document Generation"],
 		readTime: "9 min read",
@@ -170,7 +170,7 @@ const posts = [
 		slug: "byok-bring-your-own-llm-keys",
 		source: "blog-18-byok-bring-your-own-llm-keys.html",
 		title: "BYOK: Why Enterprise Teams Should Control Their Own LLM Keys",
-		description: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost — it's about data control, compliance, and not being locked into a vendor's model choices.",
+		description: "Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost - it's about data control, compliance, and not being locked into a vendor's model choices.",
 		date: "2026-06-14",
 		tags: ["Security", "Enterprise", "BYOK"],
 		readTime: "9 min read",
@@ -286,7 +286,7 @@ const blogNextSteps = {
 	"ops-stack-breaks": {
 		stage: "awareness",
 		title: "See what a connected intelligence layer looks like",
-		description: "Nuerova connects to Notion, Slack, and your CRM — and adds the memory, governance, and automation layer your stack is missing.",
+		description: "Nuerova connects to Notion, Slack, and your CRM - and adds the memory, governance, and automation layer your stack is missing.",
 		label: "See the platform",
 		to: "/features",
 	},
@@ -307,7 +307,7 @@ const blogNextSteps = {
 	"what-is-a-skill-nuerova": {
 		stage: "consideration",
 		title: "Explore Nuerova's Skill library",
-		description: "See the 20+ built-in Skills that give your team expert-quality AI from day one — and how to create your own.",
+		description: "See the 20+ built-in Skills that give your team expert-quality AI from day one - and how to create your own.",
 		label: "Explore features",
 		to: "/features",
 	},
@@ -379,7 +379,7 @@ const blogAeoBlocks = {
 	},
 	"ops-stack-breaks": {
 		question: "Why does the Notion + Slack + ChatGPT stack break at scale?",
-		answer: "The stack breaks because none of the tools share context — knowledge lives in people, not systems. AI added on top has no memory of decisions made in Notion or Slack, automation tops out at simple if-then logic, and there is no governance layer to satisfy IT requirements.",
+		answer: "The stack breaks because none of the tools share context - knowledge lives in people, not systems. AI added on top has no memory of decisions made in Notion or Slack, automation tops out at simple if-then logic, and there is no governance layer to satisfy IT requirements.",
 		facts: [
 			"Context lives in people, not systems",
 			"Rule-based automation can't handle unstructured inputs",
@@ -388,7 +388,7 @@ const blogAeoBlocks = {
 	},
 	"ai-rollout-no-shadow-ai": {
 		question: "How do you prevent shadow AI during an enterprise AI rollout?",
-		answer: "Shadow AI is a supply problem — teams use unsanctioned tools because approved tools don't do the job. The solution is deploying governed tools that solve specific high-friction tasks better than the alternatives, with RBAC and audit logging built into the architecture from day one.",
+		answer: "Shadow AI is a supply problem - teams use unsanctioned tools because approved tools don't do the job. The solution is deploying governed tools that solve specific high-friction tasks better than the alternatives, with RBAC and audit logging built into the architecture from day one.",
 		facts: [
 			"Shadow AI follows tool gaps, not policy failures",
 			"Governance must be architectural, not policy-based",
@@ -406,25 +406,25 @@ const blogAeoBlocks = {
 	},
 	"what-is-a-skill-nuerova": {
 		question: "What is a Skill in an AI platform?",
-		answer: "A Skill is a reusable, versioned AI instruction set that packages a specific capability — like generating PDFs or writing SQL queries — into an installable module that agents apply before seeing a user's specific request. Unlike prompt templates, Skills are versioned, org-scoped, and hot-reload without retraining.",
+		answer: "A Skill is a reusable, versioned AI instruction set that packages a specific capability - like generating PDFs or writing SQL queries - into an installable module that agents apply before seeing a user's specific request. Unlike prompt templates, Skills are versioned, org-scoped, and hot-reload without retraining.",
 		facts: [
 			"Nuerova includes 20+ built-in Skills covering document creation, research, data analytics, and integrations",
-			"Skills are org-scoped — one publish makes them available to every team member",
+			"Skills are org-scoped - one publish makes them available to every team member",
 			"Custom Skills can be created from any instruction set and published to the org",
 		],
 	},
 	"ai-document-generation-pdf-pptx": {
 		question: "How does AI document generation work?",
-		answer: "AI document generation combines content reasoning (the LLM understands what to write), formatting logic (structured output for the target file format), and file rendering (a production library produces the actual binary file). Nuerova generates PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl — all from a single agent prompt grounded in cluster context.",
+		answer: "AI document generation combines content reasoning (the LLM understands what to write), formatting logic (structured output for the target file format), and file rendering (a production library produces the actual binary file). Nuerova generates PDF via WeasyPrint, PPTX via python-pptx, DOCX via python-docx, and XLSX via openpyxl - all from a single agent prompt grounded in cluster context.",
 		facts: [
 			"PDF, PPTX, DOCX, and XLSX generation from a single agent session",
-			"Documents are grounded in cluster context — not generic placeholder content",
+			"Documents are grounded in cluster context - not generic placeholder content",
 			"Generation is logged in Run History and reproducible with updated data",
 		],
 	},
 	"byok-bring-your-own-llm-keys": {
 		question: "What is BYOK (Bring Your Own Keys) for LLMs?",
-		answer: "BYOK means you connect your own API keys for LLM providers — OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, or Bedrock — and the platform routes model calls through your account. You pay model costs directly, your data flows under your API terms, and you control which model version runs. The platform provides orchestration, not model access.",
+		answer: "BYOK means you connect your own API keys for LLM providers - OpenAI, Anthropic, Gemini, Vertex AI, Azure, Groq, or Bedrock - and the platform routes model calls through your account. You pay model costs directly, your data flows under your API terms, and you control which model version runs. The platform provides orchestration, not model access.",
 		facts: [
 			"Nuerova supports BYOK for 6+ providers via LiteLLM abstraction",
 			"API keys are encrypted at rest using Fernet symmetric encryption",
@@ -435,7 +435,7 @@ const blogAeoBlocks = {
 		question: "What are Twins and Clusters in Nuerova?",
 		answer: "A Twin is a private semantic index built from a user's consented OAuth sources (Gmail, Slack, Salesforce, Google Drive, GitHub). A Cluster is a bounded pool of multiple Twins, scoped by a charter that defines the cluster's purpose and out-of-scope exclusions. Members explicitly grant which sources they contribute per cluster. Agents query clusters within charter scope, not across all data indiscriminately.",
 		facts: [
-			"Twins are private by default — no admin visibility into individual Twin contents",
+			"Twins are private by default - no admin visibility into individual Twin contents",
 			"Cluster consent is per-member, per-source, per-cluster, and revocable at any time",
 			"Charter-based scoping filters out-of-scope content even when it keyword-matches a query",
 		],
@@ -444,8 +444,8 @@ const blogAeoBlocks = {
 		question: "What makes a Salesforce AI integration actually work in production?",
 		answer: "A production-viable Salesforce AI integration requires live data with relational context preserved (not flat exports), cross-channel synthesis with email and Slack alongside CRM records, and the ability to initiate actions (with human approval) rather than only answer questions. Most implementations fail one or more of these requirements.",
 		facts: [
-			"Salesforce data is relational — flat RAG exports lose account-contact-opportunity context",
-			"The full account story spans email, Slack, and CRM — single-source AI gives partial answers",
+			"Salesforce data is relational - flat RAG exports lose account-contact-opportunity context",
+			"The full account story spans email, Slack, and CRM - single-source AI gives partial answers",
 			"Read-only AI informs; action-capable AI with approval gates changes actual workflows",
 		],
 	},
@@ -793,7 +793,7 @@ function renderBlogIndex() {
 	};
 
 	return pageShell({
-		title: "Blog — Team Intelligence & Contextual Agents | Nuerova",
+		title: "Blog - Team Intelligence & Contextual Agents | Nuerova",
 		description:
 			"Read our latest articles on department knowledge clusters, visual reasoning workflows, and enterprise AI security.",
 		canonicalPath: "/blog",

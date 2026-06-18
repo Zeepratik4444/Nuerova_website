@@ -1,5 +1,5 @@
 <p>
-  There is a Notion page at almost every mid-size company called something like "AI Prompts — Master List." It started with five entries from one enthusiastic ops person. It now has 340 prompts organized by no coherent system, last updated seven months ago, and trusted by approximately nobody.
+  There is a Notion page at almost every mid-size company called something like "AI Prompts - Master List." It started with five entries from one enthusiastic ops person. It now has 340 prompts organized by no coherent system, last updated seven months ago, and trusted by approximately nobody.
 </p>
 <p>
   Teams built prompt libraries with good intentions: standardize how we use AI, make it consistent, make it repeatable. But prompt libraries have a structural problem that makes them fail at exactly the moment they should be most useful.
@@ -7,7 +7,7 @@
 
 <h2>What Prompt Libraries Actually Are (And Aren't)</h2>
 <p>
-  A prompt library is documentation. It tells your team: "If you need to do X, type this text." It has the same fundamental limitation as all documentation — it goes stale, it doesn't enforce anything, and it doesn't integrate with the systems where work actually happens.
+  A prompt library is documentation. It tells your team: "If you need to do X, type this text." It has the same fundamental limitation as all documentation - it goes stale, it doesn't enforce anything, and it doesn't integrate with the systems where work actually happens.
 </p>
 
 <!-- Concept block -->
@@ -15,7 +15,7 @@
   <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">The Distinction</div>
   <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">A Prompt Is a Suggestion. A Skill Is a Capability.</h3>
   <p style="margin: 0; color: #475569; line-height: 1.7;">
-    A prompt tells someone what to type. A skill is an executable capability that can be triggered by a person or an agent, pulls live data from connected systems, applies your specific context, and produces a consistent output — without anyone needing to remember the right text to paste.
+    A prompt tells someone what to type. A skill is an executable capability that can be triggered by a person or an agent, pulls live data from connected systems, applies your specific context, and produces a consistent output - without anyone needing to remember the right text to paste.
   </p>
 </div>
 
@@ -25,28 +25,28 @@
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">1</div>
     <div>
-      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No governance — anyone can add, nobody owns</h4>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No governance - anyone can add, nobody owns</h4>
       <p style="margin: 0; color: #475569; line-height: 1.6;">Prompt libraries accumulate entries with no versioning, no owner, and no deprecation process. When a prompt stops working well after a model update or process change, it stays in the list and silently produces worse outputs until someone notices.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">2</div>
     <div>
-      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No integration — data must be pasted manually every time</h4>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No integration - data must be pasted manually every time</h4>
       <p style="margin: 0; color: #475569; line-height: 1.6;">A prompt that says "summarize this account's health" requires the user to first pull the health data from Salesforce, format it, paste it in, then run the prompt. The AI does the easy part; the human does the hard part. This inverts the value proposition.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">3</div>
     <div>
-      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No consistency — output quality varies by individual skill</h4>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">No consistency - output quality varies by individual skill</h4>
       <p style="margin: 0; color: #475569; line-height: 1.6;">Junior team members use the prompts differently than senior ones. They add context incorrectly, skip variables, or use slightly different variations. The output quality depends on the person running it, defeating the purpose of standardization.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">4</div>
     <div>
-      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Can't be triggered by agents — humans only</h4>
+      <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Can't be triggered by agents - humans only</h4>
       <p style="margin: 0; color: #475569; line-height: 1.6;">A prompt library requires a human to open it, find the right prompt, and paste it. An automated workflow cannot do this. The moment you want AI to take an action without a human initiating it, your prompt library becomes irrelevant.</p>
     </div>
   </div>
@@ -54,13 +54,13 @@
 
 <h2>What a Skill Registry Looks Like Instead</h2>
 <p>
-  A skill registry treats AI capabilities as governed, versioned assets — more like a code function than a sticky note. In Nuerova, a skill is defined once by the team lead or ops manager, connects to the relevant data sources, and can be executed consistently by any authorized person or agent.
+  A skill registry treats AI capabilities as governed, versioned assets - more like a code function than a sticky note. In Nuerova, a skill is defined once by the team lead or ops manager, connects to the relevant data sources, and can be executed consistently by any authorized person or agent.
 </p>
 
 <div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
   <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Concrete Example</strong>
   <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
-    A "QBR Prep Brief" skill in Nuerova is triggered with a single click on an account. It automatically pulls usage data from your product, open tickets from Zendesk, deal notes from Salesforce, and recent emails — then produces a structured brief the CSM can review in 90 seconds. No copy-paste. Same quality every time. Triggerable from an automated workflow when a QBR is scheduled.
+    A "QBR Prep Brief" skill in Nuerova is triggered with a single click on an account. It automatically pulls usage data from your product, open tickets from Zendesk, deal notes from Salesforce, and recent emails - then produces a structured brief the CSM can review in 90 seconds. No copy-paste. Same quality every time. Triggerable from an automated workflow when a QBR is scheduled.
   </p>
 </div>
 
@@ -79,7 +79,7 @@
 <div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
   <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">See how skills work in Nuerova</h2>
   <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
-    Replace your prompt library with governed, integrated skills that work consistently for everyone on the team — and trigger automatically in workflows.
+    Replace your prompt library with governed, integrated skills that work consistently for everyone on the team - and trigger automatically in workflows.
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
     <a href="/features" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
@@ -94,7 +94,7 @@
 <section style="margin-top: 4rem; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
   <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Common Questions</h2>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
-    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Who can build skills — does it require engineering?</h3>
+    <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Who can build skills - does it require engineering?</h3>
     <p style="margin: 0; color: #475569; line-height: 1.6;">No. Skills are built in a visual interface by ops leads or department managers. If you can define what data the skill needs and what output it should produce, you can build the skill without writing code.</p>
   </div>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">

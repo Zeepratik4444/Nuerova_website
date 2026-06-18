@@ -1,5 +1,5 @@
 <p>
-  For the last three years, enterprise IT and security leaders have been stuck in a false choice: lock down AI tools and kill team velocity, or allow access and risk a data exposure incident. Most organizations end up somewhere uncomfortable in the middle — partial access, constant exceptions, and a growing list of unsanctioned tools that teams use anyway.
+  For the last three years, enterprise IT and security leaders have been stuck in a false choice: lock down AI tools and kill team velocity, or allow access and risk a data exposure incident. Most organizations end up somewhere uncomfortable in the middle - partial access, constant exceptions, and a growing list of unsanctioned tools that teams use anyway.
 </p>
 <p>
   The root cause isn't bad governance intentions. It's an architecture problem. When AI platforms treat all company knowledge as a single undivided pool, the only safe options are full access or no access. Neither works.
@@ -7,7 +7,7 @@
 
 <h2>Why Shadow AI Happens (And Why Policy Won't Stop It)</h2>
 <p>
-  When a CS manager needs to draft a renewal email and the approved AI tool gives a generic template with no knowledge of the client's history — they open a personal ChatGPT tab and paste in the client notes themselves. Not because they want to create a data exposure risk. Because they have a job to do and the approved tool doesn't help them do it.
+  When a CS manager needs to draft a renewal email and the approved AI tool gives a generic template with no knowledge of the client's history - they open a personal ChatGPT tab and paste in the client notes themselves. Not because they want to create a data exposure risk. Because they have a job to do and the approved tool doesn't help them do it.
 </p>
 <p>
   Publishing a policy about not using unsanctioned AI doesn't change the underlying dynamic. The incentive to get the work done will always win over a policy that says "use the worse tool." The only thing that stops shadow AI is an approved tool that actually does the job better.
@@ -18,7 +18,7 @@
   <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #1275e2; margin-bottom: 0.5rem;">The Core Insight</div>
   <h3 style="margin: 0 0 0.75rem 0; color: #0f172a; font-size: 1.2rem;">Governance Is Not Restriction. It's the Architecture That Enables Access.</h3>
   <p style="margin: 0; color: #475569; line-height: 1.7;">
-    The teams that have solved the governance vs. velocity tradeoff didn't choose one over the other. They built an architecture where data is scoped at the cluster level — so teams get broad, useful AI access to their specific domain, while the data boundaries are enforced by the system, not by policy.
+    The teams that have solved the governance vs. velocity tradeoff didn't choose one over the other. They built an architecture where data is scoped at the cluster level - so teams get broad, useful AI access to their specific domain, while the data boundaries are enforced by the system, not by policy.
   </p>
 </div>
 
@@ -29,28 +29,28 @@
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">1</div>
     <div>
       <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Knowledge clusters are scoped by team and role</h4>
-      <p style="margin: 0; color: #475569; line-height: 1.6;">The CS team's AI agent can access client history, renewal data, and support tickets. It cannot access Engineering's unreleased roadmap or Finance's payroll data — not because of a policy, but because those clusters don't exist in its scope. The boundary is enforced at the retrieval layer.</p>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">The CS team's AI agent can access client history, renewal data, and support tickets. It cannot access Engineering's unreleased roadmap or Finance's payroll data - not because of a policy, but because those clusters don't exist in its scope. The boundary is enforced at the retrieval layer.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">2</div>
     <div>
       <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Admins see exactly what each agent can access</h4>
-      <p style="margin: 0; color: #475569; line-height: 1.6;">Not approximately, not in theory — exactly. Every knowledge cluster, every connected data source, every role granted access is visible in the admin panel. When a compliance officer asks "can the AI access this data?", the answer is queryable in seconds.</p>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Not approximately, not in theory - exactly. Every knowledge cluster, every connected data source, every role granted access is visible in the admin panel. When a compliance officer asks "can the AI access this data?", the answer is queryable in seconds.</p>
     </div>
   </div>
   <div style="display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem;">
     <div style="flex-shrink: 0; width: 44px; height: 44px; background: #1275e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem;">3</div>
     <div>
       <h4 style="margin: 0 0 0.25rem; font-size: 1rem; color: #0f172a;">Audit logs cover every action, not just logins</h4>
-      <p style="margin: 0; color: #475569; line-height: 1.6;">Not just who logged in and when — but what source was retrieved for which query, what automation was triggered and by whom, what permission was changed and by which admin. A continuous paper trail for every AI action in the system.</p>
+      <p style="margin: 0; color: #475569; line-height: 1.6;">Not just who logged in and when - but what source was retrieved for which query, what automation was triggered and by whom, what permission was changed and by which admin. A continuous paper trail for every AI action in the system.</p>
     </div>
   </div>
 </div>
 
 <h2>Velocity Through Confidence</h2>
 <p>
-  When teams know exactly what the AI can and cannot access — and the boundaries are enforced by the architecture rather than honor system — they build faster. They don't need to check with IT before adding a workflow. They don't need to open a ticket to get a new integration approved. The guardrails are built into the platform.
+  When teams know exactly what the AI can and cannot access - and the boundaries are enforced by the architecture rather than honor system - they build faster. They don't need to check with IT before adding a workflow. They don't need to open a ticket to get a new integration approved. The guardrails are built into the platform.
 </p>
 <p>
   The ops manager who needs to automate the renewal outreach process doesn't need to ask whether the AI can access Salesforce renewal data. If it's in the CS cluster, yes. If it's not in scope, no. The answer is immediate, the boundary is clear, and the deployment can proceed.
@@ -59,7 +59,7 @@
 <div style="background: #181c22; color: white; border-radius: 0.75rem; padding: 2rem; margin: 2.5rem 0;">
   <strong style="color: #60a5fa; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">The Outcome</strong>
   <p style="margin: 0.75rem 0 0 0; color: #e2e8f0; line-height: 1.7;">
-    Teams that operate with this architecture move faster than those without it — not slower. Security reviews happen once at the cluster setup stage, not for every new workflow. The compliance overhead is front-loaded and architectural, not ongoing and bureaucratic. Governance becomes the enabler of velocity, not the constraint on it.
+    Teams that operate with this architecture move faster than those without it - not slower. Security reviews happen once at the cluster setup stage, not for every new workflow. The compliance overhead is front-loaded and architectural, not ongoing and bureaucratic. Governance becomes the enabler of velocity, not the constraint on it.
   </p>
 </div>
 
@@ -67,7 +67,7 @@
 <div style="background: linear-gradient(135deg, #0f172a, #1e3a8a); border-radius: 1rem; padding: 3rem 2rem; margin: 4rem 0; text-align: center;">
   <h2 style="color: white; margin: 0 0 1rem; font-size: 1.8rem;">See how governed AI access works</h2>
   <p style="color: #bfdbfe; margin: 0 auto 2rem; font-size: 1.05rem; max-width: 32rem; line-height: 1.6;">
-    Scoped knowledge clusters, role-based access control, and complete audit logging — built into the architecture, not bolted on.
+    Scoped knowledge clusters, role-based access control, and complete audit logging - built into the architecture, not bolted on.
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
     <a href="/security" style="display: inline-block; background: #1275e2; color: white; font-weight: 700; padding: 1rem 2.5rem; border-radius: 0.5rem; text-decoration: none; font-size: 1rem;">
@@ -87,10 +87,10 @@
   </div>
   <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">What happens if someone tries to query data outside their cluster scope?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">The query returns no results from out-of-scope clusters — the agent simply doesn't have access to retrieve that data. There's no error that exposes what data exists elsewhere; it's a clean boundary enforced at the retrieval layer.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">The query returns no results from out-of-scope clusters - the agent simply doesn't have access to retrieve that data. There's no error that exposes what data exists elsewhere; it's a clean boundary enforced at the retrieval layer.</p>
   </div>
   <div style="padding-bottom: 1.5rem;">
     <h3 style="font-size: 1.05rem; color: #0f172a; margin: 0 0 0.5rem;">Is the audit log queryable in real time for compliance reviews?</h3>
-    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Admins can filter the audit log by user, agent, cluster, time range, or action type. Every entry includes what was retrieved, from which source, and what action was taken — in a format exportable for compliance reporting.</p>
+    <p style="margin: 0; color: #475569; line-height: 1.6;">Yes. Admins can filter the audit log by user, agent, cluster, time range, or action type. Every entry includes what was retrieved, from which source, and what action was taken - in a format exportable for compliance reporting.</p>
   </div>
 </section>
