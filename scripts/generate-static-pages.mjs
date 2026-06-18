@@ -601,28 +601,35 @@ function readNewestLastmodFromSitemap(filePath, fallback) {
     return matches.map((match) => match[1]).sort().at(-1) || fallback;
 }
 
-function buildSitemapIndex() {
-    const pagesLastmod = pages
+function buildCombinedSitemap() {
+    // Read blog URLs from the already-generated blog sitemap
+    const blogSitemapPath = path.join(publicDir, "sitemap-blog.xml");
+    let blogUrls = "";
+    if (fs.existsSync(blogSitemapPath)) {
+        const blogContent = fs.readFileSync(blogSitemapPath, "utf8");
+        // Extract all <url>...</url> blocks from the blog sitemap
+        const urlBlocks = [...blogContent.matchAll(/<url>[\s\S]*?<\/url>/g)];
+        blogUrls = urlBlocks.map((m) => `  ${m[0].trim()}`).join("\n");
+    }
+
+    // Build page URL entries
+    const pageUrls = pages
         .map(pageSitemapMetadata)
-        .map((page) => page.lastmod)
-        .sort()
-        .at(-1);
-    const blogLastmod = readNewestLastmodFromSitemap(
-        path.join(publicDir, "sitemap-blog.xml"),
-        currentContentLastmod,
-    );
+        .map(
+            (page) => `  <url>
+    <loc>${siteUrl}${canonicalPath(page.route)}</loc>
+    <lastmod>${page.lastmod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`,
+        )
+        .join("\n");
 
     return `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>${siteUrl}/sitemap-pages.xml</loc>
-    <lastmod>${pagesLastmod}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${siteUrl}/sitemap-blog.xml</loc>
-    <lastmod>${blogLastmod}</lastmod>
-  </sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${pageUrls}
+${blogUrls}
+</urlset>
 `;
 }
 
@@ -639,14 +646,15 @@ for (const page of pages) {
 }
 
 const pagesSitemap = buildPagesSitemap();
-const sitemapIndex = buildSitemapIndex();
+const combinedSitemap = buildCombinedSitemap();
 fs.writeFileSync(path.join(publicDir, "sitemap-pages.xml"), pagesSitemap);
 fs.writeFileSync(path.join(distDir, "sitemap-pages.xml"), pagesSitemap);
-fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemapIndex);
-fs.writeFileSync(path.join(distDir, "sitemap.xml"), sitemapIndex);
+// sitemap.xml is now a flat combined sitemap (pages + blog) — GSC can read it directly
+fs.writeFileSync(path.join(publicDir, "sitemap.xml"), combinedSitemap);
+fs.writeFileSync(path.join(distDir, "sitemap.xml"), combinedSitemap);
 
 console.log(`\nGenerated ${count} static page shells in dist/`);
 console.log(
     "Each file carries correct per-page title, description, canonical, OG tags, and JSON-LD schema.",
 );
-console.log("Generated sitemap.xml and sitemap-pages.xml from page/blog metadata.");
+console.log("Generated sitemap.xml (flat combined) and sitemap-pages.xml from page/blog metadata.");
