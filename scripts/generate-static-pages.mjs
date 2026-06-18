@@ -601,19 +601,12 @@ function readNewestLastmodFromSitemap(filePath, fallback) {
     return matches.map((match) => match[1]).sort().at(-1) || fallback;
 }
 
-function buildCombinedSitemap() {
-    // Read blog URLs from the already-generated blog sitemap
-    const blogSitemapPath = path.join(publicDir, "sitemap-blog.xml");
-    let blogUrls = "";
-    if (fs.existsSync(blogSitemapPath)) {
-        const blogContent = fs.readFileSync(blogSitemapPath, "utf8");
-        // Extract all <url>...</url> blocks from the blog sitemap
-        const urlBlocks = [...blogContent.matchAll(/<url>[\s\S]*?<\/url>/g)];
-        blogUrls = urlBlocks.map((m) => `  ${m[0].trim()}`).join("\n");
-    }
+// Key pages to include directly in sitemap.xml for GSC readability
+const keyRoutes = ["", "features", "pricing", "how-it-works", "contact"];
 
-    // Build page URL entries
-    const pageUrls = pages
+function buildMainSitemap() {
+    const keyPages = pages
+        .filter((p) => keyRoutes.includes(p.route))
         .map(pageSitemapMetadata)
         .map(
             (page) => `  <url>
@@ -627,8 +620,7 @@ function buildCombinedSitemap() {
 
     return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pageUrls}
-${blogUrls}
+${keyPages}
 </urlset>
 `;
 }
@@ -646,12 +638,12 @@ for (const page of pages) {
 }
 
 const pagesSitemap = buildPagesSitemap();
-const combinedSitemap = buildCombinedSitemap();
+const mainSitemap = buildMainSitemap();
 fs.writeFileSync(path.join(publicDir, "sitemap-pages.xml"), pagesSitemap);
 fs.writeFileSync(path.join(distDir, "sitemap-pages.xml"), pagesSitemap);
-// sitemap.xml is now a flat combined sitemap (pages + blog) — GSC can read it directly
-fs.writeFileSync(path.join(publicDir, "sitemap.xml"), combinedSitemap);
-fs.writeFileSync(path.join(distDir, "sitemap.xml"), combinedSitemap);
+// sitemap.xml contains the 5 key pages — flat urlset GSC can read directly
+fs.writeFileSync(path.join(publicDir, "sitemap.xml"), mainSitemap);
+fs.writeFileSync(path.join(distDir, "sitemap.xml"), mainSitemap);
 
 console.log(`\nGenerated ${count} static page shells in dist/`);
 console.log(
