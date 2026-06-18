@@ -394,7 +394,7 @@ function organizationSchema() {
         "@type": "Organization",
         name: "Nuerova",
         url: siteUrl,
-        logo: `${siteUrl}/brand-logo.png`,
+        logo: `${siteUrl}/apple-touch-icon.png`,
         sameAs: [
             "https://twitter.com/nuerova",
             "https://github.com/nuerova",
@@ -636,7 +636,7 @@ function aboutSchema() {
         "@type": "Organization",
         "name": "Nuerova",
         "url": "https://nuerova.xyz",
-        "logo": "https://nuerova.xyz/brand-logo.png",
+        "logo": "https://nuerova.xyz/apple-touch-icon.png",
         "description": "Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations.",
         "knowsAbout": [
             "Team intelligence platforms",
@@ -693,11 +693,12 @@ function buildPageHtml({ route, title, description, staticBody = "" }) {
     const schemaScripts = buildSchemaScripts({ route, title, description });
 
     return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>html,body{background:#050505;margin:0}</style>
 
   <!-- ===================== PRIMARY SEO ===================== -->
   <title>${escapedTitle}</title>
@@ -727,7 +728,8 @@ function buildPageHtml({ route, title, description, staticBody = "" }) {
   <!-- ===================== ICONS & PWA ===================== -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/favicon-48.png" sizes="48x48" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#1275e2" />
@@ -745,9 +747,7 @@ function buildPageHtml({ route, title, description, staticBody = "" }) {
   ${cssLinkTag}
 </head>
 
-<body>${staticBody
-        ? bodyContent.replace('<div id="app"></div>', `<div id="app">${staticBody}</div>`)
-        : bodyContent}</body>
+<body>${bodyContent}${staticBody ? `\n<div style="display:none" aria-hidden="true">${staticBody}</div>` : ''}</body>
 
 </html>
 `;

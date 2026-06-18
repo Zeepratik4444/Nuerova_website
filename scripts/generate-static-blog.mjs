@@ -587,7 +587,13 @@ function pageShell({ title, description, canonicalPath, body, schema, schemas })
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${escapedTitle}" />
   <meta name="twitter:description" content="${escapedDescription}" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="/favicon-48.png" sizes="48x48" />
+  <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#1275e2" />
   <meta property="og:image" content="https://nuerova.xyz/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -733,7 +739,7 @@ function renderPost(post) {
 			url: siteUrl,
 			logo: {
 				"@type": "ImageObject",
-				url: `${siteUrl}/brand-logo.png`,
+				url: `${siteUrl}/apple-touch-icon.png`,
 			},
 		},
 		keywords: post.tags.join(", "),
