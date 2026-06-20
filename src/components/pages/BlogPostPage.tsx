@@ -1,4 +1,4 @@
-﻿import { Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
@@ -75,7 +75,7 @@ function extractArticleHtml(html: string) {
 		/<p[^>]*>\s*Related reading:\s*([\s\S]*?)\s*<\/p>/gi,
 		(_, linksHtml) => {
 			const links = linksHtml
-				.split(/(?:Ã‚Â·|Â·)/)
+				.split(/(?:·)/)
 				.map((link: string) => link.trim())
 				.filter(Boolean);
 
@@ -203,7 +203,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 								<ul className="mt-5 grid gap-3 md:grid-cols-3" style={{ marginTop: "20px", display: "grid", gap: "12px", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", paddingLeft: 0, listStyle: "none" }}>
 									{answerBlock.facts.map((fact) => (
 										<li key={fact} className="text-sm text-white/70" style={{ fontSize: "14px", color: "var(--ink-soft)" }}>
-											â€¢ {fact}
+											• {fact}
 										</li>
 									))}
 								</ul>
@@ -227,7 +227,7 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 						<h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-6" style={{ fontFamily: "'Lora', Georgia, serif" }}>{post.title}</h1>
 						<div className="flex items-center justify-center gap-4 text-sm text-white/50">
 							<span>{post.publishedAt}</span>
-							<span>â€¢</span>
+							<span>•</span>
 							<span>{post.readTime}</span>
 						</div>
 					</div>

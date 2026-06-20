@@ -1,4 +1,4 @@
-﻿import { Navigation } from "@/components/Navigation";
+import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -44,7 +44,7 @@ export function AboutPage() {
 			<Navigation />
 
 			<main id="main" className="flex-grow pb-section-gap pt-24">
-				{/* â”€â”€ HERO â”€â”€ */}
+				{/* ── HERO ── */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg pt-8 pb-section-gap reveal">
 					<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
 						ABOUT
@@ -64,7 +64,7 @@ export function AboutPage() {
 					</div>
 				</section>
 
-				{/* â”€â”€ MISSION & STORY â”€â”€ */}
+				{/* ── MISSION & STORY ── */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 						<div className="border border-white/10 p-8 rounded-lg bg-transparent">
@@ -88,7 +88,7 @@ export function AboutPage() {
 					</div>
 				</section>
 
-				{/* â”€â”€ VALUES â”€â”€ */}
+				{/* ── VALUES ── */}
 				<section className="max-w-container-max mx-auto px-gutter md:px-stack-lg py-section-gap border-t border-white/10 reveal">
 					<div className="text-center mb-16 flex flex-col items-center">
 						<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-stack-md">
