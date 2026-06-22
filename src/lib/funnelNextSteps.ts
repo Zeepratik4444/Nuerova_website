@@ -114,6 +114,27 @@ export const BLOG_NEXT_STEPS: Record<string, BlogNextStep> = {
 		label: "Request a demo",
 		to: "/contact",
 	},
+	"glean-alternative": {
+		stage: "decision",
+		title: "See how Nuerova goes beyond Glean",
+		description: "Explore scoped knowledge clusters, agent workflows, and role-based access — features Glean doesn't cover.",
+		label: "Explore features",
+		to: "/features",
+	},
+	"notion-ai-alternative": {
+		stage: "decision",
+		title: "Try Nuerova free for 7 days",
+		description: "Connect your existing tools and see how scoped knowledge clusters and agent workflows change what your team can do.",
+		label: "Request a demo",
+		to: "/contact",
+	},
+	"glean-vs-notion-ai": {
+		stage: "consideration",
+		title: "See the third option",
+		description: "Nuerova combines scoped knowledge clusters with workflow automation — covering what both Glean and Notion AI leave out.",
+		label: "See how it works",
+		to: "/how-it-works",
+	},
 };
 
 // Two most relevant next-reads per post, ordered by funnel progression
@@ -133,4 +154,7 @@ export const BLOG_RELATED_POSTS: Record<string, [string, string]> = {
 	"stop-buying-point-ai-tools":["roi-of-shared-memory",   "setup-guide-72-hours"],
 	"roi-of-shared-memory":     ["setup-guide-72-hours",     "copilot-alternative"],
 	"setup-guide-72-hours":     ["copilot-alternative",      "roi-of-shared-memory"],
+	"glean-alternative":        ["glean-vs-notion-ai",       "copilot-alternative"],
+	"notion-ai-alternative":    ["glean-vs-notion-ai",       "glean-alternative"],
+	"glean-vs-notion-ai":       ["glean-alternative",        "notion-ai-alternative"],
 };

@@ -2,6 +2,7 @@ export type BlogAnswerBlock = {
 	question: string;
 	answer: string;
 	facts?: string[];
+	faqs?: Array<{ q: string; a: string }>;
 	comparison?: Array<{
 		label: string;
 		value: string;
@@ -205,6 +206,75 @@ export const BLOG_ANSWER_BLOCKS: Record<string, BlogAnswerBlock> = {
 			"Salesforce data is relational - flat RAG exports lose account-contact-opportunity context",
 			"The full account story spans email, Slack, and CRM - single-source AI gives partial answers",
 			"Read-only AI informs; action-capable AI with approval gates changes actual workflows",
+		],
+	},
+	"glean-alternative": {
+		question: "What is the best Glean alternative for enterprise teams?",
+		answer: "The best Glean alternative depends on what Glean isn't covering. If you need scoped team knowledge with workflow automation, Nuerova is the closest match. If your knowledge is primarily in Microsoft 365, Copilot fits. If you need curated customer-facing knowledge, Guru works. The key differentiator is whether you need AI to retrieve information or act on it.",
+		facts: [
+			"Glean inherits source-tool permissions; Nuerova enforces native cluster-level RBAC",
+			"Glean retrieves and surfaces; Nuerova retrieves and executes agent workflows",
+			"Nuerova supports BYOK for full LLM cost and data control; Glean does not",
+		],
+		faqs: [
+			{
+				q: "Why would a team look for a Glean alternative?",
+				a: "Teams look for Glean alternatives when they need capabilities beyond cross-tool search: department-scoped knowledge isolation independent of source permissions, automated workflows that act on retrieved information, or BYOK LLM control. Glean is excellent for broad enterprise search but doesn't execute workflows.",
+			},
+			{
+				q: "How does Nuerova differ from Glean?",
+				a: "Glean is a horizontal search layer across your tool stack. Nuerova adds two things Glean doesn't have: cluster-level knowledge scoping with native RBAC (independent of source-tool permissions) and agent workflow execution — the ability to act on retrieved knowledge, not just surface it.",
+			},
+			{
+				q: "Is Nuerova a Glean replacement?",
+				a: "Nuerova and Glean solve overlapping but different problems. Glean is optimized for org-wide search across many tools. Nuerova is optimized for department-scoped knowledge with automation. Teams that need both retrieval and workflow execution, or tighter access control than source-inherited permissions, typically find Nuerova to be the better fit.",
+			},
+		],
+	},
+	"notion-ai-alternative": {
+		question: "What is the best Notion AI alternative for enterprise knowledge governance?",
+		answer: "For teams that need multi-tool knowledge reasoning, tighter access control, or automated workflows, the best alternatives are Nuerova (scoped clusters + automation), Glean (broad org-wide search), or Guru (curated customer-facing knowledge). The right choice depends on whether your bottleneck is cross-tool fragmentation, access control, or workflow execution.",
+		facts: [
+			"Notion AI is scoped to Notion; Nuerova reasons across Slack, Jira, Salesforce, and more",
+			"Notion AI surfaces content; Nuerova can trigger automated workflows from retrieved context",
+			"Nuerova enforces cluster-level RBAC independent of source-tool permissions",
+		],
+		faqs: [
+			{
+				q: "What are the main limitations of Notion AI?",
+				a: "Notion AI is limited to content inside Notion. It doesn't have access to Slack conversations, Jira tickets, Salesforce records, or Zendesk history. It also can't execute automated workflows, and its permission model is tied to Notion's page permissions rather than department-level knowledge isolation.",
+			},
+			{
+				q: "When should you use Notion AI vs a Notion AI alternative?",
+				a: "Stick with Notion AI if your team's knowledge lives primarily in Notion and you don't need cross-tool reasoning. Evaluate alternatives when your knowledge is distributed across multiple tools, when compliance requires stricter access control than Notion permissions offer, or when you need AI to trigger automated workflows rather than just answer questions.",
+			},
+			{
+				q: "Does Nuerova work with Notion?",
+				a: "Yes. Nuerova can sync Notion content into a team knowledge cluster alongside other sources like Slack, Jira, and Salesforce. This gives you AI that reasons across all your tools together, rather than each tool's AI reasoning in isolation.",
+			},
+		],
+	},
+	"glean-vs-notion-ai": {
+		question: "What is the difference between Glean and Notion AI?",
+		answer: "Glean is an AI search layer that indexes content across your entire connected tool stack — giving everyone a single natural-language interface. Notion AI is an assistant embedded inside Notion that helps you draft, summarize, and query content in your Notion workspace. Glean is horizontal (broad coverage, many tools); Notion AI is vertical (deep integration, one workspace). Neither executes automated workflows.",
+		facts: [
+			"Glean indexes 100+ enterprise tools; Notion AI is scoped to the Notion workspace",
+			"Notion AI adds drafting and generation capabilities that Glean lacks",
+			"Neither platform executes agent workflows or actions — only retrieval and generation",
+		],
+		faqs: [
+			{
+				q: "Which is better for enterprise teams: Glean or Notion AI?",
+				a: "It depends on where your knowledge lives. Glean wins when knowledge is scattered across many tools and the bottleneck is finding things. Notion AI wins when knowledge is concentrated in Notion and the bottleneck is productivity within that workspace. Neither is the answer when you need cross-tool reasoning plus workflow automation.",
+			},
+			{
+				q: "Can you use both Glean and Notion AI together?",
+				a: "Yes, but there's significant overlap and cost duplication. Glean already indexes Notion content, so running both means paying twice to surface the same content. The more useful combination is a platform that handles both scoped knowledge retrieval and workflow execution in one product.",
+			},
+			{
+				q: "What do Glean and Notion AI have in common?",
+				a: "Both Glean and Notion AI are retrieval-focused: they surface and summarize information but don't execute automated actions. Both use natural language interfaces. Both require no manual knowledge curation. And both fall short for teams that need AI to not just find answers but trigger downstream workflows based on what it finds.",
+			},
 		],
 	},
 };

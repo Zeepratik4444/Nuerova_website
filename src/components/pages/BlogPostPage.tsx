@@ -110,6 +110,45 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 		? relatedSlugs.map((s) => blogPosts.find((p) => p.slug === s)).filter(Boolean) as [import("@/lib/blogPosts").BlogPost, import("@/lib/blogPosts").BlogPost]
 		: undefined;
 
+	const blogPostingSchema = post ? {
+		"@type": "BlogPosting",
+		"headline": post.title,
+		"description": post.summary,
+		"url": `https://nuerova.xyz/blog/${post.slug}`,
+		"datePublished": post.date ?? "2026-06-07",
+		"dateModified": post.date ?? "2026-06-07",
+		"author": {
+			"@type": "Organization",
+			"name": "Nuerova",
+			"url": "https://nuerova.xyz"
+		},
+		"publisher": {
+			"@type": "Organization",
+			"name": "Nuerova",
+			"logo": {
+				"@type": "ImageObject",
+				"url": "https://nuerova.xyz/apple-touch-icon.png"
+			}
+		},
+		"keywords": post.tags.join(", ")
+	} : undefined;
+
+	const faqSchema = answerBlock?.faqs?.length ? {
+		"@type": "FAQPage",
+		"mainEntity": [
+			{
+				"@type": "Question",
+				"name": answerBlock.question,
+				"acceptedAnswer": { "@type": "Answer", "text": answerBlock.answer }
+			},
+			...answerBlock.faqs.map(faq => ({
+				"@type": "Question",
+				"name": faq.q,
+				"acceptedAnswer": { "@type": "Answer", "text": faq.a }
+			}))
+		]
+	} : undefined;
+
 	useSEO({
 		title: post
 			? `${post.title} | Nuerova Blog`
@@ -118,28 +157,9 @@ export function BlogPostPage({ slug }: BlogPostPageProps) {
 			? post.summary
 			: "The requested Nuerova blog article could not be found.",
 		ogType: post ? "article" : "website",
-		schemaOrg: post ? {
-			"@type": "BlogPosting",
-			"headline": post.title,
-			"description": post.summary,
-			"url": `https://nuerova.xyz/blog/${post.slug}`,
-			"datePublished": post.date ?? "2026-06-07",
-			"dateModified": post.date ?? "2026-06-07",
-			"author": {
-				"@type": "Organization",
-				"name": "Nuerova",
-				"url": "https://nuerova.xyz"
-			},
-			"publisher": {
-				"@type": "Organization",
-				"name": "Nuerova",
-				"logo": {
-					"@type": "ImageObject",
-					"url": "https://nuerova.xyz/apple-touch-icon.png"
-				}
-			},
-			"keywords": post.tags.join(", ")
-		} : undefined
+		schemaOrg: post
+			? (faqSchema ? [blogPostingSchema!, faqSchema] : blogPostingSchema)
+			: undefined
 	});
 
 	useScrollReveal();

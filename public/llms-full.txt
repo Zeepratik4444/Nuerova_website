@@ -35,6 +35,35 @@ Nuerova is a team intelligence platform that centralizes department knowledge in
 - Nuerova plans scale by user seats: Starter supports up to 3 users, and Teams supports up to 25 users.
 - Granular role-based access control (RBAC) secures cluster permissions.
 
+## Common Questions
+
+**What is Nuerova?**
+Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations. Unlike generic AI tools, it partitions knowledge by team so agents reason over the right context with the right permissions.
+
+**How does Nuerova compare to Glean?**
+Glean is a cross-tool search and retrieval layer. Nuerova adds two things Glean doesn't have: cluster-level knowledge scoping with native RBAC (independent of source-tool permissions) and agent workflow execution — the ability to act on retrieved knowledge, not just surface it.
+
+**How does Nuerova compare to Notion AI?**
+Notion AI reasons over Notion content only. Nuerova reasons across Slack, Jira, Salesforce, Google Drive, Confluence, and more, within scoped team clusters. Nuerova also executes automated workflows with human approval gates; Notion AI does not.
+
+**How does Nuerova compare to Microsoft Copilot?**
+Microsoft Copilot is a personal productivity assistant for M365. Nuerova is a team intelligence layer — shared memory scoped to departments, with multi-tool reasoning and workflow automation that Copilot doesn't support.
+
+**What integrations does Nuerova support?**
+Nuerova integrates with Slack, Confluence, Jira, Salesforce, Gmail, Google Calendar, Google Drive, GitHub, Zendesk, and CSV/JSON file uploads.
+
+**What is a scoped knowledge cluster?**
+A knowledge cluster is a bounded vector database containing context from one or more connected sources, scoped to a specific team, department, or project. Agents query within the cluster boundary and cannot access other clusters without explicit permission.
+
+**Does Nuerova require training custom models?**
+No. Nuerova is a retrieval and orchestration layer that works with BYOK (Bring Your Own Keys) from OpenAI, Anthropic, Gemini, Azure, Groq, Vertex AI, or Bedrock. No model training is required.
+
+**What is the best Glean alternative for enterprise teams?**
+The best Glean alternative depends on what Glean isn't covering. If you need scoped team knowledge with workflow automation, Nuerova is the closest match. If your knowledge is primarily in Microsoft 365, Copilot fits. The key differentiator is whether you need AI to retrieve information or act on it.
+
+**What is the best Notion AI alternative for knowledge governance?**
+For teams that need multi-tool reasoning, tighter access control, or automated workflows, the best alternatives are Nuerova (scoped clusters + automation), Glean (broad org-wide search), or Guru (curated customer-facing knowledge).
+
 
 ## Technical Architecture Deep-Dive
 
