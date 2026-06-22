@@ -54,7 +54,7 @@ const posts = [
 		description: "Every departure takes undocumented context with it. Here's how to build a knowledge system that captures institutional memory continuously — so it survives employee turnover.",
 		tags: ["Knowledge Ops", "Best Practices", "Team Continuity"],
 		readTime: "6 min read",
-		publishedAt: "2026-06-07",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "copilot-alternative",
@@ -63,7 +63,7 @@ const posts = [
 		description: "Microsoft Copilot handles individual productivity inside Microsoft 365. Here's what teams use instead when they need shared knowledge, scoped permissions, and cross-tool reasoning.",
 		tags: ["Comparison", "AI Platforms", "Productivity"],
 		readTime: "6 min read",
-		publishedAt: "2026-06-07",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "fragmented-knowledge-cost",
@@ -72,7 +72,7 @@ const posts = [
 		description: "Knowledge silos cost enterprise teams more than they realize — not in one event, but in 45-minute increments across every role, every week. Here's how to measure and eliminate them.",
 		tags: ["ROI", "Operations", "Team Performance"],
 		readTime: "6 min read",
-		publishedAt: "2026-06-07",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "cs-automation-human-touch",
@@ -99,7 +99,7 @@ const posts = [
 		description: "A day-by-day implementation roadmap — from connecting your first data source to running your first governed AI workflow — without months of professional services or change management.",
 		tags: ["Setup", "Onboarding", "Implementation"],
 		readTime: "6 min read",
-		publishedAt: "2026-06-07",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "governance-vs-velocity",
@@ -117,7 +117,7 @@ const posts = [
 		description: "Moving beyond 'hours saved' to measure the real return on an AI knowledge layer: onboarding speed, automation run rate, and what happens when your whole team operates at senior level.",
 		tags: ["ROI", "Strategy", "Knowledge Management"],
 		readTime: "6 min read",
-		publishedAt: "2026-06-14",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "ops-stack-breaks",
@@ -191,10 +191,10 @@ const posts = [
 		source: "blog-20-salesforce-ai-integration-what-works.html",
 		title: "Salesforce AI Integration: What Actually Works in Production",
 		description: "Most Salesforce AI integrations disappoint in production. RAG over exports loses relational context. Real-time API queries break on custom fields. Here's the architecture that works.",
-		date: "2026-06-21",
+		date: "2026-06-22",
 		tags: ["Integrations", "CRM", "Salesforce"],
 		readTime: "9 min read",
-		publishedAt: "2026-06-21",
+		publishedAt: "2026-06-22",
 	},
 	{
 		slug: "glean-alternative",

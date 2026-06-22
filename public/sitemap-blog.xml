@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
      <loc>https://nuerova.xyz/blog</loc>
-     <lastmod>2026-06-21</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>weekly</changefreq>
      <priority>0.8</priority>
   </url>
@@ -32,19 +32,19 @@
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/knowledge-cluster-turnover</loc>
-     <lastmod>2026-06-07</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/copilot-alternative</loc>
-     <lastmod>2026-06-07</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/fragmented-knowledge-cost</loc>
-     <lastmod>2026-06-07</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
@@ -62,7 +62,7 @@
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/setup-guide-72-hours</loc>
-     <lastmod>2026-06-07</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
@@ -74,7 +74,7 @@
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/roi-of-shared-memory</loc>
-     <lastmod>2026-06-14</lastmod>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
@@ -122,7 +122,25 @@
   </url>
   <url>
      <loc>https://nuerova.xyz/blog/salesforce-ai-integration-what-works</loc>
-     <lastmod>2026-06-21</lastmod>
+     <lastmod>2026-06-22</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+  </url>
+  <url>
+     <loc>https://nuerova.xyz/blog/glean-alternative</loc>
+     <lastmod>2026-06-22</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+  </url>
+  <url>
+     <loc>https://nuerova.xyz/blog/notion-ai-alternative</loc>
+     <lastmod>2026-06-22</lastmod>
+     <changefreq>monthly</changefreq>
+     <priority>0.7</priority>
+  </url>
+  <url>
+     <loc>https://nuerova.xyz/blog/glean-vs-notion-ai</loc>
+     <lastmod>2026-06-22</lastmod>
      <changefreq>monthly</changefreq>
      <priority>0.7</priority>
   </url>
