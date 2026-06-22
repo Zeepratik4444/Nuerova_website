@@ -291,7 +291,7 @@ export function HomePage() {
 
 			<main id="main" className="flex-grow pb-section-gap pt-16">
 				{/* ── HERO SECTION ── */}
-				<section className="relative overflow-hidden" style={{ height: 'calc(100vh - 64px)', display: 'flex', alignItems: 'center' }}>
+				<section className="relative overflow-hidden" style={{ minHeight: 'calc(100svh - 64px)', display: 'flex', alignItems: 'center' }}>
 					{/* Particle canvas */}
 					<canvas ref={heroCanvasRef} className="hero-canvas" />
 					{/* Grid lines overlay */}
@@ -300,9 +300,9 @@ export function HomePage() {
 					<div className="hero-orb hero-orb-blue" />
 					<div className="hero-orb hero-orb-purple" />
 
-					<div className="max-w-container-max mx-auto px-gutter md:px-stack-lg flex flex-col md:flex-row items-center pb-16 gap-24 pt-4 relative z-10 w-full">
+					<div className="max-w-container-max mx-auto px-gutter md:px-stack-lg flex flex-col md:flex-row items-center pb-8 md:pb-16 gap-8 md:gap-24 pt-4 relative z-10 w-full">
 						<div className="flex-1">
-							<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md mt-10 hero-enter transition-all duration-200 hover:bg-status-blue/20 hover:border-status-blue/40 hover:text-white cursor-default">
+							<span className="font-label-caps text-label-caps text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-flex items-center gap-2 mb-stack-md mt-4 md:mt-10 hero-enter transition-all duration-200 hover:bg-status-blue/20 hover:border-status-blue/40 hover:text-white cursor-default">
 								<div className="w-1.5 h-1.5 rounded-full bg-status-blue hero-dot-pulse"></div>
 								Introducing Clusters & Twins: AI with persistent team memory
 							</span>
@@ -338,7 +338,7 @@ export function HomePage() {
 						</div>
 
 						{/* Nova Engine Agent Console */}
-						<div className="flex-1 w-full md:mt-0 border border-white/10 rounded-xl bg-[#0f0f0f] overflow-hidden mt-8 hero-console-float h-[420px] flex flex-col" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
+						<div className="flex-1 w-full md:mt-0 border border-white/10 rounded-xl bg-[#0f0f0f] overflow-hidden hero-console-float h-[300px] md:h-[420px] flex flex-col" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.05)' }}>
 							{/* Window chrome */}
 							<div className="h-10 border-b border-white/10 flex items-center justify-between px-4 bg-[#131313]">
 								<div className="flex gap-2 group">
@@ -791,10 +791,10 @@ export function HomePage() {
 
 				{/* ── REQUEST A DEMO SECTION ── */}
 				<section className="w-full bg-[#111315] py-section-gap border-y border-white/[0.08] reveal" id="contact">
-					<div className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-16 items-center">
+					<div className="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row gap-8 md:gap-16 items-center">
 						<div className="flex-1">
 							<span className="font-label-caps text-label-caps text-white/80 border border-white/20 px-3 py-1 rounded-full inline-block mb-stack-md">REQUEST A DEMO</span>
-							<h2 className="font-headline-lg text-5xl md:text-6xl text-primary mb-stack-md font-bold tracking-tight leading-none">Your team's knowledge should not depend on one person being in the room.</h2>
+							<h2 className="font-headline-lg text-3xl md:text-5xl lg:text-6xl text-primary mb-stack-md font-bold tracking-tight leading-tight md:leading-none">Your team's knowledge should not depend on one person being in the room.</h2>
 							<p className="font-body-md text-body-md text-white/60 mb-stack-lg max-w-xl leading-relaxed">
 								Nuerova gives teams a shared AI brain that persists, scales, and can be governed.
 							</p>
@@ -821,29 +821,29 @@ export function HomePage() {
 								</div>
 							) : (
 								<form className="space-y-4" onSubmit={handleDemoSubmit}>
-									<div className="grid grid-cols-2 gap-4">
+									<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 										<div>
 											<label className="block text-xs font-medium text-white/70 mb-1.5">Name</label>
-											<input 
-												name="name" 
-												type="text" 
+											<input
+												name="name"
+												type="text"
 												required
 												disabled={isDemoSubmitting}
-												className="w-full bg-black/40 border border-white/10 rounded-lg text-white text-sm focus:ring-1 focus:ring-status-blue/50 focus:border-status-blue/50 py-2.5 px-3 outline-none transition-all shadow-inner" 
+												className="w-full bg-black/40 border border-white/10 rounded-lg text-white text-sm focus:ring-1 focus:ring-status-blue/50 focus:border-status-blue/50 py-2.5 px-3 outline-none transition-all shadow-inner"
 											/>
 										</div>
 										<div>
 											<label className="block text-xs font-medium text-white/70 mb-1.5">Work email</label>
-											<input 
-												name="email" 
-												type="email" 
+											<input
+												name="email"
+												type="email"
 												required
 												disabled={isDemoSubmitting}
-												className="w-full bg-black/40 border border-white/10 rounded-lg text-white text-sm focus:ring-1 focus:ring-status-blue/50 focus:border-status-blue/50 py-2.5 px-3 outline-none transition-all shadow-inner" 
+												className="w-full bg-black/40 border border-white/10 rounded-lg text-white text-sm focus:ring-1 focus:ring-status-blue/50 focus:border-status-blue/50 py-2.5 px-3 outline-none transition-all shadow-inner"
 											/>
 										</div>
 									</div>
-									<div className="grid grid-cols-2 gap-4">
+									<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 										<div>
 											<label className="block text-xs font-medium text-white/70 mb-1.5">Company</label>
 											<input 

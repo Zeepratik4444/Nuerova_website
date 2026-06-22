@@ -94,7 +94,7 @@ export function PricingPage() {
 					<span className="font-label-caps text-xs text-status-blue bg-status-blue/10 border border-status-blue/20 px-3 py-1 rounded-full inline-block mb-6">
 						SIMPLE PRICING
 					</span>
-					<h1 className="font-headline-lg text-5xl md:text-6xl text-white mb-6 font-bold tracking-tight leading-tight max-w-4xl">
+					<h1 className="font-headline-lg text-3xl md:text-5xl lg:text-6xl text-white mb-6 font-bold tracking-tight leading-tight max-w-4xl">
 						Pricing that scales with your intelligence.
 					</h1>
 					<p className="font-body-md text-xl text-white/50 max-w-2xl leading-relaxed">

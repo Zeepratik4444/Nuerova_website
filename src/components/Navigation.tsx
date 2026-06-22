@@ -99,8 +99,8 @@ export function Navigation() {
 				</nav>
 			</header>
 
-			{/* Floating Announcement Banner */}
-			<div className="fixed bottom-4 right-4 z-50 bg-[#1a1c1e] border border-white/10 rounded-lg shadow-2xl p-4 max-w-sm" id="automation-banner">
+			{/* Floating Announcement Banner — hidden on small screens to avoid covering content */}
+			<div className="hidden md:block fixed bottom-4 right-4 z-50 bg-[#1a1c1e] border border-white/10 rounded-lg shadow-2xl p-4 max-w-sm" id="automation-banner">
 				<div className="flex gap-3 items-start">
 					<div className="flex-grow">
 						<span className="text-xs text-status-blue font-bold tracking-wider uppercase block mb-1">Update</span>
