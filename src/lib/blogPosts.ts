@@ -18,6 +18,9 @@ import post17Html from '@/content/blog/blog-17-ai-document-generation-pdf-pptx.h
 import post18Html from '@/content/blog/blog-18-byok-bring-your-own-llm-keys.html?raw';
 import post19Html from '@/content/blog/blog-19-twins-and-clusters-explained.html?raw';
 import post20Html from '@/content/blog/blog-20-salesforce-ai-integration-what-works.html?raw';
+import post21Html from '@/content/blog/blog-21-glean-alternative.html?raw';
+import post22Html from '@/content/blog/blog-22-notion-ai-alternative.html?raw';
+import post23Html from '@/content/blog/blog-23-glean-vs-notion-ai.html?raw';
 
 export type BlogPost = {
 	slug: string;
@@ -252,5 +255,38 @@ export const blogPosts: BlogPost[] = [
 		tags: ['Integrations', 'CRM', 'Salesforce'],
 		accent: 'blue',
 		contentHtml: post20Html,
+	},
+	{
+		slug: 'glean-alternative',
+		title: "Best Glean Alternatives for Enterprise Teams in 2026",
+		summary: "Glean is good at cross-tool search. But if your team needs governed knowledge clusters, workflow automation, or deeper access control, here are the alternatives worth evaluating.",
+		publishedAt: "Jun 22, 2026",
+		readTime: "9 min read",
+		date: "2026-06-22",
+		tags: ['Comparison', 'Enterprise AI', 'Knowledge Management'],
+		accent: 'indigo',
+		contentHtml: post21Html,
+	},
+	{
+		slug: 'notion-ai-alternative',
+		title: "Notion AI Alternative for Teams That Need Real Knowledge Governance",
+		summary: "Notion AI is excellent inside Notion. But for teams with multi-tool knowledge, compliance requirements, or workflow automation needs, here are the alternatives that go further.",
+		publishedAt: "Jun 22, 2026",
+		readTime: "8 min read",
+		date: "2026-06-22",
+		tags: ['Comparison', 'Enterprise AI', 'Productivity'],
+		accent: 'blue',
+		contentHtml: post22Html,
+	},
+	{
+		slug: 'glean-vs-notion-ai',
+		title: "Glean vs Notion AI: Which Is Right for Your Enterprise Team?",
+		summary: "Glean indexes everything across your tool stack. Notion AI deepens one workspace. Here's how to decide which architecture fits your team's actual knowledge bottleneck.",
+		publishedAt: "Jun 22, 2026",
+		readTime: "7 min read",
+		date: "2026-06-22",
+		tags: ['Comparison', 'Enterprise AI', 'Knowledge Management'],
+		accent: 'indigo',
+		contentHtml: post23Html,
 	},
 ];
