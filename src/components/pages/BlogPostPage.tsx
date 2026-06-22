@@ -30,17 +30,21 @@ const BLUE_TO_READABLE: Record<string, string> = {
 const LIGHT_BG_TO_DARK: Record<string, string> = {
 	'#f0f7ff': 'rgba(18,117,226,0.1)',
 	'#f8fafc': 'rgba(255,255,255,0.04)',
+	'#fafafa': 'rgba(255,255,255,0.03)',
+	'#f9fafb': 'rgba(255,255,255,0.03)',
 	'#eff6ff': 'rgba(18,117,226,0.08)',
 	'#e8f0fe': 'rgba(18,117,226,0.1)',
 	'#f1f5f9': 'rgba(255,255,255,0.04)',
-	'#f9fafb': 'rgba(255,255,255,0.03)',
+	'#f0fff4': 'rgba(16,185,129,0.08)',
 };
 
 const LIGHT_BORDER_TO_DARK: Record<string, string> = {
-	'#e5e7eb': 'rgba(255,255,255,0.1)',
+	'#e2e8f0': 'rgba(255,255,255,0.08)',
+	'#e5e7eb': 'rgba(255,255,255,0.08)',
+	'#f1f5f9': 'rgba(255,255,255,0.06)',
 	'#bfdbfe': 'rgba(18,117,226,0.3)',
 	'#dbeafe': 'rgba(18,117,226,0.25)',
-	'#cbd5e1': 'rgba(255,255,255,0.12)',
+	'#cbd5e1': 'rgba(255,255,255,0.1)',
 };
 
 function transformInlineStylesForDarkTheme(html: string) {
