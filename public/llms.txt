@@ -1,0 +1,36 @@
+# Nuerova
+> Scoped Knowledge Clusters & Team Intelligence Platforms.
+
+Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations so your momentum is never lost.
+
+## Product
+
+- Homepage: https://nuerova.xyz/
+- Features: https://nuerova.xyz/features
+- Security: https://nuerova.xyz/security
+- Pricing: https://nuerova.xyz/pricing
+- How It Works: https://nuerova.xyz/how-it-works
+- FAQ: https://nuerova.xyz/faq
+- Contact / Free Trial: https://nuerova.xyz/contact
+
+## Who It's For
+
+- Operations and Engineering departments where context is fragmented in chat tools
+- Teams wanting to centralize onboarding and runbooks into queryable vector indices
+- Security-minded organizations requiring role-based access control and organizational data isolation
+
+## Key Capabilities
+
+- Scoped knowledge clusters connected to Slack, Confluence, Jira, and file storage
+- Context-aware agent personas with custom prompts, model settings, and clearance boundaries
+- Visual drag-and-drop workflow builder using triggers and reasoning checks
+- Human-in-the-loop validation queue for approvals, edits, and rejections
+- SOC-2 ready audit trails logging execution details, latencies, and operators
+
+## Quote-Ready Product Facts
+
+- Nuerova runs on context-aware agents and scoped knowledge clusters.
+- The platform supports Slack, Confluence, Gmail, Google Calendar, Jira, and CSV/JSON file uploads.
+- Teams can start with a 7-day Teams trial (no credit card required).
+- Nuerova plans scale by user seats: Starter supports up to 3 users, and Teams supports up to 25 users.
+- Granular role-based access control (RBAC) secures cluster permissions.

@@ -178,7 +178,6 @@ htmlcov/
 !/public/
 /public/blog/
 /public/sitemap*.xml
-/public/llms*.txt
 
 # Allow source libs
 !/src/lib/

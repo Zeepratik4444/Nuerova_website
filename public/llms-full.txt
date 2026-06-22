@@ -1,0 +1,173 @@
+# Nuerova
+> Scoped Knowledge Clusters & Team Intelligence Platforms.
+
+Nuerova is a team intelligence platform that centralizes department knowledge in scoped clusters, deploys context-aware agent helpers, and builds secure trigger-action automations so your momentum is never lost.
+
+## Product
+
+- Homepage: https://nuerova.xyz/
+- Features: https://nuerova.xyz/features
+- Security: https://nuerova.xyz/security
+- Pricing: https://nuerova.xyz/pricing
+- How It Works: https://nuerova.xyz/how-it-works
+- FAQ: https://nuerova.xyz/faq
+- Contact / Free Trial: https://nuerova.xyz/contact
+
+## Who It's For
+
+- Operations and Engineering departments where context is fragmented in chat tools
+- Teams wanting to centralize onboarding and runbooks into queryable vector indices
+- Security-minded organizations requiring role-based access control and organizational data isolation
+
+## Key Capabilities
+
+- Scoped knowledge clusters connected to Slack, Confluence, Jira, and file storage
+- Context-aware agent personas with custom prompts, model settings, and clearance boundaries
+- Visual drag-and-drop workflow builder using triggers and reasoning checks
+- Human-in-the-loop validation queue for approvals, edits, and rejections
+- SOC-2 ready audit trails logging execution details, latencies, and operators
+
+## Quote-Ready Product Facts
+
+- Nuerova runs on context-aware agents and scoped knowledge clusters.
+- The platform supports Slack, Confluence, Gmail, Google Calendar, Jira, and CSV/JSON file uploads.
+- Teams can start with a 7-day Teams trial (no credit card required).
+- Nuerova plans scale by user seats: Starter supports up to 3 users, and Teams supports up to 25 users.
+- Granular role-based access control (RBAC) secures cluster permissions.
+
+
+## Technical Architecture Deep-Dive
+
+### Scoped Knowledge Clusters
+- Dynamic vector databases isolated by department or role context.
+- Sync frequencies can be scheduled in intervals or triggered via Webhooks.
+- Support for file uploads (JSON, CSV, PDF, Markdown) and native sync endpoints.
+
+### Reusable Skill Registry
+- Shared catalog of validated tools and prompt scripts written in Python or Javascript.
+- Skills accept defined parameter schemas and can execute database queries or REST calls.
+
+### Agent Personas & Visual Playbooks
+- Visual node editor to wire triggers (e.g. email received, webhook, cron) to agent reasoning steps.
+- Custom instructions, model choices, and memory clearance levels configured per agent.
+
+### Human-in-the-Loop Verification
+- Visual queues for approval where operations teams can review, edit, or reject agent-drafted responses before execution.
+
+## Index of Articles and Resources
+
+### Why Scoped Team Memory Is the Moat Generic AI Tools Can't Copy
+- URL: https://nuerova.xyz/blog/scoped-team-memory
+- Summary: Why per-user AI misses the team layer, and why scoped knowledge clusters are the essential team intelligence moat.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Strategy, Knowledge Management, AI Teams
+
+### From Prompt Library to Skill Registry: What Enterprise AI Actually Needs
+- URL: https://nuerova.xyz/blog/skill-registry
+- Summary: How reusable intelligence becomes governed infrastructure, and why prompt libraries fall short.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Product, Skill Registry, Governance
+
+### Agent-Native vs Rule-Based Automation: Why the Difference Matters
+- URL: https://nuerova.xyz/blog/agent-native-automation
+- Summary: Why workflows need reasoning before action, and where operations teams get leverage.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Automation, Operations, AI Agents
+
+### What Enterprise AI Teams Actually Need (It's Not More Models)
+- URL: https://nuerova.xyz/blog/enterprise-ai-needs
+- Summary: The operational blockers: memory, permissions, data boundaries, and audit logs.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Enterprise AI, Security, Infrastructure
+
+### How to Preserve Institutional Knowledge When Employees Leave
+- URL: https://nuerova.xyz/blog/knowledge-cluster-turnover
+- Summary: Every departure takes undocumented context with it. Here's how to build a knowledge system that captures institutional memory continuously — so it survives employee turnover.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: Knowledge Ops, Best Practices, Team Continuity
+
+### Microsoft Copilot Alternative for Enterprise Teams: An Honest Comparison
+- URL: https://nuerova.xyz/blog/copilot-alternative
+- Summary: Microsoft Copilot handles individual productivity inside Microsoft 365. Here's what teams use instead when they need shared knowledge, scoped permissions, and cross-tool reasoning.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: Comparison, AI Platforms, Productivity
+
+### The Real Cost of Knowledge Silos in Enterprise Teams
+- URL: https://nuerova.xyz/blog/fragmented-knowledge-cost
+- Summary: Knowledge silos cost enterprise teams more than they realize — not in one event, but in 45-minute increments across every role, every week. Here's how to measure and eliminate them.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: ROI, Operations, Team Performance
+
+### How to Automate CS Operations Without Losing the Human Touch
+- URL: https://nuerova.xyz/blog/cs-automation-human-touch
+- Summary: Automation should make human judgment faster and more informed, not invisible.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Customer Success, Automation, Workflow
+
+### 5 Signs Your Team Is Ready for Agent-Native Workflows
+- URL: https://nuerova.xyz/blog/agent-workflow-readiness
+- Summary: Signals that your operational complexity calls for context-aware automation.
+- Published: 2026-06-07 | Read Time: 6 min read | Tags: Readiness, AI Agents, Operations
+
+### AI Knowledge Base Setup Guide: Live in 72 Hours
+- URL: https://nuerova.xyz/blog/setup-guide-72-hours
+- Summary: A day-by-day implementation roadmap — from connecting your first data source to running your first governed AI workflow — without months of professional services or change management.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: Setup, Onboarding, Implementation
+
+### The False Choice: Governance vs Velocity in AI
+- URL: https://nuerova.xyz/blog/governance-vs-velocity
+- Summary: Why enterprise AI governance and team velocity are not opposites - and how to achieve both.
+- Published: 2026-06-14 | Read Time: 6 min read | Tags: Governance, Enterprise AI, Strategy
+
+### How to Measure ROI on AI Knowledge Management Tools
+- URL: https://nuerova.xyz/blog/roi-of-shared-memory
+- Summary: Moving beyond 'hours saved' to measure the real return on an AI knowledge layer: onboarding speed, automation run rate, and what happens when your whole team operates at senior level.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: ROI, Strategy, Knowledge Management
+
+### Why the Notion + Slack + ChatGPT Stack Breaks at 30 People
+- URL: https://nuerova.xyz/blog/ops-stack-breaks
+- Summary: The four failure modes that show up in every team's default AI stack - and what a connected intelligence layer changes.
+- Published: 2026-06-14 | Read Time: 5 min read | Tags: Operations, Strategy, AI Stack
+
+### How to Roll Out AI Without Creating Shadow AI
+- URL: https://nuerova.xyz/blog/ai-rollout-no-shadow-ai
+- Summary: Shadow AI is a supply problem, not a discipline problem. A practical rollout sequence that prevents it.
+- Published: 2026-06-14 | Read Time: 6 min read | Tags: Enterprise AI, Governance, Rollout
+
+### When to Stop Buying Point AI Tools
+- URL: https://nuerova.xyz/blog/stop-buying-point-ai-tools
+- Summary: Five signs your AI stack has hit the inflection point where a shared intelligence layer generates more ROI than another point tool.
+- Published: 2026-06-14 | Read Time: 5 min read | Tags: Strategy, ROI, Enterprise AI
+
+### What Is a Skill? The Reusable AI Instruction That Changes How Teams Work
+- URL: https://nuerova.xyz/blog/what-is-a-skill-nuerova
+- Summary: Most teams treat AI prompts like single-use tools. Skills change that - packaged, versioned, org-shareable AI instructions that make every agent session smarter from the start.
+- Published: 2026-06-14 | Read Time: 9 min read | Tags: Product, Skills, AI Teams
+
+### From Prompt to PDF: How AI Document Generation Actually Works
+- URL: https://nuerova.xyz/blog/ai-document-generation-pdf-pptx
+- Summary: AI that generates formatted, structured documents - PDFs, PPTX decks, DOCX reports, XLSX sheets - from a single agent prompt. Here's how the pipeline works and why it matters.
+- Published: 2026-06-14 | Read Time: 9 min read | Tags: Product, Automation, Document Generation
+
+### BYOK: Why Enterprise Teams Should Control Their Own LLM Keys
+- URL: https://nuerova.xyz/blog/byok-bring-your-own-llm-keys
+- Summary: Bringing your own OpenAI, Anthropic, or Gemini keys isn't just about cost - it's about data control, compliance, and not being locked into a vendor's model choices.
+- Published: 2026-06-14 | Read Time: 9 min read | Tags: Security, Enterprise, BYOK
+
+### Twins and Clusters: How Personal and Team Knowledge Connect in Nuerova
+- URL: https://nuerova.xyz/blog/twins-and-clusters-explained
+- Summary: Most team AI tools are either personal (one user's context) or generic (no one's context). Twins and Clusters are the architecture that makes shared knowledge work without exposing what shouldn't be shared.
+- Published: 2026-06-21 | Read Time: 10 min read | Tags: Product, Architecture, Knowledge Management
+
+### Salesforce AI Integration: What Actually Works in Production
+- URL: https://nuerova.xyz/blog/salesforce-ai-integration-what-works
+- Summary: Most Salesforce AI integrations disappoint in production. RAG over exports loses relational context. Real-time API queries break on custom fields. Here's the architecture that works.
+- Published: 2026-06-22 | Read Time: 9 min read | Tags: Integrations, CRM, Salesforce
+
+### Best Glean Alternatives for Enterprise Teams in 2026
+- URL: https://nuerova.xyz/blog/glean-alternative
+- Summary: Looking for a Glean alternative? See how Nuerova, Microsoft Copilot, Guru, and Notion AI compare on scoped knowledge, workflow automation, and pricing.
+- Published: 2026-06-22 | Read Time: 7 min read | Tags: Comparison, Enterprise AI, Knowledge Management
+
+### Notion AI Alternative for Teams That Need Real Knowledge Governance
+- URL: https://nuerova.xyz/blog/notion-ai-alternative
+- Summary: Notion AI works great inside Notion. Here's what enterprise teams use instead when they need multi-tool reasoning, department-scoped access control, and workflow automation.
+- Published: 2026-06-22 | Read Time: 7 min read | Tags: Comparison, Enterprise AI, Knowledge Management
+
+### Glean vs Notion AI: Which Is Right for Your Enterprise Team?
+- URL: https://nuerova.xyz/blog/glean-vs-notion-ai
+- Summary: Glean indexes everything across your tool stack. Notion AI deepens one workspace. Here's how to pick — and when neither is the right answer.
+- Published: 2026-06-22 | Read Time: 6 min read | Tags: Comparison, Enterprise AI, AI Tools
+
