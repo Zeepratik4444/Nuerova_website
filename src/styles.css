@@ -2350,6 +2350,21 @@ figcaption span {
 	.blog-prose h2 {
 		margin-top: 2em;
 	}
+
+	/* Ensure comparison tables scroll horizontally on narrow phones */
+	.blog-prose table {
+		min-width: 480px;
+	}
+
+	.blog-prose div[style*="overflow-x"] {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Reduce inline-styled padding-heavy boxes on mobile */
+	.blog-prose div[style*="padding: 1.5rem"] {
+		padding: 1rem !important;
+	}
 }
 
 @keyframes pulse {
