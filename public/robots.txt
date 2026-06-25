@@ -4,13 +4,7 @@
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
-Disallow: /admin
-Disallow: /login
-Disallow: /register
-Disallow: /payment-success
 Disallow: /set-password
-Disallow: /dashboard
-Disallow: /settings
 
 User-agent: Googlebot-Image
 Allow: /
@@ -22,25 +16,13 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 Disallow: /api/
-Disallow: /admin
-Disallow: /login
-Disallow: /register
-Disallow: /payment-success
 Disallow: /set-password
-Disallow: /dashboard
-Disallow: /settings
 
 # ── OpenAI ──────────────────────────────────────────
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
-Disallow: /admin
-Disallow: /login
-Disallow: /register
-Disallow: /payment-success
 Disallow: /set-password
-Disallow: /dashboard
-Disallow: /settings
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -113,13 +95,7 @@ Disallow: /
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /admin
-Disallow: /login
-Disallow: /register
-Disallow: /payment-success
 Disallow: /set-password
-Disallow: /dashboard
-Disallow: /settings
 
 # Sitemap index → references sitemap-pages.xml and sitemap-blog.xml
 Sitemap: https://nuerova.xyz/sitemap.xml

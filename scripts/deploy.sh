@@ -155,6 +155,11 @@ server {
     include             /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
 
+    # Redirect legacy/planned auth routes to contact page
+    location ~* ^/(register|login|dashboard|settings|admin|payment-success)(/.*)?$ {
+        return 301 https://${DOMAIN}/contact;
+    }
+
     location / {
         proxy_pass http://127.0.0.1:${APP_PORT};
         proxy_set_header Host \$host;
