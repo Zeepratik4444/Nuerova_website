@@ -407,9 +407,8 @@ function organizationSchema() {
         url: siteUrl,
         logo: `${siteUrl}/apple-touch-icon.png`,
         sameAs: [
-            "https://twitter.com/nuerova",
-            "https://github.com/nuerova",
-            "https://linkedin.com/company/nuerova",
+            "https://www.linkedin.com/company/nuerova",
+            "https://www.producthunt.com/products/nuerova",
         ],
         knowsAbout: [
             "Team intelligence platforms",
