@@ -33,7 +33,7 @@ const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 const publicDir = path.join(root, "public");
 const siteUrl = "https://nuerova.xyz";
-const currentContentLastmod = "2026-06-14";
+const currentContentLastmod = "2026-06-25";
 
 // ── Core pages to generate ─────────────────────────────────────────────────
 // staticBody: server-side HTML injected directly into <body> so Googlebot sees
@@ -288,6 +288,17 @@ const pages = [
   <p>Key areas covered: acceptable use policy, data ownership and portability, subscription plan terms, payment and cancellation, and governing legal jurisdiction.</p>
 </main>`,
     },
+    {
+        route: "blog",
+        title: "Blog - Team Intelligence, Agent Workflows & Enterprise AI | Nuerova",
+        description:
+            "Short, practical essays on shared memory, governed automations, and the operating layer that modern enterprise teams need.",
+        staticBody: `
+<main>
+  <h1>Enterprise AI intelligence for teams who need it to work.</h1>
+  <p>Short, practical essays on shared memory, governed automations, and the operating layer that modern teams need.</p>
+</main>`,
+    },
 ];
 
 // ── Parse dist/index.html ──────────────────────────────────────────────────
@@ -396,9 +407,8 @@ function organizationSchema() {
         url: siteUrl,
         logo: `${siteUrl}/apple-touch-icon.png`,
         sameAs: [
-            "https://twitter.com/nuerova",
-            "https://github.com/nuerova",
-            "https://linkedin.com/company/nuerova",
+            "https://www.linkedin.com/company/nuerova",
+            "https://www.producthunt.com/products/nuerova",
         ],
         knowsAbout: [
             "Team intelligence platforms",
@@ -640,6 +650,22 @@ function aboutSchema() {
     };
 }
 
+function blogListingSchema() {
+    return {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Nuerova Blog",
+        "description": "Short, practical essays on shared memory, governed automations, and the operating layer that modern enterprise teams need.",
+        "url": "https://nuerova.xyz/blog",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Nuerova",
+            "url": "https://nuerova.xyz",
+            "logo": "https://nuerova.xyz/apple-touch-icon.png",
+        },
+    };
+}
+
 function buildSchemaScripts(page) {
     const schemas = [JSON.parse(softwareSchema), breadcrumbSchema(page)];
 
@@ -654,6 +680,9 @@ function buildSchemaScripts(page) {
     }
     if (page.route === "about") {
         schemas.push(aboutSchema());
+    }
+    if (page.route === "blog") {
+        schemas.push(blogListingSchema());
     }
     if (pageFaqs[page.route]) {
         schemas.push(faqSchema(pageFaqs[page.route]));
@@ -749,7 +778,7 @@ function pageSitemapMetadata(page) {
     const defaults = {
         lastmod: currentContentLastmod,
         changefreq:
-            page.route === "" || page.route === "pricing" || page.route === "contact"
+            page.route === "" || page.route === "pricing" || page.route === "contact" || page.route === "blog"
                 ? "weekly"
                 : "monthly",
         priority:
@@ -757,7 +786,7 @@ function pageSitemapMetadata(page) {
                 ? "1.0"
                 : page.route === "pricing" || page.route === "contact"
                     ? "0.9"
-                    : page.route === "features" || page.route === "security"
+                    : page.route === "features" || page.route === "security" || page.route === "blog"
                         ? "0.85"
                         : "0.75",
     };

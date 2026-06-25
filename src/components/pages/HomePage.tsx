@@ -17,9 +17,8 @@ export function HomePage() {
 				"url": "https://nuerova.xyz",
 				"logo": "https://nuerova.xyz/apple-touch-icon.png",
 				"sameAs": [
-					"https://twitter.com/nuerova",
-					"https://github.com/nuerova",
-					"https://linkedin.com/company/nuerova"
+					"https://www.linkedin.com/company/nuerova",
+					"https://www.producthunt.com/products/nuerova"
 				],
 				"description": "Enterprise intelligence platform centralizing knowledge into scoped memory clusters."
 			},

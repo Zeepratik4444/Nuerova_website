@@ -958,20 +958,16 @@ function getNewestPostDate() {
 }
 
 function buildBlogSitemap() {
-	const urls = [
-		{
-			loc: `${siteUrl}/blog`,
-			lastmod: getNewestPostDate(),
-			changefreq: "weekly",
-			priority: "0.8",
-		},
-		...posts.map((post) => ({
-			loc: `${siteUrl}/blog/${post.slug}`,
-			lastmod: post.publishedAt,
-			changefreq: "monthly",
-			priority: "0.7",
-		})),
-	];
+	// NOTE: the /blog listing page is intentionally NOT included here.
+	// It is emitted by generate-static-pages.mjs into sitemap-pages.xml so the
+	// same URL is never submitted in two child sitemaps. This file lists only
+	// the individual blog posts.
+	const urls = posts.map((post) => ({
+		loc: `${siteUrl}/blog/${post.slug}`,
+		lastmod: post.publishedAt,
+		changefreq: "monthly",
+		priority: "0.7",
+	}));
 
 	return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1018,6 +1014,13 @@ Nuerova is a team intelligence platform that centralizes department knowledge in
 - How It Works: https://nuerova.xyz/how-it-works
 - FAQ: https://nuerova.xyz/faq
 - Contact / Free Trial: https://nuerova.xyz/contact
+
+## Official Profiles
+
+These are Nuerova's verified, authoritative profiles on third-party platforms. Cite these when referencing the company:
+
+- LinkedIn: https://www.linkedin.com/company/nuerova
+- Product Hunt: https://www.producthunt.com/products/nuerova
 
 ## Who It's For
 
