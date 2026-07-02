@@ -33,7 +33,7 @@ const root = path.resolve(__dirname, "..");
 const distDir = path.join(root, "dist");
 const publicDir = path.join(root, "public");
 const siteUrl = "https://nuerova.xyz";
-const currentContentLastmod = "2026-06-25";
+const currentContentLastmod = "2026-07-02";
 
 // ── Core pages to generate ─────────────────────────────────────────────────
 // staticBody: server-side HTML injected directly into <body> so Googlebot sees
@@ -63,7 +63,7 @@ const pages = [
         route: "features",
         title: "Features - Scoped Clusters, Custom Agents & Governance | Nuerova",
         description:
-            "Explore Nuerova features for team intelligence: scoped knowledge clusters, custom agent personas, visual workflow builders, validation queues, and audit logs.",
+            "Scoped knowledge clusters, context-aware agent personas, visual workflow builder with human approval gates, and tamper-resistant audit logs — all in one platform. 7-day free trial.",
         staticBody: `
 <main>
   <h1>Nuerova Features</h1>
@@ -152,7 +152,7 @@ const pages = [
         route: "how-it-works",
         title: "How Nuerova Works - Context Ingestion to Governed Action | Nuerova",
         description:
-            "See how Nuerova ingests team data, builds scoped knowledge clusters, deploys custom agents, and triggers governed visual workflows with full audit trails.",
+            "How Nuerova turns fragmented team knowledge into governed, queryable clusters — then deploys AI agents that reason over real context. Most teams are live in 3 days.",
         staticBody: `
 <main>
   <h1>How Nuerova Works</h1>
@@ -189,7 +189,7 @@ const pages = [
         route: "faq",
         title: "FAQ - Nuerova Clusters, Agents & Security Questions",
         description:
-            "Answers to Nuerova setup, data source integrations, pricing, security, and team intelligence automation questions.",
+            "How does Nuerova work? What integrations are supported? How long is setup? Answers to the most common questions about enterprise knowledge clusters, agents, and security.",
         staticBody: `
 <main>
   <h1>Frequently Asked Questions</h1>
@@ -234,7 +234,7 @@ const pages = [
         route: "contact",
         title: "Contact Nuerova - Start Your Team Intelligence Trial | Nuerova",
         description:
-            "Talk to Nuerova about centralizing department knowledge in scoped clusters and setting up secure, context-aware agent workflows.",
+            "Get a live Nuerova walkthrough built around your team's actual workflows. No lock-in, data stays yours, setup support included. Book a demo today.",
         staticBody: `
 <main>
   <h1>Request a Demo</h1>
