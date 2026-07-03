@@ -155,6 +155,19 @@ server {
     include             /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam         /etc/letsencrypt/ssl-dhparams.pem;
 
+    # Serve crawler-critical static files directly from the filesystem.
+    # These must never depend on the Node process being up — if serve restarts
+    # Googlebot would get "connection refused" and log "Couldn't fetch".
+    root $REPO_DIR/dist;
+
+    location = /robots.txt       { try_files \$uri =404; add_header Content-Type "text/plain; charset=utf-8"; }
+    location = /sitemap.xml      { try_files \$uri =404; add_header Content-Type "application/xml; charset=utf-8"; }
+    location = /sitemap-pages.xml { try_files \$uri =404; add_header Content-Type "application/xml; charset=utf-8"; }
+    location = /sitemap-blog.xml { try_files \$uri =404; add_header Content-Type "application/xml; charset=utf-8"; }
+    location = /llms.txt         { try_files \$uri =404; add_header Content-Type "text/plain; charset=utf-8"; }
+    location = /llms-full.txt    { try_files \$uri =404; add_header Content-Type "text/plain; charset=utf-8"; }
+
+    # Everything else goes to the SPA via serve
     location / {
         proxy_pass http://127.0.0.1:${APP_PORT};
         proxy_set_header Host \$host;
