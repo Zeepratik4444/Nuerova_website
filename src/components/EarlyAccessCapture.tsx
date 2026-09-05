@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { trackEvent } from "@/lib/analytics";
 
 type Props = {
@@ -157,6 +158,17 @@ export function EarlyAccessCapture({ source = "blog_post" }: Props) {
 					{errorMsg}
 				</p>
 			)}
+			<p style={{ margin: "12px 0 0", fontSize: "11px", color: "rgba(255,255,255,0.35)" }}>
+				By submitting, you agree to our{" "}
+				<Link to="/terms" style={{ textDecoration: "underline", color: "inherit" }}>
+					Terms of Service
+				</Link>
+				{" "}&amp;{" "}
+				<Link to="/privacy" style={{ textDecoration: "underline", color: "inherit" }}>
+					Privacy Policy
+				</Link>
+				.
+			</p>
 		</div>
 	);
 }

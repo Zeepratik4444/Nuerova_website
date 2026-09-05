@@ -289,6 +289,19 @@ const pages = [
 </main>`,
     },
     {
+        route: "privacy",
+        title: "Privacy Policy | Nuerova",
+        description:
+            "Read the Nuerova privacy policy covering data collection, AI processing, per-connector data handling (Google Workspace, Microsoft 365, Slack, Salesforce, GitHub, Notion, Shopify), retention, and your GDPR rights.",
+        noIndex: false,
+        staticBody: `
+<main>
+  <h1>Privacy Policy</h1>
+  <p>This policy describes how Nuerova collects, processes, and protects your data. By creating an account you agree to this policy.</p>
+  <p>Key areas covered: data we collect, AI data processing, per-connector data handling for every supported integration, data storage and security, GDPR legal basis and data subject rights, retention, and cookies.</p>
+</main>`,
+    },
+    {
         route: "blog",
         title: "Blog - Team Intelligence, Agent Workflows & Enterprise AI | Nuerova",
         description:

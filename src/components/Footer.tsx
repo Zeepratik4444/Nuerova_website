@@ -65,7 +65,7 @@ export function Footer() {
 							Careers <span className="text-[9px] bg-white/10 px-1.5 py-0.5 rounded text-white/50">HIRING</span>
 						</span>
 						<Link to="/terms" className="text-sm text-white/50 hover:text-white transition-colors w-fit">Terms of Service</Link>
-						<Link to="/terms" className="text-sm text-white/50 hover:text-white transition-colors w-fit">Privacy Policy</Link>
+						<Link to="/privacy" className="text-sm text-white/50 hover:text-white transition-colors w-fit">Privacy Policy</Link>
 					</div>
 
 				</div>

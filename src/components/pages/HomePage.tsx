@@ -899,7 +899,7 @@ export function HomePage() {
 											{demoError}
 										</p>
 									)}
-									<button 
+									<button
 										type="submit"
 										disabled={isDemoSubmitting}
 										className="w-full bg-gradient-to-r from-status-blue to-blue-600 text-white font-bold py-3.5 rounded-lg shadow-lg hover:shadow-status-blue/20 hover:-translate-y-0.5 transition-all mt-4 border border-white/10"
@@ -907,6 +907,9 @@ export function HomePage() {
 										{isDemoSubmitting ? "Requesting..." : "Request your demo"}
 									</button>
 									<p className="text-[10px] text-white/40 text-center mt-4">A human reviews every request. No pressure, no generic sales loop.</p>
+									<p className="text-[10px] text-white/40 text-center">
+										By submitting, you agree to our <Link to="/terms" className="underline hover:text-white/60">Terms of Service</Link> &amp; <Link to="/privacy" className="underline hover:text-white/60">Privacy Policy</Link>.
+									</p>
 								</form>
 							)}
 						</div>
@@ -944,6 +947,11 @@ export function HomePage() {
 						{waitlistError && (
 							<p style={{ color: "#ff5b5b", fontSize: "14px", marginTop: "12px", marginBottom: 0 }}>
 								{waitlistError}
+							</p>
+						)}
+						{!waitlistSubmitted && (
+							<p className="text-[10px] text-white/40 text-center mt-4">
+								By requesting access, you agree to our <Link to="/terms" className="underline hover:text-white/60">Terms of Service</Link> &amp; <Link to="/privacy" className="underline hover:text-white/60">Privacy Policy</Link>.
 							</p>
 						)}
 					</div>

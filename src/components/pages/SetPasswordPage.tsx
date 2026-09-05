@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSearch } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -322,6 +322,18 @@ export function SetPasswordPage() {
 						"Set Password & Activate"
 					)}
 				</Button>
+
+				<p className="text-center text-xs text-gray-400">
+					By activating your account, you agree to our{" "}
+					<Link to="/terms" style={{ color: BRAND }} className="underline">
+						Terms of Service
+					</Link>
+					{" "}&amp;{" "}
+					<Link to="/privacy" style={{ color: BRAND }} className="underline">
+						Privacy Policy
+					</Link>
+					.
+				</p>
 
 				<p className="text-center text-xs text-gray-400">
 					Already activated?{" "}

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Navigation } from "@/components/Navigation";
 import { useSEO } from "@/hooks/useSEO";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -210,6 +211,9 @@ export function ContactPage() {
 									</button>
 									<p className="text-[10px] text-white/40 text-center">
 										No sales pressure. Just showing the product around a real workflow.
+									</p>
+									<p className="text-[10px] text-white/40 text-center">
+										By submitting, you agree to our <Link to="/terms" className="underline hover:text-white/60">Terms of Service</Link> &amp; <Link to="/privacy" className="underline hover:text-white/60">Privacy Policy</Link>.
 									</p>
 								</form>
 							)}
