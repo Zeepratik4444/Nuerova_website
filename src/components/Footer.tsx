@@ -73,7 +73,7 @@ export function Footer() {
 				{/* Bottom Bar */}
 				<div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
 					<div className="text-sm text-white/40 flex items-center gap-2">
-						© {new Date().getFullYear()} Nuerova Inc. All rights reserved.
+						© {new Date().getFullYear()} Ganvix Technologies Pvt Ltd. All rights reserved.
 					</div>
 					<div className="flex items-center gap-6">
 						<div className="flex items-center gap-2 text-xs text-white/40">
